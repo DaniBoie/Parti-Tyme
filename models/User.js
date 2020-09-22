@@ -24,6 +24,8 @@ const User = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'ProfileSettings'
   }]
+
+  
 }, { timestamps: true })
 
 User.plugin(require('passport-local-mongoose'))

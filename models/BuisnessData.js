@@ -1,8 +1,9 @@
 const { model, Schema } = require('mongoose')
 
-const ProfileSettings = new Schema({
-  img: {
+const BuisnessData = new Schema({
+  name: {
     type: String,
+    unique: true,
   },
   bio: {
     type: String,
@@ -11,9 +12,19 @@ const ProfileSettings = new Schema({
     type: String,
     unique: true,
   },
+  website: {
+    type: String,
+    unique: true,
+  },
   facebook: {
     type: String,
     unique: true,
+  },
+  buisness_type: {
+    type: String,
+  },
+  fee: {
+    type: Number
   },
   user: {
     type: Schema.Types.ObjectId,
@@ -22,6 +33,6 @@ const ProfileSettings = new Schema({
 
 }, { timestamps: true })
 
-ProfileSettings.plugin(require('passport-local-mongoose'))
+BuisnessData.plugin(require('passport-local-mongoose'))
 
-module.exports = model('ProfileSettings', ProfileSettings)
+module.exports = model('BuisnessData', BuisnessData)
