@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './Login.css'
+import axios from 'axios'
 
 function Login() {
 
@@ -19,55 +20,69 @@ function Login() {
         setAccountState({ ...accountState, [event.target.name]: event.target.value })
     }
 
-    accountState.handleLogin = event => {
-
+    accountState.handleCheck = event => {
+        event.preventDefault()
+        axios.post('/api/users/login', {
+            username: accountState.loginUsername,
+            password: accountState.loginPassword
+        })
+            .then(({ data: token }) => {
+                if (token) {
+                    localStorage.setItem('user', token)
+                    window.location = '/index.html'
+                } else {
+                    console.log('invalid credentials')
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     accountState.handleSignUp = event => {
         event.preventDefault()
 
-        if (accountState.password1=== accountState.password2) {
+        console.log(accountState.password1)
 
+        if (accountState.password1 === accountState.password2) {
+
+            console.log('passmatch')
+            console.log(accountState.password1)
         axios.post('/api/users/register', {
-            name: accountState.realname,
+            realname: accountState.realname,
             email: accountState.userEmail,
             username: accountState.username,
             password: accountState.password1,
-        })
+            account_type: 1
+             })
             .then((res) => {
-                setAccountState({
-                    ...accountState, password1: '', password2: '', userEmail: '', username: '', realname: '',})
+                setAccountState({ ...accountState, realname: '', userEmail: '', username: '', password1: '', password2: ''})
+                console.log(res)
             })
             .catch(err => console.log(err))
+
         } else {
             alert('Unmatched Password')
         }
     }
 
-
     return (
         <div className="login-page">
             <form className="login-form">
                 <h1>Login</h1>
-                <input type="text" name="loginUsername" placeholder="User Name" />
-                <input type="password" name="loginPassword" placeholder="Password" />
-                <input type="submit" name="submit" value="Login" />
+                <input type="text" name="loginUsername" placeholder="User Name" onChange={accountState.handleInputChange}/>
+                <input type="password" name="loginPassword" placeholder="Password" onChange={accountState.handleInputChange}/>
+                <input type="submit" name="submit" value="Login"  onClick={accountState.handleCheck}/>
             </form>
 
             <form className="signup-form">
                 <h1>Sign Up</h1>
-                <input type="text" name="userEmail" placeholder="Email" 
-                    onChange={accountState.handleInputChange}/>
-                <input type="text" name="realname" placeholder="realname" 
-                    onChange={accountState.handleInputChange}/>
-                <input type="text" name="username" placeholder="username" 
-                    onChange={accountState.handleInputChange}/>
-                <input type="password" name="password1" placeholder="Password1" 
-                    onChange={accountState.handleInputChange}/>
-                <input type="password" name="password2" placeholder="Password2" 
-                    onChange={accountState.handleInputChange}/>
-                <input type="submit" name="submit" value="Submit" 
-                    onClick={accountState.handleSignUp}/>
+                <input type="text" name="userEmail" placeholder="Email" onChange={accountState.handleInputChange} />
+                <input type="text" name="username" placeholder="Login Name" onChange={accountState.handleInputChange}/>
+                <input type="text" name="realname" placeholder="Full Name" onChange={accountState.handleInputChange}/>
+                <input type="password" name="password1" placeholder="Password1" onChange={accountState.handleInputChange}/>
+                <input type="password" name="password2" placeholder="Password2" onChange={accountState.handleInputChange}/>
+                <input type="submit" name="submit" value="Submit" onClick={accountState.handleSignUp} />
             </form>
 
         </div>
