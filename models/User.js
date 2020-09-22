@@ -20,12 +20,15 @@ const User = new Schema({
     required: true,
   },
   // Items is an array that refrences the item objects as children.
-  Settings: [{
+  Settings: {
     type: Schema.Types.ObjectId,
     ref: 'ProfileSettings'
-  }]
-
-
+  },
+  Buisness: {
+    type: Schema.Types.ObjectId,
+    ref: 'BuisnessData'
+  }
+  
 }, { timestamps: true })
 
 User.plugin(require('passport-local-mongoose'))

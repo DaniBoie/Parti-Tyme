@@ -4,6 +4,7 @@ const BuisnessData = new Schema({
   name: {
     type: String,
     unique: true,
+    required: true
   },
   bio: {
     type: String,
@@ -22,9 +23,11 @@ const BuisnessData = new Schema({
   },
   buisness_type: {
     type: String,
+    required: true
   },
   fee: {
-    type: Number
+    type: Number,
+    required: true
   },
   user: {
     type: Schema.Types.ObjectId,
