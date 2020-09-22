@@ -1,15 +1,19 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 
+
+
+
 const Nav = () => {
   return (
     <>
-      <Link to="/">Home</Link>
-      <Link to="/businessprofile">BusinessProfile</Link>
-      <Link to="/businessview">BusinessView</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/userprofile">UserProfile</Link>
-    </>
+    <nav>
+    <form className = "navForm" action="">
+      <input className = "navInput" type="text" placeholder="Search ..."/>
+        <a href="#"><i className="fa fa-search"></i></a> 
+    </form>
+  </nav>
+  </>
   )
 }
 
