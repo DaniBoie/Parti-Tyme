@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { User, BuisnessData, Review } = require('../models')
 const passport = require('passport')
 const ProfileSettings = require('../models/ProfileSettings')
+const { findById } = require('../models/ProfileSettings')
 
 // CREATE settings data
 router.post('/review', passport.authenticate('jwt'), (req, res) => {
@@ -22,19 +23,14 @@ router.post('/review', passport.authenticate('jwt'), (req, res) => {
 
 })
 
-// UPDATE settings data
-// router.put('/settings/:id', passport.authenticate('jwt'), (req, res) => {
-//   ProfileSettings.findByIdAndUpdate(req.params.id, req.body)
-//     .then(() => res.sendStatus(200))
-//     .catch(err => console.log(err))
-// })
-
 //Route to get buisness reviews
-router.get('/review/buisness', passport.authenticate('jwt'), (req, res) => {
-  BuisnessData.find(req.user.Buisness)
+router.get('/review/buisness/:id', passport.authenticate('jwt'), (req, res) => {
+  BuisnessData.findById(req.params.id)
     .populate('reviews')
-    .then(Reviews => res.json(Reviews[0].reviews))
-    .catch(err => console.log(err))
+    .then((data) => {
+    res.json(data.reviews)
+  })
+  .catch(err => console.log(err))
 })
 
 module.exports = router

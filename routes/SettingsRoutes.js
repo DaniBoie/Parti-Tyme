@@ -21,8 +21,8 @@ router.post('/settings', passport.authenticate('jwt'), (req, res) => {
 })
 
 // UPDATE settings data
-router.put('/settings/:id', passport.authenticate('jwt'), (req, res) => {
-  ProfileSettings.findByIdAndUpdate(req.params.id, req.body)
+router.put('/settings', passport.authenticate('jwt'), (req, res) => {
+  ProfileSettings.findByIdAndUpdate(req.user.Settings, req.body)
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
 })
