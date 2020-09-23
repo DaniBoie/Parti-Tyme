@@ -9,6 +9,9 @@ const { DH_CHECK_P_NOT_PRIME } = require('constants')
 
 const app = express()
 
+app.use(passport.initialize())
+
+
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(join(__dirname, 'client', 'build')))
 }
@@ -18,13 +21,15 @@ app.use(express.json())
 
 app.use(require('./routes'))
 
+
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
     res.sendFile(join(__dirname, 'client', 'build', 'index.html'))
   })
 }
+
  // PASSPORT AUTH
-app.use(passport.initialize())
+
 app.use(passport.session())
 
 passport.use(new Strategy(User.authenticate()))
