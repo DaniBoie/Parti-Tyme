@@ -5,13 +5,13 @@ const BuisnessData = require('../models/BuisnessData')
 const ProfileSettings = require('../models/ProfileSettings')
 
 
-// GET all Blogposts
-// router.get('/blogposts', (req, res) => {
-//   Blogpost.find()
-//     .populate('user')
-//     .then(Blogposts => res.json(Blogposts))
-//     .catch(err => console.log(err))
-// })
+// GET all business data
+router.get('/business', (req, res) => {
+  Blogpost.find()
+    // .populate('user')
+    .then(data => res.json(data))
+    .catch(err => console.log(err))
+})
 
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {

@@ -25,3 +25,5 @@ router.put('/settings/:id', passport.authenticate('jwt'), (req, res) => {
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
 })
+
+module.exports = router
