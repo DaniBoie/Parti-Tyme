@@ -3,6 +3,7 @@ const { User, Blogpost } = require('../models')
 const passport = require('passport')
 const ProfileSettings = require('../models/ProfileSettings')
 
+// CREATE settings data
 router.post('/settings', passport.authenticate('jwt'), (req, res) => {
   ProfileSettings.create({
     img: req.body.name,
@@ -19,7 +20,7 @@ router.post('/settings', passport.authenticate('jwt'), (req, res) => {
     .catch(err => console.log(err))
 })
 
-// UPDATE buisness data
+// UPDATE settings data
 router.put('/settings/:id', passport.authenticate('jwt'), (req, res) => {
   ProfileSettings.findByIdAndUpdate(req.params.id, req.body)
     .then(() => res.sendStatus(200))

@@ -15,6 +15,10 @@ const User = new Schema({
   account_type: {
     type: Number,
   },
+  Reviews: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Review'
+  }],
   // Items is an array that refrences the item objects as children.
   Settings: {
     type: Schema.Types.ObjectId,

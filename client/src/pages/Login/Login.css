@@ -22,14 +22,15 @@
     -o-transform: translate(-50%, -50%); */
   }
   
-   h1 {
+  .login-form h1, .signup-form h1 {
     color: #fff;
     text-transform: uppercase;
     font-weight: 500;
     padding: 1rem;
   }
   
-   input[type="text"],  input[type="password"] {
+  .login-form input[type="text"], .login-form input[type="password"],
+  .signup-form input[type="text"], .signup-form input[type="password"] {
     border: 0;
     background: none;
     display: block;
@@ -52,12 +53,14 @@
     -o-transition: 0.25s;
   }
   
-   input[type="text"]:focus,  input[type="password"]:focus {
+  .login-form input[type="text"]:focus, .login-form input[type="password"]:focus,
+  .signup-form input[type="text"]:focus, .signup-form input[type="password"]:focus
+  {
     width: 280px;
     border-color: #2ecc71;
   }
   
-   input[type="submit"] {
+  .login-form input[type="submit"], .signup-form input[type="submit"] {
     border: 0;
     background: none;
     display: block;
@@ -81,7 +84,7 @@
     -o-transition: 0.25s;
   }
   
-   input[type="submit"]:hover {
+  .login-form input[type="submit"]:hover, .signup-form input[type="submit"]:hover{
     background: #2ecc71;
   }
 

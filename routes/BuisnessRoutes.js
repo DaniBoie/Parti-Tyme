@@ -40,12 +40,12 @@ router.put('/buisness/:id', passport.authenticate('jwt'), (req, res) => {
     .catch(err => console.log(err))
 })
 
-// DELETE one Blogpost
-// router.delete('/blogposts/:id', passport.authenticate('jwt'), (req, res) => {
-//   Blogpost.findByIdAndDelete(req.params.id)
-//     .then(() => res.sendStatus(200))
-//     .catch(err => console.log(err))
-// })
+// DELETE buisness data
+router.delete('/blogposts/:id', passport.authenticate('jwt'), (req, res) => {
+  BuisnessData.findByIdAndDelete(req.params.id)
+    .then(() => res.sendStatus(200))
+    .catch(err => console.log(err))
+})
 
 router.post('/settings', passport.authenticate('jwt'), (req, res) => {
   ProfileSettings.create({
@@ -60,13 +60,6 @@ router.post('/settings', passport.authenticate('jwt'), (req, res) => {
         .then(() => res.json(data))
         .catch(err => console.log(err))
     })
-    .catch(err => console.log(err))
-})
-
-// UPDATE buisness data
-router.put('/settings/:id', passport.authenticate('jwt'), (req, res) => {
-  ProfileSettings.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
 })
 
