@@ -28,6 +28,7 @@ router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
   User.find(req.user._id)
     .populate('Buisness')
     .populate('Settings')
+    .populate('Reviews')
     .then(userData => res.json(userData))
     .catch(err => console.log(err))
 })
@@ -39,6 +40,7 @@ router.get('/users/buisness', passport.authenticate('jwt'), (req, res) => {
     .then(Buisness => res.json(Buisness))
     .catch(err => console.log(err))
 })
+
 
 // Route to populate the user's settings
 router.get('/users/settings', passport.authenticate('jwt'), (req, res) => {

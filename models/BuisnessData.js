@@ -32,7 +32,11 @@ const BuisnessData = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  reviews: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Review'
+  }]
 
 }, { timestamps: true })
 
