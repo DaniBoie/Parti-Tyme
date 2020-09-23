@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
 const Home = () => {
-  const [, ] = useState({
-  })
+  // const [, ] = useState({
+  // })
 
-    // HANDLING the inputs on the page.
-  ____.handleInputChange = event => {
-    set___State({...___State, [event.target.name]: event.target.value})
-  }
+  //   // HANDLING the inputs on the page.
+  // ____.handleInputChange = event => {
+  //   set___State({...___State, [event.target.name]: event.target.value})
+  // }
 
   return ( 
     <>
