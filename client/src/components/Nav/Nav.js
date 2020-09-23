@@ -39,7 +39,11 @@ const Nav = () => {
       </div>
 
       <div className="nav-account">
-        <button className="nav-account-btn" onClick={handleAccountBtn}>Your Account</button>
+        <button className="nav-account-btn" onClick={handleAccountBtn}>Your Account <i class="fas fa-caret-down"></i></button>
+        <ul>
+          <li><Link to="/userprofile" className="nav-dropdown-item">Profile</Link></li>
+          <li><a href="/" className="nav-dropdown-item">Log out</a></li>
+        </ul>
       </div>
 
 
