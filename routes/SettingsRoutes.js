@@ -6,7 +6,7 @@ const ProfileSettings = require('../models/ProfileSettings')
 // CREATE settings data
 router.post('/settings', passport.authenticate('jwt'), (req, res) => {
   ProfileSettings.create({
-    img: req.body.name,
+    img: req.body.img,
     bio: req.body.bio,
     instagram: req.body.instagram,
     facebook: req.body.facebook,

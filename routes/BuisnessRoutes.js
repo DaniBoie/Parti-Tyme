@@ -1,17 +1,17 @@
 const router = require('express').Router()
-const { User, Blogpost } = require('../models')
+const { User, BuisnessData } = require('../models')
 const passport = require('passport')
 const BuisnessData = require('../models/BuisnessData')
 const ProfileSettings = require('../models/ProfileSettings')
 
 
-// GET all business data
-router.get('/business', (req, res) => {
-  Blogpost.find()
-    // .populate('user')
-    .then(data => res.json(data))
-    .catch(err => console.log(err))
-})
+// // GET all business data
+// router.get('/business', (req, res) => {
+//   Blogpost.find()
+//     // .populate('user')
+//     .then(data => res.json(data))
+//     .catch(err => console.log(err))
+// })
 
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
