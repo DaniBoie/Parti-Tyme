@@ -6,7 +6,7 @@ const ProfileSettings = require('../models/ProfileSettings')
 // CREATE settings data
 router.post('/settings', passport.authenticate('jwt'), (req, res) => {
   ProfileSettings.create({
-    img: req.body.name,
+    img: req.body.img,
     bio: req.body.bio,
     instagram: req.body.instagram,
     facebook: req.body.facebook,
@@ -21,8 +21,10 @@ router.post('/settings', passport.authenticate('jwt'), (req, res) => {
 })
 
 // UPDATE settings data
-router.put('/settings/:id', passport.authenticate('jwt'), (req, res) => {
-  ProfileSettings.findByIdAndUpdate(req.params.id, req.body)
+router.put('/settings', passport.authenticate('jwt'), (req, res) => {
+  ProfileSettings.findByIdAndUpdate(req.user.Settings, req.body)
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
 })
+
+module.exports = router

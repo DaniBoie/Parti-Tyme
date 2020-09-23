@@ -4,15 +4,6 @@ const passport = require('passport')
 const BuisnessData = require('../models/BuisnessData')
 const ProfileSettings = require('../models/ProfileSettings')
 
-
-// GET all Blogposts
-// router.get('/blogposts', (req, res) => {
-//   Blogpost.find()
-//     .populate('user')
-//     .then(Blogposts => res.json(Blogposts))
-//     .catch(err => console.log(err))
-// })
-
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
   BuisnessData.create({
@@ -34,34 +25,18 @@ router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
 })
 
 // UPDATE buisness data
-router.put('/buisness/:id', passport.authenticate('jwt'), (req, res) => {
-  BuisnessData.findByIdAndUpdate(req.params.id, req.body)
+router.put('/buisness', passport.authenticate('jwt'), (req, res) => {
+  BuisnessData.findByIdAndUpdate(req.user.Buisness, req.body)
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
 })
 
 // DELETE buisness data
-router.delete('/blogposts/:id', passport.authenticate('jwt'), (req, res) => {
-  BuisnessData.findByIdAndDelete(req.params.id)
+router.delete('/buisness', passport.authenticate('jwt'), (req, res) => {
+
+  BuisnessData.findByIdAndDelete(req.user.Buisness)
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
 })
-
-router.post('/settings', passport.authenticate('jwt'), (req, res) => {
-  ProfileSettings.create({
-    img: req.body.name,
-    bio: req.body.bio,
-    instagram: req.body.instagram,
-    facebook: req.body.facebook,
-    user: req.user._id
-  })
-    .then(data => {
-      User.findByIdAndUpdate(data.user, { $push: { Settings: data._id } })
-        .then(() => res.json(data))
-        .catch(err => console.log(err))
-    })
-    .catch(err => console.log(err))
-})
-
 
 module.exports = router
