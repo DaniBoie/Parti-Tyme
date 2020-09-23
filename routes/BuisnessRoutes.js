@@ -1,8 +1,6 @@
 const router = require('express').Router()
-const { User, BuisnessData } = require('../models')
+const { User, BuisnessData, ProfileSettings } = require('../models')
 const passport = require('passport')
-const BuisnessData = require('../models/BuisnessData')
-const ProfileSettings = require('../models/ProfileSettings')
 
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {

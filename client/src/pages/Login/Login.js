@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './Login.css'
-import axios from 'axios'
 
 function Login() {
 

@@ -10,22 +10,7 @@ const MediaContext = createContext({
 
   handleSaveMedia: () => { },
 
-  renderBusinessCard: () => {
-    axios.get('/api/business')
-      .then(({data}) => data.map(media => ({
-        name: media.name,
-        bio: media.bio,
-        instagram: media.bio,
-        website: media.website,
-        facebook: media.facebook,
-        business_type: media.business_type
-      }))
-      
-      
-      
-      )
-      .catch(err => console.log(err))
-  }
+  renderBusinessCard: () => { }
 })
 
 export default MediaContext
