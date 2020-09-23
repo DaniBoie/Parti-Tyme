@@ -1,1 +1,1 @@
-export { default } from './BuisnessView.js'
+export { default } from './BusinessView.js'

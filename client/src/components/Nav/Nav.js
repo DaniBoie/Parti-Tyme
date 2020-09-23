@@ -1,23 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import './Nav.css'
 
 const Nav = () => {
 
-  // const [showItems, setShowItems] = useState({
-  //   change: ""
-  // })
-  // function handleMenuBtn() {
-  //   if (showItems.change === "show")
-  //   {
-  //     setShowItems({change: ""})
-  //     console.log(showItems.change)
-  //   }
-  //   else {
-  //     setShowItems({change: "show"})
-  //     console.log(showItems.change)
-  //   }
-  // }
+  const [showItems, setShowItems] = useState({
+    change: ""
+  })
+  function handleMenuBtn() {
+    if (showItems.change === "show")
+    {
+      setShowItems({change: ""})
+      console.log(showItems.change)
+    }
+    else {
+      setShowItems({change: "show"})
+      console.log(showItems.change)
+    }
+  }
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+  })
 
   return (
     <nav className= "nav-bar">
@@ -27,6 +37,8 @@ const Nav = () => {
         <div className="button-line"></div>
       </div>
 
+      <div>{windowWidth}</div>
+
       <form className = "navForm">
         <input className = "navInput" type="text" placeholder="Search ..."/>
         <button className="search-button"><i className="fa fa-search"></i></button>
@@ -34,7 +46,7 @@ const Nav = () => {
 
       
 
-      {/* <div className="menu-button" onClick={handleMenuBtn}>
+      <div className="menu-button" onClick={handleMenuBtn}>
         <div className="button-line"></div>
         <div className="button-line"></div>
         <div className="button-line"></div>
@@ -49,7 +61,7 @@ const Nav = () => {
         <Link to="/userprofile" className= "nav-link">UserProfile</Link>
       </div>
 
-      <button className="logButton">Login</button> */}
+      <button className="logButton">Login</button>
 
     </nav>
   )
