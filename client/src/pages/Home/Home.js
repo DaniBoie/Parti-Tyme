@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import "./Home.css"
 
 const Home = () => {
   // const [, ] = useState({
@@ -10,9 +11,55 @@ const Home = () => {
   // }
 
   return ( 
-    <>
-      <h1>Homepage!</h1>
-    </>
+    <div className="home-page">
+      <div className="home-main-content">
+        <div className="home-filter-column">
+          <h2>Filters</h2>
+
+          <div className="filter-list">
+              <label className="filter-items"> Lorem
+                <input type="checkbox"/>
+                <span className="checkmark"></span>
+              </label>
+
+              <label className="filter-items"> ipsum
+                <input type="checkbox"/>
+                <span className="checkmark"></span>
+              </label>
+              
+              <label className="filter-items"> dolor
+                <input type="checkbox"/>
+                <span className="checkmark"></span>
+              </label>
+
+              <label className="filter-items"> sit
+                <input type="checkbox"/>
+                <span className="checkmark"></span>
+              </label>
+
+              <label className="filter-items"> consectetur
+                <input type="checkbox"/>
+                <span className="checkmark"></span>
+              </label>
+
+              <label className="filter-items"> adipisicing
+                <input type="checkbox"/>
+                <span className="checkmark"></span>
+              </label>
+
+              <label className="filter-items"> Tempora
+                <input type="checkbox"/>
+                <span className="checkmark"></span>
+              </label>
+            </div>
+        </div>
+
+        <div className="home-content-column">
+          <h2>Eh</h2>
+
+        </div>
+      </div>
+    </div>
   )
 }
 

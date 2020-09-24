@@ -13,6 +13,66 @@ router.get('/business/:id', (req, res) => {
 
 
 
+// Find One Buisness
+router.get('/buisness/:id', (req, res) => {
+  BuisnessData.findById(req.params.id)
+    .then(data => res.send(data))
+    .catch(err => console.log(err))
+})
+
+// Filter Buisness by Search
+router.get('/buisness/filter/:search', (req, res) => {
+  let search = req.params.search.toLowerCase()
+  let searchResults = []
+  BuisnessData.find({})
+    .then((data) => {
+
+      if (req.params.search === 'all') {
+        res.send(data)
+      } else {
+        data.forEach(element => {
+
+          let find = (element.name.toLowerCase())
+          if (find.includes(search)) {
+            searchResults.push(element)
+            console.log(searchResults)
+          } else {
+            console.log('No Match')
+          }
+
+        });
+        res.send(searchResults)
+      }
+
+    })
+    .catch(err => console.log(err))
+
+})
+
+// Filter Buisness by Search
+router.get('/buisness/search/:category', (req, res) => {
+  let searchResults = []
+  BuisnessData.find({})
+    .then((data) => {
+
+        data.forEach(buisness => {
+          let search = (req.params.category)
+          let find = (buisness.buisness_type)
+          if (find === search) {
+            searchResults.push(buisness)
+            console.log(searchResults)
+          } else {
+            console.log('No Match')
+          }
+
+        });
+        res.send(searchResults)
+      
+    })
+    .catch(err => console.log(err))
+
+})
+
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
   BuisnessData.create({
