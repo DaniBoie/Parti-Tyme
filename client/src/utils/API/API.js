@@ -14,6 +14,8 @@ const API = {
   // **BUISNESS API CALLS**
   createBusiness: (data) => axios.post(`/api/buisness`, data),
   updateBusiness: (data) => axios.put('/api/buisness', data),
+  searchBusinessName: (searchTerm) => axios.get(`/api/buisness/filer/${searchTerm}`),
+  searchBusinessCategory: (category) => axios.get(`/api/buisness/search/${category}`), 
   // !!! USE WITH EXTREME CAUTION !!!
   nukeBusiness: () => axios.delete('/api/buisness'),
 
