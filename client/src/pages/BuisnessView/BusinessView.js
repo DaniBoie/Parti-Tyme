@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import API from '../../utils/API'
 import "./BusinessView.css"
 
 // Importing Example Images
@@ -9,13 +10,8 @@ import BusinessImage4 from '../../components/images/business-4.jpg'
 // import BusinessImage5 from '../../components/images/business-5.jpg'
 
 const BuisnessView = () => {
-  // const [, ] = useState({
-  // })
-
-  //   // HANDLING the inputs on the page.
-  // ____.handleInputChange = event => {
-  //   set___State({...___State, [event.target.name]: event.target.value})
-  // }
+  API
+}
 
   return ( 
     <div className="business-view">

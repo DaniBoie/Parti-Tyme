@@ -2,6 +2,17 @@ const router = require('express').Router()
 const { User, BuisnessData, ProfileSettings } = require('../models')
 const passport = require('passport')
 
+//GET one business data
+router.get('/business/:id', (req, res) => {
+  BuisnessData.findById(req.params.id)
+    .then(data => res.send(data))
+    .catch(err => console.log(err))
+})
+
+//GET AllBu
+
+
+
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
   BuisnessData.create({
