@@ -21,6 +21,7 @@ const API = {
 
   // **REVIEW API CALLS**
   createReview: (id) => axios.post(`/api/review/${id}`),
+
   findBusinessReviews: (id) => axios.get(`/api/review/buisness/${id}`),
 
   // **Filtering Algorithms**
@@ -37,6 +38,7 @@ const API = {
     )
     return newArray
   }
+
 
 }
 
