@@ -15,14 +15,16 @@ const App = () => {
   return (
     <>
       <Router>
-        <Nav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/businessprofile" component={BusinessProfile} />
-          <Route path="/businessview" component={BusinessView} />
-          <Route path="/login" component={Login} />
-          <Route path="/userprofile" component={UserProfile} />
-        </Switch>
+        <div>
+          <Nav />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/businessprofile" component={BusinessProfile} />
+            <Route path="/businessview" component={BusinessView} />
+            <Route path="/login" component={Login} />
+            <Route path="/userprofile" component={UserProfile} />
+          </Switch>
+        </div>
       </Router>
     </>
   )

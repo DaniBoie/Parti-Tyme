@@ -1,8 +1,17 @@
 const router = require('express').Router()
-const { User, Blogpost } = require('../models')
+const { User, BuisnessData, ProfileSettings } = require('../models')
 const passport = require('passport')
-const BuisnessData = require('../models/BuisnessData')
-const ProfileSettings = require('../models/ProfileSettings')
+
+//GET one business data
+router.get('/business/:id', (req, res) => {
+  BuisnessData.findById(req.params.id)
+    .then(data => res.send(data))
+    .catch(err => console.log(err))
+})
+
+//GET AllBu
+
+
 
 // Find One Buisness
 router.get('/buisness/:id', (req, res) => {

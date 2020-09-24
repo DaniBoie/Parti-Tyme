@@ -1,31 +1,55 @@
 import React, { useState } from 'react'
+// import axios from 'axios'
+import API from '../../utils/API'
 import './Login.css'
-import axios from 'axios'
 
 function Login() {
 
     const [accountState, setAccountState] = useState({
-        loginUsername: '',
-        loginPassword: '',
-        password1: '',
-        password2: '',
-        userEmail: '',
-        username: '',
-        realname: '',
+        loginUsername:'',
+        loginPassword:'',
+        password1:'',
+        password2:'',
+        userEmail:'',
+        username:'',
+        realname:'',
         user: []
     })
+
+    const user = { realname: accountState.realname, email: accountState.email, username: accountState.username, password: accountState.password1, account_type: accountState.account_type }
+
+    const userLogin = {
+        username: accountState.loginUsername,
+        password: accountState.loginPassword
+    }
 
     accountState.handleInputChange = event => {
         setAccountState({ ...accountState, [event.target.name]: event.target.value })
     }
 
+    // accountState.handleCheck = event => {
+    //     event.preventDefault()
+    //     axios.post('/api/users/login', {
+    //         username: accountState.loginUsername,
+    //         password: accountState.loginPassword
+    //     })
+    //         .then(({ data: token }) => {
+    //             if (token) {
+    //                 localStorage.setItem('user', token)
+    //                 window.location = '/index.html'
+    //             } else {
+    //                 console.log('invalid credentials')
+    //             }
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // }
+
     accountState.handleCheck = event => {
         event.preventDefault()
-        axios.post('/api/users/login', {
-            username: accountState.loginUsername,
-            password: accountState.loginPassword
-        })
-            .then(({ data: token }) => {
+        API.loginUser(userLogin)
+            .then(({data: token}) => {
                 if (token) {
                     localStorage.setItem('user', token)
                     window.location = '/index.html'
@@ -33,34 +57,49 @@ function Login() {
                     console.log('invalid credentials')
                 }
             })
-            .catch(err => {
-                console.log(err)
-            })
+            .catch(err => console.log(err))
     }
+
+    // accountState.handleSignUp = event => {
+    //     event.preventDefault()
+
+    //     console.log(accountState.password1)
+
+    //     if (accountState.password1 === accountState.password2) {
+
+    //         console.log('passmatch')
+    //         console.log(accountState.password1)
+    //     axios.post('/api/users/register', {
+    //         realname: accountState.realname,
+    //         email: accountState.userEmail,
+    //         username: accountState.username,
+    //         password: accountState.password1,
+    //         account_type: 1
+    //          })
+    //         .then((res) => {
+    //             setAccountState({ ...accountState, realname: '', userEmail: '', username: '', password1: '', password2: ''})
+    //             console.log(res)
+    //         })
+    //         .catch(err => console.log(err))
+
+    //     } else {
+    //         alert('Unmatched Password')
+    //     }
+    // }
 
     accountState.handleSignUp = event => {
         event.preventDefault()
-
         console.log(accountState.password1)
-
         if (accountState.password1 === accountState.password2) {
-
             console.log('passmatch')
             console.log(accountState.password1)
-        axios.post('/api/users/register', {
-            realname: accountState.realname,
-            email: accountState.userEmail,
-            username: accountState.username,
-            password: accountState.password1,
-            account_type: 1
-             })
+        API.registerUser(user)
             .then((res) => {
-                setAccountState({ ...accountState, realname: '', userEmail: '', username: '', password1: '', password2: ''})
+                setAccountState({ ...accountState, realname: '', userEmail: '', username: '', password1: '', password2: '' })
                 console.log(res)
             })
             .catch(err => console.log(err))
-
-        } else {
+        } else{
             alert('Unmatched Password')
         }
     }

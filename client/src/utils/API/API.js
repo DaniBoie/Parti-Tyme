@@ -20,7 +20,7 @@ const API = {
   nukeBusiness: () => axios.delete('/api/buisness'),
 
   // **REVIEW API CALLS**
-  createReview: (id) => axios.post(`/api/review/${id}`)
+  createReview: (id) => axios.post(`/api/review/${id}`),
   findBusinessReviews: (id) => axios.get(`/api/review/buisness/${id}`) 
 }
 
