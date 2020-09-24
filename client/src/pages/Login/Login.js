@@ -16,7 +16,7 @@ function Login() {
         user: []
     })
 
-    const user = { realname: accountState.realname, email: accountState.email, username: accountState.username, password: accountState.password1, account_type: accountState.account_type }
+    const user = { realname: accountState.realname, email: accountState.userEmail, username: accountState.username, password: accountState.password1, account_type: accountState.account_type }
 
     const userLogin = {
         username: accountState.loginUsername,
