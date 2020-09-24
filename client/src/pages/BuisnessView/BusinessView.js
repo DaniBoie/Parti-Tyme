@@ -10,8 +10,6 @@ import BusinessImage4 from '../../components/images/business-4.jpg'
 // import BusinessImage5 from '../../components/images/business-5.jpg'
 
 const BuisnessView = () => {
-  API
-}
 
   return ( 
     <div className="business-view">
