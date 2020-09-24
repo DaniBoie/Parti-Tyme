@@ -28,3 +28,4 @@ router.put('/settings', passport.authenticate('jwt'), (req, res) => {
 })
 
 module.exports = router
+

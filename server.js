@@ -43,6 +43,8 @@ passport.use(new JWTStrategy({
   .then(user => cb(null, user))
   .catch(err => cb(err))))
 
+  
+
 require('./db')
   .then(() => app.listen(process.env.PORT || 3001))
   .catch(err => console.log(err))
