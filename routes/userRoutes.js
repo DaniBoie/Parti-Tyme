@@ -6,8 +6,8 @@ const jwt = require('jsonwebtoken')
 
 // ROUTE to register a new user
 router.post('/users/register', (req, res) => {
-  const { name, email, username, password } = req.body
-  User.register(new User({ name, email, username }), password, err => {
+  const { realname, email, username, password, account_type } = req.body
+  User.register(new User({ realname, email, username, account_type }), password, err => {
     if (err) {
       console.log(err)
     } res.sendStatus(200)
@@ -23,9 +23,31 @@ router.post('/users/login', (req, res) => {
   })
 })
 
-// ROUTE to get the posts from a specific user
-router.get('/users/posts', passport.authenticate('jwt'), (req, res) => {
-  res.json(req.user)
+// Route to get all the user's information (including buisness & settings)
+router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
+  User.find(req.user._id)
+    .populate('Buisness')
+    .populate('Settings')
+    .populate('Reviews')
+    .then(userData => res.json(userData))
+    .catch(err => console.log(err))
 })
+
+// ROUTE to populate the user's buisness
+// router.get('/users/buisness', passport.authenticate('jwt'), (req, res) => {
+//   User.find(req.user._id)
+//     .populate('Buisness')
+//     .then(Buisness => res.json(Buisness))
+//     .catch(err => console.log(err))
+// })
+
+
+// Route to populate the user's settings
+// router.get('/users/settings', passport.authenticate('jwt'), (req, res) => {
+//     User.find(req.user._id)
+//     .populate('Settings')
+//     .then(Settings => res.json(Settings))
+//     .catch(err => console.log(err))
+// })
 
 module.exports = router
