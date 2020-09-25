@@ -1,7 +1,8 @@
-import axios from 'axios'
+import axios from "axios";
 
 const API = {
   // **USER API CALLS**
+
   // Send Frontend data as object
   registerUser: (data) => axios.post(`/api/users/register`, data),
   loginUser: (data) => axios.post('/api/users/login', data),
@@ -14,15 +15,17 @@ const API = {
 
   // **USER PROFILE API CALLS**
   createSettings: (data) => axios.post(`/api/settings`, data),
-  updateSettings: (data) => axios.put('/api/settings', data),
+  updateSettings: (data) => axios.put("/api/settings", data),
 
   // **BUISNESS API CALLS**
   createBusiness: (data) => axios.post(`/api/buisness`, data),
-  updateBusiness: (data) => axios.put('/api/buisness', data),
-  searchBusinessName: (searchTerm) => axios.get(`/api/buisness/filter/${searchTerm}`),
-  searchBusinessCategory: (category) => axios.get(`/api/buisness/search/${category}`), 
+  updateBusiness: (data) => axios.put("/api/buisness", data),
+  searchBusinessName: (searchTerm) =>
+    axios.get(`/api/buisness/filter/${searchTerm}`),
+  searchBusinessCategory: (category) =>
+    axios.get(`/api/buisness/search/${category}`),
   // !!! USE WITH EXTREME CAUTION !!!
-  nukeBusiness: () => axios.delete('/api/buisness'),
+  nukeBusiness: () => axios.delete("/api/buisness"),
 
   // **REVIEW API CALLS**
   createReview: (id) => axios.post(`/api/review/${id}`),
@@ -31,20 +34,16 @@ const API = {
 
   // **Filtering Algorithms**
   filterPrice: (maxPrice, oldArray) => {
-    let newArray = oldArray.filter(business => 
-      business.fee <= maxPrice
-    )
-    return newArray
+    let newArray = oldArray.filter((business) => business.fee <= maxPrice);
+    return newArray;
   },
 
   filterSubcategory: (subCategory, oldArray) => {
-    let newArray = oldArray.filter(business => 
-      business.subCategory === subCategory
-    )
-    return newArray
-  }
+    let newArray = oldArray.filter(
+      (business) => business.subCategory === subCategory
+    );
+    return newArray;
+  },
+};
 
-
-}
-
-export default API
+export default API;
