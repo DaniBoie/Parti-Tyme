@@ -15,17 +15,6 @@ function Login() {
     user: [],
   });
 
-  const [accountState, setAccountState] = useState({
-    loginUsername: "",
-    loginPassword: "",
-    password1: "",
-    password2: "",
-    userEmail: "",
-    username: "",
-    realname: "",
-    user: [],
-  });
-
   const user = {
     realname: accountState.realname,
     email: accountState.userEmail,
