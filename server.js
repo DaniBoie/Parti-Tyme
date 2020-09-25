@@ -21,7 +21,6 @@ app.use(express.json())
 
 app.use(require('./routes'))
 
-
 if (process.env.NODE_ENV === 'production') {
   app.get('/*', (req, res) => {
     res.sendFile(join(__dirname, 'client', 'build', 'index.html'))
@@ -43,6 +42,8 @@ passport.use(new JWTStrategy({
   .populate('')
   .then(user => cb(null, user))
   .catch(err => cb(err))))
+
+  
 
 require('./db')
   .then(() => app.listen(process.env.PORT || 3001))

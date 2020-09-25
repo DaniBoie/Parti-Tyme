@@ -1,11 +1,16 @@
 import {createContext} from 'react'
+import axios from 'axios'
 
 const MediaContext = createContext({
   search: '',
-  media: [],
+  business: [],
   handleInputChange: () => { },
-  handleSearchOMDB: () => { },
+
+  handleCheck: () => { },
+
   handleSaveMedia: () => { },
+
+  renderBusinessCard: () => { }
 })
 
 export default MediaContext
