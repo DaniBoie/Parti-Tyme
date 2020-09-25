@@ -40,7 +40,7 @@ function Login() {
             .then(({data: token}) => {
                 if (token) {
                     localStorage.setItem('user', token)
-                    window.location = '/index.html'
+                    window.location = '/userprofile'
                 } else {
                     console.log('invalid credentials')
                 }

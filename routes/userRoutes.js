@@ -29,7 +29,11 @@ router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
     .populate('Buisness')
     .populate('Settings')
     .populate('Reviews')
-    .then(userData => res.json(userData))
+    .then(userData => {
+      console.log(userData)
+      // console.log(req)
+      res.json(userData)
+    })
     .catch(err => console.log(err))
 })
 
