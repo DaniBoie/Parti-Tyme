@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./nav.css";
+import "./Nav.css";
 import Logo from "../images/business-5.jpg";
 
 const Nav = () => {
