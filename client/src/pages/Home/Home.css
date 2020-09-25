@@ -1,0 +1,27 @@
+.home-page {
+  height: 85vh;
+  margin-top: 2rem;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 7fr 1fr;
+}
+
+.home-main-content {
+  grid-column: 2/3;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #333;
+
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.home-filter-column {
+  background: #b2bec3;
+  border-right: 1px solid #333;
+}
+
+.home-filter-column h2 {
+  text-align: center;
+  padding: 1rem 0;
+}

@@ -1,71 +1,91 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './Nav.css'
+import "./nav.css";
+import Logo from "../images/business-5.jpg";
 
 const Nav = () => {
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  // const handleResize = () => {
+  //   setWindowWidth(window.innerWidth)
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize)
+  // })
+  {
+    /* <div>{windowWidth}</div> */
+  }
 
   const [showItems, setShowItems] = useState({
-    change: ""
-  })
-  function handleMenuBtn() {
-    if (showItems.change === "show")
-    {
-      setShowItems({change: ""})
-      console.log(showItems.change)
-    }
-    else {
-      setShowItems({change: "show"})
-      console.log(showItems.change)
-    }
+    show: "",
+  });
+
+  function handleAccountBtn() {
+    if (showItems.show === "") setShowItems({ show: "show" });
+    else setShowItems({ show: "" });
   }
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth)
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize)
-  })
 
   return (
-    <nav className= "nav-bar">
-      <div className="menu-button" onClick={handleMenuBtn}>
-        <div className="button-line"></div>
-        <div className="button-line"></div>
-        <div className="button-line"></div>
-      </div>
-
-      <div>{windowWidth}</div>
-
-      <form className = "navForm">
-        <input className = "navInput" type="text" placeholder="Search ..."/>
-        <button className="search-button"><i className="fa fa-search"></i></button>
-      </form>
-
-      
-
-      <div className="menu-button" onClick={handleMenuBtn}>
-        <div className="button-line"></div>
-        <div className="button-line"></div>
-        <div className="button-line"></div>
-      </div>
-
-
-      <div className={`nav-items ${showItems.change}`}>
-        <Link to="/" className="nav-link">Home</Link>
-        <Link to="/businessprofile" className="nav-link">BusinessProfile</Link>
-        <Link to="/businessview" className= "nav-link">BusinessView</Link>
-        <Link to="/login" className= "nav-link">Login</Link>
-        <Link to="/userprofile" className= "nav-link">UserProfile</Link>
-      </div>
-
-      <button className="logButton">Login</button>
-
+    <>
+    <nav>
+    <form className = "navForm" action="">
+      <input className = "navInput" type="text" placeholder="Search ..."/>
+        <Link to ="/"><i className="fa fa-search"/> </Link>
+    </form>
     </nav>
+
+    <nav className= "nav-bar">
+
+      <div className="nav-logo">
+        <Link to="/">
+          <img src={Logo} alt="Logo" />
+        </Link>
+      </div>
+
+      <div className="nav-search-bar">
+        <input type="text" placeholder="Search ..." />
+        <button className="nav-search-button">
+          <i className="fa fa-search"></i>
+        </button>
+      </div>
+
+      <div className="nav-account">
+        <button className="nav-account-btn" onClick={handleAccountBtn}>
+          Your Account <i class="fas fa-caret-down"></i>
+        </button>
+        <ul>
+          <li>
+            <Link to="/userprofile" className="nav-dropdown-item">
+              Profile
+            </Link>
+          </li>
+          <li>
+            <a href="/" className="nav-dropdown-item">
+              Log in
+            </a>
+          </li>
+          <li>
+            <a href="/" className="nav-dropdown-item">
+              Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+      </nav>
+    </>
+
+
+
+    // <div className={`nav-items ${showItems.show}`}>
+    //     <Link to="/" className="nav-link">Home</Link>
+    //     <Link to="/businessprofile" className="nav-link">BusinessProfile</Link>
+    //     <Link to="/businessview" className= "nav-link">BusinessView</Link>
+    //     <Link to="/login" className= "nav-link">Login</Link>
+    //     <Link to="/userprofile" className= "nav-link">UserProfile</Link>
+    //   </div>
+    // </nav>
   )
 }
 
 export default Nav
-

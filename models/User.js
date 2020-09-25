@@ -17,7 +17,7 @@ const User = new Schema({
   },
   account_type: {
     type: Number,
-    required: true,
+    required: true
   },
   Reviews: [{
     type: Schema.Types.ObjectId,
