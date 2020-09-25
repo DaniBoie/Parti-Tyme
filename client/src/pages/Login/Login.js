@@ -48,22 +48,6 @@ function Login() {
             .catch(err => console.log(err))
     }
 
-
-    accountState.handleSignUp = event => {
-        event.preventDefault()
-        console.log(accountState.password1)
-        if (accountState.password1 === accountState.password2) {
-            console.log('passmatch')
-            console.log(accountState.password1)
-        API.registerUser(user)
-            .then((res) => {
-                setAccountState({ ...accountState, realname: '', userEmail: '', username: '', password1: '', password2: '' })
-                console.log(res)
-            })
-            .catch(err => console.log(err))
-        } else{
-            alert('Unmatched Password')
-
   accountState.handleCheck = (event) => {
     event.preventDefault();
     API.loginUser(userLogin)
