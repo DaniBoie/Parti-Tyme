@@ -33,24 +33,6 @@ function Login() {
         setAccountState({ ...accountState, [event.target.name]: event.target.value })
     }
 
-    // accountState.handleCheck = event => {
-    //     event.preventDefault()
-    //     axios.post('/api/users/login', {
-    //         username: accountState.loginUsername,
-    //         password: accountState.loginPassword
-    //     })
-    //         .then(({ data: token }) => {
-    //             if (token) {
-    //                 localStorage.setItem('user', token)
-    //                 window.location = '/index.html'
-    //             } else {
-    //                 console.log('invalid credentials')
-    //             }
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         })
-    // }
 
     accountState.handleCheck = event => {
         event.preventDefault()
@@ -66,32 +48,6 @@ function Login() {
             .catch(err => console.log(err))
     }
 
-    // accountState.handleSignUp = event => {
-    //     event.preventDefault()
-
-    //     console.log(accountState.password1)
-
-    //     if (accountState.password1 === accountState.password2) {
-
-    //         console.log('passmatch')
-    //         console.log(accountState.password1)
-    //     axios.post('/api/users/register', {
-    //         realname: accountState.realname,
-    //         email: accountState.userEmail,
-    //         username: accountState.username,
-    //         password: accountState.password1,
-    //         account_type: 1
-    //          })
-    //         .then((res) => {
-    //             setAccountState({ ...accountState, realname: '', userEmail: '', username: '', password1: '', password2: ''})
-    //             console.log(res)
-    //         })
-    //         .catch(err => console.log(err))
-
-    //     } else {
-    //         alert('Unmatched Password')
-    //     }
-    // }
 
     accountState.handleSignUp = event => {
         event.preventDefault()

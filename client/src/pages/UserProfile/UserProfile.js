@@ -7,13 +7,7 @@ import "./UserProfile.css";
 import ProfileImage from "../../components/images/business-2.jpg";
 
 const UserProfile = () => {
-  // const [, ] = useState({
-  // })
 
-  //   // HANDLING the inputs on the page.
-  // ____.handleInputChange = event => {
-  //   set___State({...___State, [event.target.name]: event.target.value})
-  // }
 
   // Function to show / hide input area when click on "Edit Profile" Button
   const [showInput, setShowInput] = useState({
