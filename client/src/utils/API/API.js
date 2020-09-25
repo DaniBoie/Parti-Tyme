@@ -15,13 +15,30 @@ const API = {
   // **BUISNESS API CALLS**
   createBusiness: (data) => axios.post(`/api/buisness`, data),
   updateBusiness: (data) => axios.put("/api/buisness", data),
-
+  searchBusinessName: (searchTerm) =>
+    axios.get(`/api/buisness/filter/${searchTerm}`),
+  searchBusinessCategory: (category) =>
+    axios.get(`/api/buisness/search/${category}`),
   // !!! USE WITH EXTREME CAUTION !!!
   nukeBusiness: () => axios.delete("/api/buisness"),
 
   // **REVIEW API CALLS**
   createReview: (id) => axios.post(`/api/review/${id}`),
+
   findBusinessReviews: (id) => axios.get(`/api/review/buisness/${id}`),
+
+  // **Filtering Algorithms**
+  filterPrice: (maxPrice, oldArray) => {
+    let newArray = oldArray.filter((business) => business.fee <= maxPrice);
+    return newArray;
+  },
+
+  filterSubcategory: (subCategory, oldArray) => {
+    let newArray = oldArray.filter(
+      (business) => business.subCategory === subCategory
+    );
+    return newArray;
+  },
 };
 
 export default API;

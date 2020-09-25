@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Nav.css";
+import "./nav.css";
 import Logo from "../images/business-5.jpg";
 
 const Nav = () => {
@@ -27,7 +27,16 @@ const Nav = () => {
   }
 
   return (
-    <nav className="nav-bar">
+    <>
+    <nav>
+    <form className = "navForm" action="">
+      <input className = "navInput" type="text" placeholder="Search ..."/>
+        <Link to ="/"><i className="fa fa-search"/> </Link>
+    </form>
+    </nav>
+
+    <nav className= "nav-bar">
+
       <div className="nav-logo">
         <Link to="/">
           <img src={Logo} alt="Logo" />
@@ -63,26 +72,20 @@ const Nav = () => {
           </li>
         </ul>
       </div>
+      </nav>
+    </>
 
-      <div className={`nav-items ${showItems.show}`}>
-        <Link to="/" className="nav-link">
-          Home
-        </Link>
-        <Link to="/businessprofile" className="nav-link">
-          BusinessProfile
-        </Link>
-        <Link to="/businessview" className="nav-link">
-          BusinessView
-        </Link>
-        <Link to="/login" className="nav-link">
-          Login
-        </Link>
-        <Link to="/userprofile" className="nav-link">
-          UserProfile
-        </Link>
-      </div>
-    </nav>
-  );
-};
 
-export default Nav;
+
+    // <div className={`nav-items ${showItems.show}`}>
+    //     <Link to="/" className="nav-link">Home</Link>
+    //     <Link to="/businessprofile" className="nav-link">BusinessProfile</Link>
+    //     <Link to="/businessview" className= "nav-link">BusinessView</Link>
+    //     <Link to="/login" className= "nav-link">Login</Link>
+    //     <Link to="/userprofile" className= "nav-link">UserProfile</Link>
+    //   </div>
+    // </nav>
+  )
+}
+
+export default Nav
