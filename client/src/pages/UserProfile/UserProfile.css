@@ -54,18 +54,18 @@
 
 .update-account-btn {
   margin-bottom: 0;
-  animation: update-account-btn-animation 1s infinite;
-  -webkit-animation: update-account-btn-animation 1s infinite;
+  /* animation: update-account-btn-animation 1s infinite; */
+  /* -webkit-animation: update-account-btn-animation 1s infinite; */
 }
 
-@keyframes update-account-btn-animation {
+/* @keyframes update-account-btn-animation {
   from {
     background: #dfe6e9;
   }
   to {
     background: #b2bec3;
   }
-}
+} */
 
 .edit-profile-btn:hover,
 .update-account-btn:hover {
