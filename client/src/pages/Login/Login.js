@@ -4,55 +4,65 @@ import API from "../../utils/API";
 import "./Login.css";
 
 function Login() {
-  const [accountState, setAccountState] = useState({
-    loginUsername: "",
-    loginPassword: "",
-    password1: "",
-    password2: "",
-    userEmail: "",
-    username: "",
-    realname: "",
-    user: [],
-  });
 
-  const user = {
-    realname: accountState.realname,
-    email: accountState.userEmail,
-    username: accountState.username,
-    password: accountState.password1,
-    account_type: 1,
-  };
+    const [accountState, setAccountState] = useState({
+        loginUsername:'',
+        loginPassword:'',
+        password1:'',
+        password2:'',
+        userEmail:'',
+        username:'',
+        realname:'',
+        user: []
+    })
 
-  const userLogin = {
-    username: accountState.loginUsername,
-    password: accountState.loginPassword,
-  };
 
-  accountState.handleInputChange = (event) => {
-    setAccountState({
-      ...accountState,
-      [event.target.name]: event.target.value,
-    });
-  };
+    const user = { 
+        realname: accountState.realname, 
+        email: accountState.userEmail, 
+        username: accountState.username, 
+        password: accountState.password1, 
+        account_type: 1 }
 
-  // accountState.handleCheck = event => {
-  //     event.preventDefault()
-  //     axios.post('/api/users/login', {
-  //         username: accountState.loginUsername,
-  //         password: accountState.loginPassword
-  //     })
-  //         .then(({ data: token }) => {
-  //             if (token) {
-  //                 localStorage.setItem('user', token)
-  //                 window.location = '/index.html'
-  //             } else {
-  //                 console.log('invalid credentials')
-  //             }
-  //         })
-  //         .catch(err => {
-  //             console.log(err)
-  //         })
-  // }
+    const userLogin = {
+        username: accountState.loginUsername,
+        password: accountState.loginPassword
+    }
+
+    accountState.handleInputChange = event => {
+        setAccountState({ ...accountState, [event.target.name]: event.target.value })
+    }
+
+
+    accountState.handleCheck = event => {
+        event.preventDefault()
+        API.loginUser(userLogin)
+            .then(({data: token}) => {
+                if (token) {
+                    localStorage.setItem('user', token)
+                    window.location = '/userprofile'
+                } else {
+                    console.log('invalid credentials')
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
+
+    accountState.handleSignUp = event => {
+        event.preventDefault()
+        console.log(accountState.password1)
+        if (accountState.password1 === accountState.password2) {
+            console.log('passmatch')
+            console.log(accountState.password1)
+        API.registerUser(user)
+            .then((res) => {
+                setAccountState({ ...accountState, realname: '', userEmail: '', username: '', password1: '', password2: '' })
+                console.log(res)
+            })
+            .catch(err => console.log(err))
+        } else{
+            alert('Unmatched Password')
 
   accountState.handleCheck = (event) => {
     event.preventDefault();
@@ -63,6 +73,7 @@ function Login() {
           window.location = "/index.html";
         } else {
           console.log("invalid credentials");
+
         }
       })
       .catch((err) => console.log(err));

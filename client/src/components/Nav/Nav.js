@@ -4,18 +4,6 @@ import "./Nav.css";
 import Logo from "../images/business-5.jpg";
 
 const Nav = () => {
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
-  // const handleResize = () => {
-  //   setWindowWidth(window.innerWidth)
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize)
-  // })
-  {
-    /* <div>{windowWidth}</div> */
-  }
 
   const [showItems, setShowItems] = useState({
     show: "",
@@ -83,9 +71,11 @@ const Nav = () => {
         </Link>
       </div>
     </>
+  )
+}
+
 
     // </nav>
-  );
-};
+
 
 export default Nav;

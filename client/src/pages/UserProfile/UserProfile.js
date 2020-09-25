@@ -1,36 +1,50 @@
-import React, { useState } from "react";
-
-// Importing Css
-import "./UserProfile.css";
-
-// Importing Images
-import ProfileImage from "../../components/images/business-2.jpg";
+import React, { useState, useEffect } from "react"
+import "./UserProfile.css"
+import ProfileImage from "../../components/images/business-2.jpg"
+import API from "../../utils/API/API"
 
 const UserProfile = () => {
-  // const [, ] = useState({
-  // })
-
-  //   // HANDLING the inputs on the page.
-  // ____.handleInputChange = event => {
-  //   set___State({...___State, [event.target.name]: event.target.value})
-  // }
 
   // Function to show / hide input area when click on "Edit Profile" Button
   const [showInput, setShowInput] = useState({
     show: "",
-  });
+  })
 
   function editProfileBtn() {
-    if (showInput.show === "") setShowInput({ show: "profile-input-show" });
-    else setShowInput({ show: "" });
+    if (showInput.show === "") setShowInput({ show: "profile-input-show" })
+    else setShowInput({ show: "" }) 
+    console.log(userState)
   }
+
+  const [userState, setUserState] = useState({
+    realname:'',
+    username: '',
+    email: '',
+    account_type:'',
+    Reviews:[],
+    Buisness: '',
+    user:[]
+  })
+
+  useEffect(() => {
+    API.getUser()
+      .then(({data}) => {
+        let dataComeback = data[0]
+
+        setUserState({ ...userState, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness })
+
+        console.log(dataComeback)
+      })
+      .catch(err => console.log(err))
+    
+  },[])
 
   return (
     <div className="user-profile-page">
-      {/* Left Column / Profile Basic Info */}
+
       <div className="changing-basic-info-area">
         <img className="profile-image" src={ProfileImage} alt="Profile Image" />
-        <h1>User Full Name goes here</h1>
+        <h1>{userState.realname}</h1>
         <p>City Of The User</p>
 
         <button className={`update-account-btn`}>Update Your Account</button>
@@ -42,7 +56,7 @@ const UserProfile = () => {
           Edit Profile
         </button>
 
-        {/* Input Area */}
+
         <ul className={`hide ${showInput.show}`}>
           <li>
             <label>
@@ -82,7 +96,7 @@ const UserProfile = () => {
             </label>
           </li>
 
-          {/* Save / Cancel Buttons */}
+
           <div className="profile-save-cancel-btn">
             <button className="profile-save-btn">Save</button>
             <button className="profile-cancel-btn">Cancel</button>
@@ -90,13 +104,26 @@ const UserProfile = () => {
         </ul>
       </div>
 
-      {/* Right Column / Main Content */}
+
       <div className="changing-account-type-area">
-        <h1>Update Your Account!</h1>
-        <button className="update-account-btn">Click Here</button>
+        <h1>Welcome back {userState.username}</h1>
+        <h3>{userState.email}</h3>
+        <div>
+          <h3>Reviews</h3>
+          {
+            userState.Reviews.length > 0 ? (
+              userState.Reviews.map(review => (
+                <div key={review._id}>
+                  <h4>{review.buisness.name}</h4>
+                  <p>{review.rating}</p>
+                  <p>{review.rating}</p>
+                </div>
+            ))) : null
+          }
+        </div>
       </div>
     </div>
-  );
-};
-
+  )
+}
+          
 export default UserProfile;
