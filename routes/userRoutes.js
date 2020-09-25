@@ -33,21 +33,6 @@ router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
     .catch(err => console.log(err))
 })
 
-// ROUTE to populate the user's buisness
-// router.get('/users/buisness', passport.authenticate('jwt'), (req, res) => {
-//   User.find(req.user._id)
-//     .populate('Buisness')
-//     .then(Buisness => res.json(Buisness))
-//     .catch(err => console.log(err))
-// })
-
-
-// Route to populate the user's settings
-// router.get('/users/settings', passport.authenticate('jwt'), (req, res) => {
-//     User.find(req.user._id)
-//     .populate('Settings')
-//     .then(Settings => res.json(Settings))
-//     .catch(err => console.log(err))
-// })
+router.put('')
 
 module.exports = router
