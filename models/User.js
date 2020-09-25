@@ -13,9 +13,11 @@ const User = new Schema({
   email: {
     type: String,
     unique: true,
+    required: true
   },
   account_type: {
     type: Number,
+    required: true
   },
   Reviews: [{
     type: Schema.Types.ObjectId,
