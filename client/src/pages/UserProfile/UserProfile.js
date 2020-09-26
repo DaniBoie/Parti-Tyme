@@ -17,12 +17,16 @@ const UserProfile = () => {
   }
 
   const [userState, setUserState] = useState({
+    id: '',
     realname:'',
     username: '',
     email: '',
     account_type:'',
     Reviews:[],
     Buisness: '',
+    text:'',
+    rating: '',
+    buisiness: '',
     user:[]
   })
 
@@ -31,13 +35,31 @@ const UserProfile = () => {
       .then(({data}) => {
         let dataComeback = data[0]
 
-        setUserState({ ...userState, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness })
+        setUserState({ ...userState, id: dataComeback._id, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness })
 
         console.log(dataComeback)
       })
       .catch(err => console.log(err))
     
   },[])
+
+  userState.handleInputChange = event => {
+    setUserState({ ...userState, [event.target.name]:event.target.value })
+  }
+
+  userState.handleClickBtn = () => {
+    let review = {
+      text: userState.text,
+      rating: userState.rating,
+      user: userState.id,
+      buisness: userState.buisiness
+    }
+
+    API.createReview(review)
+      .then(({data}) => {
+        setUserState({ ...userState, Reviews: Reviews.push(data)})
+      })
+  }
 
   return (
     <div className="user-profile-page">
@@ -120,6 +142,24 @@ const UserProfile = () => {
                 </div>
             ))) : null
           }
+        </div>
+        <div>
+          <label>
+            <i class="fas fa-camera"></i>
+            <input 
+              type="submit" 
+              ame="buisness" 
+              onChange={userState.handleInputChange}/>
+            <input
+              type="submit"
+              name="rating"
+              onChange={userState.handleInputChange}/>
+            <input
+              type="submit"
+              name="text"
+              onChange={userState.handleInputChange}/>
+          </label>
+          <button onClick={userState.handleClickBtn}>Submit</button>
         </div>
       </div>
     </div>
