@@ -62,6 +62,14 @@ router.get('/buisness/search/:category', (req, res) => {
 
 })
 
+// FIND all buisness data
+router.get('/buisness', (req, res) => {
+  BuisnessData.find({})
+    .then((data) => res.send(data))
+    .catch(err => console.log(err))
+})
+
+
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
   BuisnessData.create({
