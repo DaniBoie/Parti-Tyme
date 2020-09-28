@@ -1,33 +1,41 @@
 import React from 'react'
+import './BusinessCard.css'
+import Logos from '../assets/logos.png'
+import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
+
+// import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+
+// import StarRatings from './react-star-ratings';
 
 const BuisnessCard = () => {
-    return (
-        <div className="card">
-            <div className="card-image"></div>
-            <div class="card-text">
-                <h2>business</h2>
-                <span className="date">location</span>
-                <h4>star rating</h4>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit laudantium voluptates dolore omnis expedita reprehenderit voluptatibus sint ex officiis. Ipsum beatae itaque similique ipsam!</p>
-            </div>
-
-            <div className="card-stats">
-                <div class="stat">
-                    <div className="value">IG</div>
-                </div>
-
-                <div className="stat">
-                    <div class="value">fb</div>
-                </div>
-
-                <div className="stat">
-                    <div clasName="type">link</div>
-                </div>
-            </div>
-
-                
-        </div >
-)
+  return (
+    <div className='profile-card'>
+      <div className='card-header'>
+        <div className='pic'>
+          <img src={Logos} alt='Portrait' />
+        </div>
+        <div className='name'>Banda CashMax</div>
+        <div className='desc'>Authentic Mexican music for all your family to enjoy</div>
+        <div className='stars'>
+          <i className='fas fa-star' />
+          <i className='fas fa-star' />
+          <i className='fas fa-star' />
+          <i className='fas fa-star' />
+          <i className='fas fa-star' />
+        </div>
+        <a href='#' className='contact-btn'>Parti Tyme</a>
+      </div>
+      <div className='card-footer'>
+        <div className='buttons'>
+          <ul>
+            <li><a href='#'><FaFacebookF size='2em' color='#3b5998' /></a></li>
+            <li><a href='#'><FaInstagram size='2em' color='#bc2a8d' /></a></li>
+            <li><a href='#'><FaPortrait size='2em' color='red' /></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default BuisnessCard

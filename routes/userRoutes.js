@@ -37,6 +37,11 @@ router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
     .catch(err => console.log(err))
 })
 
-router.put('')
+// Route to change the user's information
+router.put('/users', passport.authenticate('jwt'), (req, res) => {
+  User.findByIdAndUpdate(req.user._id, req.body)
+    .then(() => res.sendStatus(200))
+    .catch(err => console.log(err))
+})
 
 module.exports = router

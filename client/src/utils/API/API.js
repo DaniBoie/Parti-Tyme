@@ -14,8 +14,16 @@ const API = {
     }),
 
   // **USER PROFILE API CALLS**
-  createSettings: (data) => axios.post(`/api/settings`, data),
-  updateSettings: (data) => axios.put("/api/settings", data),
+  createSettings: (data, headers) => axios.post(`/api/settings`, data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('user')}`
+    }
+  } ),
+  updateSettings: (data) => axios.put("/api/settings", data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('user')}`
+      }
+    }),
 
   // **BUISNESS API CALLS**
   createBusiness: (data) => axios.post(`/api/buisness`, data),
@@ -24,6 +32,7 @@ const API = {
     axios.get(`/api/buisness/filter/${searchTerm}`),
   searchBusinessCategory: (category) =>
     axios.get(`/api/buisness/search/${category}`),
+  getAllBusiness: () => axios.get('/api/buisness'),
   // !!! USE WITH EXTREME CAUTION !!!
   nukeBusiness: () => axios.delete("/api/buisness"),
 

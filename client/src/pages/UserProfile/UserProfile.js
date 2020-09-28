@@ -13,7 +13,6 @@ const UserProfile = () => {
   function editProfileBtn() {
     if (showInput.show === "") setShowInput({ show: "profile-input-show" })
     else setShowInput({ show: "" }) 
-    console.log(userState)
   }
 
   const [userState, setUserState] = useState({
@@ -24,41 +23,73 @@ const UserProfile = () => {
     account_type:'',
     Reviews:[],
     Buisness: '',
-    text:'',
-    rating: '',
-    buisiness: '',
-    user:[]
+    Settings: {},
+    user:[],
+    profileImg: '',
+    bioChange: '',
+    instaChange: '',
+    facebookChange: '',
   })
+
+  userState.handleInputChange = event => {
+    setUserState({ ...userState, [event.target.name]: event.target.value })
+  }
 
   useEffect(() => {
     API.getUser()
       .then(({data}) => {
         let dataComeback = data[0]
 
-        setUserState({ ...userState, id: dataComeback._id, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness })
+        console.log("USER SETTINGS ", dataComeback.Settings)
 
-        console.log(dataComeback)
+        setUserState({ ...userState, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness, Settings: dataComeback.Settings || {}})
+
+        console.log("API DATA ", dataComeback)
       })
       .catch(err => console.log(err))
     
   },[])
 
-  userState.handleInputChange = event => {
-    setUserState({ ...userState, [event.target.name]:event.target.value })
-  }
-
-  userState.handleClickBtn = () => {
-    let review = {
-      text: userState.text,
-      rating: userState.rating,
-      user: userState.id,
-      buisness: userState.buisiness
+  const handleSaveBtn = () => {
+    console.log('jello')
+    console.log(userState)
+    let settings = {
+      img: userState.profileImg,
+      bio: userState.bioChange,
+      instagram: userState.instaChange,
+      facebook: userState.facebookChange
     }
 
-    API.createReview(review)
-      .then(({data}) => {
-        setUserState({ ...userState, Reviews: Reviews.push(data)})
+    console.log(settings)
+    if (userState.Settings === null){
+      API.createSettings(settings)
+      .then((data) => {
+        // API.getUser()
+        //   .then(({ data }) => {
+        //     let dataComeback = data[0]
+
+        //     setUserState({ ...userState, Settings: dataComeback.Settings })
+
+        //     console.log(dataComeback.Settings)
+        //   })
+        //   .catch(err => console.log(err))
+        console.log(data)
       })
+      .catch((err) => console.log(err))
+    } else {
+      API.updateSettings(settings)
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err))
+      console.log('else')
+    }
+
+    console.log(localStorage.getItem('user'))
+
+    
+  } 
+
+  const handleUpdateBtn = () => {
+    console.log(userState)
   }
 
   return (
@@ -69,7 +100,7 @@ const UserProfile = () => {
         <h1>{userState.realname}</h1>
         <p>City Of The User</p>
 
-        <button className={`update-account-btn`}>Update Your Account</button>
+        <button className={`update-account-btn`} onclick={handleUpdateBtn}>Update Your Account</button>
 
         <button
           className={`edit-profile-btn ${showInput.show}`}
@@ -85,8 +116,9 @@ const UserProfile = () => {
               <i class="fas fa-signature"></i>
               <input
                 type="text"
-                name="name"
-                placeholder="Change Your Name ..."
+                name="bioChange"
+                placeholder="Change Your Bio ..."
+                onChange={userState.handleInputChange}
               />
             </label>
           </li>
@@ -95,8 +127,9 @@ const UserProfile = () => {
               <i class="fas fa-unlock-alt"></i>
               <input
                 type="text"
-                name="password"
-                placeholder="Change Your Password ..."
+                name="instaChange"
+                placeholder="Link Instagram..."
+                onChange={userState.handleInputChange}
               />
             </label>
           </li>
@@ -105,8 +138,9 @@ const UserProfile = () => {
               <i class="fas fa-city"></i>
               <input
                 type="text"
-                name="city"
-                placeholder="Change Your City ..."
+                name="facebookChange"
+                placeholder="Link Facebook ..."
+                onChange={userState.handleInputChange}
               />
             </label>
           </li>
@@ -114,13 +148,18 @@ const UserProfile = () => {
           <li>
             <label>
               <i class="fas fa-camera"></i>
-              <input type="submit" name="city" value="Change Profile Picture" />
+              <input 
+              type="submit" 
+              name="profileImg" 
+              value="Change Profile Picture" 
+              onChange={userState.handleInputChange}
+              />
             </label>
           </li>
 
 
           <div className="profile-save-cancel-btn">
-            <button className="profile-save-btn">Save</button>
+            <button className="profile-save-btn" onClick={handleSaveBtn}>Save</button>
             <button className="profile-cancel-btn">Cancel</button>
           </div>
         </ul>

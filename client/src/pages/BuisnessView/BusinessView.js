@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import "./BusinessView.css";
+import ViewCard from '../../components/ViewCard'
 
 // Importing Example Images
 import BusinessImage1 from "../../components/images/business-1.jpg";
@@ -9,19 +10,49 @@ import BusinessImage3 from "../../components/images/business-3.jpg";
 import BusinessImage4 from "../../components/images/business-4.jpg";
 // import BusinessImage5 from '../../components/images/business-5.jpg'
 
+
 const BuisnessView = () => {
+
+
+  const [businessState, setBusinessState] = useState({
+    businesses: [],
+    businessRender: [],
+  })
+
+  businessState.handleInputChange = event => {
+    setBusinessState({ ...businessState, [event.target.name]: event.target.value })
+  }
+
+  useEffect(() => {
+    API.getAllBusiness()
+      .then(({ data }) => {
+        console.log("API DATA ", data)
+        setBusinessState({ ...businessState, businesses: data, businessRender: data })
+      })
+      .catch(err => console.log(err))
+
+  }, [])
+
+  const handleSearchCategory = () => {
+    console.log('handling')
+    API.searchBusinessCategory('Entertainment')
+    .then(({data}) => {
+      setBusinessState({ ...businessState, businessRender: data })
+      console.log(data)})
+    .catch(err => console.log(err))
+  }
+
+  const handleFilter = () => {
+    console.log('lcik')
+  }
+
+  const handleFilterClear = () => {
+
+    setBusinessState({ ...businessState, businessRender: businessState.businesses})
+  }
+
   return (
     <div className="business-view">
-      <div className="categories">
-        <a href="https://www.google.com/">Food</a>
-        <a href="https://www.google.com/">Music</a>
-        <a href="https://www.google.com/">Rentals</a>
-        <a href="https://www.google.com/">Catering</a>
-        <a href="https://www.google.com/">Catering</a>
-        <a href="https://www.google.com/">Catering</a>
-        <a href="https://www.google.com/">Catering</a>
-      </div>
-
       <div className="business-view-main-content">
         <div className="business-view-main-box">
           <div className="filter-column">
@@ -30,14 +61,18 @@ const BuisnessView = () => {
               <label className="filter-items">
                 {" "}
                 Lorem
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  name="foodFilter"
+                  
+                />
                 <span className="checkmark"></span>
               </label>
 
               <label className="filter-items">
                 {" "}
                 ipsum
-                <input type="checkbox" />
+                <input type="checkbox" onChange={handleFilter} />
                 <span className="checkmark"></span>
               </label>
 
@@ -75,169 +110,29 @@ const BuisnessView = () => {
                 <input type="checkbox" />
                 <span className="checkmark"></span>
               </label>
+              <button
+              onClick={handleSearchCategory}
+              >
+                Save Search
+              </button>
+              <button
+                onClick={handleFilterClear}
+              >
+                Save Search
+              </button>
             </div>
           </div>
 
           <div className="business-column">
-            <div className="business-card">
-              <div className="business-title">
-                <h3>Business 1 Title </h3>
-              </div>
-              <img
-                className="business-image"
-                src={BusinessImage1}
-                alt="business1"
-              />
-              <div className="business-note">
-                <ul>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-info">
-                <ul>
-                  <li>
-                    <h4>Harum doloremque repellat distinctio</h4>
-                  </li>
-                  <li>
-                    <h4>Minima repellat</h4>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-rate">
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-              </div>
-            </div>
 
-            <div className="business-card">
-              <div className="business-title">
-                <h3>Business 2 Title </h3>
-              </div>
-              <img
-                className="business-image"
-                src={BusinessImage2}
-                alt="business1"
-              />
-              <div className="business-note">
-                <ul>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-info">
-                <ul>
-                  <li>
-                    <h4>Harum doloremque repellat distinctio</h4>
-                  </li>
-                  <li>
-                    <h4>Minima repellat</h4>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-rate">
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-              </div>
-            </div>
+            {
+            businessState.businessRender.length > 0 ? (
+              businessState.businessRender.map(business => (
+                <ViewCard business={business} />
+              ))
+            ) : null
+            }
 
-            <div className="business-card">
-              <div className="business-title">
-                <h3>Business 3 Title </h3>
-              </div>
-              <img
-                className="business-image"
-                src={BusinessImage3}
-                alt="business1"
-              />
-              <div className="business-note">
-                <ul>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-info">
-                <ul>
-                  <li>
-                    <h4>Harum doloremque repellat distinctio</h4>
-                  </li>
-                  <li>
-                    <h4>Minima repellat</h4>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-rate">
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-              </div>
-            </div>
-
-            <div className="business-card">
-              <div className="business-title">
-                <h3>Business 4 Title </h3>
-              </div>
-              <img
-                className="business-image"
-                src={BusinessImage4}
-                alt="business1"
-              />
-              <div className="business-note">
-                <ul>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                  <li>
-                    <h4>Incidunt vitae facilis</h4>
-                    <p>Numquam, blanditiis</p>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-info">
-                <ul>
-                  <li>
-                    <h4>Harum doloremque repellat distinctio</h4>
-                  </li>
-                  <li>
-                    <h4>Minima repellat</h4>
-                  </li>
-                </ul>
-              </div>
-              <div className="business-rate">
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-                <span className="rating-circles"></span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
