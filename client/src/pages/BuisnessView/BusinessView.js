@@ -12,16 +12,6 @@ import BusinessImage4 from "../../components/images/business-4.jpg";
 const BuisnessView = () => {
   return (
     <div className="business-view">
-      <div className="categories">
-        <a href="https://www.google.com/">Food</a>
-        <a href="https://www.google.com/">Music</a>
-        <a href="https://www.google.com/">Rentals</a>
-        <a href="https://www.google.com/">Catering</a>
-        <a href="https://www.google.com/">Catering</a>
-        <a href="https://www.google.com/">Catering</a>
-        <a href="https://www.google.com/">Catering</a>
-      </div>
-
       <div className="business-view-main-content">
         <div className="business-view-main-box">
           <div className="filter-column">
