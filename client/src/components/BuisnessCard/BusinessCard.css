@@ -192,5 +192,5 @@ transition: .5s;
 }
 
 .buttons ul li:nth-child(3) a:hover .fa {
-  color: red;
+  color: rgb(192, 70, 70);
 }
