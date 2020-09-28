@@ -1,6 +1,6 @@
 import React from 'react'
 import './BusinessCard.css'
-import Logos from '../assets/logos.png'
+import Logos from '../assets/images/logos.png'
 import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
 
 // import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'

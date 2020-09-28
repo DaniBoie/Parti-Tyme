@@ -1,7 +1,7 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
 .nav-bar {
@@ -16,27 +16,31 @@
 }
 
 .nav-logo {
-    grid-area: logo;
-    align-self: center;
-    justify-self: center;
+  grid-area: logo;
+  align-self: center;
+  justify-self: center;
 }
 
 .nav-logo img {
-  width: 45px;
-  height: 45px;
+
+  margin-right: 3rem;
+  width: 100px;
+  height: 50px;
+  background: none;
+
   border: none;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  border-radius: 20%;
+  -webkit-border-radius: 20%;
+  -moz-border-radius: 20%;
+  -ms-border-radius: 20%;
+  -o-border-radius: 20%;
 }
 
 .nav-search-bar {
-    grid-area: searchbar;
-    align-self: center;
-    /* justify-self: center; */
-    text-align: center;
+  grid-area: searchbar;
+  align-self: center;
+  /* justify-self: center; */
+  text-align: center;
 }
 
 .nav-search-bar input[type="text"] {
@@ -60,16 +64,19 @@
 }
 
 .nav-account {
-    grid-area: account;
-    align-self: center;
-    justify-self: center;
+  grid-area: account;
+  align-self: center;
+  justify-self: center;
 }
 
 .nav-account-btn {
   border: none;
   background: none;
   font-weight: 500;
+
+  font-size: 16px;
 }
+
 
 /* To Remove Later */
 .nav-items {
@@ -85,11 +92,13 @@
 }
 
 /* To Remove Later */
+
 .nav-account-items {
   position: absolute;
   margin: 8px;
   right: 1rem;
   width: 200px;
+  text-align: center;
   background: #fff;
   display: flex;
   justify-content: space-around;
@@ -109,6 +118,17 @@
   font-size: 20px;
   font-weight: bold;
   padding: 1rem;
+
+  width: 100%;
+}
+
+.nav-account-link:hover {
+  box-shadow: inset 1em 1em 5em #ff7675
+}
+
+.show {
+  visibility: visible;
+}
 
 /* To Remove Later */
 /* .nav-items {
@@ -181,4 +201,5 @@
 .nav-account ul li:hover {
   box-shadow: inset 1em 1em 5em #ff7675;
 } */
+
 

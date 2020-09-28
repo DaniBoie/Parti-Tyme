@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import "./UserProfile.css"
-import ProfileImage from "../../components/images/business-2.jpg"
+import ProfileImage from "../../components/assets/images/business-2.jpg"
 import API from "../../utils/API/API"
 
 const UserProfile = () => {
@@ -12,18 +12,18 @@ const UserProfile = () => {
 
   function editProfileBtn() {
     if (showInput.show === "") setShowInput({ show: "profile-input-show" })
-    else setShowInput({ show: "" }) 
+    else setShowInput({ show: "" })
   }
 
   const [userState, setUserState] = useState({
-    realname:'',
+    realname: '',
     username: '',
     email: '',
-    account_type:'',
-    Reviews:[],
+    account_type: '',
+    Reviews: [],
     Buisness: '',
     Settings: {},
-    user:[],
+    user: [],
     profileImg: '',
     bioChange: '',
     instaChange: '',
@@ -36,18 +36,18 @@ const UserProfile = () => {
 
   useEffect(() => {
     API.getUser()
-      .then(({data}) => {
+      .then(({ data }) => {
         let dataComeback = data[0]
 
         console.log("USER SETTINGS ", dataComeback.Settings)
 
-        setUserState({ ...userState, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness, Settings: dataComeback.Settings || {}})
+        setUserState({ ...userState, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness, Settings: dataComeback.Settings || {} })
 
         console.log("API DATA ", dataComeback)
       })
       .catch(err => console.log(err))
-    
-  },[])
+
+  }, [])
 
   const handleSaveBtn = () => {
     console.log('jello')
@@ -60,21 +60,21 @@ const UserProfile = () => {
     }
 
     console.log(settings)
-    if (userState.Settings === null){
+    if (userState.Settings === null) {
       API.createSettings(settings)
-      .then((data) => {
-        // API.getUser()
-        //   .then(({ data }) => {
-        //     let dataComeback = data[0]
+        .then((data) => {
+          // API.getUser()
+          //   .then(({ data }) => {
+          //     let dataComeback = data[0]
 
-        //     setUserState({ ...userState, Settings: dataComeback.Settings })
+          //     setUserState({ ...userState, Settings: dataComeback.Settings })
 
-        //     console.log(dataComeback.Settings)
-        //   })
-        //   .catch(err => console.log(err))
-        console.log(data)
-      })
-      .catch((err) => console.log(err))
+          //     console.log(dataComeback.Settings)
+          //   })
+          //   .catch(err => console.log(err))
+          console.log(data)
+        })
+        .catch((err) => console.log(err))
     } else {
       API.updateSettings(settings)
         .then((data) => console.log(data))
@@ -84,8 +84,8 @@ const UserProfile = () => {
 
     console.log(localStorage.getItem('user'))
 
-    
-  } 
+
+  }
 
   const handleUpdateBtn = () => {
     console.log(userState)
@@ -147,11 +147,11 @@ const UserProfile = () => {
           <li>
             <label>
               <i class="fas fa-camera"></i>
-              <input 
-              type="submit" 
-              name="profileImg" 
-              value="Change Profile Picture" 
-              onChange={userState.handleInputChange}
+              <input
+                type="submit"
+                name="profileImg"
+                value="Change Profile Picture"
+                onChange={userState.handleInputChange}
               />
             </label>
           </li>
@@ -178,12 +178,12 @@ const UserProfile = () => {
                   <p>{review.rating}</p>
                   <p>{review.rating}</p>
                 </div>
-            ))) : null
+              ))) : null
           }
         </div>
       </div>
     </div>
   )
 }
-          
+
 export default UserProfile;

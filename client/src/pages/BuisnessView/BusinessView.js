@@ -4,10 +4,10 @@ import "./BusinessView.css";
 import ViewCard from '../../components/ViewCard'
 
 // Importing Example Images
-import BusinessImage1 from "../../components/images/business-1.jpg";
-import BusinessImage2 from "../../components/images/business-2.jpg";
-import BusinessImage3 from "../../components/images/business-3.jpg";
-import BusinessImage4 from "../../components/images/business-4.jpg";
+import BusinessImage1 from "../../components/assets/images/business-1.jpg";
+import BusinessImage2 from "../../components/assets/images/business-2.jpg";
+import BusinessImage3 from "../../components/assets/images/business-3.jpg";
+import BusinessImage4 from "../../components/assets/images/business-4.jpg";
 // import BusinessImage5 from '../../components/images/business-5.jpg'
 
 
