@@ -1,4 +1,5 @@
 import React from 'react'
+import 'components/FontawesomeIcons';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Importing Pages
