@@ -1,7 +1,8 @@
 import React from 'react'
 import './BusinessCard.css'
 import Logos from '../assets/logos.png'
-import {} from @fortawes
+import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
+
 // import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 
 // import StarRatings from './react-star-ratings';
@@ -27,9 +28,9 @@ const BuisnessCard = () => {
       <div className='card-footer'>
         <div className='buttons'>
           <ul>
-            <li><a href='#'><i className='fa fa-facebook' aria-hidden='true' /></a></li>
-            <li><a href='#'><i className='fa fa-instagram' aria-hidden='true' /></a></li>
-            <li><a href='#'><i className='fa fa-id-card-o' aria-hidden='true' /></a></li>
+            <li><a href='#'><FaFacebookF /></a></li>
+            <li><a href='#'><FaInstagram /></a></li>
+            <li><a href='#'><FaPortrait /></a></li>
           </ul>
         </div>
       </div>
