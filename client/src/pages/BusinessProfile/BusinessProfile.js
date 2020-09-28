@@ -1,6 +1,7 @@
 import React from 'react'
+import BusinessCard from '../../components/BusinessCard/BusinessCard'
 
-const BuisnessProfile = () => {
+const BusinessProfile = () => {
   // const [, ] = useState({
   // })
 
@@ -11,9 +12,9 @@ const BuisnessProfile = () => {
 
   return ( 
     <>
-      <h1>BuisnessProfilepage!</h1>
+      <BusinessCard />
     </>
   )
 }
 
-export default BuisnessProfile
+export default BusinessProfile
