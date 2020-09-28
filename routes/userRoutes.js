@@ -29,25 +29,19 @@ router.get('/users/me', passport.authenticate('jwt'), (req, res) => {
     .populate('Buisness')
     .populate('Settings')
     .populate('Reviews')
-    .then(userData => res.json(userData))
+    .then(userData => {
+      console.log(userData)
+      // console.log(req)
+      res.json(userData)
+    })
     .catch(err => console.log(err))
 })
 
-// ROUTE to populate the user's buisness
-// router.get('/users/buisness', passport.authenticate('jwt'), (req, res) => {
-//   User.find(req.user._id)
-//     .populate('Buisness')
-//     .then(Buisness => res.json(Buisness))
-//     .catch(err => console.log(err))
-// })
-
-
-// Route to populate the user's settings
-// router.get('/users/settings', passport.authenticate('jwt'), (req, res) => {
-//     User.find(req.user._id)
-//     .populate('Settings')
-//     .then(Settings => res.json(Settings))
-//     .catch(err => console.log(err))
-// })
+// Route to change the user's information
+router.put('/users', passport.authenticate('jwt'), (req, res) => {
+  User.findByIdAndUpdate(req.user._id, req.body)
+    .then(() => res.sendStatus(200))
+    .catch(err => console.log(err))
+})
 
 module.exports = router

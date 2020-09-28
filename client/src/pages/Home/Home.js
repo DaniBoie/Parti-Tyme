@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import React from 'react'
-import "./Home.css"
-=======
+
 import React, { useState } from "react";
 import "./Home.css";
->>>>>>> 43ba107bbb9fe2a421895ca2354d4e3cb27f315c
+
 
 const Home = () => {
   // const [, ] = useState({
