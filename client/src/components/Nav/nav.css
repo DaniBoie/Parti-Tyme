@@ -6,12 +6,12 @@
 
 .nav-bar {
   /* margin: 0 1rem; */
-  padding: 0.5rem;
-  /* height: 10vh; */
-  background: #d63031;
+  padding: 3px 10px;
+  height: 10vh;
+  background: #a8e6cf;
   display: grid;
   grid-template-areas: "logo searchbar account";
-  grid-template-columns: 1fr 7fr 1fr;
+  grid-template-columns: 2fr 8fr 2fr;
   grid-column-gap: 1rem;
 }
 
@@ -22,14 +22,16 @@
 }
 
 .nav-logo img {
-  width: 50px;
+  margin-right: 3rem;
+  width: 100px;
   height: 50px;
+  background: none;
   border: none;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  border-radius: 20%;
+  -webkit-border-radius: 20%;
+  -moz-border-radius: 20%;
+  -ms-border-radius: 20%;
+  -o-border-radius: 20%;
 }
 
 .nav-search-bar {
@@ -40,9 +42,9 @@
 }
 
 .nav-search-bar input[type="text"] {
-  padding: 8px;
+  padding: 5px;
   width: 50%;
-  height: 40px;
+  height: 30px;
   border: 1px solid #333;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -56,7 +58,7 @@
   background: none;
   border: none;
   margin: 10px;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .nav-account {
@@ -69,34 +71,15 @@
   border: none;
   background: none;
   font-weight: 500;
-  font-size: 19px;
+  font-size: 16px;
 }
 
-/* To Remove Later */
-.nav-items {
+.nav-account-items {
   position: absolute;
-  top: 10vh;
-  left: 30%;
-  visibility: hidden;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 1rem;
-}
-
-.show {
-  visibility: visible;
-}
-/* End To Remove Later */
-
-.nav-account ul {
-  position: absolute;
+  margin: 8px;
   right: 1rem;
   width: 200px;
+  text-align: center;
   background: #fff;
   display: flex;
   justify-content: space-around;
@@ -105,38 +88,23 @@
   list-style: none;
   border: 0.5px solid;
   box-shadow: 5px 5px 10px #888888;
-  transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
   cursor: pointer;
-  pointer-events: none;
-  opacity: 0;
+  visibility: hidden;
 }
 
-.nav-account-btn:focus + ul {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.nav-account ul li {
-  width: 100%;
-  height: 100%;
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  border-top: 1px solid rgb(167, 148, 148);
-}
-
-.nav-dropdown-item {
+.nav-account-link {
   text-decoration: none;
-  color: #000;
-  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 1rem;
+  width: 100%;
 }
 
-.nav-account ul li:hover {
-  box-shadow: inset 1em 1em 5em #ff7675;
+.nav-account-link:hover {
+  box-shadow: inset 1em 1em 5em #ff7675
+}
+
+.show {
+  visibility: visible;
 }
