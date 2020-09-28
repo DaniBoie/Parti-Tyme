@@ -33,21 +33,6 @@ function Login() {
         setAccountState({ ...accountState, [event.target.name]: event.target.value })
     }
 
-
-    accountState.handleCheck = event => {
-        event.preventDefault()
-        API.loginUser(userLogin)
-            .then(({data: token}) => {
-                if (token) {
-                    localStorage.setItem('user', token)
-                    window.location = '/userprofile'
-                } else {
-                    console.log('invalid credentials')
-                }
-            })
-            .catch(err => console.log(err))
-    }
-
   accountState.handleCheck = (event) => {
     event.preventDefault();
     API.loginUser(userLogin)
