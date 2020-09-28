@@ -34,42 +34,47 @@ const Nav = () => {
           <button className="nav-account-btn" onClick={handleAccountBtn}>
             Your Account <i class="fas fa-caret-down"></i>
           </button>
-          <ul>
+
+          <div className={`nav-account-items ${showItems.show}`}>
+            <Link to="/businessprofile" className="nav-account-link">
+              BusinessProfile
+            </Link>
+            <Link to="/businessview" className="nav-account-link">
+              BusinessView
+            </Link>
+            <Link to="/login" className="nav-account-link">
+              Login
+            </Link>
+            <Link to="/userprofile" className="nav-account-link">
+              UserProfile
+            </Link>
+          </div>
+
+          {/* <ul>
             <li>
-              <Link to="/userprofile" className="nav-dropdown-item">
+              <Link href="/userprofile" className="nav-dropdown-item">
                 Profile
               </Link>
+              <Link to="/userprofile" className="nav-link">
+                UserProfile
+              </Link>
             </li>
+            <Link to="/userprofile" className="nav-link">
+              UserProfile
+            </Link>
             <li>
-              <a href="/" className="nav-dropdown-item">
+              <Link to="/login" className="nav-dropdown-item">
                 Log in
-              </a>
+              </Link>
             </li>
             <li>
               <a href="/" className="nav-dropdown-item">
                 Log out
               </a>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </nav>
-      <div className={`nav-items ${showItems.show}`}>
-        <Link to="/" className="nav-link">
-          Home
-        </Link>
-        <Link to="/businessprofile" className="nav-link">
-          BusinessProfile
-        </Link>
-        <Link to="/businessview" className="nav-link">
-          BusinessView
-        </Link>
-        <Link to="/login" className="nav-link">
-          Login
-        </Link>
-        <Link to="/userprofile" className="nav-link">
-          UserProfile
-        </Link>
-      </div>
     </>
   )
 }
