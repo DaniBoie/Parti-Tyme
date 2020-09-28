@@ -94,27 +94,6 @@ body {
     margin-top: 10px;
 }
 
-/* .sm {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-} */
-
-/* .sm a {
-  color: #F2F2F2;
-  width: 56px;
-  font-size: 22px;
-  transition: 0.3s linear;
-  -webkit-transition: 0.3s linear;
-  -moz-transition: 0.3s linear;
-  -ms-transition: 0.3s linear;
-  -o-transition: 0.3s linear;
-} */
-
-/* .sm a:hover {
-  color: #E66767;
-} */
-
 .contact-btn {
   display: inline-block;
   padding: 12px 50px;
@@ -143,31 +122,7 @@ body {
   padding: 10px 30px;
 }
 
-/* .numbers {
-  display: flex;
-  align-items: center;
-} */
 
-/* .item {
-  flex: 1;
-  text-transform: uppercase;
-  font-size: 13px;
-  color: #E66767;
-} */
-
-/* .item span {
-  display: block;
-  color: #2C3A47;
-  font-size: 30px;
-} */
-
-/* .border {
-  width: 1px;
-  height: 30px;
-  background: #bbb;
-} */
-
-/*  */
 .buttons ul li a {
   position: relative;
   width: 60px;
@@ -186,10 +141,6 @@ body {
 }
 
 .buttons ul {
-  /* position: fixed; */
-  /* top: 50%; */
-  /* left: 500%; */
-  /* transform: translate(-50%,-50%); */
   margin: 0px;
   padding: 15%;
   display: flex;
@@ -219,6 +170,7 @@ transition: .5s;
 .buttons ul li a:hover {
   box-shadow: 1px 2px 5px rgba(0,0,0,0.3);
 }
+
 
 .buttons ul li a .fa {
   width: 100%;

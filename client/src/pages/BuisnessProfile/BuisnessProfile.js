@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import BusinessCard from '../../components/BuisnessCard'
+
 
 const BuisnessProfile = () => {
   // const [, ] = useState({
@@ -9,9 +11,10 @@ const BuisnessProfile = () => {
   //   set___State({...___State, [event.target.name]: event.target.value})
   // }
 
-  return ( 
+  return (
     <>
       <h1>BuisnessProfilepage!</h1>
+      <BusinessCard />
     </>
   )
 }

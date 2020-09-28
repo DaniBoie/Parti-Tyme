@@ -1,27 +1,23 @@
 .home-page {
-  height: 85vh;
-  margin-top: 2rem;
-  overflow: hidden;
+  /* height: 90vh; */
   display: grid;
-  grid-template-columns: 1fr 7fr 1fr;
-}
-
-.home-main-content {
-  grid-column: 2/3;
-  height: 90%;
-  background: #fff;
-  border: 1px solid #333;
-
-  display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-areas: "filter main side";
+  grid-template-columns: 2fr 8fr 1fr;
 }
 
 .home-filter-column {
+  grid-area: filter;
   background: #b2bec3;
   border-right: 1px solid #333;
 }
 
 .home-filter-column h2 {
-  text-align: center;
-  padding: 1rem 0;
+  grid-area: main;
+  text-align: left;
+  padding: 1rem;
+}
+
+.home-side-bar {
+  grid-area: side;
+  background: #317794;
 }
