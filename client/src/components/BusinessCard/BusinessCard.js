@@ -1,7 +1,6 @@
 import React from 'react';
 import './BusinessCard.css';
-
-
+import SimpleRating from '../StarRating';
 
 
 const BusinessCard = () => {
@@ -12,6 +11,9 @@ const BusinessCard = () => {
       <span className="date">4 days ago</span>
       <h2>Post One</h2>
       <p>Lorem ipsum dolor sit amet consectetur, Ducimus, repudiandae temporibus omnis illum maxime quod deserunt eligendi dolor</p>
+      <SimpleRating />
+      <div>
+    </div>
     </div>
     
     <div className="card-stats">
