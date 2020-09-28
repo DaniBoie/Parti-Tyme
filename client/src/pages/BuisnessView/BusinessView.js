@@ -17,10 +17,12 @@ const BuisnessView = () => {
   const [businessState, setBusinessState] = useState({
     businesses: [],
     businessRender: [],
+    selectValue: '', 
   })
 
   businessState.handleInputChange = event => {
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })
+    console.log(businessState)
   }
 
   useEffect(() => {
@@ -33,9 +35,9 @@ const BuisnessView = () => {
 
   }, [])
 
-  const handleSearchCategory = () => {
-    console.log('handling')
-    API.searchBusinessCategory('Entertainment')
+  const handleSearchCategory = (event) => {
+    event.preventDefault()
+    API.searchBusinessCategory()
     .then(({data}) => {
       setBusinessState({ ...businessState, businessRender: data })
       console.log(data)})
@@ -50,6 +52,8 @@ const BuisnessView = () => {
 
     setBusinessState({ ...businessState, businessRender: businessState.businesses})
   }
+
+
 
   return (
     <div className="business-view">
@@ -120,6 +124,7 @@ const BuisnessView = () => {
               >
                 Save Search
               </button>
+              
             </div>
           </div>
 
