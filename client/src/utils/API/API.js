@@ -5,8 +5,13 @@ const API = {
 
   // Send Frontend data as object
   registerUser: (data) => axios.post(`/api/users/register`, data),
-  loginUser: (data) => axios.post("/api/users/login", data),
-  getUser: () => axios.get("/api/users/me"),
+  loginUser: (data) => axios.post('/api/users/login', data),
+  getUser: () => 
+    axios.get('/api/users/me', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('user')}`
+      }
+    }),
 
   // **USER PROFILE API CALLS**
   createSettings: (data) => axios.post(`/api/settings`, data),
