@@ -28,9 +28,9 @@ const BuisnessCard = () => {
       <div className='card-footer'>
         <div className='buttons'>
           <ul>
-            <li><a href='#'><FaFacebookF /></a></li>
-            <li><a href='#'><FaInstagram /></a></li>
-            <li><a href='#'><FaPortrait /></a></li>
+            <li><a href='#'><FaFacebookF size='2em' color='#3b5998' /></a></li>
+            <li><a href='#'><FaInstagram size='2em' color='#bc2a8d' /></a></li>
+            <li><a href='#'><FaPortrait size='2em' color='red' /></a></li>
           </ul>
         </div>
       </div>
