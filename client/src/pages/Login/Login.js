@@ -62,7 +62,7 @@ function Login() {
       })
       .catch((err) => console.log(err));
   };
-  
+
   accountState.handleSignUp = (event) => {
     event.preventDefault();
     console.log(accountState.password1);
@@ -121,7 +121,7 @@ function Login() {
 
       <div className="signup-area">
         <form className="signup-form">
-          <i class="fas fa-user-plus"></i>
+          <i className="fas fa-user-plus"></i>
           <h1>Sign Up</h1>
           <input
             type="text"

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
+// Importing Styling Elements
 import "./nav.css";
-import Logo from "../images/logos.png";
+
+// Importing Logo Image
+import Logo from "../assets/images/logos.png";
 
 const Nav = () => {
   const [showItems, setShowItems] = useState({

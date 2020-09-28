@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 // Importing Video
-import Video from "../../components/video/Homescreen.mp4";
+import Video from "../../components/assets/video/Homescreen.mp4";
 
 const Home = () => {
   // const [, ] = useState({
