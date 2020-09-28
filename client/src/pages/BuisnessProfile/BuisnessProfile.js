@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import BusinessCard from '../../components/BuisnessCard'
 
+
 const BuisnessProfile = () => {
   // const [, ] = useState({
   // })
