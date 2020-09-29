@@ -5,6 +5,7 @@ const passport = require('passport')
 // Find One Buisness
 router.get('/buisness/:id', (req, res) => {
   BuisnessData.findById(req.params.id)
+    .populate('Review')
     .then(data => res.send(data))
     .catch(err => console.log(err))
 })

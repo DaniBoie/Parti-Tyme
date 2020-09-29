@@ -11,9 +11,12 @@ const BuisnessProfile = () => {
     instagram: '',
     website: '',
     facebook: '',
-    fee: '',
-    reviews: [],
-    business: []
+    fee: '',    
+    business: [],
+    text: '',
+    rating: '',
+    username: ''
+    reviews: []
   })
 
     // HANDLING the inputs on the page.
@@ -30,15 +33,29 @@ const BuisnessProfile = () => {
         .then(({data}) => {
           let dataComeback = data
           console.log(dataComeback)
-          setBusinessState({ ...businessState, name:dataComeback.name,
-          bio:dataComeback.bio,
-          img:dataComeback.img,
-          instagram:dataComeback.instagram,
-          website:dataComeback.website,
-          facebook:dataComeback.facebook,
-          fee:dataComeback.fee,
-          reviews:dataComeback.reviews || []
+          setBusinessState({ 
+            ...businessState, 
+            name:dataComeback.name,
+            bio:dataComeback.bio,
+            img:dataComeback.img,
+            instagram:dataComeback.instagram,
+            website:dataComeback.website,
+            facebook:dataComeback.facebook,
+            fee:dataComeback.fee,
+            reviews:dataComeback.reviews || []
           })
+        })
+        .then(() => {        
+          API.findBusinessReviews(businessId)
+            .then(({data}) => {
+              let reviews = data.reviews
+              setBusinessState({ 
+                ...businessState,
+                text: reviews.text,
+                rating: reviews.rating,
+                username: reviews.user.username            
+              })
+            })
         })
         .catch(err => console.log(err))
   },[])
