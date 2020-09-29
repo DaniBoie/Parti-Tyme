@@ -5,33 +5,49 @@ import "./Login.css";
 
 function Login() {
 
-    const [accountState, setAccountState] = useState({
-        loginUsername:'',
-        loginPassword:'',
-        password1:'',
-        password2:'',
-        userEmail:'',
-        username:'',
-        realname:'',
-        user: []
-    })
+  const [accountState, setAccountState] = useState({
+    loginUsername: '',
+    loginPassword: '',
+    password1: '',
+    password2: '',
+    userEmail: '',
+    username: '',
+    realname: '',
+    user: []
+  })
 
 
-    const user = { 
-        realname: accountState.realname, 
-        email: accountState.userEmail, 
-        username: accountState.username, 
-        password: accountState.password1, 
-        account_type: 1 }
+  const user = {
+    realname: accountState.realname,
+    email: accountState.userEmail,
+    username: accountState.username,
+    password: accountState.password1,
+    account_type: 1
+  }
 
-    const userLogin = {
-        username: accountState.loginUsername,
-        password: accountState.loginPassword
-    }
+  const userLogin = {
+    username: accountState.loginUsername,
+    password: accountState.loginPassword
+  }
 
-    accountState.handleInputChange = event => {
-        setAccountState({ ...accountState, [event.target.name]: event.target.value })
-    }
+  accountState.handleInputChange = event => {
+    setAccountState({ ...accountState, [event.target.name]: event.target.value })
+  }
+
+
+  accountState.handleCheck = event => {
+    event.preventDefault()
+    API.loginUser(userLogin)
+      .then(({ data: token }) => {
+        if (token) {
+          localStorage.setItem('user', token)
+          window.location = '/userprofile'
+        } else {
+          console.log('invalid credentials')
+        }
+      })
+      .catch(err => console.log(err))
+  }
 
   accountState.handleCheck = (event) => {
     event.preventDefault();
@@ -42,12 +58,11 @@ function Login() {
           window.location = "/index.html";
         } else {
           console.log("invalid credentials");
-
         }
       })
       .catch((err) => console.log(err));
   };
-  
+
   accountState.handleSignUp = (event) => {
     event.preventDefault();
     console.log(accountState.password1);
@@ -106,7 +121,7 @@ function Login() {
 
       <div className="signup-area">
         <form className="signup-form">
-          <i class="fas fa-user-plus"></i>
+          <i className="fas fa-user-plus"></i>
           <h1>Sign Up</h1>
           <input
             type="text"

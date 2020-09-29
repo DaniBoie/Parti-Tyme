@@ -1,6 +1,6 @@
 import React from 'react'
 import './BusinessCard.css'
-import Logos from '../assets/logos.png'
+import Logos from '../assets/images/logos.png'
 import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
 
 // import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
@@ -30,7 +30,7 @@ const BuisnessCard = () => {
           <ul>
             <li><a href='#'><FaFacebookF size='2em' color='#3b5998' /></a></li>
             <li><a href='#'><FaInstagram size='2em' color='#bc2a8d' /></a></li>
-            <li><a href='#'><FaPortrait size='2em' color='red' /></a></li>
+            <li><a href='#'><FaPortrait size='2em' color='rgb(192, 70, 70)' /></a></li>
           </ul>
         </div>
       </div>
