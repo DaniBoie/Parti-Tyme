@@ -1,7 +1,9 @@
 import React from 'react'
 import './BusinessCard.css'
 import Logos from '../assets/logos.png'
-import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
+import StarRating from './StarRating.js'
+
+import { FaFacebookF, FaInstagram, FaPortrait, } from 'react-icons/fa'
 
 // import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 
@@ -16,13 +18,7 @@ const BuisnessCard = () => {
         </div>
         <div className='name'>Banda CashMax</div>
         <div className='desc'>Authentic Mexican music for all your family to enjoy</div>
-        <div className='stars'>
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-        </div>
+        <StarRating />
         <a href='#' className='contact-btn'>Parti Tyme</a>
       </div>
       <div className='card-footer'>

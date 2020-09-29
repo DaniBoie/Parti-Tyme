@@ -194,3 +194,12 @@ transition: .5s;
 .buttons ul li:nth-child(3) a:hover .fa {
   color: rgb(192, 70, 70);
 }
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+input[type="radio"] {
+  display: none;
+}
