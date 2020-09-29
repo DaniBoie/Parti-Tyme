@@ -196,3 +196,13 @@ body {
   color: red;
 }
 
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+  margin-top: 3px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+

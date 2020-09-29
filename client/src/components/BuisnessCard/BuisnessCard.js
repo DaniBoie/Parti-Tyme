@@ -1,5 +1,6 @@
 import React from 'react'
 import './BusinessCard.css'
+import StarRating from './StarRating.js'
 import Logos from '../assets/images/logos.png'
 import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
 import API from '../../utils/API'
@@ -16,16 +17,22 @@ const BuisnessCard = props => {
         <div className='pic'>
           <img src={props.business.img} alt='Portrait' />
         </div>
-        <div className='name'>{props.business.name}</div>
-        <div className='desc'>{props.business.bio}</div>
-        <div className='stars'>
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-          <i className='fas fa-star' />
-        </div>
-        <a href='#' className='contact-btn'>{props.business.fee}</a>
+        <div className='name'>Banda CashMax</div>
+        <div className='desc'>Authentic Mexican music for all your family to enjoy</div>
+        <StarRating />
+        <a href='#' className='contact-btn'>Parti Tyme</a>
+
+//         <div className='name'>{props.business.name}</div>
+//         <div className='desc'>{props.business.bio}</div>
+//         <div className='stars'>
+//           <i className='fas fa-star' />
+//           <i className='fas fa-star' />
+//           <i className='fas fa-star' />
+//           <i className='fas fa-star' />
+//           <i className='fas fa-star' />
+//         </div>
+//         <a href='#' className='contact-btn'>{props.business.fee}</a>
+
       </div>
       <div className='card-footer'>
         <div className='buttons'>
