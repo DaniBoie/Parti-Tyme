@@ -25,26 +25,26 @@ const BuisnessProfile = () => {
   }
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    let businessId = //?
+  //   let businessId = //?
 
-      API.getOneBusiness(businessId)
-        .then(({data}) => {
-          let dataComeback = data
-          console.log(dataComeback)
-          setBusinessState({ 
-            ...businessState, 
-            name:dataComeback.name,
-            bio:dataComeback.bio,
-            img:dataComeback.img,
-            instagram:dataComeback.instagram,
-            website:dataComeback.website,
-            facebook:dataComeback.facebook,
-            fee:dataComeback.fee,
-            reviews:dataComeback.reviews || []
-          })
-        })
+  //     API.getOneBusiness(businessId)
+  //       .then(({data}) => {
+  //         let dataComeback = data
+  //         console.log(dataComeback)
+  //         setBusinessState({ 
+  //           ...businessState, 
+  //           name:dataComeback.name,
+  //           bio:dataComeback.bio,
+  //           img:dataComeback.img,
+  //           instagram:dataComeback.instagram,
+  //           website:dataComeback.website,
+  //           facebook:dataComeback.facebook,
+  //           fee:dataComeback.fee,
+  //           reviews:dataComeback.reviews || []
+  //         })
+  //       })
         // .then(() => {        
         //   API.findBusinessReviews(businessId)
         //     .then(({data}) => {
@@ -58,14 +58,14 @@ const BuisnessProfile = () => {
         //     })
         //     .catch(err => console.log(err))
         // })
-        .catch(err => console.log(err))
-  },[])
+  //       .catch(err => console.log(err))
+  // },[])
 
   return (
     <>
       <h1>Welcome to {businessState.name}</h1>
       <BusinessCard 
-        business={businessState.business}    
+        business={businessState.business}
       />
       {
         // businessState.reviews.length > 0 ? (

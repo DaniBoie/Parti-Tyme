@@ -90,9 +90,9 @@ body {
   color: #E66767;
 }
 
-.stars {
+/* .stars {
   margin-top: 10px;
-}
+} */
 
 .contact-btn {
   display: inline-block;
@@ -124,8 +124,8 @@ body {
 
 .buttons ul li a {
   position: relative;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   background: #f1f1f1;
   display: block;
   text-align: center;
@@ -152,8 +152,8 @@ body {
 .buttons ul li a {
 
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: #9e3d3d;
   display: block;
   text-align: center;
@@ -173,8 +173,8 @@ body {
 }
 
 .buttons ul li a .fa {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   display: block;
   background: linear-gradient(0ded, rgb(158, 94, 94), rgb(88, 12, 12));
   border-radius: 50%;
