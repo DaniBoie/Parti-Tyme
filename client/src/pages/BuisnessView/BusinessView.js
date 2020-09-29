@@ -10,12 +10,19 @@ const BuisnessView = () => {
   const [businessState, setBusinessState] = useState({
     businesses: [],
     businessRender: [],
-    selectValue: '',
+    selectValue: 'All',
+    ipsum: ""
   })
 
   businessState.handleInputChange = event => {
+    console.log(event.target.checked)
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })
-    console.log(businessState)
+    
+  }
+
+  businessState.handleCheckboxChange = event => {
+    console.log(event.target.checked)
+    setBusinessState({ ...businessState, [event.target.name]: event.target.checked })
   }
 
   useEffect(() => {
@@ -28,23 +35,63 @@ const BuisnessView = () => {
 
   }, [])
 
-  const handleSearchCategory = (event) => {
-    event.preventDefault()
-    API.searchBusinessCategory()
-      .then(({ data }) => {
-        setBusinessState({ ...businessState, businessRender: data })
-        console.log(data)
-      })
-      .catch(err => console.log(err))
+  const handleSearchCategory = () => {
+    
+    console.log(businessState.selectValue)
+
+    let filteredArray = API.filterCategory(businessState.selectValue, businessState.businesses)
+
+    if (filteredArray.length === 0){
+      alert('No Matches Found')
+    } else {
+      setBusinessState({ ...businessState, businessRender: filteredArray })
+    }
+
+    console.log(filteredArray)
+    // API.searchBusinessCategory(category)
+    //   .then(( {data} ) => {
+    //     setBusinessState({ ...businessState, businessRender: data })
+    //     console.log(data)
+    //   })
+    //   .catch(err => console.log(err))
   }
 
   const handleFilter = () => {
-    console.log('click')
+
+    // API.searchBusinessCategory(businessState.selectValue)
+    //   .then(({ data }) => {
+    //     setBusinessState({ ...businessState, businessRender: data })
+    //     console.log(data)
+    //   })
+    //   .catch(err => console.log(err))
+
+    switch (businessState.selectValue) {
+      case 'Entertainment':
+        handleSearchCategory('Entertainment')
+        break;
+      case 'Food':
+        handleSearchCategory('Food')
+        break;
+      case 'All':
+        handleFilterClear()
+        break;
+      case 'Music':
+        handleSearchCategory('Music')
+        break;
+
+    }
+    
   }
 
   const handleFilterClear = () => {
 
-    setBusinessState({ ...businessState, businessRender: businessState.businesses })
+    setBusinessState({...businessState, businessRender: businessState.businesses})
+    console.log(businessState.ipsum)
+  }
+
+  const handleRadio = (event) => {
+   event.preventDefault()
+    console.log('checked')
   }
 
 
@@ -60,12 +107,12 @@ const BuisnessView = () => {
 
         <div className="bvp-dropdown-categories-list-item">
           <form>
-            <select name="category">
-              <option value="food">Food</option>
-              <option value="music">Music</option>
-              <option value="rentals">Rentals</option>
-              <option value="#">Something</option>
-              <option value="#">Something</option>
+            <select name="selectValue" onChange={businessState.handleInputChange}>
+              <option value="All">All</option>
+              <option value="Food">Food</option>
+              <option value="Music">Music</option>
+              <option value="Rentals">Rentals</option>
+              <option value="Entertainment">Entertainment</option>
               <option value="#">Something</option>
             </select>
           </form>
@@ -88,7 +135,7 @@ const BuisnessView = () => {
           <label className="filter-items">
             {" "}
                 ipsum
-                <input type="checkbox" onChange={handleFilter} />
+                <input type="checkbox" name="ipsum" onChange={businessState.handleCheckboxChange}/>
             <span className="checkmark"></span>
           </label>
 
@@ -130,7 +177,7 @@ const BuisnessView = () => {
 
         <div className="filter-column-buttons">
           <button
-            onClick={handleSearchCategory}
+            onClick={handleFilter}
           >
             Save
               </button>
