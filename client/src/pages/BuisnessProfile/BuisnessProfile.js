@@ -15,7 +15,7 @@ const BuisnessProfile = () => {
     business: [],
     text: '',
     rating: '',
-    username: ''
+    username: '',
     reviews: []
   })
 
@@ -27,7 +27,7 @@ const BuisnessProfile = () => {
 
   useEffect(() => {
 
-    let businessId = ?
+    let businessId = //?
 
       API.getOneBusiness(businessId)
         .then(({data}) => {
@@ -68,14 +68,14 @@ const BuisnessProfile = () => {
         business={businessState.business}    
       />
       {
-        businessState.reviews.length > 0 ? (
-          businessState.reviews.map(review => (
-            <Review
-              key={review._id}
-              review={review}
-            />
-          ))
-        ) : null
+        // businessState.reviews.length > 0 ? (
+        //   businessState.reviews.map(review => (
+        //     <Review
+        //       key={review._id}
+        //       review={review}
+        //     />
+        //   ))
+        // ) : null
       }
     </>
   )
