@@ -11,7 +11,7 @@ const BuisnessProfile = () => {
     instagram: '',
     website: '',
     facebook: '',
-    fee: '',    
+    fee: '',
     business: [],
     text: '',
     rating: '',
@@ -19,53 +19,53 @@ const BuisnessProfile = () => {
     reviews: []
   })
 
-    // HANDLING the inputs on the page.
+  // HANDLING the inputs on the page.
   businessState.handleInputChange = event => {
-    setBusinessState({ ...businessState, [event.target.name]: event.target.value})
+    setBusinessState({ ...businessState, [event.target.name]: event.target.value })
   }
 
 
   useEffect(() => {
 
-    let businessId = //?
+    let businessId;
 
-      API.getOneBusiness(businessId)
-        .then(({data}) => {
-          let dataComeback = data
-          console.log(dataComeback)
-          setBusinessState({ 
-            ...businessState, 
-            name:dataComeback.name,
-            bio:dataComeback.bio,
-            img:dataComeback.img,
-            instagram:dataComeback.instagram,
-            website:dataComeback.website,
-            facebook:dataComeback.facebook,
-            fee:dataComeback.fee,
-            reviews:dataComeback.reviews || []
-          })
+    API.getOneBusiness(businessId)
+      .then(({ data }) => {
+        let dataComeback = data
+        console.log(dataComeback)
+        setBusinessState({
+          ...businessState,
+          name: dataComeback.name,
+          bio: dataComeback.bio,
+          img: dataComeback.img,
+          instagram: dataComeback.instagram,
+          website: dataComeback.website,
+          facebook: dataComeback.facebook,
+          fee: dataComeback.fee,
+          reviews: dataComeback.reviews || []
         })
-        // .then(() => {        
-        //   API.findBusinessReviews(businessId)
-        //     .then(({data}) => {
-        //       let reviews = data.reviews
-        //       setBusinessState({ 
-        //         ...businessState,
-        //         text: reviews.text,
-        //         rating: reviews.rating,
-        //         username: reviews.user.username            
-        //       })
-        //     })
-        //     .catch(err => console.log(err))
-        // })
-        .catch(err => console.log(err))
-  },[])
+      })
+      // .then(() => {        
+      //   API.findBusinessReviews(businessId)
+      //     .then(({data}) => {
+      //       let reviews = data.reviews
+      //       setBusinessState({ 
+      //         ...businessState,
+      //         text: reviews.text,
+      //         rating: reviews.rating,
+      //         username: reviews.user.username            
+      //       })
+      //     })
+      //     .catch(err => console.log(err))
+      // })
+      .catch(err => console.log(err))
+  }, [])
 
   return (
     <>
       <h1>Welcome to {businessState.name}</h1>
-      <BusinessCard 
-        business={businessState.business}    
+      <BusinessCard
+        business={businessState.business}
       />
       {
         // businessState.reviews.length > 0 ? (

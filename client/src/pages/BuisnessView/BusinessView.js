@@ -56,15 +56,19 @@ const BuisnessView = () => {
       <div className="filter-column">
 
         {/* Dropdown category */}
-        <button className="bvp-dropdown-category-btn">Categories <i class="fas fa-caret-down"></i></button>
+        {/* <button className="bvp-dropdown-category-btn">Categories <i class="fas fa-caret-down"></i></button> */}
 
         <div className="bvp-dropdown-categories-list-item">
-          <button className="bvp-dropdown-categories-items">Food</button>
-          <button className="bvp-dropdown-categories-items">Music</button>
-          <button className="bvp-dropdown-categories-items">Rentals</button>
-          <button className="bvp-dropdown-categories-items">SomeThing</button>
-          <button className="bvp-dropdown-categories-items">SomeThing</button>
-          <button className="bvp-dropdown-categories-items">SomeThing</button>
+          <form>
+            <select name="category">
+              <option value="food">Food</option>
+              <option value="music">Music</option>
+              <option value="rentals">Rentals</option>
+              <option value="#">Something</option>
+              <option value="#">Something</option>
+              <option value="#">Something</option>
+            </select>
+          </form>
         </div>
 
         <h2>Filters</h2>
@@ -128,12 +132,12 @@ const BuisnessView = () => {
           <button
             onClick={handleSearchCategory}
           >
-            Save Search
+            Save
               </button>
           <button
             onClick={handleFilterClear}
           >
-            Clear Search
+            Clear
               </button>
         </div>
       </div>
