@@ -22,18 +22,14 @@
 }
 
 .nav-logo img {
-
-  margin-right: 3rem;
-  width: 100px;
-  height: 50px;
-  background: none;
-
+  width: 45px;
+  height: 45px;
   border: none;
-  border-radius: 20%;
-  -webkit-border-radius: 20%;
-  -moz-border-radius: 20%;
-  -ms-border-radius: 20%;
-  -o-border-radius: 20%;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .nav-search-bar {
@@ -73,21 +69,6 @@
   border: none;
   background: none;
   font-weight: 500;
-
-  font-size: 16px;
-}
-
-
-/* To Remove Later */
-.nav-items {
-    position: absolute;
-    top: 10vh;
-    left: 30%;
-    visibility: hidden;
-  position: absolute;
-  top: 10vh;
-  left: 30%;
-  visibility: hidden;
   font-size: 16px;
 }
 
@@ -97,7 +78,6 @@
   margin: 8px;
   right: 1rem;
   width: 200px;
-  text-align: center;
   background: #fff;
   display: flex;
   justify-content: space-around;
@@ -110,40 +90,12 @@
   visibility: hidden;
 }
 
-
 .nav-account-link {
   text-decoration: none;
   color: black;
   font-size: 20px;
   font-weight: bold;
   padding: 1rem;
-
-  width: 100%;
-}
-
-.nav-account-link:hover {
-  box-shadow: inset 1em 1em 5em #ff7675
-}
-
-.show {
-  visibility: visible;
-}
-
-/* To Remove Later */
-/* .nav-items {
-  position: absolute;
-  top: 10vh;
-  left: 30%;
-  visibility: hidden;
-} */
-
-.nav-link {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-    padding: 1rem;
-
 }
 
 .show {
@@ -188,16 +140,14 @@
   align-items: center;
   font-size: 17px;
   border-top: 1px solid rgb(167, 148, 148);
-
 }
 
-.nav-dropdown-item{
-    text-decoration: none;
-    color: #000;
-    font-family: Arial, Helvetica, sans-serif;
+.nav-dropdown-item {
+  text-decoration: none;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 .nav-account ul li:hover {
   box-shadow: inset 1em 1em 5em #ff7675;
 } */
-
-
