@@ -27,7 +27,7 @@ const BuisnessProfile = () => {
 
   useEffect(() => {
 
-    let businessId
+    let businessId = ?
 
       API.getOneBusiness(businessId)
         .then(({data}) => {
@@ -45,18 +45,19 @@ const BuisnessProfile = () => {
             reviews:dataComeback.reviews || []
           })
         })
-        .then(() => {        
-          API.findBusinessReviews(businessId)
-            .then(({data}) => {
-              let reviews = data.reviews
-              setBusinessState({ 
-                ...businessState,
-                text: reviews.text,
-                rating: reviews.rating,
-                username: reviews.user.username            
-              })
-            })
-        })
+        // .then(() => {        
+        //   API.findBusinessReviews(businessId)
+        //     .then(({data}) => {
+        //       let reviews = data.reviews
+        //       setBusinessState({ 
+        //         ...businessState,
+        //         text: reviews.text,
+        //         rating: reviews.rating,
+        //         username: reviews.user.username            
+        //       })
+        //     })
+        //     .catch(err => console.log(err))
+        // })
         .catch(err => console.log(err))
   },[])
 
@@ -66,6 +67,16 @@ const BuisnessProfile = () => {
       <BusinessCard 
         business={businessState.business}    
       />
+      {
+        businessState.reviews.length > 0 ? (
+          businessState.reviews.map(review => (
+            <Review
+              key={review._id}
+              review={review}
+            />
+          ))
+        ) : null
+      }
     </>
   )
 }
