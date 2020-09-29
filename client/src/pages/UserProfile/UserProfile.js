@@ -39,51 +39,47 @@ const UserProfile = () => {
       .then(({ data }) => {
         let dataComeback = data[0]
 
-        console.log("USER SETTINGS ", dataComeback.Settings)
-
         setUserState({ ...userState, realname: dataComeback.realname, username: dataComeback.username, email: dataComeback.email, account_type: dataComeback.account_type, Reviews: dataComeback.Reviews || [], Buisness: dataComeback.Buisness, Settings: dataComeback.Settings || {} })
 
-        console.log("API DATA ", dataComeback)
+        console.log("API DATA ON STARTUP", dataComeback)
       })
       .catch(err => console.log(err))
 
   }, [])
 
   const handleSaveBtn = () => {
-    console.log('jello')
-    console.log(userState)
+
     let settings = {
       img: userState.profileImg,
       bio: userState.bioChange,
       instagram: userState.instaChange,
       facebook: userState.facebookChange
     }
+    let userSettings 
 
-    console.log(settings)
-    if (userState.Settings === null) {
-      API.createSettings(settings)
-        .then((data) => {
-          // API.getUser()
-          //   .then(({ data }) => {
-          //     let dataComeback = data[0]
+    API.getUser()
+      .then(({ data }) => {
+        let dataComeback = data[0]
 
-          //     setUserState({ ...userState, Settings: dataComeback.Settings })
+        setUserState({ ...userState, Settings: dataComeback.Settings })
+        console.log("API SETTINGS ON SAVE BTN", dataComeback)
+        userSettings = dataComeback.Settings
 
-          //     console.log(dataComeback.Settings)
-          //   })
-          //   .catch(err => console.log(err))
-          console.log(data)
-        })
-        .catch((err) => console.log(err))
-    } else {
-      API.updateSettings(settings)
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err))
-      console.log('else')
-    }
+        console.log("Inputted Settings ", settings)
+        if (userSettings === (undefined || null)) {
+          API.createSettings(settings)
+            .then((data) => {
+              console.log('Created Settings', data)
+            })
+            .catch((err) => console.log(err))
+        } else {
+          API.updateSettings(settings)
+            .then((data) => console.log("UPDATED SETTINGS", data))
+            .catch((err) => console.log(err))
+        }
 
-    console.log(localStorage.getItem('user'))
-
+      })
+      .catch(err => console.log(err))
 
   }
 
