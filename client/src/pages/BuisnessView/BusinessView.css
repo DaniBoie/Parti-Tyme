@@ -1,30 +1,34 @@
-.business-view {
-  height: 100vh;
-  padding: 2rem 0 0rem 0;
+.business-view-page {
+  height: 90vh;
+  display: grid;
+  grid-template-columns: 2fr 8fr;
 }
 
-.business-view-main-content {
-  /* margin-top: 3rem; */
-  display: grid;
-  grid-template-columns: 1fr 7fr 1fr;
-}
-
-.business-view-main-box {
-  grid-column: 2/3;
-  display: grid;
-  border: 1px solid #333;
-  height: 100%;
-  grid-template-columns: 1fr 4fr;
-}
+/* Left Column / Filter Column  */
 
 .filter-column {
+  background: #b2bec3;
   border-right: 1px solid #333;
-  background: #ffaaa5;
+  padding: 0 2rem;
+}
+
+.bvp-dropdown-category-btn {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 1rem 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  padding: .5rem 0;
 }
 
 .filter-column h2 {
   text-align: center;
-  padding-top: 1rem;
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  width: 100%;
+  border: 1px solid #333;
 }
 
 .filter-items {
@@ -39,6 +43,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  text-align: left;
 }
 
 .filter-list {
@@ -92,71 +97,17 @@
   transform: rotate(45deg);
 }
 
-.business-column {
+.filter-column-buttons button {
+  padding: 0.5rem 1rem;
+  font-size: 16px;
+  font-family: sans-serif;
+  margin: .5rem;
+}
+
+/* Right Column / Business Column  */
+
+.bvp-business-column {
   padding: 1rem;
-  overflow: auto;
-  /* background:; */
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 1rem;
-}
-
-.business-card {
-  padding: 8px;
-  height: 250px;
-  border: 1px solid #000;
-  background: #fff;
-  display: grid;
-  grid-template-areas: "title title" "image note" "info rate";
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 5px;
-}
-
-.business-title {
-  grid-area: title;
-  text-align: center;
-}
-
-.business-image {
-  grid-area: image;
-  width: 90%;
-  height: 100px;
-}
-
-.business-note {
-  grid-area: note;
-}
-
-.business-info {
-  grid-area: info;
-}
-
-.business-rate {
-  grid-area: rate;
-}
-
-.business-note ul li h4 {
-  font-style: italic;
-}
-
-.business-note ul li, .business-info ul li {
-  padding-top: 10px;
-}
-
-.business-info ul {
-  list-style: none;
-}
-
-.rating-circles {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin: 15px 3px;
-  background: #e17055;
-  border: none;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }

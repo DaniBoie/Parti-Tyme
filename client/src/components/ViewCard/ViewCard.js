@@ -1,5 +1,4 @@
 import React from 'react'
-import BusinessImage4 from "../../components/assets/images/business-4.jpg";
 
 const Card = (props) => {
 
