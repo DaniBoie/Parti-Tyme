@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -12,34 +12,34 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .profile-card {
-  width: 400px;
+  width: 250px;
   text-align: center;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
   overflow: hidden;
   transition: 0.4s ease;
-  box-shadow: 1px 2px 5px rgba(0,0,0,0.8);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.8);
 }
 
-.profile-card:hover{
-  transform:scale(1.08);
-  box-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+.profile-card:hover {
+  transform: scale(1.08);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .card-header {
   background: #324150;
-  padding: 60px 40px;
+  padding: 10px 20px;
 }
 
 .pic {
   display: inline-block;
-  padding: 12px;
+  padding: 8px;
   background: linear-gradient(130deg, #74B9FF, #E66767);
   margin: auto;
   border-radius: 50%;
@@ -91,36 +91,15 @@ body {
 }
 
 .stars {
-    margin-top: 10px;
+  margin-top: 10px;
 }
-
-/* .sm {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-} */
-
-/* .sm a {
-  color: #F2F2F2;
-  width: 56px;
-  font-size: 22px;
-  transition: 0.3s linear;
-  -webkit-transition: 0.3s linear;
-  -moz-transition: 0.3s linear;
-  -ms-transition: 0.3s linear;
-  -o-transition: 0.3s linear;
-} */
-
-/* .sm a:hover {
-  color: #E66767;
-} */
 
 .contact-btn {
   display: inline-block;
-  padding: 12px 50px;
+  padding: 8px 29px;
   color: #E66767;
-  border: 2px solid #E66767;
-  margin-top: 16px;
+  border: 2px solid ;
+  margin-top: 8px;
   border-radius: 1px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -134,44 +113,19 @@ body {
 }
 
 .contact-btn:hover {
-  background: #86d1ee;
-  color: #73307c;
+  background: #E66767;
+  color: #86d1ee;
 }
 
 .card-footer {
   background: #86d1ee;
-  padding: 10px 30px;
+  padding: 0px 0px;
 }
 
-/* .numbers {
-  display: flex;
-  align-items: center;
-} */
-
-/* .item {
-  flex: 1;
-  text-transform: uppercase;
-  font-size: 13px;
-  color: #E66767;
-} */
-
-/* .item span {
-  display: block;
-  color: #2C3A47;
-  font-size: 30px;
-} */
-
-/* .border {
-  width: 1px;
-  height: 30px;
-  background: #bbb;
-} */
-
-/*  */
 .buttons ul li a {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   background: #f1f1f1;
   display: block;
   text-align: center;
@@ -180,16 +134,12 @@ body {
   padding: 6px;
   box-sizing: border-box;
   text-decoration: none;
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
   background: linear-gradient(0deg, #ddd, #fff);
   transition: .5s;
 }
 
 .buttons ul {
-  /* position: fixed; */
-  /* top: 50%; */
-  /* left: 500%; */
-  /* transform: translate(-50%,-50%); */
   margin: 0px;
   padding: 15%;
   display: flex;
@@ -200,24 +150,26 @@ body {
 }
 
 .buttons ul li a {
-position: relative;
-width: 60px;
-height: 60px;
-background: #9e3d3d;
-display: block;
-text-align: center;
-margin: 0 10px;
-border-radius: 50%;
-padding: 6px;
-box-sizing: border-box;
-text-decoration: none;
-box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
-background: linear-gradient(0deg, rgb(196, 194, 194), #fff);
-transition: .5s;
+
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: #9e3d3d;
+  display: block;
+  text-align: center;
+  margin: 0 10px;
+  border-radius: 50%;
+  padding: 6px;
+  box-sizing: border-box;
+  text-decoration: none;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(0deg, rgb(196, 194, 194), #fff);
+  transition: .5s;
+
 }
 
 .buttons ul li a:hover {
-  box-shadow: 1px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .buttons ul li a .fa {
@@ -235,6 +187,7 @@ transition: .5s;
 .buttons ul li:nth-child(1) a:hover .fa {
   color: #3b5998;
 }
+
 .buttons ul li:nth-child(2) a:hover .fa {
   color: #bc2a8d;
 }
@@ -242,3 +195,14 @@ transition: .5s;
 .buttons ul li:nth-child(3) a:hover .fa {
   color: red;
 }
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+  margin-top: 3px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+

@@ -9,6 +9,9 @@ const BuisnessData = new Schema({
   bio: {
     type: String,
   },
+  img: {
+    type: String,
+  },
   instagram: {
     type: String,
     unique: true,

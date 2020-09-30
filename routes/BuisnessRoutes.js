@@ -5,6 +5,7 @@ const passport = require('passport')
 // Find One Buisness
 router.get('/buisness/:id', (req, res) => {
   BuisnessData.findById(req.params.id)
+    .populate('Review')
     .then(data => res.send(data))
     .catch(err => console.log(err))
 })
@@ -61,6 +62,14 @@ router.get('/buisness/search/:category', (req, res) => {
     .catch(err => console.log(err))
 
 })
+
+// FIND all buisness data
+router.get('/buisness', (req, res) => {
+  BuisnessData.find({})
+    .then((data) => res.send(data))
+    .catch(err => console.log(err))
+})
+
 
 // CREATE buisness data
 router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
