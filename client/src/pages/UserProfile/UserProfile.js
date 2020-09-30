@@ -27,7 +27,7 @@ const UserProfile = () => {
     profileImg: '',
     bioChange: '',
     instaChange: '',
-    facebookChange: '',
+    facebookChange: ''
   })
 
   userState.handleInputChange = event => {
