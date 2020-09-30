@@ -16,7 +16,7 @@ const App = () => {
     <>
       <Router>
         <div>
-          <Nav />
+          {/* <Nav /> */}
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/businessprofile" component={BusinessProfile} />
