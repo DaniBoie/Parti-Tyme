@@ -5,6 +5,7 @@
 }
 
 .nav-bar {
+  /* margin: 0 1rem; */
   padding: 3px 10px;
   height: 10vh;
   background: #a8e6cf;
@@ -21,14 +22,14 @@
 }
 
 .nav-logo img {
-  width: 100px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border: none;
-  border-radius: 20%;
-  -webkit-border-radius: 20%;
-  -moz-border-radius: 20%;
-  -ms-border-radius: 20%;
-  -o-border-radius: 20%;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 .nav-search-bar {
@@ -72,7 +73,6 @@
 }
 
 /* To Remove Later */
-
 .nav-account-items {
   position: absolute;
   margin: 8px;
@@ -101,7 +101,6 @@
 .show {
   visibility: visible;
 }
-
 /* End To Remove Later */
 
 /* .nav-account ul {
