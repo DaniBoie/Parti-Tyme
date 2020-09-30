@@ -42,7 +42,7 @@ const BuisnessProfile = () => {
 
     API.getUser()
         .then(({data}) => {
-          console.log(data)
+          // console.log(data)
           let dataComeback = data[0].Buisness
           
           setBusinessState({ 
@@ -55,10 +55,11 @@ const BuisnessProfile = () => {
             facebook:dataComeback.facebook,
             fee:dataComeback.fee,
             reviews:dataComeback.reviews || [],
-            business:dataComeback
+            business:dataComeback,
+            username:data[0].username
           })
 
-          console.log(dataComeback)
+          // console.log(dataComeback)
         })
         .catch(err => console.log(err))
   },[])
