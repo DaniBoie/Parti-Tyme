@@ -23,7 +23,7 @@ const BuisnessCard = props => {
         <a href='#' className='contact-btn'>Parti Tyme</a>
 
 
-{/* //     <div className='name'>{props.business.name}</div>
+        {/* //     <div className='name'>{props.business.name}</div>
 //         <div className='desc'>{props.business.bio}</div>
 //         <div className='stars'>
 //           <i className='fas fa-star' />

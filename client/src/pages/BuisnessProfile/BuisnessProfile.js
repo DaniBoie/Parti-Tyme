@@ -3,6 +3,8 @@ import BusinessCard from '../../components/BuisnessCard'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import API from '../../utils/API'
 
+import Nav from '../../components/Nav'
+
 // Importing image
 import Image from '../../components/assets/images/business-3.jpg'
 import Logo from '../../components/assets/images/logos.png'
@@ -54,29 +56,30 @@ const BuisnessProfile = () => {
   //           reviews:dataComeback.reviews || []
   //         })
   //       })
-        // .then(() => {        
-        //   API.findBusinessReviews(businessId)
-        //     .then(({data}) => {
-        //       let reviews = data.reviews
-        //       setBusinessState({ 
-        //         ...businessState,
-        //         text: reviews.text,
-        //         rating: reviews.rating,
-        //         username: reviews.user.username            
-        //       })
-        //     })
-        //     .catch(err => console.log(err))
-        // })
+  // .then(() => {        
+  //   API.findBusinessReviews(businessId)
+  //     .then(({data}) => {
+  //       let reviews = data.reviews
+  //       setBusinessState({ 
+  //         ...businessState,
+  //         text: reviews.text,
+  //         rating: reviews.rating,
+  //         username: reviews.user.username            
+  //       })
+  //     })
+  //     .catch(err => console.log(err))
+  // })
   //       .catch(err => console.log(err))
   // },[])
 
   return (
     <>
-    <ReviewCard />
+      <Nav />
+      {/* <ReviewCard />
       <h1>Welcome to {businessState.name}</h1>
-      <BusinessCard 
-        business={businessState.business}    
-      />
+      <BusinessCard
+        business={businessState.business}
+      /> */}
       {
         // businessState.reviews.length > 0 ? (
         //   businessState.reviews.map(review => (

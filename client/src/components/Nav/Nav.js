@@ -8,6 +8,8 @@ import "./nav.css";
 import Logo from "../assets/images/logos.png";
 
 const Nav = () => {
+
+  // Function for dropdown menu
   const [showItems, setShowItems] = useState({
     show: "",
   });
@@ -16,6 +18,7 @@ const Nav = () => {
     if (showItems.show === "") setShowItems({ show: "show" });
     else setShowItems({ show: "" });
   }
+  // End function for dropdown menu
 
   return (
     <>
