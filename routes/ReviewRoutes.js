@@ -17,10 +17,12 @@ router.post('/review', passport.authenticate('jwt'), (req, res) => {
         .then(() => console.log(data))
         .catch(err => console.log(err))
       BuisnessData.findByIdAndUpdate(req.body.buisnessId, { $push: { reviews: data._id }})
-        .then(() => res.json(data))
+        .then(({data}) => {
+          console.log(data)
+          res.json(data)
+        })
         .catch(err => console.log(err))
     })
-
 })
 
 //Route to get buisness reviews

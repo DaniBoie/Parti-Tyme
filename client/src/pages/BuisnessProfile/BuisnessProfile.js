@@ -25,41 +25,33 @@ const BuisnessProfile = () => {
   }
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    let businessId = //?
+  //   let businessId = //?
 
-      API.getOneBusiness(businessId)
-        .then(({data}) => {
-          let dataComeback = data
-          console.log(dataComeback)
-          setBusinessState({ 
-            ...businessState, 
-            name:dataComeback.name,
-            bio:dataComeback.bio,
-            img:dataComeback.img,
-            instagram:dataComeback.instagram,
-            website:dataComeback.website,
-            facebook:dataComeback.facebook,
-            fee:dataComeback.fee,
-            reviews:dataComeback.reviews || []
-          })
-        })
-        // .then(() => {        
-        //   API.findBusinessReviews(businessId)
-        //     .then(({data}) => {
-        //       let reviews = data.reviews
-        //       setBusinessState({ 
-        //         ...businessState,
-        //         text: reviews.text,
-        //         rating: reviews.rating,
-        //         username: reviews.user.username            
-        //       })
-        //     })
-        //     .catch(err => console.log(err))
-        // })
-        .catch(err => console.log(err))
-  },[])
+  //     API.getOneBusiness('5f7394326d0fcf51a8a037ac')
+  //       .then(({data}) => {
+  //         let dataComeback = data
+  //         console.log(dataComeback)
+  //         setBusinessState({ 
+  //           ...businessState, 
+  //           name:dataComeback.name,
+  //           bio:dataComeback.bio,
+  //           img:dataComeback.img,
+  //           instagram:dataComeback.instagram,
+  //           website:dataComeback.website,
+  //           facebook:dataComeback.facebook,
+  //           fee:dataComeback.fee,
+  //           reviews:dataComeback.reviews || []
+  //         })
+  //       })
+  //       .catch(err => console.log(err))
+
+  //     API.findBusinessReviews('5f7394326d0fcf51a8a037ac')
+  //       .then(({data}) => {
+  //         let dataComeback = 
+  //       })
+  // },[])
 
   return (
     <>
