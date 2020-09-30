@@ -12,17 +12,15 @@ const BuisnessView = () => {
     businesses: [],
     businessRender: [],
     selectValue: 'All',
-    maxPrice: ""
+    maxPrice: false,
+    distance: false
   })
 
   businessState.handleInputChange = event => {
-    console.log(event.target.checked)
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })
-
   }
 
   businessState.handleCheckboxChange = event => {
-    console.log(event.target.checked)
     setBusinessState({ ...businessState, [event.target.name]: event.target.checked })
   }
 
@@ -36,65 +34,39 @@ const BuisnessView = () => {
 
   }, [])
 
-  const handleSearchCategory = () => {
+  const handleSearch = () => {
 
-    console.log(businessState.selectValue)
+    // console.log(businessState.selectValue)
 
-    let filteredArray = API.filterCategory(businessState.selectValue, businessState.businesses)
+      let filteredArray = API.filterCategory(businessState.selectValue, businessState.businesses)
+      if (businessState.maxPrice) {
+        console.log('Max Price Ticked')
+        filteredArray = API.filterPrice(99, filteredArray)
+      }
+       if (businessState.distance){
+        console.log('ticked2')
+      }
+ 
 
-    if (filteredArray.length === 0) {
-      alert('No Matches Found')
-    } else {
+
+    
+    
+
       setBusinessState({ ...businessState, businessRender: filteredArray })
-    }
+    
 
     console.log(filteredArray)
-    // API.searchBusinessCategory(category)
-    //   .then(( {data} ) => {
-    //     setBusinessState({ ...businessState, businessRender: data })
-    //     console.log(data)
-    //   })
-    //   .catch(err => console.log(err))
   }
 
   const handleFilter = () => {
 
-    // API.searchBusinessCategory(businessState.selectValue)
-    //   .then(({ data }) => {
-    //     setBusinessState({ ...businessState, businessRender: data })
-    //     console.log(data)
-    //   })
-    //   .catch(err => console.log(err))
-
-    switch (businessState.selectValue) {
-      case 'Entertainment':
-        handleSearchCategory('Entertainment')
-        break;
-      case 'Food':
-        handleSearchCategory('Food')
-        break;
-      case 'All':
-        handleFilterClear()
-        break;
-      case 'Music':
-        handleSearchCategory('Music')
-        break;
-
-    }
+    
 
   }
 
   const handleFilterClear = () => {
-
     setBusinessState({ ...businessState, businessRender: businessState.businesses })
-    console.log(businessState.ipsum)
   }
-
-  const handleRadio = (event) => {
-    event.preventDefault()
-    console.log('checked')
-  }
-
 
 
   return (
@@ -111,8 +83,8 @@ const BuisnessView = () => {
           <div className="bvp-dropdown-categories-list-item">
             <form>
               <select name="selectValue" onChange={businessState.handleInputChange}>
-                <option>Categories</option>
-                <option value="All">All</option>
+                <option value="All">Categories</option>
+                
                 <option value="Food">Food</option>
                 <option value="Music">Music</option>
                 <option value="Rentals">Rentals</option>
@@ -127,10 +99,11 @@ const BuisnessView = () => {
           <div className="filter-list">
             <label className="filter-items">
               {" "}
-                Lorem
+                Distance
                 <input
                 type="checkbox"
-                name="foodFilter"
+                onChange={businessState.handleCheckboxChange}
+                name="distance"
 
               />
               <span className="checkmark"></span>
@@ -138,7 +111,7 @@ const BuisnessView = () => {
 
             <label className="filter-items">
               {" "}
-                ipsum
+                Max Price
 
                 <input type="checkbox" name="maxPrice" onChange={businessState.handleCheckboxChange}/>
             <span className="checkmark"></span>
@@ -182,7 +155,7 @@ const BuisnessView = () => {
 
           <div className="filter-column-buttons">
             <button
-              onClick={handleFilter}
+              onClick={handleSearch}
             >
               Save
               </button>

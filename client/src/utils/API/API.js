@@ -48,18 +48,17 @@ const API = {
   },
 
   filterSubcategory: (subCategory, oldArray) => {
-    let newArray = oldArray.filter(
-      (business) => business.subCategory === subCategory
-    );
+    let newArray = oldArray.filter( (business) => business.subCategory === subCategory);
     return newArray;
   },
 
   filterCategory: (category, oldArray) => {
-    let newArray = oldArray.filter(
-      (business) => business.buisness_type === category
-    );
-    console.log(oldArray)
+    if(category === 'All'){
+      return oldArray
+    } else {
+    let newArray = oldArray.filter( (business) => business.buisness_type === category );
     return newArray
+    }
   }
 
 };
