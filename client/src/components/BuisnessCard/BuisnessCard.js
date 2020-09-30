@@ -1,7 +1,7 @@
 import React from 'react'
 import './BusinessCard.css'
-import StarRating from './StarRating.js'
-// import Logos from '../assets/images/logos.png'
+import StarRating from '../StarRating/StarRating.js'
+import Logos from '../assets/images/logos.png'
 import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
 // import API from '../../utils/API'
 
@@ -22,7 +22,8 @@ const BuisnessCard = props => {
         <StarRating />
         <a href='#' className='contact-btn'>Parti Tyme</a>
 
-        {/* //         <div className='name'>{props.business.name}</div>
+
+{/* //     <div className='name'>{props.business.name}</div>
 //         <div className='desc'>{props.business.bio}</div>
 //         <div className='stars'>
 //           <i className='fas fa-star' />
@@ -37,7 +38,7 @@ const BuisnessCard = props => {
       <div className='card-footer'>
         <div className='buttons'>
           <ul>
-            <li><a href={props.business.facebook}><FaFacebookF size='2em' color='#3b5998' /></a></li>
+            <li className='icon'><a href={props.business.facebook}><FaFacebookF size='2em' color='#3b5998' /></a></li>
             <li><a href={props.business.instagram}><FaInstagram size='2em' color='#bc2a8d' /></a></li>
             <li><a href={props.business.website}><FaPortrait size='2em' color='rgb(192, 70, 70)' /></a></li>
           </ul>

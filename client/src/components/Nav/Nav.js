@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Importing Styling Elements
-import "./nav.css";
+import "./Nav.css";
 
 // Importing Logo Image
 import Logo from "../assets/images/logos.png";

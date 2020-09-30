@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-// import BusinessCard from '../../components/BuisnessCard'
+import BusinessCard from '../../components/BuisnessCard'
+import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import API from '../../utils/API'
 
 // Importing image
@@ -32,48 +33,50 @@ const BuisnessProfile = () => {
   }
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    let businessId;
 
-    API.getOneBusiness(businessId)
-      .then(({ data }) => {
-        let dataComeback = data
-        console.log(dataComeback)
-        setBusinessState({
-          ...businessState,
-          name: dataComeback.name,
-          bio: dataComeback.bio,
-          img: dataComeback.img,
-          instagram: dataComeback.instagram,
-          website: dataComeback.website,
-          facebook: dataComeback.facebook,
-          fee: dataComeback.fee,
-          reviews: dataComeback.reviews || []
-        })
-      })
-      // .then(() => {        
-      //   API.findBusinessReviews(businessId)
-      //     .then(({data}) => {
-      //       let reviews = data.reviews
-      //       setBusinessState({ 
-      //         ...businessState,
-      //         text: reviews.text,
-      //         rating: reviews.rating,
-      //         username: reviews.user.username            
-      //       })
-      //     })
-      //     .catch(err => console.log(err))
-      // })
-      .catch(err => console.log(err))
-  }, [])
+  //   let businessId = //?
+
+  //     API.getOneBusiness(businessId)
+  //       .then(({data}) => {
+  //         let dataComeback = data
+  //         console.log(dataComeback)
+  //         setBusinessState({ 
+  //           ...businessState, 
+  //           name:dataComeback.name,
+  //           bio:dataComeback.bio,
+  //           img:dataComeback.img,
+  //           instagram:dataComeback.instagram,
+  //           website:dataComeback.website,
+  //           facebook:dataComeback.facebook,
+  //           fee:dataComeback.fee,
+  //           reviews:dataComeback.reviews || []
+  //         })
+  //       })
+        // .then(() => {        
+        //   API.findBusinessReviews(businessId)
+        //     .then(({data}) => {
+        //       let reviews = data.reviews
+        //       setBusinessState({ 
+        //         ...businessState,
+        //         text: reviews.text,
+        //         rating: reviews.rating,
+        //         username: reviews.user.username            
+        //       })
+        //     })
+        //     .catch(err => console.log(err))
+        // })
+  //       .catch(err => console.log(err))
+  // },[])
 
   return (
     <>
-      {/* <h1>Welcome to {businessState.name}</h1>
-      <BusinessCard
-        business={businessState.business}
-      /> */}
+    <ReviewCard />
+      <h1>Welcome to {businessState.name}</h1>
+      <BusinessCard 
+        business={businessState.business}    
+      />
       {
         // businessState.reviews.length > 0 ? (
         //   businessState.reviews.map(review => (
