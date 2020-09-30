@@ -3,13 +3,6 @@ import API from "../../utils/API";
 import "./BusinessView.css";
 import ViewCard from '../../components/ViewCard'
 
-// Importing Example Images
-import BusinessImage1 from "../../components/assets/images/business-1.jpg";
-import BusinessImage2 from "../../components/assets/images/business-2.jpg";
-import BusinessImage3 from "../../components/assets/images/business-3.jpg";
-import BusinessImage4 from "../../components/assets/images/business-4.jpg";
-// import BusinessImage5 from '../../components/images/business-5.jpg'
-
 
 const BuisnessView = () => {
 
@@ -17,12 +10,19 @@ const BuisnessView = () => {
   const [businessState, setBusinessState] = useState({
     businesses: [],
     businessRender: [],
-    selectValue: '', 
+    selectValue: 'All',
+    ipsum: ""
   })
 
   businessState.handleInputChange = event => {
+    console.log(event.target.checked)
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })
-    console.log(businessState)
+    
+  }
+
+  businessState.handleCheckboxChange = event => {
+    console.log(event.target.checked)
+    setBusinessState({ ...businessState, [event.target.name]: event.target.checked })
   }
 
   useEffect(() => {
@@ -35,111 +35,169 @@ const BuisnessView = () => {
 
   }, [])
 
-  const handleSearchCategory = (event) => {
-    event.preventDefault()
-    API.searchBusinessCategory()
-    .then(({data}) => {
-      setBusinessState({ ...businessState, businessRender: data })
-      console.log(data)})
-    .catch(err => console.log(err))
+  const handleSearchCategory = () => {
+    
+    console.log(businessState.selectValue)
+
+    let filteredArray = API.filterCategory(businessState.selectValue, businessState.businesses)
+
+    if (filteredArray.length === 0){
+      alert('No Matches Found')
+    } else {
+      setBusinessState({ ...businessState, businessRender: filteredArray })
+    }
+
+    console.log(filteredArray)
+    // API.searchBusinessCategory(category)
+    //   .then(( {data} ) => {
+    //     setBusinessState({ ...businessState, businessRender: data })
+    //     console.log(data)
+    //   })
+    //   .catch(err => console.log(err))
   }
 
   const handleFilter = () => {
-    console.log('lcik')
+
+    // API.searchBusinessCategory(businessState.selectValue)
+    //   .then(({ data }) => {
+    //     setBusinessState({ ...businessState, businessRender: data })
+    //     console.log(data)
+    //   })
+    //   .catch(err => console.log(err))
+
+    switch (businessState.selectValue) {
+      case 'Entertainment':
+        handleSearchCategory('Entertainment')
+        break;
+      case 'Food':
+        handleSearchCategory('Food')
+        break;
+      case 'All':
+        handleFilterClear()
+        break;
+      case 'Music':
+        handleSearchCategory('Music')
+        break;
+
+    }
+    
   }
 
   const handleFilterClear = () => {
 
-    setBusinessState({ ...businessState, businessRender: businessState.businesses})
+    setBusinessState({...businessState, businessRender: businessState.businesses})
+    console.log(businessState.ipsum)
+  }
+
+  const handleRadio = (event) => {
+   event.preventDefault()
+    console.log('checked')
   }
 
 
 
   return (
-    <div className="business-view">
-      <div className="business-view-main-content">
-        <div className="business-view-main-box">
-          <div className="filter-column">
-            <h2>Filters</h2>
-            <div className="filter-list">
-              <label className="filter-items">
-                {" "}
+    <div className="business-view-page">
+
+      {/* Left Column / Filter Column  */}
+      <div className="filter-column">
+
+        {/* Dropdown category */}
+        {/* <button className="bvp-dropdown-category-btn">Categories <i class="fas fa-caret-down"></i></button> */}
+
+        <div className="bvp-dropdown-categories-list-item">
+          <form>
+            <select name="selectValue" onChange={businessState.handleInputChange}>
+              <option value="All">All</option>
+              <option value="Food">Food</option>
+              <option value="Music">Music</option>
+              <option value="Rentals">Rentals</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="#">Something</option>
+            </select>
+          </form>
+        </div>
+
+        <h2>Filters</h2>
+
+        <div className="filter-list">
+          <label className="filter-items">
+            {" "}
                 Lorem
                 <input
-                  type="checkbox"
-                  name="foodFilter"
-                  
-                />
-                <span className="checkmark"></span>
-              </label>
+              type="checkbox"
+              name="foodFilter"
 
-              <label className="filter-items">
-                {" "}
+            />
+            <span className="checkmark"></span>
+          </label>
+
+          <label className="filter-items">
+            {" "}
                 ipsum
-                <input type="checkbox" onChange={handleFilter} />
-                <span className="checkmark"></span>
-              </label>
+                <input type="checkbox" name="ipsum" onChange={businessState.handleCheckboxChange}/>
+            <span className="checkmark"></span>
+          </label>
 
-              <label className="filter-items">
-                {" "}
+          <label className="filter-items">
+            {" "}
                 dolor
                 <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
+            <span className="checkmark"></span>
+          </label>
 
-              <label className="filter-items">
-                {" "}
+          <label className="filter-items">
+            {" "}
                 sit
                 <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
+            <span className="checkmark"></span>
+          </label>
 
-              <label className="filter-items">
-                {" "}
+          <label className="filter-items">
+            {" "}
                 consectetur
                 <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
+            <span className="checkmark"></span>
+          </label>
 
-              <label className="filter-items">
-                {" "}
+          <label className="filter-items">
+            {" "}
                 adipisicing
                 <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
+            <span className="checkmark"></span>
+          </label>
 
-              <label className="filter-items">
-                {" "}
+          <label className="filter-items">
+            {" "}
                 Tempora
                 <input type="checkbox" />
-                <span className="checkmark"></span>
-              </label>
-              <button
-              onClick={handleSearchCategory}
-              >
-                Save Search
-              </button>
-              <button
-                onClick={handleFilterClear}
-              >
-                Save Search
-              </button>
-              
-            </div>
-          </div>
-
-          <div className="business-column">
-
-            {
-            businessState.businessRender.length > 0 ? (
-              businessState.businessRender.map(business => (
-                <ViewCard business={business} />
-              ))
-            ) : null
-            }
-
-          </div>
+            <span className="checkmark"></span>
+          </label>
         </div>
+
+        <div className="filter-column-buttons">
+          <button
+            onClick={handleFilter}
+          >
+            Save
+              </button>
+          <button
+            onClick={handleFilterClear}
+          >
+            Clear
+              </button>
+        </div>
+      </div>
+
+      {/* Right Column / Business Column  */}
+      <div className="bvp-business-column">
+        {
+          businessState.businessRender.length > 0 ? (
+            businessState.businessRender.map(business => (
+              <ViewCard business={business} />
+            ))
+          ) : null
+        }
       </div>
     </div>
   );

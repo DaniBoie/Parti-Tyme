@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Importing Styling Elements
-import "./nav.css";
+import "./Nav.css";
 
 // Importing Logo Image
 import Logo from "../assets/images/logos.png";
@@ -44,6 +44,9 @@ const Nav = () => {
           <div className={`nav-account-items ${showItems.show}`}>
             <Link to="/userprofile" className="nav-account-link">
               Profile
+            </Link>
+            <Link to="/businessprofile" className="nav-account-link">
+              Business Profile
             </Link>
             <Link to="/login" className="nav-account-link">
               Login

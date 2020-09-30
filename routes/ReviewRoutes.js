@@ -10,15 +10,16 @@ router.post('/review', passport.authenticate('jwt'), (req, res) => {
     text: req.body.text,
     rating: req.body.rating,
     user: req.user._id,
-    buisness: req.user.buisnessId
+    buisness: req.body.buisness
   })
     .then(data => {
+
       User.findByIdAndUpdate(data.user, { $push: { Reviews: data._id } })
         .then(() => console.log(data))
         .catch(err => console.log(err))
-      BuisnessData.findByIdAndUpdate(req.body.buisnessId, { $push: { reviews: data._id }})
-        .then(({data}) => {
-          console.log(data)
+
+      BuisnessData.findByIdAndUpdate(data.buisness, { $push: { reviews: data._id }})
+        .then(() => {
           res.json(data)
         })
         .catch(err => console.log(err))
