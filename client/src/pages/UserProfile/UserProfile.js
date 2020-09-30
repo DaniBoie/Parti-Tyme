@@ -167,14 +167,14 @@ const UserProfile = () => {
         <div>
           <h3>Reviews</h3>
           {
-            userState.Reviews.length > 0 ? (
-              userState.Reviews.map(review => (
-                <div key={review._id}>
-                  <h4>{review.buisness.name}</h4>
-                  <p>{review.rating}</p>
-                  <p>{review.rating}</p>
-                </div>
-              ))) : null
+            // userState.Reviews.length > 0 ? (
+            //   userState.Reviews.map(review => (
+            //     <div key={review._id}>
+            //       <h4>{review.buisness.name}</h4>
+            //       <p>{review.rating}</p>
+            //       <p>{review.rating}</p>
+            //     </div>
+            //   ))) : null
           }
         </div>
         <div>
