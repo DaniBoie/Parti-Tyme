@@ -197,7 +197,7 @@ const UserProfile = () => {
             </label>
             <button onClick={userState.handleClickBtn}>Submit</button>
           </div>
-        </ul>
+        {/* </ul> */}
       </div>
 
 
@@ -235,6 +235,7 @@ const UserProfile = () => {
           </label>
           <button onClick={userState.handleClickBtn}>Submit</button>
         </div>
+      </div>
       </div>
     </>
   )

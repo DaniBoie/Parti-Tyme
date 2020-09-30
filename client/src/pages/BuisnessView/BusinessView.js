@@ -39,10 +39,12 @@ const BuisnessView = () => {
     // console.log(businessState.selectValue)
 
       let filteredArray = API.filterCategory(businessState.selectValue, businessState.businesses)
+
       if (businessState.maxPrice) {
         console.log('Max Price Ticked')
         filteredArray = API.filterPrice(99, filteredArray)
       }
+
        if (businessState.distance){
         console.log('ticked2')
       }
@@ -56,12 +58,6 @@ const BuisnessView = () => {
     
 
     console.log(filteredArray)
-  }
-
-  const handleFilter = () => {
-
-    
-
   }
 
   const handleFilterClear = () => {
