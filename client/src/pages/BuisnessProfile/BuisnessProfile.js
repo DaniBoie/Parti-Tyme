@@ -37,10 +37,9 @@ const BuisnessProfile = () => {
 
   // useEffect(() => {
 
-
   //   let businessId = //?
 
-  //     API.getOneBusiness(businessId)
+  //     API.getOneBusiness('5f7394326d0fcf51a8a037ac')
   //       .then(({data}) => {
   //         let dataComeback = data
   //         console.log(dataComeback)
@@ -56,20 +55,13 @@ const BuisnessProfile = () => {
   //           reviews:dataComeback.reviews || []
   //         })
   //       })
-  // .then(() => {        
-  //   API.findBusinessReviews(businessId)
-  //     .then(({data}) => {
-  //       let reviews = data.reviews
-  //       setBusinessState({ 
-  //         ...businessState,
-  //         text: reviews.text,
-  //         rating: reviews.rating,
-  //         username: reviews.user.username            
-  //       })
-  //     })
-  //     .catch(err => console.log(err))
-  // })
+
   //       .catch(err => console.log(err))
+
+  //     API.findBusinessReviews('5f7394326d0fcf51a8a037ac')
+  //       .then(({data}) => {
+  //         let dataComeback = 
+  //       })
   // },[])
 
   return (
