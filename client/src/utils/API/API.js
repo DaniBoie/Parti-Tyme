@@ -53,6 +53,15 @@ const API = {
     );
     return newArray;
   },
+
+  filterCategory: (category, oldArray) => {
+    let newArray = oldArray.filter(
+      (business) => business.buisness_type === category
+    );
+    console.log(oldArray)
+    return newArray
+  }
+
 };
 
 export default API;

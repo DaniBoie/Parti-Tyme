@@ -3,7 +3,7 @@ import './BusinessCard.css'
 import StarRating from '../StarRating/StarRating.js'
 import Logos from '../assets/images/logos.png'
 import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
-import API from '../../utils/API'
+// import API from '../../utils/API'
 
 // import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
 
@@ -22,7 +22,8 @@ const BuisnessCard = props => {
         <StarRating />
         <a href='#' className='contact-btn'>Parti Tyme</a>
 
-{/* //         <div className='name'>{props.business.name}</div>
+
+{/* //     <div className='name'>{props.business.name}</div>
 //         <div className='desc'>{props.business.bio}</div>
 //         <div className='stars'>
 //           <i className='fas fa-star' />
