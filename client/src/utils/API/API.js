@@ -33,7 +33,8 @@ const API = {
   searchBusinessCategory: (category) =>
     axios.get(`/api/buisness/search/${category}`),
   getAllBusiness: () => axios.get('/api/buisness'),
-  getOneBusiness: (id) => axios.get(`/api/business/${id}`),
+  getOneBusiness: (id) => 
+    axios.get(`/api/business/${id}`),
   // !!! USE WITH EXTREME CAUTION !!!
   nukeBusiness: () => axios.delete("/api/buisness"),
 

@@ -197,6 +197,43 @@ const UserProfile = () => {
             </label>
             <button onClick={userState.handleClickBtn}>Submit</button>
           </div>
+        </ul>
+      </div>
+
+
+      <div className="changing-account-type-area">
+        <h1>Welcome back {userState.username}</h1>
+        <h3>{userState.email}</h3>
+        <div>
+          <h3>Reviews</h3>
+          {
+            // userState.Reviews.length > 0 ? (
+            //   userState.Reviews.map(review => (
+            //     <div key={review._id}>
+            //       <h4>{review.buisness.name}</h4>
+            //       <p>{review.rating}</p>
+            //       <p>{review.rating}</p>
+            //     </div>
+            //   ))) : null
+          }
+        </div>
+        <div>
+          <label>
+            <i class="fas fa-camera"></i>
+            <input 
+              type="submit" 
+              ame="buisness" 
+              onChange={userState.handleInputChange}/>
+            <input
+              type="submit"
+              name="rating"
+              onChange={userState.handleInputChange}/>
+            <input
+              type="submit"
+              name="text"
+              onChange={userState.handleInputChange}/>
+          </label>
+          <button onClick={userState.handleClickBtn}>Submit</button>
         </div>
       </div>
     </>
