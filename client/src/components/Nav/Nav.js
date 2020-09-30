@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // Importing Styling Elements
-import "./Nav.css";
+import "./nav.css";
 
 // Importing Logo Image
 import Logo from "../assets/images/logos.png";
 
 const Nav = () => {
+
+  // Function for dropdown menu
   const [showItems, setShowItems] = useState({
     show: "",
   });
@@ -16,6 +18,7 @@ const Nav = () => {
     if (showItems.show === "") setShowItems({ show: "show" });
     else setShowItems({ show: "" });
   }
+  // End function for dropdown menu
 
   return (
     <>

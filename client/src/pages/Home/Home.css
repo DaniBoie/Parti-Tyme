@@ -8,18 +8,13 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform: translateY(-10vh);
   width: 100%;
-  height: 110vh;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  -webkit-transform: translateY(-10vh);
-  -moz-transform: translateY(-10vh);
-  -ms-transform: translateY(-10vh);
-  -o-transform: translateY(-10vh);
 }
 
 .home-hero-image video {

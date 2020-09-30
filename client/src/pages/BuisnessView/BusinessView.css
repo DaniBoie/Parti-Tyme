@@ -7,6 +7,26 @@
 
 /* Left Column / Filter Column  */
 
+.bvp-dropdown-categories-list-item form select {
+  display: inline-block;
+  width: 100%;
+  margin: 1rem 0;
+  padding: .5rem;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #dfe6e9;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.bvp-dropdown-categories-list-item form select:hover {
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+}
+
 .filter-column {
   background: #b2bec3;
   border-right: 1px solid #333;
@@ -30,6 +50,7 @@
   padding: 0.5rem 0;
   width: 100%;
   border: 1px solid #333;
+  background-color: #dfe6e9;
 }
 
 .filter-items {

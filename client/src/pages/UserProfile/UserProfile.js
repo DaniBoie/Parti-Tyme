@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import "./UserProfile.css"
 import ProfileImage from "../../components/assets/images/business-2.jpg"
 import API from "../../utils/API/API"
-
+import Nav from '../../components/Nav'
 const UserProfile = () => {
 
   // Function to show / hide input area when click on "Edit Profile" Button
@@ -27,7 +27,7 @@ const UserProfile = () => {
     profileImg: '',
     bioChange: '',
     instaChange: '',
-    facebookChange: '',
+    facebookChange: ''
   })
 
   userState.handleInputChange = event => {
@@ -55,7 +55,7 @@ const UserProfile = () => {
       instagram: userState.instaChange,
       facebook: userState.facebookChange
     }
-    let userSettings 
+    let userSettings
 
     API.getUser()
       .then(({ data }) => {
@@ -88,74 +88,114 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="user-profile-page">
+    <>
+      <Nav />
+      <div className="user-profile-page">
 
-      <div className="changing-basic-info-area">
-        <img className="profile-image" src={ProfileImage} alt="Profile Image" />
-        <h1>{userState.realname}</h1>
-        <p>City Of The User</p>
+        <div className="changing-basic-info-area">
+          <img className="profile-image" src={ProfileImage} alt="Profile Image" />
+          <h1>{userState.realname}</h1>
+          <p>City Of The User</p>
 
-        <button className={`update-account-btn`} onclick={handleUpdateBtn}>Update Your Account</button>
+          <button className={`update-account-btn`} onclick={handleUpdateBtn}>Update Your Account</button>
 
-        <button
-          className={`edit-profile-btn ${showInput.show}`}
-          onClick={editProfileBtn}
-        >
-          Edit Profile
+          <button
+            className={`edit-profile-btn ${showInput.show}`}
+            onClick={editProfileBtn}
+          >
+            Edit Profile
         </button>
 
 
-        <ul className={`hide ${showInput.show}`}>
-          <li>
-            <label>
-              <i class="fas fa-signature"></i>
-              <input
-                type="text"
-                name="bioChange"
-                placeholder="Change Your Bio ..."
-                onChange={userState.handleInputChange}
-              />
-            </label>
-          </li>
-          <li>
-            <label>
-              <i class="fas fa-unlock-alt"></i>
-              <input
-                type="text"
-                name="instaChange"
-                placeholder="Link Instagram..."
-                onChange={userState.handleInputChange}
-              />
-            </label>
-          </li>
-          <li>
-            <label>
-              <i class="fas fa-city"></i>
-              <input
-                type="text"
-                name="facebookChange"
-                placeholder="Link Facebook ..."
-                onChange={userState.handleInputChange}
-              />
-            </label>
-          </li>
+          <ul className={`hide ${showInput.show}`}>
+            <li>
+              <label>
+                <i class="fas fa-signature"></i>
+                <input
+                  type="text"
+                  name="bioChange"
+                  placeholder="Change Your Bio ..."
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+            </li>
+            <li>
+              <label>
+                <i class="fas fa-unlock-alt"></i>
+                <input
+                  type="text"
+                  name="instaChange"
+                  placeholder="Link Instagram..."
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+            </li>
+            <li>
+              <label>
+                <i class="fas fa-city"></i>
+                <input
+                  type="text"
+                  name="facebookChange"
+                  placeholder="Link Facebook ..."
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+            </li>
 
-          <li>
+            <li>
+              <label>
+                <i class="fas fa-camera"></i>
+                <input
+                  type="submit"
+                  name="profileImg"
+                  value="Change Profile Picture"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+            </li>
+
+
+            <div className="profile-save-cancel-btn">
+              <button className="profile-save-btn" onClick={handleSaveBtn}>Save</button>
+              <button className="profile-cancel-btn">Cancel</button>
+            </div>
+          </ul>
+        </div>
+
+
+        <div className="changing-account-type-area">
+          <h1>Welcome back {userState.username}</h1>
+          <h3>{userState.email}</h3>
+          <div>
+            <h3>Reviews</h3>
+            {
+              userState.Reviews.length > 0 ? (
+                userState.Reviews.map(review => (
+                  <div key={review._id}>
+                    <h4>{review.buisness.name}</h4>
+                    <p>{review.rating}</p>
+                    <p>{review.rating}</p>
+                  </div>
+                ))) : null
+            }
+          </div>
+          <div>
             <label>
               <i class="fas fa-camera"></i>
               <input
                 type="submit"
-                name="profileImg"
-                value="Change Profile Picture"
-                onChange={userState.handleInputChange}
-              />
+                ame="buisness"
+                onChange={userState.handleInputChange} />
+              <input
+                type="submit"
+                name="rating"
+                onChange={userState.handleInputChange} />
+              <input
+                type="submit"
+                name="text"
+                onChange={userState.handleInputChange} />
             </label>
-          </li>
-
-
-          <div className="profile-save-cancel-btn">
-            <button className="profile-save-btn" onClick={handleSaveBtn}>Save</button>
-            <button className="profile-cancel-btn">Cancel</button>
+            <button onClick={userState.handleClickBtn}>Submit</button>
           </div>
         </ul>
       </div>
@@ -196,7 +236,7 @@ const UserProfile = () => {
           <button onClick={userState.handleClickBtn}>Submit</button>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
