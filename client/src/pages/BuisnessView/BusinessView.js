@@ -12,7 +12,7 @@ const BuisnessView = () => {
     businesses: [],
     businessRender: [],
     selectValue: 'All',
-    ipsum: ""
+    maxPrice: ""
   })
 
   businessState.handleInputChange = event => {
@@ -139,9 +139,10 @@ const BuisnessView = () => {
             <label className="filter-items">
               {" "}
                 ipsum
-                <input type="checkbox" name="ipsum" onChange={businessState.handleCheckboxChange} />
-              <span className="checkmark"></span>
-            </label>
+
+                <input type="checkbox" name="maxPrice" onChange={businessState.handleCheckboxChange}/>
+            <span className="checkmark"></span>
+          </label>
 
             <label className="filter-items">
               {" "}
