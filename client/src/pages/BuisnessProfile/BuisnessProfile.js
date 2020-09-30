@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import BusinessCard from '../../components/BuisnessCard'
+import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import API from '../../utils/API'
 
 const BuisnessProfile = () => {
@@ -63,9 +64,10 @@ const BuisnessProfile = () => {
 
   return (
     <>
+    <ReviewCard />
       <h1>Welcome to {businessState.name}</h1>
       <BusinessCard 
-        business={businessState.business}
+        business={businessState.business}    
       />
       {
         // businessState.reviews.length > 0 ? (
