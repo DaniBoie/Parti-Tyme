@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import BusinessCard from '../../components/BusinessCard/BusinessCard'
-import ProfileImage from "../../components/images/business-2.jpg";
+import ProfileImage from "../../components/assets/images/business-2.jpg";
 
 
 const BusinessProfile = () => {
