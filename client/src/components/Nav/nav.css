@@ -58,10 +58,10 @@
   justify-self: center;
   align-self: center;
 }
-
 /* Login/Logout Button + animation */
 
 .nav-login-logout-btn {
+
   position: absolute;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -113,6 +113,7 @@
   right: 0;
   width: 2px;
   height: 100%;
+
   background: linear-gradient(to bottom, #a8e6cf, #1779ff);
   animation: animate2 2s linear infinite;
   -webkit-animation: animate2 2s linear infinite;

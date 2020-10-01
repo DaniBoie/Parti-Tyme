@@ -9,18 +9,19 @@ const ReviewCard = props => {
     <div className='Review-Card'>
 
       <div className='profile-sidebar'>
-        <div className='img'>
-          <img className='profile-image' src={Logos} alt='profile pic' />
+        <img className='profile-image' src={Logos} alt='profile pic' />
+        <div className='name'>
+          <h3>Karen Sanderbee</h3>
         </div>
         <h3 className='profile-name'>{props.username}</h3>
       </div>
 
       <div className='profile-main'>
         <div className='stars'><StarRating review={props.review.rating}/></div>
-        <p className='subject'>{props.business.name}</p>
-        <p className='profile-body'>
+        <div className='subject'>{props.business.name}</div>
+        <div className='content'>
           {props.review.text}
-        </p>
+        </div>
       </div>
 
     </div>
