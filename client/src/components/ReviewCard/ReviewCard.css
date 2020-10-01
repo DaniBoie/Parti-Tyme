@@ -10,14 +10,15 @@
     padding: 2em;
 }
 
-.profile-sidebar name {
-    font-size: 2rem;
+.name {
+    font-size: 1rem;
     line-height: 1.1;
     display: flex;
-    margin: 0 auto;
+    margin-bottom: 0;
     padding: 0;
     width: 150px;
     letter-spacing: 1px;
+    margin: auto;
 }
 
 .profile-sidebar img {
@@ -37,13 +38,11 @@
     background-size: 100% 100%;
 }
 
-.name {
-    font: 1em sans-serif;
-}
 
 .business {
     margin: 1px;
-    color: tomato;
+    color: #E66767;
+    font-size: 1.1em;
 }
 
 .business::after {
@@ -52,7 +51,8 @@
     height: 1px;
     width: 10em;
     background: #5bcbf0;
-    margin: 0.5em auto;
+    margin: 0.7em auto;
+    opacity: 0.35;
 }
 
 .subject {
@@ -61,6 +61,7 @@
 
 .content {
     margin-top: 10px;
+    margin-bottom: 0;
 }
 
 
@@ -71,10 +72,10 @@
 
     .profile-main {
         text-align: left;
-        margin-left: 2em;
+        margin-left: 1.3em;
     }
 
-    .profile-main stars::after {
+    .business::after {
         margin-left: 0;
     }
 }
