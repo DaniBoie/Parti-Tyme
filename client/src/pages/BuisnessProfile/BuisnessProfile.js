@@ -108,15 +108,16 @@ const BuisnessProfile = () => {
   };
   return (
     <>
-      <h1>Welcome to {businessState.name}</h1>
-      {/* <BusinessCard
+      {/* <h1>Welcome to {businessState.name}</h1>
+      <BusinessCard
         business={businessState.business}
-      /> */}
+      />
       {businessState.reviews.length > 0
         ? businessState.reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
           ))
-        : null}
+        : null} */}
+      <Nav name="Business Profile" />
       <div className="business-profile-page">
         {/* First Row / Business Carousel */}
         {/* <div className="bpp-business-carousel"> */}
