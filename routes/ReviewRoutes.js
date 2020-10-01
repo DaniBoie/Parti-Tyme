@@ -27,10 +27,11 @@ router.post('/review', passport.authenticate('jwt'), (req, res) => {
 })
 
 //Route to get buisness reviews
-router.get('/review/buisness/:id', passport.authenticate('jwt'), (req, res) => {
+router.get('/review/buisness/:id', (req, res) => {
   BuisnessData.findById(req.params.id)
-    .populate('Review')
+    .populate('reviews')
     .then((data) => {
+      console.log(data)
     res.json(data.reviews)
   })
   .catch(err => console.log(err))

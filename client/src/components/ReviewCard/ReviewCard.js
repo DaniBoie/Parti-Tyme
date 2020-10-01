@@ -16,10 +16,10 @@ const ReviewCard = props => {
       </div>
 
       <div className='profile-main'>
-        <div className='stars'><StarRating /></div>
-        <p className='subject'>{props.Business.name}</p>
+        <div className='stars'><StarRating review={props.review.rating}/></div>
+        <p className='subject'>{props.business.name}</p>
         <p className='profile-body'>
-          {props.reviews.text}
+          {props.review.text}
         </p>
       </div>
 
