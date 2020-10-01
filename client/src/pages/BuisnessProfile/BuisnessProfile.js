@@ -219,7 +219,40 @@ const BuisnessProfile = () => {
           dolore!
         </div>
       </div>
-      {/* <button onClick={btn}>click</button> */}
+      <div className="bpp-business-review">
+        {businessState.reviews.length > 0
+          ? businessState.reviews.map((review) => (
+              <ReviewCard
+                key={businessState.business._id}
+                review={review}
+                business={businessState.business}
+                username={businessState.username}
+              />
+            ))
+          : null}
+      </div>
+      <form action="">
+        <label htmlFor="name">Change Name</label>
+        <input
+          type="text"
+          name="name"
+          onChange={businessState.handleInputChange}
+        />
+        <label htmlFor="bio">Change Bio</label>
+        <textarea
+          name="bio"
+          cols="30"
+          rows="10"
+          onChange={businessState.handleInputChange}
+        ></textarea>
+        <label htmlFor="">Change Fee</label>
+        <input
+          type="text"
+          name="fee"
+          onChange={businessState.handleInputChange}
+        />
+      </form>
+      <button onClick={businessState.updateBusiness}>Submit</button>
     </>
   );
 };
