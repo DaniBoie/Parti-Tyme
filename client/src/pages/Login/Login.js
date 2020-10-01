@@ -3,53 +3,53 @@ import React, { useState } from "react";
 import API from "../../utils/API";
 import "./Login.css";
 
-import Nav from '../../components/Nav'
+import Nav from "../../components/Nav";
 
 function Login() {
-
   const [accountState, setAccountState] = useState({
-    loginUsername: '',
-    loginPassword: '',
-    password1: '',
-    password2: '',
-    userEmail: '',
-    username: '',
-    realname: '',
-    user: []
-  })
-
+    loginUsername: "",
+    loginPassword: "",
+    password1: "",
+    password2: "",
+    userEmail: "",
+    username: "",
+    realname: "",
+    user: [],
+  });
 
   const user = {
     realname: accountState.realname,
     email: accountState.userEmail,
     username: accountState.username,
     password: accountState.password1,
-    account_type: 1
-  }
+    account_type: 1,
+  };
 
   const userLogin = {
     username: accountState.loginUsername,
-    password: accountState.loginPassword
-  }
+    password: accountState.loginPassword,
+  };
 
-  accountState.handleInputChange = event => {
-    setAccountState({ ...accountState, [event.target.name]: event.target.value })
-  }
+  accountState.handleInputChange = (event) => {
+    setAccountState({
+      ...accountState,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-
-  accountState.handleCheck = event => {
-    event.preventDefault()
+  accountState.handleCheck = (event) => {
+    event.preventDefault();
     API.loginUser(userLogin)
       .then(({ data: token }) => {
         if (token) {
-          localStorage.setItem('user', token)
-          window.location = '/userprofile'
+          localStorage.setItem("user", token);
+          window.location = "/userprofile";
         } else {
-          console.log('invalid credentials')
+          console.log("invalid credentials");
         }
       })
-      .catch(err => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   accountState.handleCheck = (event) => {
     event.preventDefault();

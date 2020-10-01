@@ -108,7 +108,7 @@
 .bpp-business-info-area textarea {
   display: block;
   margin: 0.5rem 0rem;
-  width: 100%;
+  width: 90%;
   font-size: x-large;
   font-weight: 400;
   outline: none;
@@ -116,7 +116,6 @@
   background: none;
   color: #000;
   line-height: 2rem;
-  resize: none;
 }
 
 .bpp-business-info-area input.show,

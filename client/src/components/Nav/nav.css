@@ -22,8 +22,6 @@
   grid-column-gap: 1rem;
 }
 
-/* Left Column */
-
 .nav-logo {
   grid-area: logo;
   align-self: center;
@@ -34,11 +32,11 @@
   width: 90px;
   height: 60px;
   border: none;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 /* Middle Column */
@@ -58,7 +56,6 @@
   justify-self: center;
   align-self: center;
 }
-
 /* Login/Logout Button + animation */
 
 .nav-login-logout-btn {
@@ -113,6 +110,7 @@
   right: 0;
   width: 2px;
   height: 100%;
+
   background: linear-gradient(to bottom, #a8e6cf, #1779ff);
   animation: animate2 2s linear infinite;
   -webkit-animation: animate2 2s linear infinite;

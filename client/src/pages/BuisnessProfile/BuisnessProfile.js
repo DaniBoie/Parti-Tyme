@@ -3,9 +3,7 @@ import BusinessCard from "../../components/BuisnessCard";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import API from "../../utils/API";
-
 import Nav from "../../components/Nav";
-
 // Importing image
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import ExampleImage1 from "../../components/assets/images/business-1.jpg";
@@ -13,7 +11,6 @@ import ExampleImage2 from "../../components/assets/images/business-2.jpg";
 import ExampleImage3 from "../../components/assets/images/business-3.jpg";
 import ExampleImage4 from "../../components/assets/images/business-4.jpg";
 import Logo from "../../components/assets/images/logos.png";
-
 // Importing styling element
 import "./BuisnessProfile.css";
 
@@ -41,43 +38,11 @@ const BuisnessProfile = () => {
     });
   };
 
-  useEffect(() => {
-    // let businessId =
-
-    API.getUser()
-      .then(({ data }) => {
-        console.log(data);
-        let dataComeback = data[0].Buisness;
-
-        setBusinessState({
-          ...businessState,
-          name: dataComeback.name,
-          bio: dataComeback.bio,
-          img: dataComeback.img,
-          instagram: dataComeback.instagram,
-          website: dataComeback.website,
-          facebook: dataComeback.facebook,
-          fee: dataComeback.fee,
-          reviews: dataComeback.reviews || [],
-          business: dataComeback,
-        });
-
-        console.log(dataComeback);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const btn = () => {
-    console.log(businessState);
-  };
-
-  // Function for enable Edit button
   const [inputState, setInputState] = useState({
     disabled: true,
     show: "",
     hideButton: "hide",
   });
-
   inputState.handleEditButton = () => {
     setInputState({
       ...inputState,
@@ -86,18 +51,6 @@ const BuisnessProfile = () => {
       hideButton: "",
     });
   };
-
-  // When the save button is clicked, set the input back to disable, also write the new data into database, and display it
-  // inputState.handleSaveButton = () => {
-  //   setInputState({
-  //     ...inputState,
-  //     disabled: true,
-  //     show: "",
-  //     hideButton: "hide",
-  //   });
-  // }
-
-  // When the cancel button is clicked, simply set the input back to disable.
   inputState.handleCancelButton = () => {
     setInputState({
       ...inputState,
@@ -106,31 +59,71 @@ const BuisnessProfile = () => {
       hideButton: "hide",
     });
   };
+
+  useEffect(() => {
+    // let businessId =
+    let dataComeback;
+    API.getUser()
+      .then(({ data }) => {
+        dataComeback = data[0].Buisness;
+        console.log(dataComeback);
+        API.findBusinessReviews(dataComeback._id)
+          .then(({ data: reviews }) => {
+            console.log(data);
+            setBusinessState({
+              ...businessState,
+              name: dataComeback.name,
+              bio: dataComeback.bio,
+              img: dataComeback.img,
+              instagram: dataComeback.instagram,
+              website: dataComeback.website,
+              facebook: dataComeback.facebook,
+              fee: dataComeback.fee,
+              business: dataComeback,
+              username: data[0].username,
+              reviews,
+            });
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  // businessState.updateBusiness = () => {
+
+  //   let id = businessState.business._id
+
+  //   API.updateBusiness(id)
+  //     .then(({data}) => {
+  //       console.log(data)
+  //       // setBusinessState({
+  //       //   ...businessState,
+  //       //   nam
+  //       // })
+  //     })
+  //     .catch(err => console.log(err))
+  // }
+
   return (
     <>
-      {/* <h1>Welcome to {businessState.name}</h1>
-      <BusinessCard
+      <Nav name="Business Profile" />
+      {/* <BusinessCard
         business={businessState.business}
-      />
+      /> */}
       {businessState.reviews.length > 0
         ? businessState.reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
           ))
-        : null} */}
-      <Nav name="Business Profile" />
+        : null}
+
       <div className="business-profile-page">
-        {/* First Row / Business Carousel */}
-        {/* <div className="bpp-business-carousel"> */}
-        {/* <img src={ExampleImage1} alt="Example Image" /> */}
         <Carousel className="bpp-business-carousel">
           <img src={ExampleImage1} />
           <img src={ExampleImage2} />
           <img src={ExampleImage3} />
           <img src={ExampleImage4} />
         </Carousel>
-        {/* </div> */}
 
-        {/* Middle Row / Business Information */}
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
             <img src={Logo} alt="Logo" />
@@ -155,7 +148,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Location:{" "}
+              Location: LA
               <input
                 className={`${inputState.show}`}
                 type="text"
@@ -165,7 +158,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Fee:{" "}
+              Fee:{businessState.fee}
               <input
                 className={`${inputState.show}`}
                 type="text"
@@ -190,13 +183,7 @@ const BuisnessProfile = () => {
               rows="7"
               disabled={inputState.disabled}
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Inventore expedita cum magnam odit maiores nulla, est odio commodi
-              vero aperiam harum ex earum esse quaerat consequatur. Consectetur
-              accusamus sit dolore!Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Inventore expedita cum magnam odit maiores
-              nulla, est odio commodi vero aperiam harum ex earum esse quaerat
-              consequatur. Consectetur accusamus sit dolore!
+              {businessState.bio}
             </textarea>
 
             <button className={`bpp-save-button ${inputState.hideButton}`}>
@@ -211,48 +198,41 @@ const BuisnessProfile = () => {
           </div>
         </div>
 
-        {/* Bottom Row / Business Reviews */}
         <div className="bpp-business-review">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
-          expedita cum magnam odit maiores nulla, est odio commodi vero aperiam
-          harum ex earum esse quaerat consequatur. Consectetur accusamus sit
-          dolore!
+          {businessState.reviews.length > 0
+            ? businessState.reviews.map((review) => (
+                <ReviewCard
+                  key={businessState.business._id}
+                  review={review}
+                  business={businessState.business}
+                  username={businessState.username}
+                />
+              ))
+            : null}
         </div>
+        <form action="">
+          <label htmlFor="name">Change Name</label>
+          <input
+            type="text"
+            name="name"
+            onChange={businessState.handleInputChange}
+          />
+          <label htmlFor="bio">Change Bio</label>
+          <textarea
+            name="bio"
+            cols="30"
+            rows="10"
+            onChange={businessState.handleInputChange}
+          ></textarea>
+          <label htmlFor="">Change Fee</label>
+          <input
+            type="text"
+            name="fee"
+            onChange={businessState.handleInputChange}
+          />
+        </form>
+        <button onClick={businessState.updateBusiness}>Submit</button>
       </div>
-      <div className="bpp-business-review">
-        {businessState.reviews.length > 0
-          ? businessState.reviews.map((review) => (
-              <ReviewCard
-                key={businessState.business._id}
-                review={review}
-                business={businessState.business}
-                username={businessState.username}
-              />
-            ))
-          : null}
-      </div>
-      <form action="">
-        <label htmlFor="name">Change Name</label>
-        <input
-          type="text"
-          name="name"
-          onChange={businessState.handleInputChange}
-        />
-        <label htmlFor="bio">Change Bio</label>
-        <textarea
-          name="bio"
-          cols="30"
-          rows="10"
-          onChange={businessState.handleInputChange}
-        ></textarea>
-        <label htmlFor="">Change Fee</label>
-        <input
-          type="text"
-          name="fee"
-          onChange={businessState.handleInputChange}
-        />
-      </form>
-      <button onClick={businessState.updateBusiness}>Submit</button>
     </>
   );
 };

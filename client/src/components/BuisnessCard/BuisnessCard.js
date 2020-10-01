@@ -19,19 +19,7 @@ const BuisnessCard = (props) => {
         {/* <div className='name'>Banda CashMax</div>
         <div className='desc'>Authentic Mexican music for all your family to enjoy</div>
         <StarRating />
-        <a href='#' className='contact-btn'>Parti Tyme</a>
-
-
-        {/* //     <div className='name'>{props.business.name}</div>
-//         <div className='desc'>{props.business.bio}</div>
-//         <div className='stars'>
-//           <i className='fas fa-star' />
-//           <i className='fas fa-star' />
-//           <i className='fas fa-star' />
-//           <i className='fas fa-star' />
-//           <i className='fas fa-star' />
-//         </div>
-//         <a href='#' className='contact-btn'>{props.business.fee}</a> */}
+        <a href='#' className='contact-btn'>Parti Tyme</a> */}
       </div>
       <div className="card-footer">
         <div className="buttons">
