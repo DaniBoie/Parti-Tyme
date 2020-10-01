@@ -17,6 +17,8 @@ import Logo from "../../components/assets/images/logos.png";
 // Importing styling element
 import "./BuisnessProfile.css";
 
+
+
 const BuisnessProfile = () => {
   const [businessState, setBusinessState] = useState({
     name: "",
@@ -38,6 +40,27 @@ const BuisnessProfile = () => {
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
   }
 
+  const [inputState, setInputState] = useState({
+    disabled: true,
+    show: "",
+    hideButton: "hide",
+  });
+  inputState.handleEditButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: false,
+      show: "show",
+      hideButton: "",
+    });
+  };
+  inputState.handleCancelButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: true,
+      show: "",
+      hideButton: "hide",
+    });
+  };
 
   useEffect(() => {
 
@@ -88,7 +111,7 @@ const BuisnessProfile = () => {
 
   return (
     <>
-      <h1>Welcome to {businessState.name}</h1>
+      <Nav name="Business Profile" />
       {/* <BusinessCard
         business={businessState.business}
       /> */}
