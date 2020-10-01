@@ -138,7 +138,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Location:{" "}
+              Location: LA
               <input
                 className={`${inputState.show}`}
                 type="text"
