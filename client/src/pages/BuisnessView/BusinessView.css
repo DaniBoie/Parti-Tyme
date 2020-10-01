@@ -1,5 +1,5 @@
 .business-view-page {
-  height: 90vh;
+  height: 89vh;
   display: grid;
   grid-template-columns: 2fr 8fr;
   margin: 0 5rem;
@@ -7,29 +7,37 @@
 
 /* Left Column / Filter Column  */
 
-.filter-column {
-  background: #b2bec3;
-  border-right: 1px solid #333;
-  padding: 0 2rem;
-}
-
-.bvp-dropdown-category-btn {
+.bvp-dropdown-categories-list-item form select {
   display: inline-block;
   width: 100%;
-  text-align: center;
-  text-transform: uppercase;
   margin: 1rem 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  padding: .5rem 0;
+  padding: 0.5rem;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.bvp-dropdown-categories-list-item form select:hover {
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+}
+
+.filter-column {
+  background: #fafcc2;
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+  padding: 0 2rem;
 }
 
 .filter-column h2 {
   text-align: center;
   margin: 1rem 0;
+  letter-spacing: 2px;
+  font-size: 34px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 0.5rem 0;
-  width: 100%;
-  border: 1px solid #333;
+  text-decoration: underline;
 }
 
 .filter-items {
@@ -65,15 +73,16 @@
   left: 0;
   height: 25px;
   width: 25px;
+  border: 1px solid #333;
   background-color: #eee;
 }
 
-.filter-items:hover input~.checkmark {
+.filter-items:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
-.filter-items input:checked~.checkmark {
-  background-color: #2196f3;
+.filter-items input:checked ~ .checkmark {
+  background-color: #ffffff;
 }
 
 .checkmark:after {
@@ -82,7 +91,7 @@
   display: none;
 }
 
-.filter-items input:checked~.checkmark:after {
+.filter-items input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -91,7 +100,7 @@
   top: 5px;
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: 1px solid #333;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -102,7 +111,22 @@
   padding: 0.5rem 1rem;
   font-size: 16px;
   font-family: sans-serif;
-  margin: .2rem;
+  margin: 0.2rem;
+  background: var(--button-color);
+  color: #fff;
+  font-weight: 500;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+
+.filter-column-buttons button:hover {
+  background: #0f1923;
+  border: 1px solid var(--button-color);
 }
 
 /* Right Column / Business Column  */
@@ -110,6 +134,8 @@
 .bvp-business-column {
   padding: 1rem;
   display: grid;
+  border-right: 1px solid #333;
+  background: #fff6f6;
+  overflow: auto;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  background: #dfe6e9;
 }
