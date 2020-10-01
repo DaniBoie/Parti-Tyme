@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BusinessCard from "../../components/BuisnessCard";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
-// import API from '../../utils/API'
+import API from "../../utils/API";
 
 import Nav from "../../components/Nav";
 
@@ -21,7 +21,7 @@ const BuisnessProfile = () => {
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
-    img: [],
+    img: "",
     instagram: "",
     website: "",
     facebook: "",
@@ -41,41 +41,35 @@ const BuisnessProfile = () => {
     });
   };
 
-  // useEffect(() => {
+  useEffect(() => {
+    // let businessId =
 
-  //   let businessId = //?
+    API.getUser()
+      .then(({ data }) => {
+        console.log(data);
+        let dataComeback = data[0].Buisness;
 
-  //     API.getOneBusiness(businessId)
-  //       .then(({data}) => {
-  //         let dataComeback = data
-  //         console.log(dataComeback)
-  //         setBusinessState({
-  //           ...businessState,
-  //           name:dataComeback.name,
-  //           bio:dataComeback.bio,
-  //           img:dataComeback.img,
-  //           instagram:dataComeback.instagram,
-  //           website:dataComeback.website,
-  //           facebook:dataComeback.facebook,
-  //           fee:dataComeback.fee,
-  //           reviews:dataComeback.reviews || []
-  //         })
-  //       })
-  // .then(() => {
-  //   API.findBusinessReviews(businessId)
-  //     .then(({data}) => {
-  //       let reviews = data.reviews
-  //       setBusinessState({
-  //         ...businessState,
-  //         text: reviews.text,
-  //         rating: reviews.rating,
-  //         username: reviews.user.username
-  //       })
-  //     })
-  //     .catch(err => console.log(err))
-  // })
-  //       .catch(err => console.log(err))
-  // },[])
+        setBusinessState({
+          ...businessState,
+          name: dataComeback.name,
+          bio: dataComeback.bio,
+          img: dataComeback.img,
+          instagram: dataComeback.instagram,
+          website: dataComeback.website,
+          facebook: dataComeback.facebook,
+          fee: dataComeback.fee,
+          reviews: dataComeback.reviews || [],
+          business: dataComeback,
+        });
+
+        console.log(dataComeback);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const btn = () => {
+    console.log(businessState);
+  };
 
   // Function for enable Edit button
   const [inputState, setInputState] = useState({
@@ -85,23 +79,6 @@ const BuisnessProfile = () => {
   });
 
   inputState.handleEditButton = () => {
-    // if (!inputState.disabled) {
-    //   setInputState({
-    //     ...inputState,
-    //     disabled: true,
-    //     show: "",
-    //     hideButton: "hide",
-    //   });
-    //   console.log(inputState.show);
-    // } else {
-    //   setInputState({
-    //     ...inputState,
-    //     disabled: false,
-    //     show: "show",
-    //     hideButton: "",
-    //   });
-    //   console.log(inputState.show);
-    // }
     setInputState({
       ...inputState,
       disabled: false,
@@ -131,22 +108,15 @@ const BuisnessProfile = () => {
   };
   return (
     <>
-      <Nav name="Business Profile" />
-      {/* <ReviewCard />
-      <h1>Welcome to {businessState.name}</h1> */}
+      <h1>Welcome to {businessState.name}</h1>
       {/* <BusinessCard
         business={businessState.business}
       /> */}
-      {
-        // businessState.reviews.length > 0 ? (
-        //   businessState.reviews.map(review => (
-        //     <Review
-        //       key={review._id}
-        //       review={review}
-        //     />
-        //   ))
-        // ) : null
-      }
+      {businessState.reviews.length > 0
+        ? businessState.reviews.map((review) => (
+            <ReviewCard key={review._id} review={review} />
+          ))
+        : null}
       <div className="business-profile-page">
         {/* First Row / Business Carousel */}
         {/* <div className="bpp-business-carousel"> */}
@@ -248,6 +218,7 @@ const BuisnessProfile = () => {
           dolore!
         </div>
       </div>
+      {/* <button onClick={btn}>click</button> */}
     </>
   );
 };

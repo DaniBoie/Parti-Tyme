@@ -34,11 +34,11 @@
   width: 90px;
   height: 60px;
   border: none;
-  border-radius: 20%;
-  -webkit-border-radius: 20%;
-  -moz-border-radius: 20%;
-  -ms-border-radius: 20%;
-  -o-border-radius: 20%;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 
 /* Middle Column */
@@ -77,15 +77,7 @@
   /* box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5); */
   overflow: hidden;
 }
-
-/* .nav-login-logout-btn::before {
-  content: '';
-  position: absolute;
-  top: 2px;
-  bottom: 2px;
-  width: 50%;
-  background: rgba(255, 255, 255, 0.05);
-} */
+/* End To Remove Later */
 
 .nav-login-logout-btn span:nth-child(1) {
   position: absolute;
