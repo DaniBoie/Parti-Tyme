@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
 .Review-Card {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     width: 80%;
@@ -41,18 +37,30 @@
     background-size: 100% 100%;
 }
 
-.profile-main business {
-    width: 400px;
-    text-decoration-color: tomato;
+.name {
+    font: 1em sans-serif;
 }
 
-.profile-main star::after {
+.business {
+    margin: 1px;
+    color: tomato;
+}
+
+.business::after {
     content: "";
     display: block;
     height: 1px;
-    width: 2em;
+    width: 10em;
     background: #5bcbf0;
     margin: 0.5em auto;
+}
+
+.subject {
+    margin: 5px;
+}
+
+.content {
+    margin-top: 10px;
 }
 
 
