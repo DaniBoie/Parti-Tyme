@@ -12,16 +12,21 @@ const ReviewCard = () => {
         <div className='img'>
           <img className='profile-image' src={Logos} alt='profile pic' />
         </div>
-        <h3 className='profile-name'>Karen</h3>
+        <div className='name'>
+          <h3>Karen Sanderbee</h3>
+        </div>
       </div>
 
       <div className='profile-main'>
-        <div className='stars'><StarRating /></div>
-        <p className='subject'>Loud Noises</p>
-        <p className='profile-body'>
-          Way to loud and did not provide a receipt at the end of the night.
-          The manaer was rude and completly out of line.
-        </p>
+        <div className='star'><StarRating /></div>
+        <div href='#' className='business'>PlayTech</div>
+        <div href='#' className='subject'>REFUND</div>
+        <div href='#' className='content'>
+        This was by far the worst customer experience I have ever had.
+        I wasn't able to get my refund simply because I didn't have a
+        receipt even though I am a frequent customer! Well you lost a
+        customer for life now!
+        </div>
       </div>
 
     </div>
