@@ -3,6 +3,13 @@ import BusinessCard from '../../components/BuisnessCard'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import API from '../../utils/API'
 
+// Importing image
+import Image from '../../components/assets/images/business-3.jpg'
+import Logo from '../../components/assets/images/logos.png'
+
+// Importing styling element
+import './BuisnessProfile.css'
+
 const BuisnessProfile = () => {
 
   const [businessState, setBusinessState] = useState({
@@ -12,7 +19,7 @@ const BuisnessProfile = () => {
     instagram: '',
     website: '',
     facebook: '',
-    fee: '',    
+    fee: '',
     business: [],
     text: '',
     rating: '',
@@ -20,13 +27,14 @@ const BuisnessProfile = () => {
     reviews: []
   })
 
-    // HANDLING the inputs on the page.
+  // HANDLING the inputs on the page.
   businessState.handleInputChange = event => {
-    setBusinessState({ ...businessState, [event.target.name]: event.target.value})
+    setBusinessState({ ...businessState, [event.target.name]: event.target.value })
   }
 
 
   // useEffect(() => {
+
 
   //   let businessId = //?
 
@@ -79,6 +87,32 @@ const BuisnessProfile = () => {
         //   ))
         // ) : null
       }
+      <div className="business-profile-page">
+        {/* First Row / Business Carousel */}
+        <div className="bpp-business-carousel">
+          <img src={Image} alt="Example Image" />
+        </div>
+
+        {/* Middle Row / Business Information */}
+        <div className="bpp-business-information">
+          <div className="bpp-business-info-logo">
+            <img src={Logo} alt="Logo" />
+          </div>
+
+          <div className="bpp-business-info-area">
+            <h2>Name: Taco</h2>
+            <h2>Location: LA</h2>
+            <h2>Fee: $13/hr</h2>
+            <h2>Service: Taco is da best</h2>
+          </div>
+        </div>
+
+        {/* Bottom Row / Business Reviews */}
+        <div className="bpp-business-review">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore expedita cum magnam odit maiores nulla, est odio commodi vero aperiam harum ex earum esse quaerat consequatur. Consectetur accusamus sit dolore!
+        </div>
+      </div>
+
     </>
   )
 }

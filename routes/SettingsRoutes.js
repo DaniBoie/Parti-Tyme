@@ -13,7 +13,7 @@ router.post('/settings', passport.authenticate('jwt'), (req, res) => {
     user: req.user._id
   })
     .then(data => {
-      User.findByIdAndUpdate(data.user, { $push: { Settings: data._id } })
+      User.findByIdAndUpdate(data.user,  {Settings: data._id}  )
         .then(() => res.json(data))
         .catch(err => console.log(err))
     })

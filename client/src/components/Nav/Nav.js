@@ -45,6 +45,9 @@ const Nav = () => {
             <Link to="/userprofile" className="nav-account-link">
               Profile
             </Link>
+            <Link to="/businessprofile" className="nav-account-link">
+              Business Profile
+            </Link>
             <Link to="/login" className="nav-account-link">
               Login
             </Link>
