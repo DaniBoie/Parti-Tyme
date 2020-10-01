@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react'
 import BusinessCard from '../../components/BuisnessCard'
 import ReviewCard from '../../components/ReviewCard'
 import API from '../../utils/API'
-
 import Nav from '../../components/Nav'
-
 // Importing image
 import Image from '../../components/assets/images/business-3.jpg'
 import Logo from '../../components/assets/images/logos.png'
-
 // Importing styling element
 import './BuisnessProfile.css'
+
+
 
 const BuisnessProfile = () => {
 
