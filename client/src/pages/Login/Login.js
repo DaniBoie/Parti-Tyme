@@ -91,7 +91,7 @@ function Login() {
 
   return (
     <>
-      <Nav />
+      <Nav name="Login/Signup " />
       <div className="login-page">
         {/* Left Column / Login Box */}
         <div className="login-area">

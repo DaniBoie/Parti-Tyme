@@ -1,6 +1,6 @@
-* {
+/* * {
     box-sizing: border-box;
-}
+} */
 
 .Review-Card {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -34,20 +34,16 @@
     height: 150px;
 }
 
-.profile-body {
-
-}
+.profile-body {}
 
 @media (min-width: 600px) {
     .Review-Card {
         flex-direction: row;
     }
-
     .profile-main {
         text-align: left;
         margin-left: 2em;
     }
-
     .profile-stars::after {
         margin-left: 0;
     }

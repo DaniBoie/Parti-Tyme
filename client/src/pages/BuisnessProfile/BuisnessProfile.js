@@ -1,33 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import BusinessCard from '../../components/BuisnessCard'
-import ReviewCard from '../../components/ReviewCard'
-import API from '../../utils/API'
+import React, { useState, useEffect } from "react";
+import BusinessCard from "../../components/BuisnessCard";
+import ReviewCard from "../../components/ReviewCard/ReviewCard";
+import { Carousel } from "react-responsive-carousel";
+import API from "../../utils/API";
 
-import Nav from '../../components/Nav'
+import Nav from "../../components/Nav";
 
 // Importing image
-import Image from '../../components/assets/images/business-3.jpg'
-import Logo from '../../components/assets/images/logos.png'
+import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
+import ExampleImage1 from "../../components/assets/images/business-1.jpg";
+import ExampleImage2 from "../../components/assets/images/business-2.jpg";
+import ExampleImage3 from "../../components/assets/images/business-3.jpg";
+import ExampleImage4 from "../../components/assets/images/business-4.jpg";
+import Logo from "../../components/assets/images/logos.png";
 
 // Importing styling element
-import './BuisnessProfile.css'
+import "./BuisnessProfile.css";
 
 const BuisnessProfile = () => {
-
   const [businessState, setBusinessState] = useState({
-    name: '',
-    bio: '',
-    img: '',
-    instagram: '',
-    website: '',
-    facebook: '',
-    fee: '',
+    name: "",
+    bio: "",
+    img: "",
+    instagram: "",
+    website: "",
+    facebook: "",
+    fee: "",
     business: {},
-    text: '',
-    rating: '',
-    username: '',
-    reviews: []
-  })
+    text: "",
+    rating: "",
+    username: "",
+    reviews: [],
+  });
 
   // HANDLING the inputs on the page.
   businessState.handleInputChange = event => {
@@ -82,20 +86,29 @@ const BuisnessProfile = () => {
       .catch(err => console.log(err))
   }
 
-
-
   return (
     <>
       <h1>Welcome to {businessState.name}</h1>
-      <BusinessCard
+      {/* <BusinessCard
         business={businessState.business}
-      />
+      /> */}
+      {businessState.reviews.length > 0
+        ? businessState.reviews.map((review) => (
+            <ReviewCard key={review._id} review={review} />
+          ))
+        : null}
 
       <div className="business-profile-page">
         {/* First Row / Business Carousel */}
-        <div className="bpp-business-carousel">
-          <img src={Image} alt="Example Image" />
-        </div>
+        {/* <div className="bpp-business-carousel"> */}
+        {/* <img src={ExampleImage1} alt="Example Image" /> */}
+        <Carousel className="bpp-business-carousel">
+          <img src={ExampleImage1} />
+          <img src={ExampleImage2} />
+          <img src={ExampleImage3} />
+          <img src={ExampleImage4} />
+        </Carousel>
+        {/* </div> */}
 
         {/* Middle Row / Business Information */}
         <div className="bpp-business-information">
@@ -104,10 +117,78 @@ const BuisnessProfile = () => {
           </div>
 
           <div className="bpp-business-info-area">
-            <h2>Name: {businessState.business.name}</h2>
-            <h2>Location: LA</h2>
-            <h2>Fee: ${businessState.business.fee}/hr</h2>
-            <h2>Service: {businessState.business.bio}</h2>
+
+            <button
+              className="bpp-edit-button"
+              onClick={inputState.handleEditButton}
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+
+            <label>
+              {/* Name:{" "} */}
+              <input
+                className={`bpp-input-for-business-name ${inputState.show}`}
+                type="text"
+                name="businessName"
+                defaultValue="Taco Truck"
+                disabled={inputState.disabled}
+              />
+            </label>
+            <label>
+              Location:{" "}
+              <input
+                className={`${inputState.show}`}
+                type="text"
+                name="businessLocation"
+                defaultValue="LA"
+                disabled={inputState.disabled}
+              />
+            </label>
+            <label>
+              Fee:{" "}
+              <input
+                className={`${inputState.show}`}
+                type="text"
+                name="businessFee"
+                defaultValue="$13/hr, $5/order"
+                disabled={inputState.disabled}
+              />
+            </label>
+            <label>
+              Service:{" "}
+              <input
+                className={`${inputState.show}`}
+                type="text"
+                name="businessService"
+                defaultValue="Free Delivery with in 3 miles"
+                disabled={inputState.disabled}
+              />
+            </label>
+            <textarea
+              className={`${inputState.show}`}
+              name="businessBio"
+              rows="7"
+              disabled={inputState.disabled}
+            >
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Inventore expedita cum magnam odit maiores nulla, est odio commodi
+              vero aperiam harum ex earum esse quaerat consequatur. Consectetur
+              accusamus sit dolore!Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Inventore expedita cum magnam odit maiores
+              nulla, est odio commodi vero aperiam harum ex earum esse quaerat
+              consequatur. Consectetur accusamus sit dolore!
+            </textarea>
+
+            <button className={`bpp-save-button ${inputState.hideButton}`}>
+              Save
+            </button>
+            <button
+              className={`bpp-cancel-button ${inputState.hideButton}`}
+              onClick={inputState.handleCancelButton}
+            >
+              Cancel
+            </button>
           </div>
         </div>
 
@@ -138,7 +219,7 @@ const BuisnessProfile = () => {
 
       </div>
     </>
-  )
-}
+  );
+};
 
-export default BuisnessProfile
+export default BuisnessProfile;

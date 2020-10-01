@@ -4,16 +4,25 @@
   box-sizing: border-box;
 }
 
+:root {
+  --button-color: #ff4655;
+  --yellow-bg: #fafcc2;
+  --pink-bg: #fff6f6;
+  --blue-bg: #81ecec;
+}
+
 .nav-bar {
-  /* margin: 0 1rem; */
-  padding: 3px 10px;
-  height: 10vh;
+  padding: 1px 10px;
+  min-height: 10vh;
+  /* max-height: 10vh; */
   background: #a8e6cf;
   display: grid;
   grid-template-areas: "logo searchbar account";
   grid-template-columns: 2fr 8fr 2fr;
   grid-column-gap: 1rem;
 }
+
+/* Left Column */
 
 .nav-logo {
   grid-area: logo;
@@ -22,8 +31,8 @@
 }
 
 .nav-logo img {
-  width: 45px;
-  height: 45px;
+  width: 90px;
+  height: 60px;
   border: none;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -32,122 +41,156 @@
   -o-border-radius: 50%;
 }
 
-.nav-search-bar {
-  grid-area: searchbar;
+/* Middle Column */
+
+.nav-middle-column {
+  font-family: "Amatic SC", cursive;
+  font-weight: bold;
+  font-size: 33px;
+  letter-spacing: 7px;
+  justify-self: center;
   align-self: center;
-  /* justify-self: center; */
-  text-align: center;
 }
 
-.nav-search-bar input[type="text"] {
-  padding: 5px;
-  width: 50%;
-  height: 30px;
-  border: 1px solid #333;
-  border-radius: 20px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-  background: #ffffff;
-}
-
-.nav-search-button {
-  background: none;
-  border: none;
-  margin: 10px;
-  font-size: 18px;
-}
+/* Right Column */
 
 .nav-account {
-  grid-area: account;
-  align-self: center;
   justify-self: center;
+  align-self: center;
 }
 
-.nav-account-btn {
-  border: none;
-  background: none;
-  font-weight: 500;
-  font-size: 16px;
-}
+/* Login/Logout Button + animation */
 
-/* To Remove Later */
-.nav-account-items {
+.nav-login-logout-btn {
   position: absolute;
-  margin: 8px;
-  right: 1rem;
-  width: 200px;
-  background: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  list-style: none;
-  border: 0.5px solid;
-  box-shadow: 5px 5px 10px #888888;
-  cursor: pointer;
-  visibility: hidden;
-}
-
-.nav-account-link {
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  color: #000;
+  padding: 1rem 3rem;
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   text-decoration: none;
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 1rem;
-}
-
-.show {
-  visibility: visible;
+  /* box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5); */
+  overflow: hidden;
 }
 /* End To Remove Later */
 
-/* .nav-account ul {
+.nav-login-logout-btn span:nth-child(1) {
   position: absolute;
-  margin: 8px;
-  right: 1rem;
-  width: 200px;
-  background: #fff;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  list-style: none;
-  border: 0.5px solid;
-  box-shadow: 5px 5px 10px #888888;
-  transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  cursor: pointer;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.nav-account-btn:focus + ul {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.nav-account ul li {
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #a8e6cf, #1779ff);
+  animation: animate1 linear infinite;
+  -webkit-animation: animate1 2s linear infinite;
+}
+
+@keyframes animate1 {
+  0% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+}
+
+.nav-login-logout-btn span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
   height: 100%;
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 17px;
-  border-top: 1px solid rgb(167, 148, 148);
+  background: linear-gradient(to bottom, #a8e6cf, #1779ff);
+  animation: animate2 2s linear infinite;
+  -webkit-animation: animate2 2s linear infinite;
+  animation-delay: 1s;
 }
 
-.nav-dropdown-item {
-  text-decoration: none;
-  color: #000;
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes animate2 {
+  0% {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+  }
 }
 
-.nav-account ul li:hover {
-  box-shadow: inset 1em 1em 5em #ff7675;
-} */
+.nav-login-logout-btn span:nth-child(3) {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to left, #a8e6cf, #1779ff);
+  animation: animate2 2s linear infinite;
+  -webkit-animation: animate3 2s linear infinite;
+}
+
+@keyframes animate3 {
+  0% {
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+  }
+}
+
+.nav-login-logout-btn span:nth-child(4) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to top, #a8e6cf, #1779ff);
+  animation: animate4 2s linear infinite;
+  -webkit-animation: animate4 2s linear infinite;
+  animation-delay: 1s;
+}
+
+@keyframes animate4 {
+  0% {
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+    -webkit-transform: translateY(-100%);
+    -moz-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+  }
+}
+
+/* End Login/Logout Button + animation */
