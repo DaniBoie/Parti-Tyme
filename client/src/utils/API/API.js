@@ -27,7 +27,11 @@ const API = {
 
   // **BUISNESS API CALLS**
   createBusiness: (data) => axios.post(`/api/buisness`, data),
-  updateBusiness: (data) => axios.put("/api/buisness", data),
+  updateBusiness: (data) => axios.put("/api/buisness", data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('user')}`
+    }
+  }),
   searchBusinessName: (searchTerm) =>
     axios.get(`/api/buisness/filter/${searchTerm}`),
   searchBusinessCategory: (category) =>

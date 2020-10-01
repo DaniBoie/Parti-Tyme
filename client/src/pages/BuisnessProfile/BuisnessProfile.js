@@ -34,78 +34,58 @@ const BuisnessProfile = () => {
   });
 
   // HANDLING the inputs on the page.
-  businessState.handleInputChange = (event) => {
-    setBusinessState({
-      ...businessState,
-      [event.target.name]: event.target.value,
-    });
-  };
+  businessState.handleInputChange = event => {
+    setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
+  }
+
 
   useEffect(() => {
-    // let businessId =
 
+    // let businessId = 
+    let dataComeback
     API.getUser()
-      .then(({ data }) => {
-        console.log(data);
-        let dataComeback = data[0].Buisness;
+        .then(({data}) => {
+          dataComeback = data[0].Buisness
+          console.log(dataComeback)
+          API.findBusinessReviews(dataComeback._id)
+            .then(({data:reviews}) => {
+              console.log(data)
+              setBusinessState({
+                ...businessState,
+                name: dataComeback.name,
+                bio: dataComeback.bio,
+                img: dataComeback.img,
+                instagram: dataComeback.instagram,
+                website: dataComeback.website,
+                facebook: dataComeback.facebook,
+                fee: dataComeback.fee,
+                business: dataComeback,
+                username: data[0].username,
+                reviews
+              })
+            })
+            .catch(err => console.log(err))
 
-        setBusinessState({
-          ...businessState,
-          name: dataComeback.name,
-          bio: dataComeback.bio,
-          img: dataComeback.img,
-          instagram: dataComeback.instagram,
-          website: dataComeback.website,
-          facebook: dataComeback.facebook,
-          fee: dataComeback.fee,
-          reviews: dataComeback.reviews || [],
-          business: dataComeback,
-        });
+        })
+        .catch(err => console.log(err))
 
-        console.log(dataComeback);
+  },[])
+
+  businessState.updateBusiness = () => {
+
+    let id = businessState.business._id
+
+    API.updateBusiness(id)
+      .then(({data}) => {
+        console.log(data)
+        // setBusinessState({
+        //   ...businessState,
+        //   nam
+        // })
       })
-      .catch((err) => console.log(err));
-  }, []);
+      .catch(err => console.log(err))
+  }
 
-  const btn = () => {
-    console.log(businessState);
-  };
-
-  // Function for enable Edit button
-  const [inputState, setInputState] = useState({
-    disabled: true,
-    show: "",
-    hideButton: "hide",
-  });
-
-  inputState.handleEditButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: false,
-      show: "show",
-      hideButton: "",
-    });
-  };
-
-  // When the save button is clicked, set the input back to disable, also write the new data into database, and display it
-  // inputState.handleSaveButton = () => {
-  //   setInputState({
-  //     ...inputState,
-  //     disabled: true,
-  //     show: "",
-  //     hideButton: "hide",
-  //   });
-  // }
-
-  // When the cancel button is clicked, simply set the input back to disable.
-  inputState.handleCancelButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: true,
-      show: "",
-      hideButton: "hide",
-    });
-  };
   return (
     <>
       <h1>Welcome to {businessState.name}</h1>
@@ -117,6 +97,7 @@ const BuisnessProfile = () => {
             <ReviewCard key={review._id} review={review} />
           ))
         : null}
+
       <div className="business-profile-page">
         {/* First Row / Business Carousel */}
         {/* <div className="bpp-business-carousel"> */}
@@ -136,6 +117,7 @@ const BuisnessProfile = () => {
           </div>
 
           <div className="bpp-business-info-area">
+
             <button
               className="bpp-edit-button"
               onClick={inputState.handleEditButton}
@@ -210,15 +192,32 @@ const BuisnessProfile = () => {
           </div>
         </div>
 
-        {/* Bottom Row / Business Reviews */}
         <div className="bpp-business-review">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
-          expedita cum magnam odit maiores nulla, est odio commodi vero aperiam
-          harum ex earum esse quaerat consequatur. Consectetur accusamus sit
-          dolore!
+          {
+            businessState.reviews.length > 0 ? (
+              businessState.reviews.map(review => (
+                <ReviewCard
+                  key={businessState.business._id}
+                  review={review}
+                  business={businessState.business}
+                  username={businessState.username}
+                />
+              ))
+            ) : null
+          }
         </div>
+        <form action="">
+          <label htmlFor="name">Change Name</label>
+          <input type="text" name="name" onChange={businessState.handleInputChange}/>
+          <label htmlFor="bio">Change Bio</label>
+          <textarea name="bio" cols="30" rows="10" onChange={businessState.handleInputChange}></textarea>
+          <label htmlFor="">Change Fee</label>
+          <input type="text" name="fee" onChange={businessState.handleInputChange}/>
+        </form>
+        <button onClick={businessState.updateBusiness}>Submit</button>
+
+
       </div>
-      {/* <button onClick={btn}>click</button> */}
     </>
   );
 };
