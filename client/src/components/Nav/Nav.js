@@ -9,18 +9,6 @@ import Logo from "../assets/images/logos.png";
 
 const Nav = (props) => {
 
-  // In Process function, for the purpose of making responsive website
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-
-  // const handleResize = () => {
-  //   setWindowWidth(window.innerWidth)
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener('resize', handleResize)
-  // }, [])
-  // End Process Function
-
   return (
     <>
       <nav className="nav-bar">

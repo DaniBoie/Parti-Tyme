@@ -10,9 +10,6 @@ const ReviewCard = props => {
 
       <div className='profile-sidebar'>
         <img className='profile-image' src={Logos} alt='profile pic' />
-        {/* <div className='name'>
-          <h3>Karen Sanderbee</h3>
-        </div> */}
         <h3 className='profile-name'>{props.username}</h3>
       </div>
 
