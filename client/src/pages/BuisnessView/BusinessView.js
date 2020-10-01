@@ -3,7 +3,9 @@ import API from "../../utils/API";
 import "./BusinessView.css";
 import ViewCard from '../../components/ViewCard'
 
+// Importing Components
 import Nav from '../../components/Nav'
+import BusinessCard from '../../components/BuisnessCard'
 
 const BuisnessView = () => {
 
@@ -18,7 +20,6 @@ const BuisnessView = () => {
   businessState.handleInputChange = event => {
     console.log(event.target.checked)
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })
-
   }
 
   businessState.handleCheckboxChange = event => {
@@ -79,7 +80,6 @@ const BuisnessView = () => {
       case 'Music':
         handleSearchCategory('Music')
         break;
-
     }
 
   }
@@ -90,24 +90,20 @@ const BuisnessView = () => {
     console.log(businessState.ipsum)
   }
 
-  const handleRadio = (event) => {
-    event.preventDefault()
-    console.log('checked')
-  }
-
-
+  // const handleRadio = (event) => {
+  //   event.preventDefault()
+  //   console.log('checked')
+  // }
 
   return (
     <>
-      <Nav />
+      <Nav name="Home Page" />
       <div className="business-view-page">
 
         {/* Left Column / Filter Column  */}
         <div className="filter-column">
 
           {/* Dropdown category */}
-          {/* <button className="bvp-dropdown-category-btn">Categories <i class="fas fa-caret-down"></i></button> */}
-
           <div className="bvp-dropdown-categories-list-item">
             <form>
               <select name="selectValue" onChange={businessState.handleInputChange}>
@@ -117,7 +113,6 @@ const BuisnessView = () => {
                 <option value="Music">Music</option>
                 <option value="Rentals">Rentals</option>
                 <option value="Entertainment">Entertainment</option>
-                <option value="#">Something</option>
               </select>
             </form>
           </div>
@@ -183,7 +178,7 @@ const BuisnessView = () => {
             <button
               onClick={handleFilter}
             >
-              Save
+              Search
               </button>
             <button
               onClick={handleFilterClear}

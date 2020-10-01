@@ -1,7 +1,7 @@
 import React from 'react'
 import './BusinessCard.css'
 import StarRating from '../StarRating/StarRating.js'
-import Logos from '../assets/images/logos.png'
+// import Logos from '../assets/images/logos.png'
 import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
 // import API from '../../utils/API'
 
