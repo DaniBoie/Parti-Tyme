@@ -92,14 +92,14 @@ router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
 })
 
 // UPDATE buisness data
-router.put('/buisness/:id', passport.authenticate('jwt'), (req, res) => {
+router.put('/buisness', passport.authenticate('jwt'), (req, res) => {
   BuisnessData.findByIdAndUpdate(req.user.Buisness, req.body)
     .then(() => res.sendStatus(200))
     .catch(err => console.log(err))
 })
 
 // DELETE buisness data
-router.delete('/buisness/:id', passport.authenticate('jwt'), (req, res) => {
+router.delete('/buisness', passport.authenticate('jwt'), (req, res) => {
 
   BuisnessData.findByIdAndDelete(req.user.Buisness)
     .then(() => res.sendStatus(200))

@@ -3,9 +3,7 @@ import BusinessCard from "../../components/BuisnessCard";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import API from "../../utils/API";
-
 import Nav from "../../components/Nav";
-
 // Importing image
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import ExampleImage1 from "../../components/assets/images/business-1.jpg";
@@ -13,13 +11,36 @@ import ExampleImage2 from "../../components/assets/images/business-2.jpg";
 import ExampleImage3 from "../../components/assets/images/business-3.jpg";
 import ExampleImage4 from "../../components/assets/images/business-4.jpg";
 import Logo from "../../components/assets/images/logos.png";
-
 // Importing styling element
 import "./BuisnessProfile.css";
 
 
 
 const BuisnessProfile = () => {
+
+  const [inputState, setInputState] = useState({
+    disabled: true,
+    show: "",
+    hideButton: "hide",
+  })
+  inputState.handleEditButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: false,
+      show: "show",
+      hideButton: "",
+    })
+  }
+  inputState.handleCancelButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: true,
+      show: "",
+      hideButton: "hide",
+    })
+  }
+
+
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
@@ -94,20 +115,20 @@ const BuisnessProfile = () => {
 
   },[])
 
-  businessState.updateBusiness = () => {
+  // businessState.updateBusiness = () => {
 
-    let id = businessState.business._id
+  //   let id = businessState.business._id
 
-    API.updateBusiness(id)
-      .then(({data}) => {
-        console.log(data)
-        // setBusinessState({
-        //   ...businessState,
-        //   nam
-        // })
-      })
-      .catch(err => console.log(err))
-  }
+  //   API.updateBusiness(id)
+  //     .then(({data}) => {
+  //       console.log(data)
+  //       // setBusinessState({
+  //       //   ...businessState,
+  //       //   nam
+  //       // })
+  //     })
+  //     .catch(err => console.log(err))
+  // }
 
   return (
     <>
@@ -122,18 +143,14 @@ const BuisnessProfile = () => {
         : null}
 
       <div className="business-profile-page">
-        {/* First Row / Business Carousel */}
-        {/* <div className="bpp-business-carousel"> */}
-        {/* <img src={ExampleImage1} alt="Example Image" /> */}
+
         <Carousel className="bpp-business-carousel">
           <img src={ExampleImage1} />
           <img src={ExampleImage2} />
           <img src={ExampleImage3} />
           <img src={ExampleImage4} />
         </Carousel>
-        {/* </div> */}
 
-        {/* Middle Row / Business Information */}
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
             <img src={Logo} alt="Logo" />
@@ -159,7 +176,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Location:{" "}
+              Location: LA
               <input
                 className={`${inputState.show}`}
                 type="text"
@@ -169,7 +186,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Fee:{" "}
+              Fee:{businessState.fee}
               <input
                 className={`${inputState.show}`}
                 type="text"
@@ -194,13 +211,7 @@ const BuisnessProfile = () => {
               rows="7"
               disabled={inputState.disabled}
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Inventore expedita cum magnam odit maiores nulla, est odio commodi
-              vero aperiam harum ex earum esse quaerat consequatur. Consectetur
-              accusamus sit dolore!Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Inventore expedita cum magnam odit maiores
-              nulla, est odio commodi vero aperiam harum ex earum esse quaerat
-              consequatur. Consectetur accusamus sit dolore!
+              {businessState.bio}
             </textarea>
 
             <button className={`bpp-save-button ${inputState.hideButton}`}>
