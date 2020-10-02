@@ -51,7 +51,6 @@ const BuisnessProfile = () => {
     })
   }
 
-
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
@@ -76,7 +75,6 @@ const BuisnessProfile = () => {
 
     console.log(businessState.bio)
   }
-
 
   useEffect(() => {
 
@@ -146,10 +144,16 @@ const BuisnessProfile = () => {
   return (
     <>
       <Nav name="Business Profile" />
-
+      {/* <BusinessCard
+        business={businessState.business}
+      /> */}
+      {businessState.reviews.length > 0
+        ? businessState.reviews.map((review) => (
+            <ReviewCard key={review._id} review={review} />
+          ))
+        : null}
 
       <div className="business-profile-page">
-
         <Carousel className="bpp-business-carousel">
           <img src={ExampleImage1} />
           <img src={ExampleImage2} />
@@ -183,7 +187,8 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Location: 
+              Location: LA
+
               <input
                 className={`${inputState.show}`}
                 type="text"
@@ -253,10 +258,33 @@ const BuisnessProfile = () => {
                   business={businessState.business}
                   username={businessState.username}
                 />
-              ))
-            ) : null
-          }
+              )))
+            : null}
+          
         </div>
+
+        <form action="">
+          <label htmlFor="name">Change Name</label>
+          <input
+            type="text"
+            name="name"
+            onChange={businessState.handleInputChange}
+          />
+          <label htmlFor="bio">Change Bio</label>
+          <textarea
+            name="bio"
+            cols="30"
+            rows="10"
+            onChange={businessState.handleInputChange}
+          ></textarea>
+          <label htmlFor="">Change Fee</label>
+          <input
+            type="text"
+            name="fee"
+            onChange={businessState.handleInputChange}
+          />
+        </form>
+        <button onClick={businessState.updateBusiness}>Submit</button>
       </div>
     </>
   );

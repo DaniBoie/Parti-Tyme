@@ -6,6 +6,7 @@ import ViewCard from "../../components/ViewCard";
 // Importing Components
 import Nav from "../../components/Nav";
 import BusinessCard from "../../components/BuisnessCard";
+import ExampleImage from "../../components/assets/images/business-1.jpg";
 
 const BuisnessView = () => {
   const [businessState, setBusinessState] = useState({
@@ -41,6 +42,15 @@ const BuisnessView = () => {
         });
       })
       .catch((err) => console.log(err));
+
+    API.getUser()
+      .then(() => {
+        //Do something w nav
+      })
+      .catch((err) => {
+        //Show login button
+       });
+
   }, []);
 
   const handleSearch = () => {
@@ -147,13 +157,6 @@ const BuisnessView = () => {
               <input type="checkbox" />
               <span className="checkmark"></span>
             </label>
-
-            <label className="filter-items">
-              {" "}
-              Tempora
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
           </div>
 
           <div className="filter-column-buttons">
@@ -164,11 +167,39 @@ const BuisnessView = () => {
 
         {/* Right Column / Business Column  */}
         <div className="bvp-business-column">
-          {businessState.businessRender.length > 0
+          {/* {businessState.businessRender.length > 0
             ? businessState.businessRender.map((business) => (
                 <ViewCard business={business} />
               ))
-            : null}
+            : null} */}
+
+          <div className="bvp-business-info-card">
+            <div className="bvp-business-card-left">
+              <img src={ExampleImage} alt="" />
+            </div>
+            <div className="bvp-business-card-right"></div>
+          </div>
+
+          <div className="bvp-business-info-card">
+            <div className="bvp-business-card-left">
+              <img src={ExampleImage} alt="" />
+            </div>
+            <div className="bvp-business-card-right"></div>
+          </div>
+
+          <div className="bvp-business-info-card">
+            <div className="bvp-business-card-left">
+              <img src={ExampleImage} alt="" />
+            </div>
+            <div className="bvp-business-card-right"></div>
+          </div>
+
+          <div className="bvp-business-info-card">
+            <div className="bvp-business-card-left">
+              <img src={ExampleImage} alt="" />
+            </div>
+            <div className="bvp-business-card-right"></div>
+          </div>
         </div>
       </div>
     </>
