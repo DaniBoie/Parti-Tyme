@@ -106,11 +106,17 @@ inputState.handleCancelButton = () => {
       .catch(err => console.log(err))
   }
 
+ var business = {
+img:'https://www.visitnewportbeach.com/wp-content/uploads/2018/04/MastrosOceanClub-3-06-700x400.jpg',
+name: 'Mastros',
+descprition: 'kkkk idkkdkdkd'
+ }
+
   return (
     <>
       <h1>Welcome to {businessState.name}</h1>
       <BusinessCard
-        business={businessState.business}
+        business={business}
       />
       {businessState.reviews.length > 0
         ? businessState.reviews.map((review) => (

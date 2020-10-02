@@ -10,14 +10,12 @@ const BuisnessCard = (props) => {
 
       <div className='header'>
         <img className='profile-image' src={props.business.img} alt='profile pic' />
-        <div className='title'>DJ CashMax</div>
+        <div className='title'>{props.business.name}</div>
       </div>
 
       <div className='profile-main'>
         <a href='#' className='contact-btn'>Parti Tyme</a>
-        <div className='desc'>
-        Modest DJ for all types of fun. You can book me for anything in
-        between a friendly family party and the rager that will last all night.
+        <div className='desc'>{props.business.descprition}
         </div>
         <div className='buttons'>
           <ul>
