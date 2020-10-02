@@ -1,55 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import axios from 'axios'
 import API from "../../utils/API";
 import "./Login.css";
 
-import Nav from '../../components/Nav'
+import Nav from "../../components/Nav";
 
 function Login() {
-
   const [accountState, setAccountState] = useState({
-    loginUsername: '',
-    loginPassword: '',
-    password1: '',
-    password2: '',
-    userEmail: '',
-    username: '',
-    realname: '',
-    user: []
-  })
-
+    loginUsername: "",
+    loginPassword: "",
+    password1: "",
+    password2: "",
+    userEmail: "",
+    username: "",
+    realname: "",
+    user: [],
+  });
 
   const user = {
     realname: accountState.realname,
     email: accountState.userEmail,
     username: accountState.username,
     password: accountState.password1,
-    account_type: 1
-  }
+    account_type: 1,
+  };
 
   const userLogin = {
     username: accountState.loginUsername,
-    password: accountState.loginPassword
-  }
+    password: accountState.loginPassword,
+  };
 
-  accountState.handleInputChange = event => {
-    setAccountState({ ...accountState, [event.target.name]: event.target.value })
-  }
-
-
-  accountState.handleCheck = event => {
-    event.preventDefault()
-    API.loginUser(userLogin)
-      .then(({ data: token }) => {
-        if (token) {
-          localStorage.setItem('user', token)
-          window.location = '/userprofile'
-        } else {
-          console.log('invalid credentials')
-        }
-      })
-      .catch(err => console.log(err))
-  }
+  accountState.handleInputChange = (event) => {
+    setAccountState({
+      ...accountState,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   accountState.handleCheck = (event) => {
     event.preventDefault();
@@ -57,7 +43,21 @@ function Login() {
       .then(({ data: token }) => {
         if (token) {
           localStorage.setItem("user", token);
-          window.location = "/index.html";
+          window.location = "/userprofile";
+        } else {
+          console.log("invalid credentials");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  accountState.handleCheck = (event) => {
+    event.preventDefault();
+    API.loginUser(userLogin)
+      .then(({ data: token }) => {
+        if (token) {
+          localStorage.setItem("user", token);
+          window.location = "/businessview";
         } else {
           console.log("invalid credentials");
         }
@@ -79,7 +79,7 @@ function Login() {
             userEmail: "",
             username: "",
             password1: "",
-            password2: "",
+            password2: ""
           });
           console.log(res);
         })
@@ -88,6 +88,14 @@ function Login() {
       alert("Unmatched Password");
     }
   };
+
+  useEffect(() => {
+    API.getUser()
+      .then(() => {
+        window.location = "/businessview";
+      })
+      .catch((err) => {console.log("not in");console.log(err)});
+  }, []);
 
   return (
     <>

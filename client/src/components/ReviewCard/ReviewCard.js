@@ -1,11 +1,12 @@
+
 import React from 'react'
 import './ReviewCard.css'
 import Logos from '../assets/images/logos.png'
 import StarRating from '../StarRating/StarRating'
 
-const ReviewCard = props => {
-
+const ReviewCard = (props) => {
   return (
+
     <div className='Review-Card'>
 
       <div className='profile-sidebar'>
@@ -23,9 +24,8 @@ const ReviewCard = props => {
           {props.review.text}
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default ReviewCard
+export default ReviewCard;

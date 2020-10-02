@@ -3,9 +3,7 @@ import BusinessCard from "../../components/BuisnessCard";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import API from "../../utils/API";
-
 import Nav from "../../components/Nav";
-
 // Importing image
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import ExampleImage1 from "../../components/assets/images/business-1.jpg";
@@ -13,11 +11,46 @@ import ExampleImage2 from "../../components/assets/images/business-2.jpg";
 import ExampleImage3 from "../../components/assets/images/business-3.jpg";
 import ExampleImage4 from "../../components/assets/images/business-4.jpg";
 import Logo from "../../components/assets/images/logos.png";
-
 // Importing styling element
 import "./BuisnessProfile.css";
 
+
+
 const BuisnessProfile = () => {
+
+  const [inputState, setInputState] = useState({
+    disabled: true,
+    show: "",
+    hideButton: "hide",
+  })
+
+  inputState.handleEditButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: false,
+      show: "show",
+      hideButton: "",
+    })
+  }
+
+  inputState.handleCancelButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: true,
+      show: "",
+      hideButton: "hide",
+    })
+  }
+
+  inputState.handleSaveButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: true,
+      show: "",
+      hideButton: "hide",
+    })
+  }
+
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
@@ -25,6 +58,7 @@ const BuisnessProfile = () => {
     instagram: "",
     website: "",
     facebook: "",
+    business_type: '',
     fee: "",
     business: {},
     text: "",
@@ -35,68 +69,58 @@ const BuisnessProfile = () => {
 
   // HANDLING the inputs on the page.
   businessState.handleInputChange = event => {
-    setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
+    setBusinessState({ 
+      ...businessState, 
+      [event.target.name]: event.target.value })
+
+    console.log(businessState.bio)
   }
 
-const [inputState, setInputState] = useState({
-    disabled: true,
-    show: "",
-    hideButton: "hide",
-  });
-  inputState.handleEditButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: false,
-      show: "show",
-      hideButton: "",
-    });
-  };
-inputState.handleCancelButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: true,
-      show: "",
-      hideButton: "hide",
-    });
-  };
   useEffect(() => {
 
-    // let businessId = 
     let dataComeback
     API.getUser()
-        .then(({data}) => {
-          dataComeback = data[0].Buisness
-          console.log(dataComeback)
-          API.findBusinessReviews(dataComeback._id)
-            .then(({data:reviews}) => {
-              console.log(data)
-              setBusinessState({
-                ...businessState,
-                name: dataComeback.name,
-                bio: dataComeback.bio,
-                img: dataComeback.img,
-                instagram: dataComeback.instagram,
-                website: dataComeback.website,
-                facebook: dataComeback.facebook,
-                fee: dataComeback.fee,
-                business: dataComeback,
-                username: data[0].username,
-                reviews
-              })
+      .then(({ data }) => {
+        dataComeback = data[0].Buisness
+        // console.log(dataComeback)
+        API.findBusinessReviews(dataComeback._id)
+          .then(({ data: reviews }) => {
+            // console.log(data)
+            setBusinessState({
+              ...businessState,
+              name: dataComeback.name,
+              bio: dataComeback.bio,
+              img: dataComeback.img,
+              instagram: dataComeback.instagram,
+              website: dataComeback.website,
+              facebook: dataComeback.facebook,
+              fee: dataComeback.fee,
+              business: dataComeback,
+              username: data[0].username,
+              reviews
             })
-            .catch(err => console.log(err))
+          })
+          .catch(err => console.log(err))
 
-        })
-        .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
 
-  },[])
+  }, [])
 
   businessState.updateBusiness = () => {
+    console.log(businessState.business)
+    // let id = businessState.business._id   
 
-    let id = businessState.business._id
-
-    API.updateBusiness(id)
-      .then(({data}) => {
+    API.updateBusiness({
+      name: businessState.name,
+      bio: businessState.bio,
+      img: businessState.img,
+      instagram: businessState.instagram,
+      website: businessState.facebook,
+      business_type: businessState.business_type,
+      fee: businessState.fee
+    })
+      .then(({ data }) => {
         console.log(data)
         // setBusinessState({
         //   ...businessState,
@@ -104,6 +128,17 @@ inputState.handleCancelButton = () => {
         // })
       })
       .catch(err => console.log(err))
+
+    const handleSaveButton = () => {
+      setInputState({
+        ...inputState,
+        disabled: true,
+        show: "",
+        hideButton: "hide",
+      })
+    }
+
+    handleSaveButton()
   }
 
  var business = {
@@ -125,18 +160,13 @@ descprition: 'kkkk idkkdkdkd'
         : null}
 
       <div className="business-profile-page">
-        {/* First Row / Business Carousel */}
-        {/* <div className="bpp-business-carousel"> */}
-        {/* <img src={ExampleImage1} alt="Example Image" /> */}
         <Carousel className="bpp-business-carousel">
           <img src={ExampleImage1} />
           <img src={ExampleImage2} />
           <img src={ExampleImage3} />
           <img src={ExampleImage4} />
         </Carousel>
-        {/* </div> */}
 
-        {/* Middle Row / Business Information */}
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
             <img src={Logo} alt="Logo" />
@@ -146,39 +176,43 @@ descprition: 'kkkk idkkdkdkd'
 
             <button
               className="bpp-edit-button"
+              disabled={false}
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
             </button>
 
             <label>
-              {/* Name:{" "} */}
               <input
                 className={`bpp-input-for-business-name ${inputState.show}`}
                 type="text"
-                name="businessName"
-                defaultValue="Taco Truck"
+                name="name"
+                defaultValue={businessState.name}
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
-              Location:{" "}
+              Location: LA
+
               <input
                 className={`${inputState.show}`}
                 type="text"
                 name="businessLocation"
                 defaultValue="LA"
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
-              Fee:{" "}
+              Fee:
               <input
                 className={`${inputState.show}`}
                 type="text"
-                name="businessFee"
+                name="fee"
                 defaultValue="$13/hr, $5/order"
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
@@ -191,22 +225,24 @@ descprition: 'kkkk idkkdkdkd'
                 disabled={inputState.disabled}
               />
             </label>
-            <textarea
-              className={`${inputState.show}`}
-              name="businessBio"
-              rows="7"
-              disabled={inputState.disabled}
-            >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Inventore expedita cum magnam odit maiores nulla, est odio commodi
-              vero aperiam harum ex earum esse quaerat consequatur. Consectetur
-              accusamus sit dolore!Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Inventore expedita cum magnam odit maiores
-              nulla, est odio commodi vero aperiam harum ex earum esse quaerat
-              consequatur. Consectetur accusamus sit dolore!
-            </textarea>
+            <label>
+              <textarea
+                className={`${inputState.show}`}
+                name="bio"
+                rows="7"
+                disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
+                value={businessState.bio}
+              >
+                
+              </textarea>
+            </label>
 
-            <button className={`bpp-save-button ${inputState.hideButton}`}>
+            <button 
+              className={`bpp-save-button ${inputState.hideButton}`}
+              onClick={businessState.updateBusiness}
+
+              >
               Save
             </button>
             <button
@@ -228,21 +264,33 @@ descprition: 'kkkk idkkdkdkd'
                   business={businessState.business}
                   username={businessState.username}
                 />
-              ))
-            ) : null
-          }
+              )))
+            : null}
+          
         </div>
+
         <form action="">
           <label htmlFor="name">Change Name</label>
-          <input type="text" name="name" onChange={businessState.handleInputChange}/>
+          <input
+            type="text"
+            name="name"
+            onChange={businessState.handleInputChange}
+          />
           <label htmlFor="bio">Change Bio</label>
-          <textarea name="bio" cols="30" rows="10" onChange={businessState.handleInputChange}></textarea>
+          <textarea
+            name="bio"
+            cols="30"
+            rows="10"
+            onChange={businessState.handleInputChange}
+          ></textarea>
           <label htmlFor="">Change Fee</label>
-          <input type="text" name="fee" onChange={businessState.handleInputChange}/>
+          <input
+            type="text"
+            name="fee"
+            onChange={businessState.handleInputChange}
+          />
         </form>
         <button onClick={businessState.updateBusiness}>Submit</button>
-
-
       </div>
     </>
   );

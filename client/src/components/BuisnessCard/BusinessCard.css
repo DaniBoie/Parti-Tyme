@@ -38,8 +38,8 @@
 .contact-btn {
   display: inline-block;
   padding: 8px 29px;
-  color: #E66767;
-  border: 2px solid ;
+  color: #e66767;
+  border: 2px solid;
   margin-top: 8px;
   border-radius: 1px;
   -webkit-border-radius: 6px;
@@ -54,7 +54,7 @@
 }
 
 .contact-btn:hover {
-  background: #E66767;
+  background: #e66767;
   color: #86d1ee;
 }
 
@@ -119,13 +119,12 @@
   text-decoration: none;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
   background: linear-gradient(0deg, rgb(196, 194, 194), #fff);
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .buttons ul li a:hover {
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 
 @media (min-width: 600px) {
   .Profile-Card {
@@ -140,8 +139,4 @@
   .desc::after {
       margin-left: 0;
   }
-
-  /* .buttons ul {
-    margin-left: -8px;
-  } */
 }
