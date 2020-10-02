@@ -79,7 +79,7 @@ function Login() {
             userEmail: "",
             username: "",
             password1: "",
-            password2: "",
+            password2: ""
           });
           console.log(res);
         })
