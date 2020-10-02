@@ -171,12 +171,12 @@
   font-size: 17px;
   border-top: 1px solid rgb(167, 148, 148);
 }
-
+/* 
   background: linear-gradient(to bottom, #a8e6cf, #1779ff);
   animation: animate2 2s linear infinite;
   -webkit-animation: animate2 2s linear infinite;
   animation-delay: 1s;
-}
+} */
 
 @keyframes animate2 {
   0% {
@@ -310,3 +310,4 @@
     display: inline-block;
   }
 
+}
