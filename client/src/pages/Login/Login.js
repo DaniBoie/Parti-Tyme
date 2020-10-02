@@ -57,7 +57,7 @@ function Login() {
       .then(({ data: token }) => {
         if (token) {
           localStorage.setItem("user", token);
-          window.location = "/index.html";
+          window.location = "/business";
         } else {
           console.log("invalid credentials");
         }
@@ -79,7 +79,7 @@ function Login() {
             userEmail: "",
             username: "",
             password1: "",
-            password2: "",
+            password2: ""
           });
           console.log(res);
         })

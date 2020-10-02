@@ -23,6 +23,7 @@ const BuisnessProfile = () => {
     show: "",
     hideButton: "hide",
   })
+
   inputState.handleEditButton = () => {
     setInputState({
       ...inputState,
@@ -31,6 +32,7 @@ const BuisnessProfile = () => {
       hideButton: "",
     })
   }
+
   inputState.handleCancelButton = () => {
     setInputState({
       ...inputState,
@@ -48,6 +50,7 @@ const BuisnessProfile = () => {
     instagram: "",
     website: "",
     facebook: "",
+    business_type: '',
     fee: "",
     business: {},
     text: "",
@@ -58,56 +61,64 @@ const BuisnessProfile = () => {
 
   // HANDLING the inputs on the page.
   businessState.handleInputChange = event => {
-    setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
+    setBusinessState({ ...businessState, [event.target.name]: event.target.value })
+    console.log(businessState.name)
   }
 
 
   useEffect(() => {
 
-    // let businessId = 
     let dataComeback
     API.getUser()
-        .then(({data}) => {
-          dataComeback = data[0].Buisness
-          console.log(dataComeback)
-          API.findBusinessReviews(dataComeback._id)
-            .then(({data:reviews}) => {
-              console.log(data)
-              setBusinessState({
-                ...businessState,
-                name: dataComeback.name,
-                bio: dataComeback.bio,
-                img: dataComeback.img,
-                instagram: dataComeback.instagram,
-                website: dataComeback.website,
-                facebook: dataComeback.facebook,
-                fee: dataComeback.fee,
-                business: dataComeback,
-                username: data[0].username,
-                reviews
-              })
+      .then(({ data }) => {
+        dataComeback = data[0].Buisness
+        // console.log(dataComeback)
+        API.findBusinessReviews(dataComeback._id)
+          .then(({ data: reviews }) => {
+            // console.log(data)
+            setBusinessState({
+              ...businessState,
+              name: dataComeback.name,
+              bio: dataComeback.bio,
+              img: dataComeback.img,
+              instagram: dataComeback.instagram,
+              website: dataComeback.website,
+              facebook: dataComeback.facebook,
+              fee: dataComeback.fee,
+              business: dataComeback,
+              username: data[0].username,
+              reviews
             })
-            .catch(err => console.log(err))
+          })
+          .catch(err => console.log(err))
 
-        })
-        .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
 
-  },[])
+  }, [])
 
-  // businessState.updateBusiness = () => {
+  businessState.updateBusiness = () => {
+    console.log(businessState.business)
+    let id = businessState.business._id
 
-  //   let id = businessState.business._id
-
-  //   API.updateBusiness(id)
-  //     .then(({data}) => {
-  //       console.log(data)
-  //       // setBusinessState({
-  //       //   ...businessState,
-  //       //   nam
-  //       // })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+    API.updateBusiness(id, {
+      name: businessState.name,
+      bio: businessState.bio,
+      img: businessState.img,
+      instagram: businessState.instagram,
+      website: businessState.facebook,
+      business_type: businessState.business_type,
+      fee: businessState.fee
+    })
+      .then(({ data }) => {
+        console.log(data)
+        // setBusinessState({
+        //   ...businessState,
+        //   nam
+        // })
+      })
+      .catch(err => console.log(err))
+  }
 
   return (
     <>
@@ -132,6 +143,7 @@ const BuisnessProfile = () => {
 
             <button
               className="bpp-edit-button"
+              disabled={false}
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
@@ -142,29 +154,32 @@ const BuisnessProfile = () => {
               <input
                 className={`bpp-input-for-business-name ${inputState.show}`}
                 type="text"
-                name="businessName"
-                defaultValue="Taco Truck"
+                name="name"
+                defaultValue={businessState.name}
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
-              Location: LA
+              Location: 
               <input
                 className={`${inputState.show}`}
                 type="text"
                 name="businessLocation"
                 defaultValue="LA"
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
-              Fee:{businessState.fee}
+              Fee:
               <input
                 className={`${inputState.show}`}
                 type="text"
-                name="businessFee"
+                name="fee"
                 defaultValue="$13/hr, $5/order"
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
@@ -179,14 +194,18 @@ const BuisnessProfile = () => {
             </label>
             <textarea
               className={`${inputState.show}`}
-              name="businessBio"
+              name="bio"
               rows="7"
               disabled={inputState.disabled}
+              onChange={businessState.handleInputChange}
             >
               {businessState.bio}
             </textarea>
 
-            <button className={`bpp-save-button ${inputState.hideButton}`}>
+            <button 
+              className={`bpp-save-button ${inputState.hideButton}`}
+              onClick={businessState.updateBusiness}
+              >
               Save
             </button>
             <button
@@ -212,17 +231,6 @@ const BuisnessProfile = () => {
             ) : null
           }
         </div>
-        <form action="">
-          <label htmlFor="name">Change Name</label>
-          <input type="text" name="name" onChange={businessState.handleInputChange}/>
-          <label htmlFor="bio">Change Bio</label>
-          <textarea name="bio" cols="30" rows="10" onChange={businessState.handleInputChange}></textarea>
-          <label htmlFor="">Change Fee</label>
-          <input type="text" name="fee" onChange={businessState.handleInputChange}/>
-        </form>
-        <button onClick={businessState.updateBusiness}>Submit</button>
-
-
       </div>
     </>
   );

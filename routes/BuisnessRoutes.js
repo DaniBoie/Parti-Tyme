@@ -94,7 +94,7 @@ router.post('/buisness', passport.authenticate('jwt'), (req, res) => {
 // UPDATE buisness data
 router.put('/buisness', passport.authenticate('jwt'), (req, res) => {
   BuisnessData.findByIdAndUpdate(req.user.Buisness, req.body)
-    .then(() => res.sendStatus(200))
+    .then(data => res.json(data))
     .catch(err => console.log(err))
 })
 
