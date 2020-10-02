@@ -38,7 +38,27 @@ const BuisnessProfile = () => {
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
   }
 
-
+const [inputState, setInputState] = useState({
+    disabled: true,
+    show: "",
+    hideButton: "hide",
+  });
+  inputState.handleEditButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: false,
+      show: "show",
+      hideButton: "",
+    });
+  };
+inputState.handleCancelButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: true,
+      show: "",
+      hideButton: "hide",
+    });
+  };
   useEffect(() => {
 
     // let businessId = 
@@ -89,9 +109,9 @@ const BuisnessProfile = () => {
   return (
     <>
       <h1>Welcome to {businessState.name}</h1>
-      {/* <BusinessCard
+      <BusinessCard
         business={businessState.business}
-      /> */}
+      />
       {businessState.reviews.length > 0
         ? businessState.reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
