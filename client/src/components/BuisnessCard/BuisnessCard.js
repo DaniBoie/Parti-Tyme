@@ -9,7 +9,7 @@ const BuisnessCard = (props) => {
     <div className='Profile-Card'>
 
       <div className='header'>
-        <img className='profile-image' src={Logos} alt='profile pic' />
+        <img className='profile-image' src={props.business.img} alt='profile pic' />
         <div className='title'>DJ CashMax</div>
       </div>
 
