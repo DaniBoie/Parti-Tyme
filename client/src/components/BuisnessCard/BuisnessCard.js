@@ -28,7 +28,7 @@ const BuisnessCard = props => {
           </ul>
         </div>
 
-        <div className='star'><StarRating /></div>
+        <div className='Stars'><StarRating /></div>
       </div>
 
     </div>
