@@ -206,7 +206,6 @@ const UserProfile = () => {
               //     </div>
               //   ))) : null
             }
-
           </div>
           <div>
             <label>
@@ -231,7 +230,6 @@ const UserProfile = () => {
           </div>
 
           {/* </ul> */}
-
         </div>
 
         <div className="changing-account-type-area">

@@ -50,6 +50,17 @@ const Nav = (props) => {
     } else setDropdownState({ ...dropdownState, show: "" });
   };
 
+  function handleLogoutButton() {
+    localStorage.removeItem("user");
+    setDropdownState({
+      ...dropdownState,
+      show: "",
+      hideLogin: "",
+      hideHamburger: "hideExistence",
+    });
+    window.location = "/businessview";
+  }
+
   useEffect(() => {
     API.getUser()
       .then(({ data }) => {
@@ -133,9 +144,9 @@ const Nav = (props) => {
           <Link to="/userprofile" className="nav-dropdown-items">
             Profile
           </Link>
-          <Link to="/logout" className="nav-dropdown-items">
+          <button onClick={handleLogoutButton} className="nav-dropdown-items">
             Logout
-          </Link>
+          </button>
         </div>
       </div>
     </nav>
