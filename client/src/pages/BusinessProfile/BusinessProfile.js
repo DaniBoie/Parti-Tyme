@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import BusinessCard from '../../components/BuisnessCard'
+import BuisnessCard from '../../components/BuisnessCard'
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import API from '../../utils/API'
 
@@ -8,7 +8,7 @@ import Image from '../../components/assets/images/business-3.jpg'
 import Logo from '../../components/assets/images/logos.png'
 
 // Importing styling element
-import './BuisnessProfile.css'
+import './BusinessProfile.css'
 
 const BuisnessProfile = () => {
 
@@ -74,7 +74,7 @@ const BuisnessProfile = () => {
     <>
     <ReviewCard />
       <h1>Welcome to {businessState.name}</h1>
-      <BusinessCard 
+      <BuisnessCard 
         business={businessState.business}    
       />
       {

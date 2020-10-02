@@ -250,6 +250,7 @@ const UserProfile = () => {
               //   ))) : null
             }
           </div>
+        
           <div>
             <label>
               <i class="fas fa-camera"></i>
