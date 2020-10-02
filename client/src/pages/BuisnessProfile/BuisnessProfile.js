@@ -61,7 +61,10 @@ const BuisnessProfile = () => {
 
   // HANDLING the inputs on the page.
   businessState.handleInputChange = event => {
-    setBusinessState({ ...businessState, [event.target.name]: event.target.value })
+    setBusinessState({ 
+      ...businessState, 
+      [event.target.name]: event.target.value })
+      
     console.log(businessState.name)
   }
 
