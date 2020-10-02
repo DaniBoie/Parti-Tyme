@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './StarRating.css'
 import { FaStar } from 'react-icons/fa'
 
 const StarRating = () => {
