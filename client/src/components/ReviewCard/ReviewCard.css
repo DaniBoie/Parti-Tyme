@@ -11,68 +11,69 @@
 }
 
 .name {
-  font-size: 1rem;
-  line-height: 1.1;
-  display: flex;
-  margin-bottom: 0;
-  padding: 0;
-  width: 150px;
-  letter-spacing: 1px;
-  margin: auto;
+    font-size: 1rem;
+    line-height: 1.1;
+    display: flex;
+    margin-bottom: 0;
+    padding: 0;
+    width: 150px;
+    letter-spacing: 1px;
+    margin: auto;
 }
 
 .profile-sidebar img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 5px;
-  display: inline-block;
-  padding: 6px;
-  background: linear-gradient(130deg, #74b9ff, #e66767);
-  margin: auto;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  background-size: 100% 100%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px;
+    display: inline-block;
+    padding: 6px;
+    background: linear-gradient(130deg, #74B9FF, #E66767);
+    margin: auto;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    background-size: 100% 100%;
 }
 
+
 .business {
-  margin: 1px;
-  color: #e66767;
-  font-size: 1.1em;
+    margin: 1px;
+    color: #E66767;
+    font-size: 1.1em;
 }
 
 .business::after {
-  content: "";
-  display: block;
-  height: 1px;
-  width: 10em;
-  background: #5bcbf0;
-  margin: 0.7em auto;
-  opacity: 0.35;
+    content: "";
+    display: block;
+    height: 1px;
+    width: 10em;
+    background: #5bcbf0;
+    margin: 0.7em auto;
+    opacity: 0.35;
 }
 
 .subject {
-  margin: 5px;
+    margin: 5px;
 }
 
 .content {
-  margin-top: 10px;
-  margin-bottom: 0;
+    margin-top: 10px;
+    margin-bottom: 0;
 }
 
 @media (min-width: 600px) {
-  .Review-Card {
-    flex-direction: row;
-  }
-  .profile-main {
-    text-align: left;
-    margin-left: 1.3em;
-  }
+    .Review-Card {
+        flex-direction: row;
+    }
+    .profile-main {
+        text-align: left;
+        margin-left: 1.3em;
+    }
 
-  .business::after {
-    margin-left: 0;
-  }
+    .business::after {
+        margin-left: 0;
+    }
 }

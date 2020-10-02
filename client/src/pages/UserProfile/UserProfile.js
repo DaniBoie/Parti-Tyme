@@ -196,15 +196,17 @@ const UserProfile = () => {
           <h3>{userState.email}</h3>
           <div>
             <h3>Reviews</h3>
-            {userState.Reviews.length > 0
-              ? userState.Reviews.map((review) => (
-                  <div key={review._id}>
-                    <h4>{review.buisness.name}</h4>
-                    <p>{review.rating}</p>
-                    <p>{review.rating}</p>
-                  </div>
-                ))
-              : null}
+            {
+              // userState.Reviews.length > 0 ? (
+              //   userState.Reviews.map(review => (
+              //     <div key={review._id}>
+              //       <h4>{review.buisness.name}</h4>
+              //       <p>{review.rating}</p>
+              //       <p>{review.rating}</p>
+              //     </div>
+              //   ))) : null
+            }
+
           </div>
           <div>
             <label>
@@ -227,7 +229,9 @@ const UserProfile = () => {
             </label>
             <button onClick={userState.handleClickBtn}>Submit</button>
           </div>
+
           {/* </ul> */}
+
         </div>
 
         <div className="changing-account-type-area">
