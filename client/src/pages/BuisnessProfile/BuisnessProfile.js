@@ -61,11 +61,14 @@ const BuisnessProfile = () => {
     setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
   }
 
+  // Function for edit button
   const [inputState, setInputState] = useState({
     disabled: true,
     show: "",
     hideButton: "hide",
   });
+  // Function
+
   inputState.handleEditButton = () => {
     setInputState({
       ...inputState,
@@ -143,7 +146,6 @@ const BuisnessProfile = () => {
         : null}
 
       <div className="business-profile-page">
-
         <Carousel className="bpp-business-carousel">
           <img src={ExampleImage1} />
           <img src={ExampleImage2} />
@@ -176,6 +178,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
+
               Location: LA
               <input
                 className={`${inputState.show}`}
@@ -237,20 +240,30 @@ const BuisnessProfile = () => {
                   username={businessState.username}
                 />
               ))
-            ) : null
-          }
+            : null}
         </div>
         <form action="">
           <label htmlFor="name">Change Name</label>
-          <input type="text" name="name" onChange={businessState.handleInputChange}/>
+          <input
+            type="text"
+            name="name"
+            onChange={businessState.handleInputChange}
+          />
           <label htmlFor="bio">Change Bio</label>
-          <textarea name="bio" cols="30" rows="10" onChange={businessState.handleInputChange}></textarea>
+          <textarea
+            name="bio"
+            cols="30"
+            rows="10"
+            onChange={businessState.handleInputChange}
+          ></textarea>
           <label htmlFor="">Change Fee</label>
-          <input type="text" name="fee" onChange={businessState.handleInputChange}/>
+          <input
+            type="text"
+            name="fee"
+            onChange={businessState.handleInputChange}
+          />
         </form>
         <button onClick={businessState.updateBusiness}>Submit</button>
-
-
       </div>
     </>
   );
