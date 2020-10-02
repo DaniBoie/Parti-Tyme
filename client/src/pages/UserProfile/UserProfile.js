@@ -51,7 +51,9 @@ const UserProfile = () => {
 
         console.log("API DATA ON STARTUP", dataComeback);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        window.location = "/businessview";
+        console.log(err)});
   }, []);
 
   const handleSaveBtn = () => {
