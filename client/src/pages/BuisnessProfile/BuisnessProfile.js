@@ -141,12 +141,18 @@ const BuisnessProfile = () => {
     handleSaveButton()
   }
 
+ var business = {
+img:'https://www.visitnewportbeach.com/wp-content/uploads/2018/04/MastrosOceanClub-3-06-700x400.jpg',
+name: 'Mastros',
+descprition: 'kkkk idkkdkdkd'
+ }
+
   return (
     <>
-      <Nav name="Business Profile" />
-      {/* <BusinessCard
-        business={businessState.business}
-      /> */}
+      <h1>Welcome to {businessState.name}</h1>
+      <BusinessCard
+        business={business}
+      />
       {businessState.reviews.length > 0
         ? businessState.reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
