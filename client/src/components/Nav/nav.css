@@ -73,6 +73,7 @@
   justify-self: center;
   align-self: center;
 }
+
 /* Login/Logout Button + animation */
 
 .nav-login-logout-btn {
@@ -108,8 +109,7 @@
   display: none;
 }
 
-.nav-login-logout-btn span:nth-child(1),
-.nav-login-logout-btn-icon span:nth-child(1) {
+.nav-login-logout-btn span:nth-child(1), .nav-login-logout-btn-icon span:nth-child(1) {
   position: absolute;
   top: 0;
   left: 0;
@@ -137,14 +137,12 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(2),
-.nav-login-logout-btn-icon span:nth-child(2) {
+.nav-login-logout-btn span:nth-child(2), .nav-login-logout-btn-icon span:nth-child(2) {
   position: absolute;
   top: 0;
   right: 0;
   width: 2px;
   height: 100%;
-
   background: linear-gradient(to bottom, #a8e6cf, #1779ff);
   animation: animate2 2s linear infinite;
   -webkit-animation: animate2 2s linear infinite;
@@ -168,8 +166,7 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(3),
-.nav-login-logout-btn-icon span:nth-child(3) {
+.nav-login-logout-btn span:nth-child(3), .nav-login-logout-btn-icon span:nth-child(3) {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -197,8 +194,7 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(4),
-.nav-login-logout-btn-icon span:nth-child(4) {
+.nav-login-logout-btn span:nth-child(4), .nav-login-logout-btn-icon span:nth-child(4) {
   position: absolute;
   top: 0;
   left: 0;
@@ -230,6 +226,7 @@
 /* End Login/Logout Button + animation */
 
 /* Dropdown Menu / Hamburger Icon */
+
 .nav-hamburger-icon {
   background: none;
   border: none;

@@ -1,30 +1,31 @@
-.profile-card {
-  width: 250px;
-  text-align: center;
-  border-radius: 1px;
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  -ms-border-radius: 1px;
-  -o-border-radius: 1px;
-  overflow: hidden;
-  transition: 0.4s ease;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.8);
-}
-
-.profile-card:hover {
-  transform: scale(1.08);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.card-header {
+.Profile-Card {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
   background: #324150;
-  padding: 10px 20px;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  padding: 2em;
 }
 
-.pic {
+.title {
+  margin-top: 5px;
+  margin-bottom: 0;
+  color: #E66767;
+  font-size: 1.5em;
+}
+
+.header img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px;
   display: inline-block;
-  padding: 8px;
-  background: linear-gradient(130deg, #74b9ff, #e66767);
+  padding: 6px;
+  background: linear-gradient(130deg, #74B9FF, #E66767);
   margin: auto;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -32,46 +33,6 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   background-size: 100% 100%;
-  animation: animated-gradient 2s linear infinite;
-  -webkit-animation: animated-gradient 2s linear infinite;
-}
-
-@keyframes animated-gradient {
-  25% {
-    background-position: left bottom;
-  }
-  50% {
-    background-position: right bottom;
-  }
-  75% {
-    background-position: right top;
-  }
-  100% {
-    background-position: left top;
-  }
-}
-
-.pic img {
-  display: block;
-  width: 150px;
-  height: 150px;
-  border-radius: 10%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-}
-
-.name {
-  color: #f2f2f2;
-  font-size: 28px;
-  font-weight: 600;
-  margin: 5px 00px;
-}
-
-.desc {
-  font-size: 18px;
-  color: #e66767;
 }
 
 .contact-btn {
@@ -97,31 +58,48 @@
   color: #86d1ee;
 }
 
-.card-footer {
-  background: #86d1ee;
-  padding: 0px 0px;
+.business {
+  margin: 1px;
+  color: #E66767;
+  font-size: 1.1em;
 }
 
-.buttons ul li a {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  background: #f1f1f1;
+.desc::after {
+  content: "";
   display: block;
+  height: 1px;
+  width: 17em;
+  background: #5bcbf0;
+  margin: 0.7em auto;
+  opacity: 0.35;
+}
+
+.profile-main {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   text-align: center;
-  margin: 0 10px;
-  border-radius: 50%;
-  padding: 6px;
-  box-sizing: border-box;
-  text-decoration: none;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(0deg, #ddd, #fff);
-  transition: 0.5s;
+}
+.contact-btn{
+  width: 100%;
+}
+.desc {
+  text-align: center;
+  /* height: 50px; */
+  /* width: 50px; */
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.buttons {
+  margin: 1px;
+  display: flex;
+  justify-content: center;
 }
 
 .buttons ul {
-  margin: 0px;
-  padding: 15%;
+  margin: 8px;
   display: flex;
 }
 
@@ -130,13 +108,13 @@
 }
 
 .buttons ul li a {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   display: block;
   text-align: center;
   margin: 0 5px;
   border-radius: 50%;
-  padding: 6px;
+  padding: 6.5px;
   box-sizing: border-box;
   text-decoration: none;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
@@ -148,46 +126,17 @@
   box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* .buttons ul li a .fa {
-  width: 80%;
-  height: 80%;
-  display: block;
-  background: linear-gradient(0ded, rgb(158, 94, 94), rgb(88, 12, 12));
-  border-radius: 50%;
-  line-height: calc(60px - 12px);
-  font-size: 24px;
-  color: #262626;
-  transition: .5s;
-} */
-
-/* .buttons ul li:nth-child(1) a:hover .fa {
-  color: #3b5998;
-}
-.buttons ul li:nth-child(2) a:hover .fa {
-  color: #bc2a8d;
-}
-.buttons ul li:nth-child(3) a:hover .fa {
-  color: red;
-} */
-
-.star {
-  cursor: pointer;
-  transition: color 200ms;
-  margin-top: 3px;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
 @media (min-width: 600px) {
-  .profile-card {
-    flex-direction: row;
+  .Profile-Card {
+      flex-direction: row;
   }
 
   .profile-main {
-    text-align: left;
-    margin-left: 2em;
+      text-align: left;
+      margin-left: 1.3em;
+  }
+
+  .desc::after {
+      margin-left: 0;
   }
 }
-
