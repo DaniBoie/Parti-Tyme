@@ -14,10 +14,7 @@ import Logo from "../../components/assets/images/logos.png";
 // Importing styling element
 import "./BuisnessProfile.css";
 
-
-
 const BuisnessProfile = () => {
-
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
@@ -34,9 +31,12 @@ const BuisnessProfile = () => {
   });
 
   // HANDLING the inputs on the page.
-  businessState.handleInputChange = event => {
-    setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
-  }
+  businessState.handleInputChange = (event) => {
+    setBusinessState({
+      ...businessState,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   // Function for edit button
   const [inputState, setInputState] = useState({
@@ -44,8 +44,7 @@ const BuisnessProfile = () => {
     show: "",
     hideButton: "hide",
   });
-  // Function
-
+  // When the edit button is clicked, must make sure only the owner can click this button.
   inputState.handleEditButton = () => {
     setInputState({
       ...inputState,
@@ -64,36 +63,33 @@ const BuisnessProfile = () => {
   };
 
   useEffect(() => {
-
-    // let businessId = 
-    let dataComeback
+    // let businessId =
+    let dataComeback;
     API.getUser()
-        .then(({data}) => {
-          dataComeback = data[0].Buisness
-          console.log(dataComeback)
-          API.findBusinessReviews(dataComeback._id)
-            .then(({data:reviews}) => {
-              console.log(data)
-              setBusinessState({
-                ...businessState,
-                name: dataComeback.name,
-                bio: dataComeback.bio,
-                img: dataComeback.img,
-                instagram: dataComeback.instagram,
-                website: dataComeback.website,
-                facebook: dataComeback.facebook,
-                fee: dataComeback.fee,
-                business: dataComeback,
-                username: data[0].username,
-                reviews
-              })
-            })
-            .catch(err => console.log(err))
-
-        })
-        .catch(err => console.log(err))
-
-  },[])
+      .then(({ data }) => {
+        dataComeback = data[0].Buisness;
+        console.log(dataComeback);
+        API.findBusinessReviews(dataComeback._id)
+          .then(({ data: reviews }) => {
+            console.log(data);
+            setBusinessState({
+              ...businessState,
+              name: dataComeback.name,
+              bio: dataComeback.bio,
+              img: dataComeback.img,
+              instagram: dataComeback.instagram,
+              website: dataComeback.website,
+              facebook: dataComeback.facebook,
+              fee: dataComeback.fee,
+              business: dataComeback,
+              username: data[0].username,
+              reviews,
+            });
+          })
+          .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   // businessState.updateBusiness = () => {
 
@@ -136,7 +132,6 @@ const BuisnessProfile = () => {
           </div>
 
           <div className="bpp-business-info-area">
-
             <button
               className="bpp-edit-button"
               onClick={inputState.handleEditButton}
@@ -155,7 +150,6 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-
               Location: LA
               <input
                 className={`${inputState.show}`}
@@ -207,18 +201,16 @@ const BuisnessProfile = () => {
         </div>
 
         <div className="bpp-business-review">
-          {
-            businessState.reviews.length > 0 ? (
-              businessState.reviews.map(review => (
+          {businessState.reviews.length > 0
+            ? businessState.reviews.map((review) => (
                 <ReviewCard
                   key={businessState.business._id}
                   review={review}
                   business={businessState.business}
                   username={businessState.username}
                 />
-              )))
+              ))
             : null}
-          
         </div>
         <form action="">
           <label htmlFor="name">Change Name</label>

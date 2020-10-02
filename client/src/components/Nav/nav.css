@@ -11,6 +11,10 @@
   --blue-bg: #81ecec;
 }
 
+.hideExistence {
+  display: none;
+}
+
 .nav-bar {
   padding: 1px 10px;
   min-height: 10vh;
@@ -44,15 +48,17 @@
 .nav-middle-column {
   font-family: "Amatic SC", cursive;
   font-weight: bold;
-  font-size: 33px;
-  letter-spacing: 7px;
   justify-self: center;
   align-self: center;
 }
 
-.nav-middle-column h1 {
+.nav-middle-column a {
   display: inline-block;
+  text-decoration: none;
   margin: 0 2rem;
+  color: #000;
+  font-size: 55px;
+  letter-spacing: 7px;
 }
 
 .nav-middle-column img {
@@ -70,7 +76,6 @@
 /* Login/Logout Button + animation */
 
 .nav-login-logout-btn {
-
   position: absolute;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -84,6 +89,7 @@
   text-transform: uppercase;
   text-decoration: none;
   overflow: hidden;
+  /* display: none; */
 }
 
 /* Login Icon for responsive */
@@ -93,7 +99,7 @@
   transform: translate(-50%, -50%);
   color: #0a418f;
   font-size: 28px;
-  padding: .2rem .7rem;
+  padding: 0.2rem 0.7rem;
   overflow: hidden;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
@@ -102,7 +108,8 @@
   display: none;
 }
 
-.nav-login-logout-btn span:nth-child(1), .nav-login-logout-btn-icon span:nth-child(1) {
+.nav-login-logout-btn span:nth-child(1),
+.nav-login-logout-btn-icon span:nth-child(1) {
   position: absolute;
   top: 0;
   left: 0;
@@ -130,7 +137,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(2), .nav-login-logout-btn-icon span:nth-child(2) {
+.nav-login-logout-btn span:nth-child(2),
+.nav-login-logout-btn-icon span:nth-child(2) {
   position: absolute;
   top: 0;
   right: 0;
@@ -160,7 +168,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(3), .nav-login-logout-btn-icon span:nth-child(3) {
+.nav-login-logout-btn span:nth-child(3),
+.nav-login-logout-btn-icon span:nth-child(3) {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -188,7 +197,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(4), .nav-login-logout-btn-icon span:nth-child(4) {
+.nav-login-logout-btn span:nth-child(4),
+.nav-login-logout-btn-icon span:nth-child(4) {
   position: absolute;
   top: 0;
   left: 0;
@@ -219,6 +229,54 @@
 
 /* End Login/Logout Button + animation */
 
+/* Dropdown Menu / Hamburger Icon */
+.nav-hamburger-icon {
+  background: none;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  font-size: 30px;
+  transform: translateX(4rem);
+  -webkit-transform: translateX(4rem);
+  -moz-transform: translateX(4rem);
+  -ms-transform: translateX(4rem);
+  -o-transform: translateX(4rem);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  background: #fff;
+  width: 150px;
+  text-align: center;
+  transform: translateX(-35%);
+  -webkit-transform: translateX(-35%);
+  -moz-transform: translateX(-35%);
+  -ms-transform: translateX(-35%);
+  -o-transform: translateX(-35%);
+  z-index: 3;
+  visibility: hidden;
+}
+
+.nav-dropdown-menu.show {
+  visibility: visible;
+}
+
+.nav-dropdown-items {
+  text-decoration: none;
+  padding: 0.5rem 0;
+  font-size: 18px;
+  background: #fff;
+  color: #000;
+  border-bottom: 1px solid #dfe6e9;
+}
+
+.nav-dropdown-items:hover {
+  filter: brightness(0.7);
+  -webkit-filter: brightness(0.7);
+}
+
 /* Media Queries */
 
 /* Normal: 1171+ */
@@ -226,8 +284,9 @@
 /* 768 - 1170 */
 
 @media only screen and (min-width: 769px) and (max-width: 1170px) {
-  .nav-middle-column h1 {
+  .nav-middle-column a {
     margin: 0 1rem;
+    font-size: 50px;
   }
   .nav-login-logout-btn {
     transform: translate(-60%, -50%);
@@ -248,15 +307,16 @@
   .nav-middle-column {
     font-size: 28px;
   }
-  .nav-middle-column h1 {
+  .nav-middle-column a {
     margin: 0;
+    font-size: 45px;
   }
   .nav-middle-column img {
     width: 40px;
     height: 40px;
   }
   .nav-login-logout-btn {
-    padding: .7rem 1.2rem;
+    padding: 0.7rem 1.2rem;
     transform: translate(-60%, -50%);
     -webkit-transform: translate(-60%, -50%);
     -moz-transform: translate(-60%, -50%);
