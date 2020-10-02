@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import BusinessCard from "../../components/BuisnessCard";
+import BusinessCard from "../../components/BusinessCard"
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import API from "../../utils/API";
@@ -136,9 +136,9 @@ const BuisnessProfile = () => {
   return (
     <>
       <Nav name="Business Profile" />
-      {/* <BusinessCard
+      <BusinessCard
         business={businessState.business}
-      /> */}
+      />
       {businessState.reviews.length > 0
         ? businessState.reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
