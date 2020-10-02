@@ -80,12 +80,15 @@ function Login() {
       .then(() => {
         window.location = "/businessview";
       })
-      .catch((err) => {console.log("not in");console.log(err)});
+      .catch((err) => {
+        console.log("not in");
+        console.log(err);
+      });
   }, []);
 
   return (
     <>
-      <Nav name="Login/Signup " />
+      <Nav name="Login/Signup" />
       <div className="login-page">
         {/* Left Column / Login Box */}
         <div className="login-area">

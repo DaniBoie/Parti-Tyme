@@ -14,8 +14,6 @@ import Logo from "../../components/assets/images/logos.png";
 // Importing styling element
 import "./BuisnessProfile.css";
 
-
-
 const BuisnessProfile = () => {
 
   const [inputState, setInputState] = useState({
@@ -50,7 +48,7 @@ const BuisnessProfile = () => {
       hideButton: "hide",
     })
   }
-
+  
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
@@ -68,6 +66,7 @@ const BuisnessProfile = () => {
   });
 
   // HANDLING the inputs on the page.
+
   businessState.handleInputChange = event => {
     setBusinessState({ 
       ...businessState, 
@@ -97,7 +96,7 @@ const BuisnessProfile = () => {
               fee: dataComeback.fee,
               business: dataComeback,
               username: data[0].username,
-              reviews
+              reviews: [],
             })
           })
           .catch(err => console.log(err))
@@ -173,7 +172,6 @@ descprition: 'kkkk idkkdkdkd'
           </div>
 
           <div className="bpp-business-info-area">
-
             <button
               className="bpp-edit-button"
               disabled={false}
@@ -255,18 +253,16 @@ descprition: 'kkkk idkkdkdkd'
         </div>
 
         <div className="bpp-business-review">
-          {
-            businessState.reviews.length > 0 ? (
-              businessState.reviews.map(review => (
+          {businessState.reviews.length > 0
+            ? businessState.reviews.map((review) => (
                 <ReviewCard
                   key={businessState.business._id}
                   review={review}
                   business={businessState.business}
                   username={businessState.username}
                 />
-              )))
+              ))
             : null}
-          
         </div>
 
         <form action="">
