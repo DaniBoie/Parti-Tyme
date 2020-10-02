@@ -42,6 +42,15 @@ const BuisnessProfile = () => {
     })
   }
 
+  inputState.handleSaveButton = () => {
+    setInputState({
+      ...inputState,
+      disabled: true,
+      show: "",
+      hideButton: "hide",
+    })
+  }
+
 
   const [businessState, setBusinessState] = useState({
     name: "",
@@ -64,8 +73,8 @@ const BuisnessProfile = () => {
     setBusinessState({ 
       ...businessState, 
       [event.target.name]: event.target.value })
-      
-    console.log(businessState.name)
+
+    console.log(businessState.bio)
   }
 
 
@@ -102,9 +111,9 @@ const BuisnessProfile = () => {
 
   businessState.updateBusiness = () => {
     console.log(businessState.business)
-    let id = businessState.business._id
+    // let id = businessState.business._id   
 
-    API.updateBusiness(id, {
+    API.updateBusiness({
       name: businessState.name,
       bio: businessState.bio,
       img: businessState.img,
@@ -121,6 +130,17 @@ const BuisnessProfile = () => {
         // })
       })
       .catch(err => console.log(err))
+
+    const handleSaveButton = () => {
+      setInputState({
+        ...inputState,
+        disabled: true,
+        show: "",
+        hideButton: "hide",
+      })
+    }
+
+    handleSaveButton()
   }
 
   return (
@@ -153,7 +173,6 @@ const BuisnessProfile = () => {
             </button>
 
             <label>
-              {/* Name:{" "} */}
               <input
                 className={`bpp-input-for-business-name ${inputState.show}`}
                 type="text"
@@ -195,19 +214,23 @@ const BuisnessProfile = () => {
                 disabled={inputState.disabled}
               />
             </label>
-            <textarea
-              className={`${inputState.show}`}
-              name="bio"
-              rows="7"
-              disabled={inputState.disabled}
-              onChange={businessState.handleInputChange}
-            >
-              {businessState.bio}
-            </textarea>
+            <label>
+              <textarea
+                className={`${inputState.show}`}
+                name="bio"
+                rows="7"
+                disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
+                value={businessState.bio}
+              >
+                
+              </textarea>
+            </label>
 
             <button 
               className={`bpp-save-button ${inputState.hideButton}`}
               onClick={businessState.updateBusiness}
+
               >
               Save
             </button>
