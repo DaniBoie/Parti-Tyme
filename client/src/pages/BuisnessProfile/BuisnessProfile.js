@@ -216,8 +216,9 @@ const BuisnessProfile = () => {
                   business={businessState.business}
                   username={businessState.username}
                 />
-              ))
+              )))
             : null}
+          
         </div>
         <form action="">
           <label htmlFor="name">Change Name</label>
