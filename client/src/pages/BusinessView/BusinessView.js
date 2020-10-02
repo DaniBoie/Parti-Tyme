@@ -42,6 +42,15 @@ const BuisnessView = () => {
         });
       })
       .catch((err) => console.log(err));
+
+    API.getUser()
+      .then(() => {
+        //Do something w nav
+      })
+      .catch((err) => {
+        //Show login button
+       });
+
   }, []);
 
   const handleSearch = () => {

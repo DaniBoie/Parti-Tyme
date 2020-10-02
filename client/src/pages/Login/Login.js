@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import axios from 'axios'
 import API from "../../utils/API";
 import "./Login.css";
@@ -88,6 +88,14 @@ function Login() {
       alert("Unmatched Password");
     }
   };
+
+  useEffect(() => {
+    API.getUser()
+      .then(() => {
+        window.location = "/businessview";
+      })
+      .catch((err) => {console.log("not in");console.log(err)});
+  }, []);
 
   return (
     <>

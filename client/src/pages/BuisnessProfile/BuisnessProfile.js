@@ -18,29 +18,6 @@ import "./BuisnessProfile.css";
 
 const BuisnessProfile = () => {
 
-  const [inputState, setInputState] = useState({
-    disabled: true,
-    show: "",
-    hideButton: "hide",
-  })
-  inputState.handleEditButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: false,
-      show: "show",
-      hideButton: "",
-    })
-  }
-  inputState.handleCancelButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: true,
-      show: "",
-      hideButton: "hide",
-    })
-  }
-
-
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
@@ -239,8 +216,9 @@ const BuisnessProfile = () => {
                   business={businessState.business}
                   username={businessState.username}
                 />
-              ))
+              )))
             : null}
+          
         </div>
         <form action="">
           <label htmlFor="name">Change Name</label>
