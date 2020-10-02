@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Importing Styling Elements
@@ -7,15 +7,19 @@ import "./Nav.css";
 // Importing Logo Image
 import Logo from "../assets/images/logos.png";
 
-const Nav = () => {
-  const [showItems, setShowItems] = useState({
-    show: "",
-  });
+const Nav = (props) => {
 
-  function handleAccountBtn() {
-    if (showItems.show === "") setShowItems({ show: "show" });
-    else setShowItems({ show: "" });
-  }
+  // In Process function, for the purpose of making responsive website
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+  // const handleResize = () => {
+  //   setWindowWidth(window.innerWidth)
+  // }
+
+  // useEffect(() => {
+  //   window.addEventListener('resize', handleResize)
+  // }, [])
+  // End Process Function
 
   return (
     <>
@@ -25,38 +29,30 @@ const Nav = () => {
           <Link to="/">
             <img src={Logo} alt="Logo" />
           </Link>
+          {/* <div>{windowWidth}</div> */}
         </div>
 
         {/* Middle Column / Search Bar */}
-        <div className="nav-search-bar">
-          <input type="text" placeholder="Search ..." />
-          <button className="nav-search-button">
-            <i className="fa fa-search"></i>
-          </button>
+        <div className="nav-middle-column">
+          <h1>{props.name}</h1>
         </div>
 
         {/* Right column / Account */}
         <div className="nav-account">
-          <button className="nav-account-btn" onClick={handleAccountBtn}>
-            Your Account <i class="fas fa-caret-down"></i>
-          </button>
+          <Link to="/login" className="nav-login-logout-btn">
+            {/* <button className="nav-login-logout-btn">Login/Logout</button> */}
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login
+          </Link>
 
-          <div className={`nav-account-items ${showItems.show}`}>
-            <Link to="/userprofile" className="nav-account-link">
-              Profile
-            </Link>
-            <Link to="/businessprofile" className="nav-account-link">
-              Business Profile
-            </Link>
-            <Link to="/login" className="nav-account-link">
-              Login
-            </Link>
-            <Link to="/logout" className="nav-account-link">
-              Logout
-            </Link>
-          </div>
+
+
         </div>
       </nav>
+
     </>
   );
 };

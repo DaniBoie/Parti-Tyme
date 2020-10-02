@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import API from "../../utils/API";
 import "./Login.css";
 
+import Nav from '../../components/Nav'
+
 function Login() {
 
   const [accountState, setAccountState] = useState({
@@ -88,80 +90,83 @@ function Login() {
   };
 
   return (
-    <div className="login-page">
-      {/* Left Column / Login Box */}
-      <div className="login-area">
-        <form className="login-form">
-          <i className="fa fa-user"></i>
-          <h1>Login</h1>
-          <input
-            type="text"
-            name="loginUsername"
-            placeholder="User Name"
-            onChange={accountState.handleInputChange}
-          />
-          <input
-            type="password"
-            name="loginPassword"
-            placeholder="Password"
-            onChange={accountState.handleInputChange}
-          />
-          <a href="#">Forgot Password?</a>
+    <>
+      <Nav name="Login/Signup " />
+      <div className="login-page">
+        {/* Left Column / Login Box */}
+        <div className="login-area">
+          <form className="login-form">
+            <i className="fa fa-user"></i>
+            <h1>Login</h1>
+            <input
+              type="text"
+              name="loginUsername"
+              placeholder="User Name"
+              onChange={accountState.handleInputChange}
+            />
+            <input
+              type="password"
+              name="loginPassword"
+              placeholder="Password"
+              onChange={accountState.handleInputChange}
+            />
+            <a href="#">Forgot Password?</a>
 
-          <input
-            type="submit"
-            name="submit"
-            value="Login"
-            onClick={accountState.handleCheck}
-          />
-        </form>
+            <input
+              type="submit"
+              name="submit"
+              value="Login"
+              onClick={accountState.handleCheck}
+            />
+          </form>
+        </div>
+
+        <div className="most-valuable-or">OR</div>
+
+        <div className="signup-area">
+          <form className="signup-form">
+            <i className="fas fa-user-plus"></i>
+            <h1>Sign Up</h1>
+            <input
+              type="text"
+              name="userEmail"
+              placeholder="Your Email"
+              onChange={accountState.handleInputChange}
+            />
+            <input
+              type="text"
+              name="username"
+              placeholder="User Name"
+              onChange={accountState.handleInputChange}
+            />
+            <input
+              type="text"
+              name="realname"
+              placeholder="Your Name"
+              onChange={accountState.handleInputChange}
+            />
+            <input
+              type="password"
+              name="password1"
+              placeholder="Password"
+              onChange={accountState.handleInputChange}
+            />
+            <input
+              type="password"
+              name="password2"
+              placeholder="Confirm Password"
+              onChange={accountState.handleInputChange}
+            />
+            <input
+              type="submit"
+              name="submit"
+              value="Submit"
+              onClick={accountState.handleSignUp}
+            />
+          </form>
+        </div>
       </div>
-
-      <div className="most-valuable-or">OR</div>
-
-      <div className="signup-area">
-        <form className="signup-form">
-          <i className="fas fa-user-plus"></i>
-          <h1>Sign Up</h1>
-          <input
-            type="text"
-            name="userEmail"
-            placeholder="Your Email"
-            onChange={accountState.handleInputChange}
-          />
-          <input
-            type="text"
-            name="username"
-            placeholder="User Name"
-            onChange={accountState.handleInputChange}
-          />
-          <input
-            type="text"
-            name="realname"
-            placeholder="Your Name"
-            onChange={accountState.handleInputChange}
-          />
-          <input
-            type="password"
-            name="password1"
-            placeholder="Password"
-            onChange={accountState.handleInputChange}
-          />
-          <input
-            type="password"
-            name="password2"
-            placeholder="Confirm Password"
-            onChange={accountState.handleInputChange}
-          />
-          <input
-            type="submit"
-            name="submit"
-            value="Submit"
-            onClick={accountState.handleSignUp}
-          />
-        </form>
-      </div>
-    </div>
+    </>
   );
 }
 

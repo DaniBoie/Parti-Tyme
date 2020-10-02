@@ -4,8 +4,7 @@ import StarRating from '../StarRating/StarRating.js'
 import Logos from '../assets/images/logos.png'
 import { FaFacebookF, FaInstagram, FaPortrait } from 'react-icons/fa'
 
-const BuisnessCard = props => {
-
+const BuisnessCard = (props) => {
   return (
     <div className='Profile-Card'>
 
@@ -32,7 +31,7 @@ const BuisnessCard = props => {
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default BuisnessCard
+export default BuisnessCard;
