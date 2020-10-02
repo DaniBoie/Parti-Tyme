@@ -15,7 +15,7 @@
   padding: 1px 10px;
   min-height: 10vh;
   /* max-height: 10vh; */
-  background: #a8e6cf;
+  background: rgb(231, 66, 6);
   display: grid;
   grid-template-areas: "logo searchbar account";
   grid-template-columns: 2fr 8fr 2fr;

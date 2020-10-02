@@ -3,6 +3,7 @@ import "./UserProfile.css";
 import ProfileImage from "../../components/assets/images/business-2.jpg";
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
+import ReviewCard from "../../components/ReviewCard"
 const UserProfile = () => {
   // Function to show / hide input area when click on "Edit Profile" Button
   const [showInput, setShowInput] = useState({
@@ -192,7 +193,7 @@ const UserProfile = () => {
             Update Your Account <i class="fas fa-angle-double-up"></i>
           </button>
 
-          <h1>Welcome back {userState.username}</h1>
+          <h1 className = "Welcome">Welcome back {userState.username}</h1>
           <h3>{userState.email}</h3>
           <div>
             <h3>Reviews</h3>
@@ -206,9 +207,10 @@ const UserProfile = () => {
               //     </div>
               //   ))) : null
             }
+            {/* <ReviewCard /> */}
 
           </div>
-          <div>
+          {/* <div>
             <label>
               <i class="fas fa-camera"></i>
               <input
@@ -228,13 +230,39 @@ const UserProfile = () => {
               />
             </label>
             <button onClick={userState.handleClickBtn}>Submit</button>
-          </div>
-
+          </div> */}
+            <div>
+              <h>Review cards</h>
+            </div>
           {/* </ul> */}
 
-        </div>
+          <div className="Savebusiness">
+            <h3> Saved Businesses</h3>
 
-        <div className="changing-account-type-area">
+              <div className="BusinessCard">
+                
+                <div className="bvp-business-info-card">
+                  <div className="bvp-business-card-left">
+                    <img src="" alt="" />
+                  </div>
+                  <div className="bvp-business-card-right"></div>
+                </div>
+              
+             
+                <div className="bvp-business-info-card">
+                  <div className="bvp-business-card-left">
+                    <img src="" alt="" />
+                  </div>
+                  <div className="bvp-business-card-right"></div>
+                </div>
+            </div>
+            </div>
+
+
+
+          </div>
+
+          {/* <div className="changing-account-type-area">
           <h1>Welcome back {userState.username}</h1>
           <h3>{userState.email}</h3>
           <div>
@@ -250,7 +278,7 @@ const UserProfile = () => {
               //   ))) : null
             }
           </div>
-        
+          
           <div>
             <label>
               <i class="fas fa-camera"></i>
@@ -272,8 +300,12 @@ const UserProfile = () => {
             </label>
             <button onClick={userState.handleClickBtn}>Submit</button>
           </div>
+          <div>
+            <h4> Saved Businesses </h4>
+          </div>
         </div>
-      </div>
+      </div> */}
+        </div>
     </>
   );
 };
