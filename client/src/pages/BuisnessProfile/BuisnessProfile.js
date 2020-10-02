@@ -18,29 +18,6 @@ import "./BuisnessProfile.css";
 
 const BuisnessProfile = () => {
 
-  const [inputState, setInputState] = useState({
-    disabled: true,
-    show: "",
-    hideButton: "hide",
-  })
-  inputState.handleEditButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: false,
-      show: "show",
-      hideButton: "",
-    })
-  }
-  inputState.handleCancelButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: true,
-      show: "",
-      hideButton: "hide",
-    })
-  }
-
-
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
