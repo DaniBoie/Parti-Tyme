@@ -1,5 +1,5 @@
 .business-view-page {
-  height: 90vh;
+  height: 89vh;
   display: grid;
   grid-template-columns: 2fr 8fr;
   margin: 0 5rem;
@@ -7,29 +7,37 @@
 
 /* Left Column / Filter Column  */
 
-.filter-column {
-  background: #b2bec3;
-  border-right: 1px solid #333;
-  padding: 0 2rem;
-}
-
-.bvp-dropdown-category-btn {
+.bvp-dropdown-categories-list-item form select {
   display: inline-block;
   width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  margin: 1rem 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  padding: .5rem 0;
+  margin: 1rem 0 0 0;
+  padding: 0.5rem;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.bvp-dropdown-categories-list-item form select:hover {
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+}
+
+.filter-column {
+  background: #fafcc2;
+  border-right: 1px solid #333;
+  border-left: 1px solid #333;
+  padding: 0 2rem;
 }
 
 .filter-column h2 {
   text-align: center;
-  margin: 1rem 0;
+  margin: 2rem 0;
+  letter-spacing: 2px;
+  font-size: 34px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 0.5rem 0;
-  width: 100%;
-  border: 1px solid #333;
+  text-decoration: underline;
 }
 
 .filter-items {
@@ -47,10 +55,6 @@
   text-align: left;
 }
 
-.filter-list {
-  margin-top: 1rem;
-}
-
 .filter-items input {
   position: absolute;
   opacity: 0;
@@ -65,6 +69,7 @@
   left: 0;
   height: 25px;
   width: 25px;
+  border: 1px solid #333;
   background-color: #eee;
 }
 
@@ -73,7 +78,7 @@
 }
 
 .filter-items input:checked~.checkmark {
-  background-color: #2196f3;
+  background-color: #ffffff;
 }
 
 .checkmark:after {
@@ -91,7 +96,7 @@
   top: 5px;
   width: 5px;
   height: 10px;
-  border: solid white;
+  border: 1px solid #333;
   border-width: 0 3px 3px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -102,14 +107,116 @@
   padding: 0.5rem 1rem;
   font-size: 16px;
   font-family: sans-serif;
-  margin: .2rem;
+  margin: 0.2rem;
+  background: var(--button-color);
+  color: #fff;
+  font-weight: 500;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+
+.filter-column-buttons button:hover {
+  background: #0f1923;
+  border: 1px solid var(--button-color);
 }
 
 /* Right Column / Business Column  */
 
 .bvp-business-column {
   padding: 1rem;
+  max-height: 89vh;
+  border-right: 1px solid #333;
+  background: #fff6f6;
+  overflow: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  background: #dfe6e9;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 250px;
+  column-gap: 1rem;
+  row-gap: 2.5rem;
+}
+
+.bvp-business-info-card {
+  padding: 1rem;
+  border: 1px solid #333;
+  height: 250px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.bvp-business-card-left {
+  align-self: center;
+}
+
+.bvp-business-card-left img {
+  border: 1px solid #333;
+  width: 90%;
+}
+
+.bvp-business-card-right {
+  align-self: center;
+  height: 90%;
+  border: 1px solid #333;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 1170px) {
+  .bvp-business-column {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .filter-column {
+    border: 1px solid #333;
+    border-top: none;
+  }
+  .business-view-page {
+    grid-template-columns: 1fr;
+  }
+  .bvp-dropdown-categories-list-item {
+    text-align: center;
+  }
+  .bvp-dropdown-categories-list-item form select {
+    width: 50%;
+  }
+  .filter-column h2 {
+    margin: 0;
+    font-size: 28px;
+  }
+  .filter-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .filter-column-buttons {
+    text-align: center;
+  }
+  .filter-column-buttons button {
+    margin: 0.5rem 1rem 1rem 1rem;
+  }
+  .bvp-business-column {
+    border: 1px solid #333;
+    border-top: none;
+  }
+  .filter-items {
+    padding-left: 25px;
+    margin-bottom: .5rem;
+    font-size: 18px;
+  }
+  .checkmark {
+    height: 20px;
+    width: 20px;
+  }
+  .filter-items .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 9px;
+  }
 }

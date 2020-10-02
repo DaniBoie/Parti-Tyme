@@ -9,14 +9,14 @@ import Login from './pages/Login'
 import UserProfile from './pages/UserProfile'
 
 // Import Nav
-import Nav from './components/Nav'
+// import Nav from './components/Nav'
 
 const App = () => {
   return (
     <>
       <Router>
         <div>
-          <Nav />
+          {/* <Nav /> */}
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/businessprofile" component={BusinessProfile} />

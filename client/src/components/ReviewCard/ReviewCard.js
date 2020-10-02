@@ -1,31 +1,31 @@
+
 import React from 'react'
 import './ReviewCard.css'
 import Logos from '../assets/images/logos.png'
 import StarRating from '../StarRating/StarRating'
 
-const ReviewCard = () => {
-
+const ReviewCard = (props) => {
   return (
+
     <div className='Review-Card'>
 
       <div className='profile-sidebar'>
-        <div className='img'>
-          <img className='profile-image' src={Logos} alt='profile pic' />
-        </div>
-        <h3 className='profile-name'>Karen</h3>
+        <img className='profile-image' src={Logos} alt='profile pic' />
+        {/* <div className='name'>
+          <h3>Karen Sanderbee</h3>
+        </div> */}
+        <h3 className='profile-name'>{props.username}</h3>
       </div>
 
       <div className='profile-main'>
-        <div className='stars'><StarRating /></div>
-        <p className='subject'>Loud Noises</p>
-        <p className='profile-body'>
-          Way to loud and did not provide a receipt at the end of the night.
-          The manaer was rude and completly out of line.
-        </p>
+        <div className='stars'><StarRating review={props.review.rating}/></div>
+        <div className='subject'>{props.business.name}</div>
+        <div className='content'>
+          {props.review.text}
+        </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default ReviewCard
+export default ReviewCard;

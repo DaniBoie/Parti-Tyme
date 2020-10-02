@@ -27,13 +27,18 @@ const API = {
 
   // **BUISNESS API CALLS**
   createBusiness: (data) => axios.post(`/api/buisness`, data),
-  updateBusiness: (data) => axios.put("/api/buisness", data),
+  updateBusiness: (data) => axios.put("/api/buisness", data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('user')}`
+    }
+  }),
   searchBusinessName: (searchTerm) =>
     axios.get(`/api/buisness/filter/${searchTerm}`),
   searchBusinessCategory: (category) =>
     axios.get(`/api/buisness/search/${category}`),
   getAllBusiness: () => axios.get('/api/buisness'),
-  getOneBusiness: (id) => axios.get(`/api/business/${id}`),
+  getOneBusiness: (id) => 
+    axios.get(`/api/business/${id}`),
   // !!! USE WITH EXTREME CAUTION !!!
   nukeBusiness: () => axios.delete("/api/buisness"),
 
@@ -48,18 +53,17 @@ const API = {
   },
 
   filterSubcategory: (subCategory, oldArray) => {
-    let newArray = oldArray.filter(
-      (business) => business.subCategory === subCategory
-    );
+    let newArray = oldArray.filter( (business) => business.subCategory === subCategory);
     return newArray;
   },
 
   filterCategory: (category, oldArray) => {
-    let newArray = oldArray.filter(
-      (business) => business.buisness_type === category
-    );
-    console.log(oldArray)
+    if(category === 'All'){
+      return oldArray
+    } else {
+    let newArray = oldArray.filter( (business) => business.buisness_type === category );
     return newArray
+    }
   }
 
 };
