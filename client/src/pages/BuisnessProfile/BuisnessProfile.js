@@ -38,11 +38,14 @@ const BuisnessProfile = () => {
     });
   };
 
+  // Function for edit button
   const [inputState, setInputState] = useState({
     disabled: true,
     show: "",
     hideButton: "hide",
   });
+
+  // Function
   inputState.handleEditButton = () => {
     setInputState({
       ...inputState,
@@ -148,7 +151,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Location: LA
+              Location:
               <input
                 className={`${inputState.show}`}
                 type="text"
