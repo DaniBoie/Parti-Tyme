@@ -10,15 +10,15 @@ const ReviewCard = (props) => {
     <div className='Review-Card'>
 
       <div className='profile-sidebar'>
-        <img className='profile-image' src={Logos} alt='profile pic' />
-        {/* <div className='name'>
+        <img className='profile-image' src={props.review.img} alt='profile pic' />
+        <div className='name'>
           <h3>Karen Sanderbee</h3>
-        </div> */}
+        </div>
         <h3 className='profile-name'>{props.username}</h3>
       </div>
 
       <div className='profile-main'>
-        <div className='stars'><StarRating review={props.review.rating}/></div>
+        <div className='stars'><StarRating review={props.review.rating} /></div>
         <div className='subject'>{props.business.name}</div>
         <div className='content'>
           {props.review.text}

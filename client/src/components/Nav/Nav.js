@@ -71,6 +71,7 @@ const Nav = (props) => {
       });
   }, []);
 
+
   return (
     <nav className="nav-bar">
       {/* Left column / Logo */}
