@@ -74,8 +74,8 @@ const BuisnessProfile = () => {
       ...businessState,
       [event.target.name]: event.target.value,
     });
-    console.log(businessState.rating)
-    console.log(businessState.topic);
+    // console.log(businessState.rating)
+    // console.log(businessState.topic);
   };
 
   let businessId;
@@ -119,7 +119,7 @@ const BuisnessProfile = () => {
     axios
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         setBusinessState({ ...businessState, business: data,
         reviews: data.reviews });
       })
@@ -163,7 +163,7 @@ const BuisnessProfile = () => {
   // Handle Send Button
   const reviewSendButton = event => {
     event.preventDefault()
-    console.log(businessState.topic);
+    // console.log(businessState.topic);
 
     // businessId = localStorage.getItem("user")
     axios.post('/api/review', {
@@ -190,19 +190,13 @@ const BuisnessProfile = () => {
     descprition: "kkkk idkkdkdkd",
   };
 
-  const btn = () => {
-    console.log(businessState.business)
-  }
+  // const btn = () => {
+  //   console.log(businessState.business)
+  // }
 
   return (
     <>
       <Nav />
-      {/* <BusinessCard business={business} />
-      {businessState.reviews.length > 0
-        ? businessState.reviews.map((review) => (
-            <ReviewCard key={review._id} review={review} />
-          ))
-        : null} */}
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
@@ -353,7 +347,7 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
-      <button onClick={btn}>submit</button>
+      {/* <button onClick={btn}>submit</button> */}
     </>
   );
 };

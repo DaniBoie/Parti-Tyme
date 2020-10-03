@@ -50,6 +50,6 @@ const BuisnessData = new Schema(
   { timestamps: true }
 );
 
-BuisnessData.plugin(require("passport-local-mongoose"));
+// BuisnessData.plugin(require("passport-local-mongoose"));
 
 module.exports = model("BuisnessData", BuisnessData);

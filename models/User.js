@@ -5,6 +5,12 @@ const User = new Schema({
     type: String,
     required: true
   },
+  userLocation: {
+    type: String
+  },
+  userBio: {
+    type: String
+  },
   username: {
     type: String,
     required: true

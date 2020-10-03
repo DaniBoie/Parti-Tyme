@@ -65,13 +65,6 @@ const UserProfile = () => {
       });
       console.log(userState.Business)
 
-      // FIX BUSINESS ACCOUNT BTN
-      // if (userState.Buisness === undefined){
-      //   setFormState({ ...formState, businessBtn: "" })
-        
-      // } else {
-      //   setFormState({ ...formState, businessBtn: "hide" })
-      // }
   }, []);
 
   const handleSaveBtn = () => {
@@ -279,6 +272,7 @@ const UserProfile = () => {
                   name="selectValue"
                   onChange={userState.handleInputChange}
                 >
+                  <option>...</option>
                   <option value="Food">Food</option>
                   <option value="Music">Music</option>
                   <option value="Rentals">Rentals</option>
@@ -316,29 +310,6 @@ const UserProfile = () => {
               </a>
             </form>
           </div>
-          {/* <div>
-            <label>
-              <i class="fas fa-camera"></i>
-              <input
-                type="submit"
-                ame="buisness"
-                onChange={userState.handleInputChange}
-              />
-              <input
-                type="submit"
-                name="rating"
-                onChange={userState.handleInputChange}
-              />
-              <input
-                type="submit"
-                name="text"
-                onChange={userState.handleInputChange}
-              />
-            </label>
-            <button onClick={userState.handleClickBtn}>Submit</button>
-          </div> */}
-
-          {/* </ul> */}
 
           <div className="changing-account-type-area">
             <h1>Welcome back {userState.username}</h1>
