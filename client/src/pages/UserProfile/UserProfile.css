@@ -205,9 +205,6 @@
   border: none;
   cursor: pointer;
 }
-.update-account-form.show {
-  /* display: none; */
-}
 
 .update-account-form {
   position: absolute;

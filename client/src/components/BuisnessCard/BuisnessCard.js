@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./BusinessCard.css";
 import StarRating from "../StarRating/StarRating.js";
+import StarRatings from "react-star-ratings";
 
 import ExampleImage from "../../components/assets/images/business-2.jpg";
 
@@ -18,7 +19,16 @@ const BuisnessCard = (props) => {
           <img src={ExampleImage} alt="Business Profile Picture" />
         </div>
 
-        <StarRating />
+        {/* <StarRating /> */}
+        <StarRatings
+          rating={3}
+          starRatedColor="yellow"
+          // changeRating={this.changeRating}
+          numberOfStars={5}
+          name="rating"
+          starDimension="20px"
+          starSpacing="5px"
+        />
       </div>
 
       {/* Right Column / Business Basic Info */}
