@@ -120,7 +120,8 @@ const BuisnessProfile = () => {
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {
         console.log(data);
-        setBusinessState({ ...businessState, business: data });
+        setBusinessState({ ...businessState, business: data,
+        reviews: data.reviews });
       })
       .catch((error) => console.log(error));
   }, []);
@@ -164,13 +165,18 @@ const BuisnessProfile = () => {
     event.preventDefault()
     console.log(businessState.topic);
 
-    API.createReview({
+    // businessId = localStorage.getItem("user")
+    axios.post('/api/review', {
       topic: businessState.topic,
       text: businessState.text,
       rating: businessState.rating,
-      buisness: businessId,
-      user: userId
-    })
+      buisness: localStorage.getItem('pickBusiness'),
+    }, 
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
+      })
       .then((data) => {
         console.log(data);
       })
@@ -183,6 +189,10 @@ const BuisnessProfile = () => {
     name: "Mastros",
     descprition: "kkkk idkkdkdkd",
   };
+
+  const btn = () => {
+    console.log(businessState.business)
+  }
 
   return (
     <>
@@ -287,24 +297,24 @@ const BuisnessProfile = () => {
 
         <div className="bpp-business-review">
           <div className="bpp-business-review-left">
-            <StarRatings
+            {/* <StarRatings
               className="bpp-StarRatings"
               starHoverColor="yellow"
               starRatedColor="red"
               rating={3.5}
               starDimension="40px"
               starSpacing="15px"
-            />
-            {/* {businessState.business.reviews.length > 0
-              ? businessState.business.reviews.map((review) => (
+            /> */}
+            {businessState.reviews.length > 0
+              ? businessState.reviews.map((review) => (
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
-                    business={businessState.business.business}
+                    business={businessState.business}
                     username={businessState.business.username}
                   />
                 ))
-              : null} */}
+              : null}
           </div>
 
           <div className="bpp-business-review-right">
@@ -343,6 +353,7 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
+      <button onClick={btn}>submit</button>
     </>
   );
 };
