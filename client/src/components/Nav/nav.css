@@ -595,6 +595,10 @@
   visibility: visible;
 }
 
+.nav-dropdown-menu button {
+  border: none;
+}
+
 .nav-dropdown-items {
   text-decoration: none;
   padding: 0.5rem 0;
@@ -665,5 +669,8 @@
   }
   .nav-login-logout-btn-icon {
     display: inline-block;
+  }
+  .nav-login-logout-btn-icon.hideExistence {
+    display: none;
   }
 }
