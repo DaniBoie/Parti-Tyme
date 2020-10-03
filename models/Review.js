@@ -1,25 +1,31 @@
-const { model, Schema } = require('mongoose')
+const { model, Schema } = require("mongoose");
 
-const Review = new Schema({
-  text: {
-    type: String,
-    required: true
+const Review = new Schema(
+  {
+    topic: {
+      type: String,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+    rating: {
+      type: Number,
+      required: true,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    buisness: {
+      type: Schema.Types.ObjectId,
+      ref: "BuisnessData",
+    },
   },
-  rating: {
-    type: Number,
-    required: true,
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  buisness: {
-    type: Schema.Types.ObjectId,
-    ref: 'BuisnessData'
-  }
+  { timestamps: true }
+);
 
-}, { timestamps: true })
+Review.plugin(require("passport-local-mongoose"));
 
-Review.plugin(require('passport-local-mongoose'))
-
-module.exports = model('Review', Review)
+module.exports = model("Review", Review);
