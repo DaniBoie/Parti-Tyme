@@ -17,7 +17,7 @@ const ReviewCard = props => {
       <div className='profile-main'>
         <div className='stars'>          
           <StarRatings
-            rating= {props.review.rating}
+            rating= {props.review.rating / 2}
             starRatedColor="yellow"
             starDimension="40px"
             starSpacing="15px"
