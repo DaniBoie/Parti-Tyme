@@ -28,6 +28,11 @@ const UserProfile = () => {
     instaChange: "",
     facebookChange: "",
     selectValue: "",
+    businessName: "",
+    businessBio: "",
+    businessImage: "",
+    businessFee: 0,
+    businessLocation: "",
   });
 
   userState.handleInputChange = (event) => {
@@ -35,9 +40,11 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
+    let dataComeback = ""
     API.getUser()
       .then(({ data }) => {
-        let dataComeback = data[0];
+        dataComeback = data[0];
+        console.log(dataComeback)
 
         setUserState({
           ...userState,
@@ -56,6 +63,15 @@ const UserProfile = () => {
         window.location = "/businessview";
         console.log(err);
       });
+      console.log(userState.Business)
+
+      // FIX BUSINESS ACCOUNT BTN
+      // if (userState.Buisness === undefined){
+      //   setFormState({ ...formState, businessBtn: "" })
+        
+      // } else {
+      //   setFormState({ ...formState, businessBtn: "hide" })
+      // }
   }, []);
 
   const handleSaveBtn = () => {
@@ -92,7 +108,9 @@ const UserProfile = () => {
   };
 
   // Function to Hide and Show Business Form
-  const [formState, setFormState] = useState({ show: "show" });
+  const [formState, setFormState] = useState({ show: "show",
+  businessBtn: "",
+});
 
   // Update Account Button, to make the form appear
   const handleUpdateAccountButton = () => {
@@ -113,11 +131,12 @@ const UserProfile = () => {
         userState.businessImage ||
         "https://upload.wikimedia.org/wikipedia/commons/5/50/Unisphere_Flushing_Meadows_Queens.jpg",
       buisness_type: userState.selectValue,
-      fee: userState.busiessFee,
+      fee: userState.businessFee,
       location: userState.busiessLocation,
     })
-      .then(() => {
+      .then((data) => {
         setFormState({ ...formState, show: "show" });
+        console.log(data)
       })
       .catch((error) => console.log(error));
   };
@@ -218,7 +237,7 @@ const UserProfile = () => {
         <div className="changing-account-type-area">
           {/* Update Account Button */}
           <button
-            className="upp-update-account-btn"
+            className={`upp-update-account-btn ${formState.businessBtn}`}
             onClick={handleUpdateAccountButton}
           >
             Update Your Account <i class="fas fa-angle-double-up"></i>
