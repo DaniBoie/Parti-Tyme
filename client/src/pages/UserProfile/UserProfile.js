@@ -75,16 +75,16 @@ const UserProfile = () => {
         console.log("API SETTINGS ON SAVE BTN", dataComeback);
         userSettings = dataComeback.Settings;
 
-        console.log("Inputted Settings ", settings);
-        if (userSettings === (undefined || null)) {
+        console.log("Inputted Settings ", userSettings);
+        if (userSettings !== undefined) {
+          API.updateSettings(settings)
+            .then((data) => console.log("UPDATED SETTINGS", data))
+            .catch((err) => console.log(err));
+        } else {
           API.createSettings(settings)
             .then((data) => {
               console.log("Created Settings", data);
             })
-            .catch((err) => console.log(err));
-        } else {
-          API.updateSettings(settings)
-            .then((data) => console.log("UPDATED SETTINGS", data))
             .catch((err) => console.log(err));
         }
       })
