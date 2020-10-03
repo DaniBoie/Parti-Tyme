@@ -41,15 +41,6 @@ const BuisnessProfile = () => {
     });
   };
 
-  inputState.handleSaveButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: true,
-      show: "",
-      hideButton: "hide",
-    });
-  };
-
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
@@ -62,10 +53,17 @@ const BuisnessProfile = () => {
     business: {},
     topic: "",
     text: "",
-    rating: 3,
+    rating: 0,
     username: "",
     reviews: [],
   });
+
+  businessState.changeRating = (newRating, rating) => {
+    setBusinessState({
+      ...businessState,
+      rating: newRating,
+    });
+  };
 
   // HANDLING the inputs on the page.
 
@@ -74,40 +72,39 @@ const BuisnessProfile = () => {
       ...businessState,
       [event.target.name]: event.target.value,
     });
-
-    console.log(businessState.bio);
+    console.log(businessState.rating);
+    console.log(businessState.topic);
   };
 
   let businessId;
+  let userId;
 
   useEffect(() => {
     // let dataComeback;
-    // API.getUser()
-    //   .then(({ data }) => {
-    //     dataComeback = data[0].Buisness;
-    //     // console.log(dataComeback)
-    //     API.findBusinessReviews(dataComeback._id)
-    //       .then(({ data: reviews }) => {
-    //         // console.log(data)
-    //         setBusinessState({
-    //           ...businessState,
-    //           name: dataComeback.name,
-    //           bio: dataComeback.bio,
-    //           img: dataComeback.img,
-    //           instagram: dataComeback.instagram,
-    //           website: dataComeback.website,
-    //           facebook: dataComeback.facebook,
-    //           fee: dataComeback.fee,
-    //           business: dataComeback,
-    //           username: data[0].username,
-    //           reviews: [],
-    //         });
-    //       })
-    //       .catch((err) => console.log(err));
-    //   })
-    //   .catch((err) => console.log(err));
 
     businessId = localStorage.getItem("pickBusiness");
+
+    API.getUser()
+      .then(({ data }) => {
+        console.log(data);
+        userId = data[0]._id;
+        console.log(userId);
+        let userBusinessId = data[0].Buisness._id || "";
+        console.log(userBusinessId);
+
+        if (userBusinessId === businessId) {
+          setInputState({
+            ...inputState,
+            disabled: false,
+          });
+        } else {
+          setInputState({
+            ...inputState,
+            disabled: true,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
 
     if (businessId === null) {
       window.location = "/businessview";
@@ -142,10 +139,6 @@ const BuisnessProfile = () => {
     })
       .then(({ data }) => {
         console.log(data);
-        // setBusinessState({
-        //   ...businessState,
-        //   nam
-        // })
       })
       .catch((err) => console.log(err));
 
@@ -162,14 +155,16 @@ const BuisnessProfile = () => {
   };
 
   // Handle Send Button
-  const reviewSendButton = () => {
+  const reviewSendButton = (event) => {
+    event.preventDefault();
     console.log(businessState.topic);
 
     API.createReview({
       topic: businessState.topic,
       text: businessState.text,
       rating: businessState.rating,
-      business: businessId,
+      buisness: businessId,
+      user: userId,
     })
       .then((data) => {
         console.log(data);
@@ -210,7 +205,7 @@ const BuisnessProfile = () => {
           <div className="bpp-business-info-area">
             <button
               className="bpp-edit-button"
-              disabled={false}
+              disabled={inputState.disabled}
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
@@ -316,9 +311,12 @@ const BuisnessProfile = () => {
               className="bpp-StarRatings"
               starHoverColor="yellow"
               starRatedColor="red"
-              rating={3.5}
+              rating={businessState.rating}
+              changeRating={businessState.changeRating}
               starDimension="20px"
               starSpacing="5px"
+              name="rating"
+              onChange={businessState.handleInputChange}
             />
             <div className="bpp-business-review-right-topic">
               <form>
@@ -339,30 +337,6 @@ const BuisnessProfile = () => {
             <button onClick={reviewSendButton}>Send</button>
           </div>
         </div>
-
-        {/* <form action="">
-          <label htmlFor="name">Change Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={businessState.handleInputChange}
-          />
-          <label htmlFor="bio">Change Bio</label>
-          <textarea
-            name="bio"
-            cols="30"
-            rows="10"
-            onChange={businessState.handleInputChange}
-          ></textarea>
-          <label htmlFor="">Change Fee</label>
-          <input
-            type="text"
-            name="fee"
-            onChange={businessState.handleInputChange}
-          />
-        </form>
-        <button onClick={businessState.updateBusiness}>Submit</button> */}
-        {/* <button onClick={handleTesting}>Test</button> */}
       </div>
     </>
   );

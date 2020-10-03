@@ -90,7 +90,6 @@
   text-transform: uppercase;
   text-decoration: none;
   overflow: hidden;
-  /* display: none; */
 }
 
 /* Login Icon for responsive */
@@ -109,7 +108,8 @@
   display: none;
 }
 
-.nav-login-logout-btn span:nth-child(1), .nav-login-logout-btn-icon span:nth-child(1) {
+.nav-login-logout-btn span:nth-child(1),
+.nav-login-logout-btn-icon span:nth-child(1) {
   position: absolute;
   top: 0;
   left: 0;
@@ -137,7 +137,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(2), .nav-login-logout-btn-icon span:nth-child(2) {
+.nav-login-logout-btn span:nth-child(2),
+.nav-login-logout-btn-icon span:nth-child(2) {
   position: absolute;
   top: 0;
   right: 0;
@@ -166,7 +167,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(3), .nav-login-logout-btn-icon span:nth-child(3) {
+.nav-login-logout-btn span:nth-child(3),
+.nav-login-logout-btn-icon span:nth-child(3) {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -194,7 +196,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(4), .nav-login-logout-btn-icon span:nth-child(4) {
+.nav-login-logout-btn span:nth-child(4),
+.nav-login-logout-btn-icon span:nth-child(4) {
   position: absolute;
   top: 0;
   left: 0;
@@ -254,6 +257,11 @@
   -o-transform: translateX(-35%);
   z-index: 3;
   visibility: hidden;
+}
+
+.nav-dropdown-menu button {
+  border: none;
+  cursor: pointer;
 }
 
 .nav-dropdown-menu.show {
@@ -330,5 +338,8 @@
   }
   .nav-login-logout-btn-icon {
     display: inline-block;
+  }
+  .nav-login-logout-btn-icon.hideExistence {
+    display: none;
   }
 }

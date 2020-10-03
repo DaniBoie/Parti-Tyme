@@ -140,29 +140,6 @@
   row-gap: 2.5rem;
 }
 
-.bvp-business-info-card {
-  padding: 1rem;
-  border: 1px solid #333;
-  height: 250px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.bvp-business-card-left {
-  align-self: center;
-}
-
-.bvp-business-card-left img {
-  border: 1px solid #333;
-  width: 90%;
-}
-
-.bvp-business-card-right {
-  align-self: center;
-  height: 90%;
-  border: 1px solid #333;
-}
-
 /* Media Queries */
 
 @media only screen and (max-width: 1170px) {

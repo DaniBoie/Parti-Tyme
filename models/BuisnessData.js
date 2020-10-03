@@ -10,20 +10,20 @@ const BuisnessData = new Schema(
     bio: {
       type: String,
     },
+    slogan: {
+      type: String,
+    },
     img: {
       type: String,
     },
     instagram: {
       type: String,
-      unique: true,
     },
     website: {
       type: String,
-      unique: true,
     },
     facebook: {
       type: String,
-      unique: true,
     },
     buisness_type: {
       type: String,
@@ -49,7 +49,5 @@ const BuisnessData = new Schema(
   },
   { timestamps: true }
 );
-
-BuisnessData.plugin(require("passport-local-mongoose"));
 
 module.exports = model("BuisnessData", BuisnessData);
