@@ -171,12 +171,6 @@ const BuisnessView = () => {
                 <BusinessCard business={business} />
               ))
             : null}
-          {businessState.businessRender.length > 0
-            ? businessState.businessRender.map((business) => (
-                <BusinessCard business={business} />
-              ))
-            : null}
-
           {/* <div className="bvp-business-info-card">
             <div className="bvp-business-card-left">
               <img src={ExampleImage} alt="" />

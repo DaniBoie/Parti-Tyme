@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 // Importing Styling Elements
-import "./nav.css";
+import "./Nav.css";
 
 // Importing Logo Image
 import Balloon from "../assets/images/balloon.png";

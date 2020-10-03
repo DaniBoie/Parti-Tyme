@@ -15,15 +15,12 @@ const BuisnessData = new Schema(
     },
     instagram: {
       type: String,
-      unique: true,
     },
     website: {
       type: String,
-      unique: true,
     },
     facebook: {
       type: String,
-      unique: true,
     },
     buisness_type: {
       type: String,
