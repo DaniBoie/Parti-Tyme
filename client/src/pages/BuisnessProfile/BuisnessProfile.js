@@ -41,14 +41,6 @@ const BuisnessProfile = () => {
     });
   };
 
-  inputState.handleSaveButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: true,
-      show: "",
-      hideButton: "hide",
-    });
-  };
 
   const [businessState, setBusinessState] = useState({
     name: "",
@@ -141,11 +133,7 @@ const BuisnessProfile = () => {
       fee: businessState.fee,
     })
       .then(({ data }) => {
-        console.log(data);
-        // setBusinessState({
-        //   ...businessState,
-        //   nam
-        // })
+        console.log(data)
       })
       .catch((err) => console.log(err));
 

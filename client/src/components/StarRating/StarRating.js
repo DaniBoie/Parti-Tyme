@@ -13,11 +13,10 @@ const StarRating = () => {
 
         return (
           <label>
-            <input
-              type="radio"
-              name="rating"
-              value={ratingValue}
-              onClick={() => setrating(ratingValue)}
+            <input type="radio"
+            name="rating"
+            value={props.review}
+            onClick={() => setrating(ratingValue)}
             />
             <FaStar
               className="star"
