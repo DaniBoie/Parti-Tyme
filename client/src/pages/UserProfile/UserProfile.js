@@ -51,7 +51,9 @@ const UserProfile = () => {
 
         console.log("API DATA ON STARTUP", dataComeback);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        window.location = "/businessview";
+        console.log(err)});
   }, []);
 
   const handleSaveBtn = () => {
@@ -206,7 +208,6 @@ const UserProfile = () => {
               //     </div>
               //   ))) : null
             }
-
           </div>
           <div>
             <label>
@@ -231,7 +232,6 @@ const UserProfile = () => {
           </div>
 
           {/* </ul> */}
-
         </div>
 
         <div className="changing-account-type-area">

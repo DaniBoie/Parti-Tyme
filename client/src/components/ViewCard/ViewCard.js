@@ -1,14 +1,10 @@
-import React from 'react'
-import './Card.css'
-
+import React from "react";
+import "./Card.css";
 
 const Card = (props) => {
-
   return (
     <>
-
       <div className="business-card">
-
         <div className="business-title">
           <h3>{props.business.name}</h3>
         </div>
@@ -47,9 +43,8 @@ const Card = (props) => {
           <span className="rating-circles"></span>
         </div>
       </div>
-
     </>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

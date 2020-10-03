@@ -116,6 +116,7 @@
   background: none;
   color: #000;
   line-height: 2rem;
+  resize: none;
 }
 
 .bpp-business-info-area input.show,
@@ -177,4 +178,35 @@
   min-height: 50vh;
   margin-bottom: 1rem;
   background: var(--pink-bg);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.bpp-business-review-left {
+  background: #dfe6e9;
+}
+
+.bpp-business-review-right {
+  background: #b2bec3;
+}
+
+/* -------------------- */
+.bpp-business-review-right-image img {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+}
+
+.bpp-business-review-right-image p {
+  display: inline-block;
+}
+
+.bpp-business-review-right-topic form input {
+  display: block;
+  width: 80%;
+}
+
+.bpp-business-review-right-topic form textarea {
+  display: block;
+  width: 80%;
 }

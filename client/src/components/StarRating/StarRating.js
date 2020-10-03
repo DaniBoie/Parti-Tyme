@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './StarRating.css'
 import { FaStar } from 'react-icons/fa'
 import './StarRating.css'
 
@@ -8,8 +9,8 @@ const StarRating = props => {
 
   return (
     <div>
-      {[...Array(5)].map((star, i) =>{
-        const ratingValue = i + 1
+      {[...Array(5)].map((star, i) => {
+        const ratingValue = i + 1;
 
         return (
           <label>
@@ -18,17 +19,18 @@ const StarRating = props => {
             value={props.review}
             onClick={() => setrating(ratingValue)}
             />
-            <FaStar className="star"
-            color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9" } 
-            size={20}
-            onMouseEnter={() => setHover(ratingValue)}
-            onMouseLeave={() => setHover(null)}
+            <FaStar
+              className="star"
+              color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+              size={20}
+              onMouseEnter={() => setHover(ratingValue)}
+              onMouseLeave={() => setHover(null)}
             />
           </label>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default StarRating
+export default StarRating;

@@ -1,45 +1,56 @@
 import React from "react";
 import "./BusinessCard.css";
 import StarRating from "../StarRating/StarRating.js";
-// import Logos from '../assets/images/logos.png'
+import Logos from "../assets/images/logos.png";
 import { FaFacebookF, FaInstagram, FaPortrait } from "react-icons/fa";
-// import API from '../../utils/API'
-
-// import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
-
-// import StarRatings from './react-star-ratings';
 
 const BuisnessCard = (props) => {
+  function handleContactButton() {
+    localStorage.setItem("pickBusiness", `${props.business._id}`);
+  }
+
   return (
-    <div className="profile-card">
-      <div className="card-header">
-        <div className="pic">
-          <img src={props.business.img} alt="Portrait" />
-        </div>
-        {/* <div className='name'>Banda CashMax</div>
-        <div className='desc'>Authentic Mexican music for all your family to enjoy</div>
-        <StarRating />
-        <a href='#' className='contact-btn'>Parti Tyme</a> */}
+    <div className="Profile-Card">
+      <div className="header">
+        <img
+          className="profile-image"
+          src={props.business.img}
+          alt="profile pic"
+        />
+        <div className="title">{props.business.name}</div>
       </div>
-      <div className="card-footer">
+
+      <div className="profile-main">
+        <a
+          href="/businessprofile"
+          className="contact-btn"
+          onClick={handleContactButton}
+        >
+          Parti Tyme
+        </a>
+        <div className="desc">{props.business.bio}</div>
         <div className="buttons">
           <ul>
             <li className="icon">
               <a href={props.business.facebook}>
-                <FaFacebookF size="2em" color="#3b5998" />
+                <FaFacebookF size="1.4em" color="#3b5998" />
               </a>
             </li>
             <li>
               <a href={props.business.instagram}>
-                <FaInstagram size="2em" color="#bc2a8d" />
+                <FaInstagram size="1.4em" color="#bc2a8d" />
               </a>
             </li>
             <li>
               <a href={props.business.website}>
-                <FaPortrait size="2em" color="rgb(192, 70, 70)" />
+                <FaPortrait size="1.4em" color="rgb(192, 70, 70)" />
               </a>
             </li>
           </ul>
+        </div>
+
+        <div className="Stars">
+          <StarRating />
         </div>
       </div>
     </div>
