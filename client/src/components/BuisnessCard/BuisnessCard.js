@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./BusinessCard.css";
 import StarRating from "../StarRating/StarRating.js";
-import Logos from "../assets/images/logos.png";
-import { FaFacebookF, FaInstagram, FaPortrait } from "react-icons/fa";
+
+import ExampleImage from "../../components/assets/images/business-2.jpg";
 
 const BuisnessCard = (props) => {
   function handleContactButton() {
@@ -10,48 +11,26 @@ const BuisnessCard = (props) => {
   }
 
   return (
-    <div className="Profile-Card">
-      <div className="header">
-        <img
-          className="profile-image"
-          src={props.business.img}
-          alt="profile pic"
-        />
-        <div className="title">{props.business.name}</div>
+    <div className="business-card">
+      {/* Left Column / Image + Rating Star */}
+      <div className="bc-left-column">
+        <div className="bc-business-image">
+          <img src={ExampleImage} alt="Business Profile Picture" />
+        </div>
+
+        <StarRating />
       </div>
 
-      <div className="profile-main">
-        <a
-          href="/businessprofile"
-          className="contact-btn"
-          onClick={handleContactButton}
-        >
-          Parti Tyme
-        </a>
-        <div className="desc">{props.business.bio}</div>
-        <div className="buttons">
-          <ul>
-            <li className="icon">
-              <a href={props.business.facebook}>
-                <FaFacebookF size="1.4em" color="#3b5998" />
-              </a>
-            </li>
-            <li>
-              <a href={props.business.instagram}>
-                <FaInstagram size="1.4em" color="#bc2a8d" />
-              </a>
-            </li>
-            <li>
-              <a href={props.business.website}>
-                <FaPortrait size="1.4em" color="rgb(192, 70, 70)" />
-              </a>
-            </li>
-          </ul>
-        </div>
+      {/* Right Column / Business Basic Info */}
+      <div className="bc-right-column">
+        <h1>{props.business.name}</h1>
+        <h2>{props.business.location}</h2>
+        <h2>${props.business.fee}/hr</h2>
+        <h3>Put a slogan here (about 10-13-15 words)</h3>
 
-        <div className="Stars">
-          <StarRating />
-        </div>
+        <Link to="/businessprofile" onClick={handleContactButton}>
+          More Detail...
+        </Link>
       </div>
     </div>
   );

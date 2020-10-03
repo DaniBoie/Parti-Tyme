@@ -1,6 +1,5 @@
 .user-profile-page {
   height: 90vh;
-  /* margin: 0 5rem; */
   padding: 2rem 1rem 1rem 1rem;
   display: grid;
   grid-template-columns: 3fr 7fr;
@@ -35,7 +34,8 @@
   -o-border-radius: 50%;
 }
 
-.edit-profile-btn, .update-account-btn {
+.edit-profile-btn,
+.update-account-btn {
   display: inline-block;
   width: 100%;
   padding: 10px;
@@ -52,22 +52,8 @@
   -o-border-radius: 20px;
 }
 
-.update-account-btn {
-  margin-bottom: 0;
-  /* animation: update-account-btn-animation 1s infinite; */
-  /* -webkit-animation: update-account-btn-animation 1s infinite; */
-}
-
-/* @keyframes update-account-btn-animation {
-  from {
-    background: #dfe6e9;
-  }
-  to {
-    background: #b2bec3;
-  }
-} */
-
-.edit-profile-btn:hover, .update-account-btn:hover {
+.edit-profile-btn:hover,
+.update-account-btn:hover {
   background: #b2bec3;
   border: 2px solid #636e72;
 }
@@ -183,8 +169,189 @@
 
 .upp-update-account-btn {
   position: absolute;
+  z-index: 1;
   /* top: 1rem; */
   right: 2rem;
   font-size: 18px;
-  padding: .5rem;
+  padding: 0.5rem;
 }
+
+/* Registration Form */
+.up-overlay-form {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  opacity: 0.9;
+}
+
+.up-overlay-form.show {
+  display: none;
+}
+
+.up-overlay-form .up-x-button {
+  position: absolute;
+  /* z-index: 2; */
+  top: 1rem;
+  right: 1rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 30px;
+  font-weight: 300;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.update-account-form.show {
+  /* display: none; */
+}
+
+.update-account-form {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  font-family: sans-serif;
+  text-align: center;
+  transform: translate(40%, -50%);
+  -webkit-transform: translate(40%, -50%);
+  -moz-transform: translate(40%, -50%);
+  -ms-transform: translate(40%, -50%);
+  -o-transform: translate(40%, -50%);
+  display: flex;
+  flex-direction: column;
+}
+
+.up-overlay-form h1 {
+  color: #fff;
+  font-size: 50px;
+  text-align: center;
+  margin: 2rem;
+  text-decoration: underline;
+}
+
+.update-account-form label,
+.update-account-form input {
+  font-weight: 400;
+}
+
+.update-account-form label {
+  font-size: 20px;
+  padding: 1rem;
+  color: #fff;
+  text-align: right;
+}
+
+.update-account-form input,
+.update-account-form select {
+  font-size: 18px;
+  margin: 0 1rem;
+  padding: 0.2rem;
+  color: #000;
+}
+
+.business-form-button {
+  position: relative;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+  font-size: 32px;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -o-transition: 0.2s;
+}
+
+.business-form-button:hover {
+  color: #000;
+  background: #fff;
+  box-shadow: 0 0 10px #fff, 0 0 40px #fff, 0 0 80px #fff;
+  transition-delay: 1s;
+}
+
+.business-form-button span {
+  position: absolute;
+  display: block;
+}
+
+.business-form-button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff);
+}
+
+.business-form-button:hover span:nth-child(1) {
+  left: 100%;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+}
+
+.business-form-button span:nth-child(2) {
+  top: -100%;
+  right: 0%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #fff);
+}
+
+.business-form-button:hover span:nth-child(2) {
+  top: 100%;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  transition-delay: 0.25s;
+}
+
+.business-form-button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #fff);
+}
+
+.business-form-button:hover span:nth-child(3) {
+  right: 100%;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  transition-delay: 0.5s;
+}
+
+.business-form-button span:nth-child(4) {
+  bottom: -100%;
+  left: 0%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #fff);
+}
+
+.business-form-button:hover span:nth-child(4) {
+  bottom: 100%;
+  transition: 1s;
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+  transition-delay: 0.75s;
+}
+/* End Registration Form */

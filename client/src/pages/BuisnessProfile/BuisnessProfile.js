@@ -105,6 +105,7 @@ const BuisnessProfile = () => {
       window.location = "/businessview";
     }
 
+    // Pulling data from database based on the ID
     axios
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {

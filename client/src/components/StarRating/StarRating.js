@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import './StarRating.css'
-import { FaStar } from 'react-icons/fa'
-import './StarRating.css'
+import React, { useState } from "react";
+import "./StarRating.css";
+import { FaStar } from "react-icons/fa";
 
-const StarRating = props => {
-  const [rating, setrating] = useState(null)
-  const [hover, setHover] = useState(null)
+const StarRating = () => {
+  const [rating, setrating] = useState(null);
+  const [hover, setHover] = useState(null);
 
   return (
     <div>

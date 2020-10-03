@@ -28,7 +28,12 @@ const API = {
     }),
 
   // **BUISNESS API CALLS**
-  createBusiness: (data) => axios.post(`/api/buisness`, data),
+  createBusiness: (data) =>
+    axios.post(`/api/buisness`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    }),
   updateBusiness: (data) =>
     axios.put("/api/buisness", data, {
       headers: {
