@@ -73,11 +73,11 @@
   background-color: #eee;
 }
 
-.filter-items:hover input~.checkmark {
+.filter-items:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
-.filter-items input:checked~.checkmark {
+.filter-items input:checked ~ .checkmark {
   background-color: #ffffff;
 }
 
@@ -87,7 +87,7 @@
   display: none;
 }
 
-.filter-items input:checked~.checkmark:after {
+.filter-items input:checked ~ .checkmark:after {
   display: block;
 }
 
@@ -172,6 +172,12 @@
   }
 }
 
+@media only screen and (max-width: 850px) {
+  .bvp-business-column {
+    grid-template-rows: 350px;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .filter-column {
     border: 1px solid #333;
@@ -206,7 +212,7 @@
   }
   .filter-items {
     padding-left: 25px;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     font-size: 18px;
   }
   .checkmark {
