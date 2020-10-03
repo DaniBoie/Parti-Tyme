@@ -74,32 +74,48 @@ const BuisnessProfile = () => {
 
   useEffect(() => {
     // let dataComeback;
-    // API.getUser()
-    //   .then(({ data }) => {
-    //     dataComeback = data[0].Buisness;
-    //     // console.log(dataComeback)
-    //     API.findBusinessReviews(dataComeback._id)
-    //       .then(({ data: reviews }) => {
-    //         // console.log(data)
-    //         setBusinessState({
-    //           ...businessState,
-    //           name: dataComeback.name,
-    //           bio: dataComeback.bio,
-    //           img: dataComeback.img,
-    //           instagram: dataComeback.instagram,
-    //           website: dataComeback.website,
-    //           facebook: dataComeback.facebook,
-    //           fee: dataComeback.fee,
-    //           business: dataComeback,
-    //           username: data[0].username,
-    //           reviews: [],
-    //         });
-    //       })
-    //       .catch((err) => console.log(err));
-    //   })
-    //   .catch((err) => console.log(err));
 
     businessId = localStorage.getItem("pickBusiness");
+
+    API.getUser()
+      .then(({ data }) => {
+        let userBusinessId = data[0].Buisness._id;
+        console.log(userBusinessId)
+
+        if (userBusinessId === businessId) {
+          setInputState({
+            ...inputState,
+            disabled: false
+          })
+        } else {
+          setInputState({
+            ...inputState,
+            disabled: true
+          })
+        }
+        // console.log(dataComeback)
+        // API.findBusinessReviews(dataComeback._id)
+        //   .then(({ data: reviews }) => {
+        //     // console.log(data)
+        //     setBusinessState({
+        //       ...businessState,
+        //       name: dataComeback.name,
+        //       bio: dataComeback.bio,
+        //       img: dataComeback.img,
+        //       instagram: dataComeback.instagram,
+        //       website: dataComeback.website,
+        //       facebook: dataComeback.facebook,
+        //       fee: dataComeback.fee,
+        //       business: dataComeback,
+        //       username: data[0].username,
+        //       reviews: [],
+        //     });
+        //   })
+        //   .catch((err) => console.log(err));
+      })
+      .catch((err) => console.log(err));
+
+    
 
     if (businessId === null) {
       window.location = "/businessview";
@@ -197,7 +213,7 @@ const BuisnessProfile = () => {
           <div className="bpp-business-info-area">
             <button
               className="bpp-edit-button"
-              disabled={false}
+              disabled={inputState.disabled}
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
