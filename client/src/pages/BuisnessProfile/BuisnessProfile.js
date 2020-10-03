@@ -42,15 +42,6 @@ const BuisnessProfile = () => {
     })
   }
 
-  inputState.handleSaveButton = () => {
-    setInputState({
-      ...inputState,
-      disabled: true,
-      show: "",
-      hideButton: "hide",
-    })
-  }
-
 
   const [businessState, setBusinessState] = useState({
     name: "",
@@ -124,10 +115,6 @@ const BuisnessProfile = () => {
     })
       .then(({ data }) => {
         console.log(data)
-        // setBusinessState({
-        //   ...businessState,
-        //   nam
-        // })
       })
       .catch(err => console.log(err))
 
