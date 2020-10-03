@@ -6,9 +6,6 @@ import API from "../../utils/API";
 import "./nav.css";
 
 // Importing Logo Image
-import Logo from "../assets/images/logos.png";
-import Logo1 from "../assets/images/logo1.png";
-import Logo2 from "../assets/images/logo2.png";
 import Balloon from "../assets/images/balloon.png";
 
 const Nav = (props) => {
@@ -64,7 +61,6 @@ const Nav = (props) => {
   useEffect(() => {
     API.getUser()
       .then(({ data }) => {
-        console.log(data[0].Buisness);
         setDropdownState({
           ...dropdownState,
           hideLogin: "hideExistence",
@@ -90,7 +86,7 @@ const Nav = (props) => {
             <img src={Logo1} alt="Logo" />
           </Link> */}
         {/* <div>window width: {windowWidth}</div>
-          <div>window height: {windowheight}</div> */}
+        <div>window height: {windowheight}</div> */}
       </div>
 
       {/* Middle Column / Search Bar */}
