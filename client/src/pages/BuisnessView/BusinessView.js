@@ -42,6 +42,7 @@ const BuisnessView = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  // Search Button
   const handleSearch = () => {
     // console.log(businessState.selectValue)
 
@@ -64,6 +65,7 @@ const BuisnessView = () => {
     console.log(filteredArray);
   };
 
+  // Clear Button
   const handleFilterClear = () => {
     setBusinessState({
       ...businessState,
@@ -72,10 +74,20 @@ const BuisnessView = () => {
   };
 
   // Search Button
-  function handleSearchButton() {
+  function handleSearchBar() {
     console.log("Function For Search Button");
   }
 
+  // Function to show and hide price number
+  const [showPrice, setShowPrice] = useState({ price: "hide-price-search" });
+
+  function showPriceCheck() {
+    if (showPrice.price === "hide-price-search") {
+      setShowPrice({ ...showPrice, price: "" });
+    } else {
+      setShowPrice({ ...showPrice, price: "hide-price-search" });
+    }
+  }
   return (
     <>
       <Nav name="Home Page" />
@@ -89,8 +101,9 @@ const BuisnessView = () => {
               type="text"
               name="searchText"
               placeholder="Type To Seach..."
+              onChange={businessState.handleCheckboxChange}
             />
-            <button className="bvp-search-button" onClick={handleSearchButton}>
+            <button className="bvp-search-button" onClick={handleSearchBar}>
               <i class="fas fa-search"></i>
             </button>
           </div>
@@ -114,55 +127,61 @@ const BuisnessView = () => {
           <h2>Filters</h2>
 
           <div className="filter-list">
-            <label className="filter-items">
-              {" "}
-              Distance
+            <div className="filter-items">
               <input
                 type="checkbox"
-                onChange={businessState.handleCheckboxChange}
                 name="distance"
+                onChange={businessState.handleCheckboxChange}
               />
-              <span className="checkmark"></span>
-            </label>
+              <label>Distance</label>
+            </div>
 
-            <label className="filter-items">
-              {" "}
-              Max Price
+            <div className="filter-items">
               <input
+                onClick={showPriceCheck}
                 type="checkbox"
                 name="maxPrice"
                 onChange={businessState.handleCheckboxChange}
               />
-              <span className="checkmark"></span>
-            </label>
+              <label>Max Price</label>
+              <input
+                className={`search-price ${showPrice.price}`}
+                type="number"
+                name="priceSearch"
+                min="10"
+                max="9999"
+                onChange={businessState.handleCheckboxChange}
+              />
+            </div>
 
-            <label className="filter-items">
-              {" "}
-              dolor
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-
-            <label className="filter-items">
-              {" "}
-              sit
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-
-            <label className="filter-items">
-              {" "}
-              consectetur
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
-
-            <label className="filter-items">
-              {" "}
-              adipisicing
-              <input type="checkbox" />
-              <span className="checkmark"></span>
-            </label>
+            <div className="filter-items">
+              <input
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
+              />
+              <label>Something</label>
+            </div>
+            <div className="filter-items">
+              <input
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
+              />
+              <label>Something</label>
+            </div>
+            <div className="filter-items">
+              <input
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
+              />
+              <label>Something</label>
+            </div>
+            <div className="filter-items">
+              <input
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
+              />
+              <label>Something</label>
+            </div>
           </div>
 
           <div className="filter-column-buttons">

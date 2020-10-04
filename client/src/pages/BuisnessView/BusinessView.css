@@ -106,67 +106,39 @@
   text-decoration: underline;
 }
 
+.filter-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-list input {
+  display: inline-block;
+}
+
 .filter-items {
-  margin-left: 10px;
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 1rem;
-  cursor: pointer;
+  margin: .5rem 0;
   font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  text-align: left;
 }
 
-.filter-items input {
-  position: absolute;
-  opacity: 0;
-  height: 0;
-  width: 0;
-  cursor: pointer;
+.filter-items input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: .3rem;
+  transform: translateY(10%);
+  -webkit-transform: translateY(10%);
+  -moz-transform: translateY(10%);
+  -ms-transform: translateY(10%);
+  -o-transform: translateY(10%);
 }
 
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  border: 1px solid #333;
-  background-color: #eee;
+.filter-items input[type="number"] {
+  margin: 0 .3rem;
+  font-size: 18px;
+  outline: none;
 }
 
-.filter-items:hover input~.checkmark {
-  background-color: #ccc;
-}
-
-.filter-items input:checked~.checkmark {
-  background-color: #ffffff;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
+.search-price.hide-price-search {
   display: none;
-}
-
-.filter-items input:checked~.checkmark:after {
-  display: block;
-}
-
-.filter-items .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: 1px solid #333;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 
 .filter-column-buttons button {
