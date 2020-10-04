@@ -34,9 +34,16 @@ const User = new Schema(
       type: Schema.Types.ObjectId,
       ref: "BuisnessData",
     },
+    favorite: [{
+    type: String,
+  }],
   },
+
+  
+
   { timestamps: true }
 );
+
 
 User.plugin(require("passport-local-mongoose"));
 

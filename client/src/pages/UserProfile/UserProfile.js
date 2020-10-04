@@ -73,7 +73,7 @@ const UserProfile = () => {
         window.location = "/businessview";
         console.log(err);
       });
-    console.log(userState.Business);
+      console.log(userState.Business)
   }, []);
 
   // Save Button
@@ -315,6 +315,7 @@ const UserProfile = () => {
                   name="selectValue"
                   onChange={userState.handleInputChange}
                 >
+
                   <option>Pick One</option>
                   <option value="Food">Food</option>
                   <option value="Music">Music</option>
@@ -353,29 +354,6 @@ const UserProfile = () => {
               </a>
             </form>
           </div>
-          {/* <div>
-            <label>
-              <i class="fas fa-camera"></i>
-              <input
-                type="submit"
-                ame="buisness"
-                onChange={userState.handleInputChange}
-              />
-              <input
-                type="submit"
-                name="rating"
-                onChange={userState.handleInputChange}
-              />
-              <input
-                type="submit"
-                name="text"
-                onChange={userState.handleInputChange}
-              />
-            </label>
-            <button onClick={userState.handleClickBtn}>Submit</button>
-          </div> */}
-
-          {/* </ul> */}
 
           <div className="changing-account-type-area">
             <h1>Welcome back {userState.username}</h1>

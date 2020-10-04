@@ -6,7 +6,7 @@ const passport = require("passport");
 router.get("/buisness/:id", (req, res) => {
   // res.send(req.params.id);
   BuisnessData.findById(req.params.id)
-    .populate("Review")
+    .populate("reviews")
     .then((data) => res.send(data))
     .catch((err) => console.log(err));
 });

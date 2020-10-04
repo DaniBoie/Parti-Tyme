@@ -44,6 +44,8 @@ const BuisnessProfile = () => {
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
+    location:"",
+    slogan: "",
     img: "",
     instagram: "",
     website: "",
@@ -54,8 +56,9 @@ const BuisnessProfile = () => {
     topic: "",
     text: "",
     rating: 0,
-    username: "",
     reviews: [],
+    username: "",
+    favorite: ""
   });
 
   businessState.changeRating = (newRating, rating) => {
@@ -72,8 +75,8 @@ const BuisnessProfile = () => {
       ...businessState,
       [event.target.name]: event.target.value,
     });
-    console.log(businessState.rating);
-    console.log(businessState.topic);
+    // console.log(businessState.rating)
+    // console.log(businessState.topic);
   };
 
   let businessId;
@@ -86,9 +89,7 @@ const BuisnessProfile = () => {
 
     API.getUser()
       .then(({ data }) => {
-        console.log(data);
-        userId = data[0]._id;
-        console.log(userId);
+
         let userBusinessId = data[0].Buisness._id || "";
         console.log(userBusinessId);
 
@@ -114,8 +115,9 @@ const BuisnessProfile = () => {
     axios
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {
-        console.log(data);
-        setBusinessState({ ...businessState, business: data });
+        // console.log(data);
+        setBusinessState({ ...businessState, business: data,
+        reviews: data.reviews });
       })
       .catch((error) => console.log(error));
   }, []);
@@ -151,17 +153,22 @@ const BuisnessProfile = () => {
   };
 
   // Handle Send Button
-  const reviewSendButton = (event) => {
-    event.preventDefault();
-    console.log(businessState.topic);
+  const reviewSendButton = event => {
+    event.preventDefault()
+    // console.log(businessState.topic);
 
-    API.createReview({
+    // businessId = localStorage.getItem("user")
+    axios.post('/api/review', {
       topic: businessState.topic,
       text: businessState.text,
       rating: businessState.rating,
-      buisness: businessId,
-      user: userId,
-    })
+      buisness: localStorage.getItem('pickBusiness'),
+    }, 
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
+      })
       .then((data) => {
         console.log(data);
       })
@@ -175,15 +182,17 @@ const BuisnessProfile = () => {
   //   descprition: "kkkk idkkdkdkd",
   // };
 
+  const btn = () => {
+    console.log(businessState.business)
+    businessId = localStorage.getItem("user")
+    API.favaBusiness({
+      favorite: businessId
+    })
+  }
+
   return (
     <>
       <Nav />
-      {/* <BusinessCard business={business} />
-      {businessState.reviews.length > 0
-        ? businessState.reviews.map((review) => (
-            <ReviewCard key={review._id} review={review} />
-          ))
-        : null} */}
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
@@ -222,7 +231,7 @@ const BuisnessProfile = () => {
               <input
                 className={`${inputState.show}`}
                 type="text"
-                name="businessLocation"
+                name="location"
                 defaultValue={businessState.business.location}
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
@@ -231,7 +240,7 @@ const BuisnessProfile = () => {
             <label>
               Fee:
               <input
-                className={` ${inputState.show}`}
+                className={`${inputState.show}`}
                 type="text"
                 name="fee"
                 defaultValue={businessState.business.fee}
@@ -240,11 +249,11 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Service:{" "}
+              Slogan:{" "}
               <input
                 className={`${inputState.show}`}
                 type="text"
-                name="businessService"
+                name="slogan"
                 defaultValue="Free Delivery with in 3 miles"
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
@@ -278,24 +287,17 @@ const BuisnessProfile = () => {
 
         <div className="bpp-business-review">
           <div className="bpp-business-review-left">
-            <StarRatings
-              className="bpp-StarRatings"
-              starHoverColor="yellow"
-              starRatedColor="red"
-              rating={3.5}
-              starDimension="40px"
-              starSpacing="15px"
-            />
-            {/* {businessState.business.reviews.length > 0
-              ? businessState.business.reviews.map((review) => (
+
+            {businessState.reviews.length > 0
+              ? businessState.reviews.map((review) =>  (
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
-                    business={businessState.business.business}
+                    business={businessState.business}
                     username={businessState.business.username}
                   />
                 ))
-              : null} */}
+              : null}
           </div>
 
           <div className="bpp-business-review-right">
@@ -334,6 +336,11 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
+      <button 
+        name="favorite"
+       onClick={btn}
+        onChange={businessState.handleInputChange}
+      >submit</button>
     </>
   );
 };

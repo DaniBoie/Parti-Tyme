@@ -13,6 +13,11 @@ const API = {
       },
     }),
 
+  favaBusiness: (data) => axios.put('/users', data, {headers: {
+    Authorization: `Bearer ${localStorage.getItem("user")}`,
+  },
+  }),
+
   // **USER PROFILE API CALLS**
   createSettings: (data, headers) =>
     axios.post(`/api/settings`, data, {

@@ -58,8 +58,8 @@ function Login() {
     event.preventDefault();
     console.log(accountState.password1);
     if (accountState.password1 === accountState.password2) {
-      console.log("passmatch");
-      console.log(accountState.password1);
+      // console.log("passmatch");
+      // console.log(accountState.password1);
       API.registerUser(user)
         .then((res) => {
           setAccountState({
