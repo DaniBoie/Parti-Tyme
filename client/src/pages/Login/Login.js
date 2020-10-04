@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import alert from "alert";
 // import axios from 'axios'
 import API from "../../utils/API";
 import "./Login.css";
@@ -46,11 +47,13 @@ function Login() {
           window.location = "/businessview";
         } else {
           console.log("invalid credentials");
+          alert("Invalid User Name or Password");
         }
       })
       .catch((err) => console.log(err));
   };
 
+  // Function for Submit Button
   accountState.handleSignUp = (event) => {
     event.preventDefault();
     console.log(accountState.password1);
@@ -65,9 +68,10 @@ function Login() {
             userEmail: "",
             username: "",
             password1: "",
-            password2: ""
+            password2: "",
           });
-          // console.log(res);
+          console.log(res);
+          alert("Account Created and Ready to be Used :)");
         })
         .catch((err) => console.log(err));
     } else {
@@ -127,30 +131,35 @@ function Login() {
             <input
               type="text"
               name="userEmail"
+              value={accountState.userEmail}
               placeholder="Your Email"
               onChange={accountState.handleInputChange}
             />
             <input
               type="text"
               name="username"
+              value={accountState.username}
               placeholder="User Name"
               onChange={accountState.handleInputChange}
             />
             <input
               type="text"
               name="realname"
+              value={accountState.realname}
               placeholder="Your Name"
               onChange={accountState.handleInputChange}
             />
             <input
               type="password"
               name="password1"
+              value={accountState.password1}
               placeholder="Password"
               onChange={accountState.handleInputChange}
             />
             <input
               type="password"
               name="password2"
+              value={accountState.password2}
               placeholder="Confirm Password"
               onChange={accountState.handleInputChange}
             />

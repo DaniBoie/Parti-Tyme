@@ -11,7 +11,7 @@ const BuisnessData = new Schema(
       type: String,
     },
     slogan: {
-      type: String, 
+      type: String,
     },
     img: {
       type: String,
@@ -49,7 +49,6 @@ const BuisnessData = new Schema(
   },
   { timestamps: true }
 );
-
 // BuisnessData.plugin(require("passport-local-mongoose"));
 
 module.exports = model("BuisnessData", BuisnessData);

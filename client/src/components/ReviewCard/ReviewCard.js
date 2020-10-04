@@ -1,9 +1,8 @@
-import React from 'react'
-import './ReviewCard.css'
-import Logos from '../assets/images/logos.png'
+import React from "react";
+import "./ReviewCard.css";
+// import Logos from '../assets/images/logos.png'
 // import StarRating from '../StarRating/StarRating'
-import StarRatings from 'react-star-ratings'
-
+import StarRatings from "react-star-ratings";
 
 const ReviewCard = (props) => {
   return (
@@ -21,8 +20,8 @@ const ReviewCard = (props) => {
 
       </div>
 
-      <div className='profile-main'>
-        <div className='stars'>          
+      <div className="profile-main">
+        <div className="stars">
           <StarRatings
             rating= {props.review.rating}
             starRatedColor="yellow"
