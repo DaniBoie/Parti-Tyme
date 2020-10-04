@@ -3,13 +3,11 @@ import "./UserProfile.css";
 import ProfileImage from "../../components/assets/images/business-2.jpg";
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
-import ReviewCard from "../../components/ReviewCard"
 const UserProfile = () => {
   // Function to show / hide input area when click on "Edit Profile" Button
   const [showInput, setShowInput] = useState({
     show: "",
   });
-
   function editProfileBtn() {
     if (showInput.show === "") setShowInput({ show: "profile-input-show" });
     else setShowInput({ show: "" });
@@ -28,6 +26,12 @@ const UserProfile = () => {
     bioChange: "",
     instaChange: "",
     facebookChange: "",
+    selectValue: "",
+    businessName: "",
+    businessBio: "",
+    businessImage: "",
+    businessFee: 0,
+    businessLocation: "",
   });
 
   userState.handleInputChange = (event) => {
@@ -35,9 +39,11 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
+    let dataComeback = ""
     API.getUser()
       .then(({ data }) => {
-        let dataComeback = data[0];
+        dataComeback = data[0];
+        console.log(dataComeback)
 
         setUserState({
           ...userState,
@@ -52,7 +58,19 @@ const UserProfile = () => {
 
         console.log("API DATA ON STARTUP", dataComeback);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        window.location = "/businessview";
+        console.log(err);
+      });
+      console.log(userState.Business)
+
+      // FIX BUSINESS ACCOUNT BTN
+      // if (userState.Buisness === undefined){
+      //   setFormState({ ...formState, businessBtn: "" })
+        
+      // } else {
+      //   setFormState({ ...formState, businessBtn: "hide" })
+      // }
   }, []);
 
   const handleSaveBtn = () => {
@@ -72,26 +90,55 @@ const UserProfile = () => {
         console.log("API SETTINGS ON SAVE BTN", dataComeback);
         userSettings = dataComeback.Settings;
 
-        console.log("Inputted Settings ", settings);
-        if (userSettings === (undefined || null)) {
+        console.log("Inputted Settings ", userSettings);
+        if (userSettings !== undefined) {
+          API.updateSettings(settings)
+            .then((data) => console.log("UPDATED SETTINGS", data))
+            .catch((err) => console.log(err));
+        } else {
           API.createSettings(settings)
             .then((data) => {
               console.log("Created Settings", data);
             })
-            .catch((err) => console.log(err));
-        } else {
-          API.updateSettings(settings)
-            .then((data) => console.log("UPDATED SETTINGS", data))
             .catch((err) => console.log(err));
         }
       })
       .catch((err) => console.log(err));
   };
 
-  const handleUpdateBtn = () => {
-    console.log(userState);
+  // Function to Hide and Show Business Form
+  const [formState, setFormState] = useState({ show: "show",
+  businessBtn: "",
+});
+
+  // Update Account Button, to make the form appear
+  const handleUpdateAccountButton = () => {
+    setFormState({ ...formState, show: "" });
   };
 
+  // X Button, to make the form disappear
+  const handleXbutton = () => {
+    setFormState({ ...formState, show: "show" });
+  };
+
+  // Writing New Data into database
+  const handleBusinessButton = () => {
+    API.createBusiness({
+      name: userState.businessName,
+      bio: userState.busiessBio,
+      img:
+        userState.businessImage ||
+        "https://upload.wikimedia.org/wikipedia/commons/5/50/Unisphere_Flushing_Meadows_Queens.jpg",
+      buisness_type: userState.selectValue,
+      fee: userState.businessFee,
+      location: userState.busiessLocation,
+    })
+      .then((data) => {
+        setFormState({ ...formState, show: "show" });
+        console.log(data)
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <>
       <Nav name="User Profile" />
@@ -110,8 +157,6 @@ const UserProfile = () => {
             assumenda vitae tempore doloremque quos ducimus neque quas commodi
             officiis et?
           </p>
-
-          {/* <button className={`update-account-btn`} onclick={handleUpdateBtn}>Update Your Account</button> */}
 
           <button
             className={`edit-profile-btn ${showInput.show}`}
@@ -189,26 +234,86 @@ const UserProfile = () => {
 
         {/* Right Column */}
         <div className="changing-account-type-area">
-          <button className="upp-update-account-btn">
+          {/* Update Account Button */}
+          <button
+            className={`upp-update-account-btn ${formState.businessBtn}`}
+            onClick={handleUpdateAccountButton}
+          >
             Update Your Account <i class="fas fa-angle-double-up"></i>
           </button>
 
-          <h1 className = "Welcome">Welcome back {userState.username}</h1>
-          <h3>{userState.email}</h3>
-          <div>
-            <h3>Reviews</h3>
-            {
-              // userState.Reviews.length > 0 ? (
-              //   userState.Reviews.map(review => (
-              //     <div key={review._id}>
-              //       <h4>{review.buisness.name}</h4>
-              //       <p>{review.rating}</p>
-              //       <p>{review.rating}</p>
-              //     </div>
-              //   ))) : null
-            }
-            {/* <ReviewCard /> */}
-
+          <div className={`up-overlay-form ${formState.show}`}>
+            <button className="up-x-button" onClick={handleXbutton}>
+              <i class="fas fa-times"></i>
+            </button>
+            <h1>Business Registration Form </h1>
+            <form className={`update-account-form ${formState.show}`}>
+              <label>
+                *Business Name:
+                <input
+                  type="text"
+                  name="businessName"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+              <label>
+                *Business Bio:
+                <input
+                  type="text"
+                  name="businessBio"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+              <label>
+                Business Image (url):
+                <input
+                  type="text"
+                  name="businessImage"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+              <label>
+                *Business Type:
+                <select
+                  name="selectValue"
+                  onChange={userState.handleInputChange}
+                >
+                  <option value="Food">Food</option>
+                  <option value="Music">Music</option>
+                  <option value="Rentals">Rentals</option>
+                  <option value="Entertainment">Entertainment</option>
+                </select>
+              </label>
+              <label>
+                *Fee (Per Hour):
+                <input
+                  type="number"
+                  name="businessFee"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+              <label>
+                *Location:
+                <input
+                  type="text"
+                  name="businessLocation"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+              {/* <button className="business-form-button" onClick={handleBusinessButton}>Submit</button> */}
+              <a
+                href="#"
+                className="business-form-button"
+                onClick={handleBusinessButton}
+              >
+                {" "}
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Submit
+              </a>
+            </form>
           </div>
           {/* <div>
             <label>
@@ -231,81 +336,32 @@ const UserProfile = () => {
             </label>
             <button onClick={userState.handleClickBtn}>Submit</button>
           </div> */}
-            <div>
-              <h>Review cards</h>
-            </div>
+
           {/* </ul> */}
 
-          <div className="Savebusiness">
-            <h3> Saved Businesses</h3>
-
-              <div className="BusinessCard">
-                
-                <div className="bvp-business-info-card">
-                  <div className="bvp-business-card-left">
-                    <img src="" alt="" />
-                  </div>
-                  <div className="bvp-business-card-right"></div>
-                </div>
-              
-             
-                <div className="bvp-business-info-card">
-                  <div className="bvp-business-card-left">
-                    <img src="" alt="" />
-                  </div>
-                  <div className="bvp-business-card-right"></div>
-                </div>
+          <div className="changing-account-type-area">
+            <h1>Welcome back {userState.username}</h1>
+            <h3>{userState.email}</h3>
+            <div>
+              <h3>Reviews</h3>
+              {
+                // userState.Reviews.length > 0 ? (
+                //   userState.Reviews.map(review => (
+                //     <div key={review._id}>
+                //       <h4>{review.buisness.name}</h4>
+                //       <p>{review.rating}</p>
+                //       <p>{review.rating}</p>
+                //     </div>
+                //   ))) : null
+              }
             </div>
-            </div>
-
-
-
-          </div>
-
-          {/* <div className="changing-account-type-area">
-          <h1>Welcome back {userState.username}</h1>
-          <h3>{userState.email}</h3>
-          <div>
-            <h3>Reviews</h3>
-            {
-              // userState.Reviews.length > 0 ? (
-              //   userState.Reviews.map(review => (
-              //     <div key={review._id}>
-              //       <h4>{review.buisness.name}</h4>
-              //       <p>{review.rating}</p>
-              //       <p>{review.rating}</p>
-              //     </div>
-              //   ))) : null
-            }
-          </div>
-          
-          <div>
-            <label>
-              <i class="fas fa-camera"></i>
-              <input
-                type="submit"
-                ame="buisness"
-                onChange={userState.handleInputChange}
-              />
-              <input
-                type="submit"
-                name="rating"
-                onChange={userState.handleInputChange}
-              />
-              <input
-                type="submit"
-                name="text"
-                onChange={userState.handleInputChange}
-              />
-            </label>
-            <button onClick={userState.handleClickBtn}>Submit</button>
           </div>
           <div>
             <h4> Saved Businesses </h4>
           </div>
         </div>
-      </div> */}
-        </div>
+      </div> 
+       
     </>
   );
 };

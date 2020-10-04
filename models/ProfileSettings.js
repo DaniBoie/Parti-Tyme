@@ -9,11 +9,11 @@ const ProfileSettings = new Schema({
   },
   instagram: {
     type: String,
-    unique: true,
+  
   },
   facebook: {
     type: String,
-    unique: true,
+   
   },
   user: {
     type: Schema.Types.ObjectId,

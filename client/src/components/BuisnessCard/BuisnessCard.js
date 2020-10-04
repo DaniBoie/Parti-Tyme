@@ -1,46 +1,36 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./BusinessCard.css";
 import StarRating from "../StarRating/StarRating.js";
-// import Logos from '../assets/images/logos.png'
-import { FaFacebookF, FaInstagram, FaPortrait } from "react-icons/fa";
-// import API from '../../utils/API'
 
-// import Font from 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
-
-// import StarRatings from './react-star-ratings';
+import ExampleImage from "../../components/assets/images/business-2.jpg";
 
 const BuisnessCard = (props) => {
+  function handleContactButton() {
+    localStorage.setItem("pickBusiness", `${props.business._id}`);
+  }
+
   return (
-    <div className="profile-card">
-      <div className="card-header">
-        <div className="pic">
-          <img src={props.business.img} alt="Portrait" />
+    <div className="business-card">
+      {/* Left Column / Image + Rating Star */}
+      <div className="bc-left-column">
+        <div className="bc-business-image">
+          <img src={ExampleImage} alt="Business Profile Picture" />
         </div>
-        {/* <div className='name'>Banda CashMax</div>
-        <div className='desc'>Authentic Mexican music for all your family to enjoy</div>
+
         <StarRating />
-        <a href='#' className='contact-btn'>Parti Tyme</a> */}
       </div>
-      <div className="card-footer">
-        <div className="buttons">
-          <ul>
-            <li className="icon">
-              <a href={props.business.facebook}>
-                <FaFacebookF size="2em" color="#3b5998" />
-              </a>
-            </li>
-            <li>
-              <a href={props.business.instagram}>
-                <FaInstagram size="2em" color="#bc2a8d" />
-              </a>
-            </li>
-            <li>
-              <a href={props.business.website}>
-                <FaPortrait size="2em" color="rgb(192, 70, 70)" />
-              </a>
-            </li>
-          </ul>
-        </div>
+
+      {/* Right Column / Business Basic Info */}
+      <div className="bc-right-column">
+        <h1>{props.business.name}</h1>
+        <h2>{props.business.location}</h2>
+        <h2>${props.business.fee}/hr</h2>
+        <h3>Put a slogan here (about 10-13-15 words)</h3>
+
+        <Link to="/businessprofile" onClick={handleContactButton}>
+          More Detail...
+        </Link>
       </div>
     </div>
   );

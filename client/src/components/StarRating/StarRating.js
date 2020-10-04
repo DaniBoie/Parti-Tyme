@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import "./StarRating.css";
 import { FaStar } from "react-icons/fa";
 
-const StarRating = () => {
+const StarRating = props => {
+
   const [rating, setrating] = useState(null);
   const [hover, setHover] = useState(null);
 
@@ -12,11 +14,10 @@ const StarRating = () => {
 
         return (
           <label>
-            <input
-              type="radio"
-              name="rating"
-              value={ratingValue}
-              onClick={() => setrating(ratingValue)}
+            <input type="radio"
+            name="rating"
+            value={props.review}
+            onClick={() => setrating(ratingValue)}
             />
             <FaStar
               className="star"

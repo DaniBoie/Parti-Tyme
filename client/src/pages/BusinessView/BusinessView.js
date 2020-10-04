@@ -49,8 +49,7 @@ const BuisnessView = () => {
       })
       .catch((err) => {
         //Show login button
-       });
-
+      });
   }, []);
 
   const handleSearch = () => {
@@ -167,13 +166,12 @@ const BuisnessView = () => {
 
         {/* Right Column / Business Column  */}
         <div className="bvp-business-column">
-          {/* {businessState.businessRender.length > 0
+          {businessState.businessRender.length > 0
             ? businessState.businessRender.map((business) => (
-                <ViewCard business={business} />
+                <BusinessCard business={business} />
               ))
-            : null} */}
-
-          <div className="bvp-business-info-card">
+            : null}
+          {/* <div className="bvp-business-info-card">
             <div className="bvp-business-card-left">
               <img src={ExampleImage} alt="" />
             </div>
@@ -199,7 +197,7 @@ const BuisnessView = () => {
               <img src={ExampleImage} alt="" />
             </div>
             <div className="bvp-business-card-right"></div>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

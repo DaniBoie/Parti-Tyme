@@ -43,20 +43,6 @@ function Login() {
       .then(({ data: token }) => {
         if (token) {
           localStorage.setItem("user", token);
-          window.location = "/userprofile";
-        } else {
-          console.log("invalid credentials");
-        }
-      })
-      .catch((err) => console.log(err));
-  };
-
-  accountState.handleCheck = (event) => {
-    event.preventDefault();
-    API.loginUser(userLogin)
-      .then(({ data: token }) => {
-        if (token) {
-          localStorage.setItem("user", token);
           window.location = "/businessview";
         } else {
           console.log("invalid credentials");
@@ -79,7 +65,7 @@ function Login() {
             userEmail: "",
             username: "",
             password1: "",
-            password2: "",
+            password2: ""
           });
           console.log(res);
         })
@@ -94,12 +80,15 @@ function Login() {
       .then(() => {
         window.location = "/businessview";
       })
-      .catch((err) => {console.log("not in");console.log(err)});
+      .catch((err) => {
+        console.log("not in");
+        console.log(err);
+      });
   }, []);
 
   return (
     <>
-      <Nav name="Login/Signup " />
+      <Nav name="Login/Signup" />
       <div className="login-page">
         {/* Left Column / Login Box */}
         <div className="login-area">

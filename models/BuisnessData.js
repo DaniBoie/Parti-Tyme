@@ -1,48 +1,55 @@
-const { model, Schema } = require('mongoose')
+const { model, Schema } = require("mongoose");
 
-const BuisnessData = new Schema({
-  name: {
-    type: String,
-    unique: true,
-    required: true
+const BuisnessData = new Schema(
+  {
+    name: {
+      type: String,
+      unique: true,
+      required: true,
+    },
+    bio: {
+      type: String,
+    },
+    slogan: {
+      type: String, 
+    },
+    img: {
+      type: String,
+    },
+    instagram: {
+      type: String,
+    },
+    website: {
+      type: String,
+    },
+    facebook: {
+      type: String,
+    },
+    buisness_type: {
+      type: String,
+      required: true,
+    },
+    fee: {
+      type: Number,
+      required: true,
+    },
+    location: {
+      type: String,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
   },
-  bio: {
-    type: String,
-  },
-  img: {
-    type: String,
-  },
-  instagram: {
-    type: String,
-    unique: true,
-  },
-  website: {
-    type: String,
-    unique: true,
-  },
-  facebook: {
-    type: String,
-    unique: true,
-  },
-  buisness_type: {
-    type: String,
-    required: true
-  },
-  fee: {
-    type: Number,
-    required: true
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  reviews: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Review'
-  }]
+  { timestamps: true }
+);
 
-}, { timestamps: true })
+BuisnessData.plugin(require("passport-local-mongoose"));
 
-BuisnessData.plugin(require('passport-local-mongoose'))
-
-module.exports = model('BuisnessData', BuisnessData)
+module.exports = model("BuisnessData", BuisnessData);

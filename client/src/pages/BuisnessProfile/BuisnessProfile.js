@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import BusinessCard from "../../components/BusinessCard"
+import axios from "axios";
+import BusinessCard from "../../components/BuisnessCard";
 import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import API from "../../utils/API";
@@ -13,38 +14,14 @@ import ExampleImage4 from "../../components/assets/images/business-4.jpg";
 import Logo from "../../components/assets/images/logos.png";
 // Importing styling element
 import "./BuisnessProfile.css";
-
-
+import StarRatings from "react-star-ratings";
 
 const BuisnessProfile = () => {
-
-  const [businessState, setBusinessState] = useState({
-    name: "",
-    bio: "",
-    img: "",
-    instagram: "",
-    website: "",
-    facebook: "",
-    fee: "",
-    business: {},
-    text: "",
-    rating: "",
-    username: "",
-    reviews: [],
-  });
-
-  // HANDLING the inputs on the page.
-  businessState.handleInputChange = event => {
-    setBusinessState({ ...businessState, [event.target.name]: event.target.value })  
-  }
-
-  // Function for edit button
   const [inputState, setInputState] = useState({
     disabled: true,
     show: "",
     hideButton: "hide",
   });
-  // Function
 
   inputState.handleEditButton = () => {
     setInputState({
@@ -54,6 +31,7 @@ const BuisnessProfile = () => {
       hideButton: "",
     });
   };
+
   inputState.handleCancelButton = () => {
     setInputState({
       ...inputState,
@@ -63,64 +41,158 @@ const BuisnessProfile = () => {
     });
   };
 
+
+  const [businessState, setBusinessState] = useState({
+    name: "",
+    bio: "",
+    img: "",
+    instagram: "",
+    website: "",
+    facebook: "",
+    business_type: "",
+    fee: "",
+    business: {},
+    topic: "",
+    text: "",
+    rating: 0,
+    username: "",
+    reviews: [],
+  });
+
+
+  businessState.changeRating = (newRating, rating) => {
+    setBusinessState({
+      ...businessState,
+      rating: newRating
+    })
+  }
+
+  // HANDLING the inputs on the page.
+
+  businessState.handleInputChange = (event) => {
+    setBusinessState({
+      ...businessState,
+      [event.target.name]: event.target.value,
+    });
+    console.log(businessState.rating)
+    console.log(businessState.topic);
+  };
+
+  let businessId;
+  let userId;
+
   useEffect(() => {
+    // let dataComeback;
 
-    // let businessId = 
-    let dataComeback
+    businessId = localStorage.getItem("pickBusiness");
+
     API.getUser()
-        .then(({data}) => {
-          dataComeback = data[0].Buisness
-          console.log(dataComeback)
-          API.findBusinessReviews(dataComeback._id)
-            .then(({data:reviews}) => {
-              console.log(data)
-              setBusinessState({
-                ...businessState,
-                name: dataComeback.name,
-                bio: dataComeback.bio,
-                img: dataComeback.img,
-                instagram: dataComeback.instagram,
-                website: dataComeback.website,
-                facebook: dataComeback.facebook,
-                fee: dataComeback.fee,
-                business: dataComeback,
-                username: data[0].username,
-                reviews
-              })
-            })
-            .catch(err => console.log(err))
+      .then(({ data }) => {
 
-        })
-        .catch(err => console.log(err))
+        console.log(data)
+        userId = data[0]._id
+        console.log(userId)
+        let userBusinessId = data[0].Buisness._id || "";
+        console.log(userBusinessId)
 
-  },[])
+        if (userBusinessId === businessId) {
+          setInputState({
+            ...inputState,
+            disabled: false
+          })
+        } else {
+          setInputState({
+            ...inputState,
+            disabled: true
+          })
+        }
+      })
+      .catch((err) => console.log(err));
 
-  // businessState.updateBusiness = () => {
+    
 
-  //   let id = businessState.business._id
+    if (businessId === null) {
+      window.location = "/businessview";
+    }
 
-  //   API.updateBusiness(id)
-  //     .then(({data}) => {
-  //       console.log(data)
-  //       // setBusinessState({
-  //       //   ...businessState,
-  //       //   nam
-  //       // })
-  //     })
-  //     .catch(err => console.log(err))
-  // }
+    // Pulling data from database based on the ID
+    axios
+      .get(`/api/buisness/${businessId}`)
+      .then(({ data }) => {
+        console.log(data);
+        setBusinessState({ ...businessState, business: data });
+      })
+      .catch((error) => console.log(error));
+  }, []);
+
+  function handleTesting() {
+    // console.log();
+  }
+
+  businessState.updateBusiness = () => {
+    console.log(businessState.business);
+    // let id = businessState.business._id
+
+    API.updateBusiness({
+      name: businessState.name,
+      bio: businessState.bio,
+      img: businessState.img,
+      instagram: businessState.instagram,
+      website: businessState.facebook,
+      business_type: businessState.business_type,
+      fee: businessState.fee,
+    })
+      .then(({ data }) => {
+        console.log(data)
+      })
+      .catch((err) => console.log(err));
+
+    const handleSaveButton = () => {
+      setInputState({
+        ...inputState,
+        disabled: true,
+        show: "",
+        hideButton: "hide",
+      });
+    };
+
+    handleSaveButton();
+  };
+
+  // Handle Send Button
+  const reviewSendButton = event => {
+    event.preventDefault()
+    console.log(businessState.topic);
+
+    API.createReview({
+      topic: businessState.topic,
+      text: businessState.text,
+      rating: businessState.rating,
+      buisness: businessId,
+      user: userId
+    })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  var business = {
+    img:
+      "https://www.visitnewportbeach.com/wp-content/uploads/2018/04/MastrosOceanClub-3-06-700x400.jpg",
+    name: "Mastros",
+    descprition: "kkkk idkkdkdkd",
+  };
 
   return (
     <>
-      <Nav name="Business Profile" />
-      <BusinessCard
-        business={businessState.business}
-      />
+      <Nav />
+      {/* <BusinessCard business={business} />
       {businessState.reviews.length > 0
         ? businessState.reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
           ))
-        : null}
+        : null} */}
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
@@ -136,43 +208,44 @@ const BuisnessProfile = () => {
           </div>
 
           <div className="bpp-business-info-area">
-
             <button
               className="bpp-edit-button"
+              disabled={inputState.disabled}
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
             </button>
 
             <label>
-              {/* Name:{" "} */}
               <input
                 className={`bpp-input-for-business-name ${inputState.show}`}
                 type="text"
-                name="businessName"
-                defaultValue="Taco Truck"
+                name="name"
+                defaultValue={businessState.business.name}
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
-
-              Location: LA
+              Location:
               <input
                 className={`${inputState.show}`}
                 type="text"
                 name="businessLocation"
-                defaultValue="LA"
+                defaultValue={businessState.business.location}
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
-              Fee:{businessState.fee}
+              Fee:
               <input
-                className={`${inputState.show}`}
+                className={` ${inputState.show}`}
                 type="text"
-                name="businessFee"
-                defaultValue="$13/hr, $5/order"
+                name="fee"
+                defaultValue={businessState.business.fee}
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
             <label>
@@ -183,18 +256,24 @@ const BuisnessProfile = () => {
                 name="businessService"
                 defaultValue="Free Delivery with in 3 miles"
                 disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
               />
             </label>
-            <textarea
-              className={`${inputState.show}`}
-              name="businessBio"
-              rows="7"
-              disabled={inputState.disabled}
-            >
-              {businessState.bio}
-            </textarea>
+            <label>
+              <textarea
+                className={`${inputState.show}`}
+                name="bio"
+                rows="7"
+                disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
+                value={businessState.business.bio}
+              ></textarea>
+            </label>
 
-            <button className={`bpp-save-button ${inputState.hideButton}`}>
+            <button
+              className={`bpp-save-button ${inputState.hideButton}`}
+              onClick={businessState.updateBusiness}
+            >
               Save
             </button>
             <button
@@ -207,41 +286,62 @@ const BuisnessProfile = () => {
         </div>
 
         <div className="bpp-business-review">
-          {
-            businessState.reviews.length > 0 ? (
-              businessState.reviews.map(review => (
-                <ReviewCard
-                  key={businessState.business._id}
-                  review={review}
-                  business={businessState.business}
-                  username={businessState.username}
+          <div className="bpp-business-review-left">
+            <StarRatings
+              className="bpp-StarRatings"
+              starHoverColor="yellow"
+              starRatedColor="red"
+              rating={3.5}
+              starDimension="40px"
+              starSpacing="15px"
+            />
+            {/* {businessState.business.reviews.length > 0
+              ? businessState.business.reviews.map((review) => (
+                  <ReviewCard
+                    key={businessState.business._id}
+                    review={review}
+                    business={businessState.business.business}
+                    username={businessState.business.username}
+                  />
+                ))
+              : null} */}
+          </div>
+
+          <div className="bpp-business-review-right">
+            {/* <div className="bpp-business-review-right-image">
+              <img src={ExampleImage2} alt="profile picture" />
+              <p>User Name</p>
+            </div> */}
+            <StarRatings
+              className="bpp-StarRatings"
+              starHoverColor="yellow"
+              starRatedColor="red"
+              rating={businessState.rating}
+              changeRating={businessState.changeRating}
+              starDimension="20px"
+              starSpacing="5px"
+              name="rating"
+              onChange={businessState.handleInputChange}
+            />
+            <div className="bpp-business-review-right-topic">
+              <form>
+                <input
+                  type="text"
+                  name="topic"
+                  placeholder="Topic..."
+                  onChange={businessState.handleInputChange}
                 />
-              )))
-            : null}
-          
+                <textarea
+                  rows="4"
+                  name="text"
+                  placeholder="Write Your Comment Here..."
+                  onChange={businessState.handleInputChange}
+                ></textarea>
+              </form>
+            </div>
+            <button onClick={reviewSendButton}>Send</button>
+          </div>
         </div>
-        <form action="">
-          <label htmlFor="name">Change Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={businessState.handleInputChange}
-          />
-          <label htmlFor="bio">Change Bio</label>
-          <textarea
-            name="bio"
-            cols="30"
-            rows="10"
-            onChange={businessState.handleInputChange}
-          ></textarea>
-          <label htmlFor="">Change Fee</label>
-          <input
-            type="text"
-            name="fee"
-            onChange={businessState.handleInputChange}
-          />
-        </form>
-        <button onClick={businessState.updateBusiness}>Submit</button>
       </div>
     </>
   );
