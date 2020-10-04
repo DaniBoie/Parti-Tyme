@@ -5,12 +5,15 @@ const User = new Schema({
     type: String,
     required: true
   },
-  userLocation: {
-    type: String
-  },
-  userBio: {
-    type: String
-  },
+  // userLocation: {
+  //   type: String
+  // },
+  // userBio: {
+  //   type: String
+  // },
+  favorite: [{
+    type: String,
+  }],
   username: {
     type: String,
     required: true
