@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import "./BusinessView.css";
-import ViewCard from "../../components/ViewCard";
 
 // Importing Components
 import Nav from "../../components/Nav";
 import BusinessCard from "../../components/BuisnessCard";
-import ExampleImage from "../../components/assets/images/business-1.jpg";
 
 const BuisnessView = () => {
   const [businessState, setBusinessState] = useState({
@@ -42,16 +40,9 @@ const BuisnessView = () => {
         });
       })
       .catch((err) => console.log(err));
-
-    API.getUser()
-      .then(() => {
-        //Do something w nav
-      })
-      .catch((err) => {
-        //Show login button
-      });
   }, []);
 
+  // Search Button
   const handleSearch = () => {
     // console.log(businessState.selectValue)
 
@@ -74,6 +65,7 @@ const BuisnessView = () => {
     console.log(filteredArray);
   };
 
+  // Clear Button
   const handleFilterClear = () => {
     setBusinessState({
       ...businessState,
@@ -81,12 +73,40 @@ const BuisnessView = () => {
     });
   };
 
+  // Search Button
+  function handleSearchBar() {
+    console.log("Function For Search Button");
+  }
+
+  // Function to show and hide price number
+  const [showPrice, setShowPrice] = useState({ price: "hide-price-search" });
+
+  function showPriceCheck() {
+    if (showPrice.price === "hide-price-search") {
+      setShowPrice({ ...showPrice, price: "" });
+    } else {
+      setShowPrice({ ...showPrice, price: "hide-price-search" });
+    }
+  }
   return (
     <>
       <Nav name="Home Page" />
       <div className="business-view-page">
         {/* Left Column / Filter Column  */}
         <div className="filter-column">
+          {/* Search Bar */}
+          <div className="bvp-search-bar">
+            <input
+              className="bvp-search-text"
+              type="text"
+              name="searchText"
+              placeholder="Type To Seach..."
+              onChange={businessState.handleCheckboxChange}
+            />
+            <button className="bvp-search-button" onClick={handleSearchBar}>
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
           {/* Dropdown category */}
           <div className="bvp-dropdown-categories-list-item">
             <form>
@@ -107,69 +127,62 @@ const BuisnessView = () => {
           <h2>Filters</h2>
 
           <div className="filter-list">
-            <label className="filter-items">
-              {" "}
-              Distance
+            <div className="filter-items">
               <input
                 type="checkbox"
-                onChange={businessState.handleCheckboxChange}
                 name="distance"
+                onChange={businessState.handleCheckboxChange}
               />
-              <span className="checkmark"></span>
-            </label>
+              <label>Distance</label>
+            </div>
 
-            <label className="filter-items">
-              {" "}
-              Max Price
+            <div className="filter-items">
               <input
+                onClick={showPriceCheck}
                 type="checkbox"
                 name="maxPrice"
                 onChange={businessState.handleCheckboxChange}
               />
-              <span className="checkmark"></span>
-            </label>
 
-            <label className="filter-items">
-              {" "}
-              Low Price
+              <label>Max Price</label>
+              <input
+                className={`search-price ${showPrice.price}`}
+                type="number"
+                name="priceSearch"
+                min="10"
+                max="9999"
+                onChange={businessState.handleCheckboxChange}
+              />
+            </div>
+
+            <div className="filter-items">
               <input
                 type="checkbox"
                 onChange={businessState.handleCheckboxChange}
-                name="lowPrice"
               />
-              <span className="checkmark"></span>
-            </label>
-
-            <label className="filter-items">
-              {" "}
-              Rating
-              <input 
+              <label>Something</label>
+            </div>
+            <div className="filter-items">
+              <input
                 type="checkbox"
                 onChange={businessState.handleCheckboxChange}
-                name="rating"
               />
-              <span className="checkmark"></span>
-            </label>
-
-            <label className="filter-items">
-              {" "}
-              consectetur
-              <input type="checkbox" 
-              
-              
+              <label>Something</label>
+            </div>
+            <div className="filter-items">
+              <input
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
               />
-              <span className="checkmark"></span>
-            </label>
-
-            <label className="filter-items">
-              {" "}
-              adipisicing
-              <input type="checkbox" 
-              
-              
+              <label>Something</label>
+            </div>
+            <div className="filter-items">
+              <input
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
               />
-              <span className="checkmark"></span>
-            </label>
+              <label>Something</label>
+            </div>
           </div>
 
           <div className="filter-column-buttons">
@@ -185,33 +198,6 @@ const BuisnessView = () => {
                 <BusinessCard business={business} />
               ))
             : null}
-          {/* <div className="bvp-business-info-card">
-            <div className="bvp-business-card-left">
-              <img src={ExampleImage} alt="" />
-            </div>
-            <div className="bvp-business-card-right"></div>
-          </div>
-
-          <div className="bvp-business-info-card">
-            <div className="bvp-business-card-left">
-              <img src={ExampleImage} alt="" />
-            </div>
-            <div className="bvp-business-card-right"></div>
-          </div>
-
-          <div className="bvp-business-info-card">
-            <div className="bvp-business-card-left">
-              <img src={ExampleImage} alt="" />
-            </div>
-            <div className="bvp-business-card-right"></div>
-          </div>
-
-          <div className="bvp-business-info-card">
-            <div className="bvp-business-card-left">
-              <img src={ExampleImage} alt="" />
-            </div>
-            <div className="bvp-business-card-right"></div>
-          </div> */}
         </div>
       </div>
     </>

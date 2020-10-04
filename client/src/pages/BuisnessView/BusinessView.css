@@ -7,6 +7,72 @@
 
 /* Left Column / Filter Column  */
 
+/* Search Bar */
+
+.bvp-search-bar {
+  margin-top: 1rem;
+}
+
+.bvp-search-text {
+  display: inline-block;
+  border: none;
+  background: none;
+  outline: none;
+  padding-left: 10px;
+  width: 100%;
+  background: #b2bec3;
+  height: 30px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+}
+
+.bvp-search-button {
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  background: #2f3640;
+  color: #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transition: 0.5s ease-out;
+  -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -ms-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+}
+
+.bvp-search-text:hover, .bvp-search-text:focus {
+  filter: brightness(1.2);
+  -webkit-filter: brightness(1.2);
+}
+
+.bvp-search-button:hover {
+  background: #dfe6e9;
+  color: #0f1923;
+  border: 1px solid #0f1923;
+}
+
+/* Select Form */
+
 .bvp-dropdown-categories-list-item form select {
   display: inline-block;
   width: 100%;
@@ -32,7 +98,7 @@
 
 .filter-column h2 {
   text-align: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
   letter-spacing: 2px;
   font-size: 34px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -40,67 +106,39 @@
   text-decoration: underline;
 }
 
+.filter-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-list input {
+  display: inline-block;
+}
+
 .filter-items {
-  margin-left: 10px;
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 1rem;
-  cursor: pointer;
+  margin: .5rem 0;
   font-size: 22px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  text-align: left;
 }
 
-.filter-items input {
-  position: absolute;
-  opacity: 0;
-  height: 0;
-  width: 0;
-  cursor: pointer;
+.filter-items input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: .3rem;
+  transform: translateY(10%);
+  -webkit-transform: translateY(10%);
+  -moz-transform: translateY(10%);
+  -ms-transform: translateY(10%);
+  -o-transform: translateY(10%);
 }
 
-.checkmark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  border: 1px solid #333;
-  background-color: #eee;
+.filter-items input[type="number"] {
+  margin: 0 .3rem;
+  font-size: 18px;
+  outline: none;
 }
 
-.filter-items:hover input ~ .checkmark {
-  background-color: #ccc;
-}
-
-.filter-items input:checked ~ .checkmark {
-  background-color: #ffffff;
-}
-
-.checkmark:after {
-  content: "";
-  position: absolute;
+.search-price.hide-price-search {
   display: none;
-}
-
-.filter-items input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.filter-items .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
-  border: 1px solid #333;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 
 .filter-column-buttons button {
@@ -135,32 +173,9 @@
   overflow: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 250px;
+  grid-auto-rows: 250px;
   column-gap: 1rem;
   row-gap: 2.5rem;
-}
-
-.bvp-business-info-card {
-  padding: 1rem;
-  border: 1px solid #333;
-  height: 250px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.bvp-business-card-left {
-  align-self: center;
-}
-
-.bvp-business-card-left img {
-  border: 1px solid #333;
-  width: 90%;
-}
-
-.bvp-business-card-right {
-  align-self: center;
-  height: 90%;
-  border: 1px solid #333;
 }
 
 /* Media Queries */
@@ -174,7 +189,7 @@
 
 @media only screen and (max-width: 850px) {
   .bvp-business-column {
-    grid-template-rows: 350px;
+    grid-auto-rows: 350px;
   }
 }
 

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./BusinessCard.css";
-import StarRating from "../StarRating/StarRating.js";
+// import StarRating from "../StarRating/StarRating.js";
+import StarRatings from "react-star-ratings";
 
 import ExampleImage from "../../components/assets/images/business-2.jpg";
 
@@ -18,7 +19,16 @@ const BuisnessCard = (props) => {
           <img src={ExampleImage} alt="Business Profile Picture" />
         </div>
 
-        <StarRating />
+        {/* <StarRating /> */}
+        <StarRatings
+          rating={3}
+          starRatedColor="#fff200"
+          // changeRating={this.changeRating}
+          numberOfStars={5}
+          name="rating"
+          starDimension="25px"
+          starSpacing="3px"
+        />
       </div>
 
       {/* Right Column / Business Basic Info */}
@@ -26,7 +36,7 @@ const BuisnessCard = (props) => {
         <h1>{props.business.name}</h1>
         <h2>{props.business.location}</h2>
         <h2>${props.business.fee}/hr</h2>
-        <h3>Put a slogan here (about 10-13-15 words)</h3>
+        <h3>{props.business.slogan}</h3>
 
         <Link to="/businessprofile" onClick={handleContactButton}>
           More Detail...
