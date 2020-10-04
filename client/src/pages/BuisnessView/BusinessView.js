@@ -131,29 +131,43 @@ const BuisnessView = () => {
 
             <label className="filter-items">
               {" "}
-              dolor
-              <input type="checkbox" />
+              Low Price
+              <input
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
+                name="lowPrice"
+              />
               <span className="checkmark"></span>
             </label>
 
             <label className="filter-items">
               {" "}
-              sit
-              <input type="checkbox" />
+              Rating
+              <input 
+                type="checkbox"
+                onChange={businessState.handleCheckboxChange}
+                name="rating"
+              />
               <span className="checkmark"></span>
             </label>
 
             <label className="filter-items">
               {" "}
               consectetur
-              <input type="checkbox" />
+              <input type="checkbox" 
+              
+              
+              />
               <span className="checkmark"></span>
             </label>
 
             <label className="filter-items">
               {" "}
               adipisicing
-              <input type="checkbox" />
+              <input type="checkbox" 
+              
+              
+              />
               <span className="checkmark"></span>
             </label>
           </div>
