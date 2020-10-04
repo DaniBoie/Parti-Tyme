@@ -8,6 +8,9 @@ const ProfileSettings = new Schema(
     bio: {
       type: String,
     },
+    location: {
+      type: String,
+    },
     instagram: {
       type: String,
     },

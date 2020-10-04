@@ -29,6 +29,7 @@ const UserProfile = () => {
     user: [],
     profileImg: "",
     bioChange: "",
+    location: "",
     instaChange: "",
     facebookChange: "",
     selectValue: "",
@@ -49,7 +50,7 @@ const UserProfile = () => {
     API.getUser()
       .then(({ data }) => {
         dataComeback = data[0];
-        console.log(dataComeback.Buisness);
+        console.log(dataComeback);
 
         setUserState({
           ...userState,
@@ -81,6 +82,7 @@ const UserProfile = () => {
     let settings = {
       img: userState.profileImg,
       bio: userState.bioChange,
+      location: userState.location,
       instagram: userState.instaChange,
       facebook: userState.facebookChange,
     };
@@ -154,11 +156,9 @@ const UserProfile = () => {
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
-          <p>City Of The User</p>
+          <p>{userState.location}</p>
           <p>
-            Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-            assumenda vitae tempore doloremque quos ducimus neque quas commodi
-            officiis et?
+            Bio: {userState.bio}
           </p>
           <div className="profile-icons-list">
             <a
@@ -192,7 +192,7 @@ const UserProfile = () => {
                 <i class="fas fa-city"></i>
                 <input
                   type="text"
-                  name="cityChange"
+                  name="location"
                   placeholder="Change Your City ..."
                   onChange={userState.handleInputChange}
                 />
