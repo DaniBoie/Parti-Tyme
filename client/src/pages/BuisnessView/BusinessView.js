@@ -13,7 +13,8 @@ const BuisnessView = () => {
     selectValue: "All",
     maxPrice: false,
     distance: false,
-    priceSearch: 1000
+    priceSearch: 1000,
+    searchText: ""
   });
 
   businessState.handleInputChange = (event) => {
@@ -46,11 +47,12 @@ const BuisnessView = () => {
   // Search Button
   const handleSearch = () => {
     // console.log(businessState.selectValue)
-
+  
     let filteredArray = API.filterCategory(
       businessState.selectValue,
       businessState.businesses
-    );
+      );
+    
 
     if (businessState.maxPrice) {
       console.log("Max Price Ticked");
@@ -76,7 +78,15 @@ const BuisnessView = () => {
 
   // Search Button
   function handleSearchBar() {
-    console.log("Function For Search Button", businessState.priceSearch);
+    API.searchBusinessName(businessState.searchText)
+      .then(({ data }) => {
+        if (data.length > 0){
+        setBusinessState({...businessState, businessRender: data})
+        } else {
+        alert('No Matches Found')
+        }
+      })
+      .catch((err) => { console.log(err) })
   }
 
   // Function to show and hide price number
@@ -102,9 +112,9 @@ const BuisnessView = () => {
               type="text"
               name="searchText"
               placeholder="Type To Seach..."
-              onChange={businessState.handleCheckboxChange}
+              onChange={businessState.handleInputChange}
             />
-            <button className="bvp-search-button" onClick={handleSearchBar}>
+            <button className="bvp-search-button" value="name" onClick={handleSearchBar}>
               <i class="fas fa-search"></i>
             </button>
           </div>
