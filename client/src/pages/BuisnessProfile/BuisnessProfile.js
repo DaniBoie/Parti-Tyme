@@ -243,7 +243,9 @@ const BuisnessProfile = () => {
           <div className="bpp-business-info-area">
             <button
               className={`bpp-edit-button ${inputState.hideEdit}`}
+
               // disabled={inputState.disabled}
+
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
