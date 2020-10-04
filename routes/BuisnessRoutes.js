@@ -73,6 +73,7 @@ router.post("/buisness", passport.authenticate("jwt"), (req, res) => {
     buisness_type: req.body.buisness_type,
     fee: req.body.fee,
     location: req.body.location,
+    slogan: req.body.slogan,
     user: req.user._id,
   })
     .then((data) => {

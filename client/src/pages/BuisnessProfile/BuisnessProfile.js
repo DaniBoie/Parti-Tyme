@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import BusinessCard from "../../components/BuisnessCard";
-// import ReviewCard from "../../components/ReviewCard/ReviewCard";
+import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import API from "../../utils/API";
 import Nav from "../../components/Nav";
