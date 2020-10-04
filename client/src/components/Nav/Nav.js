@@ -19,6 +19,15 @@ const Nav = (props) => {
   const [businessStatus, setBusinessStatus] = useState({
     hideBusinessProfile: "hideExistence",
   });
+
+  const [userState, setUserState] = useState({
+    user: "",
+  });
+
+  const handleBusinessButton = () => {
+    console.log(userState.user)
+  }
+
   dropdownState.handleHamburgerButton = () => {
     if (dropdownState.show === "") {
       setDropdownState({ ...dropdownState, show: "show" });
@@ -35,6 +44,7 @@ const Nav = (props) => {
     });
     window.location = "/businessview";
   }
+
 
   useEffect(() => {
     if (window.location.pathname === "/login") {
@@ -57,6 +67,10 @@ const Nav = (props) => {
             hideBusinessProfile: "",
           });
         }
+
+        setUserState({ ...userState, user: data[0].Buisness._id})
+        
+        
       })
       .catch((err) => {
         console.log(err);
@@ -116,6 +130,7 @@ const Nav = (props) => {
         <div className={`nav-dropdown-menu ${dropdownState.show}`}>
           <Link
             to="/businessprofile"
+            onClick={() => {localStorage.setItem("pickBusiness", userState.user);}}
             className={`nav-dropdown-items ${businessStatus.hideBusinessProfile}`}
           >
             Business Profile
