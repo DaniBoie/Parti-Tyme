@@ -143,6 +143,7 @@ const BuisnessView = () => {
                 name="maxPrice"
                 onChange={businessState.handleCheckboxChange}
               />
+
               <label>Max Price</label>
               <input
                 className={`search-price ${showPrice.price}`}
