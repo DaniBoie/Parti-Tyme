@@ -21,6 +21,7 @@ const BuisnessProfile = () => {
     disabled: true,
     show: "",
     hideButton: "hide",
+    hideEdit: '',
   });
 
   inputState.handleEditButton = () => {
@@ -102,6 +103,7 @@ const BuisnessProfile = () => {
           setInputState({
             ...inputState,
             disabled: true,
+            hideEdit: 'hideEdit'
           });
         }
       })
@@ -209,7 +211,7 @@ const BuisnessProfile = () => {
 
           <div className="bpp-business-info-area">
             <button
-              className="bpp-edit-button"
+              className={`bpp-edit-button ${inputState.hideEdit}`}
               disabled={inputState.disabled}
               onClick={inputState.handleEditButton}
             >

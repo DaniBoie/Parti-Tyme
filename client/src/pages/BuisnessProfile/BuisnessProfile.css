@@ -28,6 +28,7 @@
   display: flex;
   justify-content: center;
 }
+
 /* Middle Row / Business Information */
 
 .bpp-business-information {
@@ -119,8 +120,7 @@
   resize: none;
 }
 
-.bpp-business-info-area input.show,
-.bpp-business-info-area textarea.show {
+.bpp-business-info-area input.show, .bpp-business-info-area textarea.show {
   border: 1px solid #000;
   background: #eaf5eb;
 }
@@ -129,8 +129,7 @@
   padding: 0.5rem;
 }
 
-.bpp-save-button,
-.bpp-cancel-button {
+.bpp-save-button, .bpp-cancel-button {
   margin: 1rem;
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
@@ -144,8 +143,8 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
-.bpp-save-button.hide,
-.bpp-cancel-button.hide {
+
+.bpp-save-button.hide, .bpp-cancel-button.hide {
   display: none;
 }
 
@@ -191,6 +190,7 @@
 }
 
 /* -------------------- */
+
 .bpp-business-review-right-image img {
   display: inline-block;
   width: 150px;
@@ -209,4 +209,8 @@
 .bpp-business-review-right-topic form textarea {
   display: block;
   width: 80%;
+}
+
+.bpp-edit-button.hideEdit {
+  display: none;
 }
