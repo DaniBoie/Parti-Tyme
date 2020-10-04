@@ -7,6 +7,72 @@
 
 /* Left Column / Filter Column  */
 
+/* Search Bar */
+
+.bvp-search-bar {
+  margin-top: 1rem;
+}
+
+.bvp-search-text {
+  display: inline-block;
+  border: none;
+  background: none;
+  outline: none;
+  padding-left: 10px;
+  width: 100%;
+  background: #b2bec3;
+  height: 30px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  transition: 0.2s ease-out;
+  -webkit-transition: 0.2s ease-out;
+  -moz-transition: 0.2s ease-out;
+  -ms-transition: 0.2s ease-out;
+  -o-transition: 0.2s ease-out;
+}
+
+.bvp-search-button {
+  position: absolute;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  background: #2f3640;
+  color: #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transition: 0.5s ease-out;
+  -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -ms-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+}
+
+.bvp-search-text:hover, .bvp-search-text:focus {
+  filter: brightness(1.2);
+  -webkit-filter: brightness(1.2);
+}
+
+.bvp-search-button:hover {
+  background: #dfe6e9;
+  color: #0f1923;
+  border: 1px solid #0f1923;
+}
+
+/* Select Form */
+
 .bvp-dropdown-categories-list-item form select {
   display: inline-block;
   width: 100%;
@@ -32,7 +98,7 @@
 
 .filter-column h2 {
   text-align: center;
-  margin: 2rem 0;
+  margin: 1rem 0;
   letter-spacing: 2px;
   font-size: 34px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -73,11 +139,11 @@
   background-color: #eee;
 }
 
-.filter-items:hover input ~ .checkmark {
+.filter-items:hover input~.checkmark {
   background-color: #ccc;
 }
 
-.filter-items input:checked ~ .checkmark {
+.filter-items input:checked~.checkmark {
   background-color: #ffffff;
 }
 
@@ -87,7 +153,7 @@
   display: none;
 }
 
-.filter-items input:checked ~ .checkmark:after {
+.filter-items input:checked~.checkmark:after {
   display: block;
 }
 

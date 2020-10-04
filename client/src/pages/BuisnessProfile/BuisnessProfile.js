@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import BusinessCard from "../../components/BuisnessCard";
-import ReviewCard from "../../components/ReviewCard/ReviewCard";
+// import BusinessCard from "../../components/BuisnessCard";
+// import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import API from "../../utils/API";
 import Nav from "../../components/Nav";
 // Importing image
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
-import ExampleImage1 from "../../components/assets/images/business-1.jpg";
-import ExampleImage2 from "../../components/assets/images/business-2.jpg";
-import ExampleImage3 from "../../components/assets/images/business-3.jpg";
-import ExampleImage4 from "../../components/assets/images/business-4.jpg";
+import Example1 from "../../components/assets/images/business-1.jpg";
+import Example2 from "../../components/assets/images/business-2.jpg";
+import Example3 from "../../components/assets/images/business-3.jpg";
+import Example4 from "../../components/assets/images/business-4.jpg";
 import Logo from "../../components/assets/images/logos.png";
 // Importing styling element
 import "./BuisnessProfile.css";
@@ -120,10 +120,6 @@ const BuisnessProfile = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  function handleTesting() {
-    // console.log();
-  }
-
   businessState.updateBusiness = () => {
     console.log(businessState.business);
     // let id = businessState.business._id
@@ -172,12 +168,12 @@ const BuisnessProfile = () => {
       .catch((err) => console.log(err));
   };
 
-  var business = {
-    img:
-      "https://www.visitnewportbeach.com/wp-content/uploads/2018/04/MastrosOceanClub-3-06-700x400.jpg",
-    name: "Mastros",
-    descprition: "kkkk idkkdkdkd",
-  };
+  // var business = {
+  //   img:
+  //     "https://www.visitnewportbeach.com/wp-content/uploads/2018/04/MastrosOceanClub-3-06-700x400.jpg",
+  //   name: "Mastros",
+  //   descprition: "kkkk idkkdkdkd",
+  // };
 
   return (
     <>
@@ -191,10 +187,10 @@ const BuisnessProfile = () => {
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
-          <img src={ExampleImage1} />
-          <img src={ExampleImage2} />
-          <img src={ExampleImage3} />
-          <img src={ExampleImage4} />
+          <img src={Example1} alt="Business Picture" />
+          <img src={Example2} alt="Business Picture" />
+          <img src={Example3} alt="Business Picture" />
+          <img src={Example4} alt="Business Picture" />
         </Carousel>
 
         <div className="bpp-business-information">

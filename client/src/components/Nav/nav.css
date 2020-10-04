@@ -565,6 +565,8 @@
 .nav-hamburger-icon {
   background: none;
   border: none;
+  outline: none;
+  cursor: pointer;
   padding: 0.3rem 0.5rem;
   font-size: 30px;
   transform: translateX(4rem);

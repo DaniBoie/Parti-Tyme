@@ -47,6 +47,7 @@ function Login() {
           window.location = "/businessview";
         } else {
           console.log("invalid credentials");
+          alert("Invalid User Name or Password");
         }
       })
       .catch((err) => console.log(err));

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css";
-import ProfileImage from "../../components/assets/images/business-2.jpg";
+import ProfileImage from "../../components/assets/images/no-profile-picture.jpg";
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
 
@@ -10,8 +10,12 @@ const UserProfile = () => {
     show: "",
   });
   function editProfileBtn() {
-    if (showInput.show === "") setShowInput({ show: "profile-input-show" });
-    else setShowInput({ show: "" });
+    if (showInput.show === "")
+      setShowInput({ ...showInput, show: "profile-input-show" });
+    else setShowInput({ ...showInput, show: "" });
+  }
+  function handleCancelButton() {
+    setShowInput({ ...showInput, show: "" });
   }
 
   const [userState, setUserState] = useState({
@@ -29,6 +33,7 @@ const UserProfile = () => {
     facebookChange: "",
     selectValue: "",
     businessName: "",
+    businessSlogan: "",
     businessBio: "",
     businessImage: "",
     businessFee: 0,
@@ -44,7 +49,7 @@ const UserProfile = () => {
     API.getUser()
       .then(({ data }) => {
         dataComeback = data[0];
-        console.log(dataComeback);
+        console.log(dataComeback.Buisness);
 
         setUserState({
           ...userState,
@@ -57,6 +62,11 @@ const UserProfile = () => {
           Settings: dataComeback.Settings || {},
         });
 
+        // Checking if the user has a business, if yes, hide the update account button
+        if (dataComeback.Buisness) {
+          setFormState({ ...formState, businessBtn: "hide" });
+        }
+
         console.log("API DATA ON STARTUP", dataComeback);
       })
       .catch((err) => {
@@ -64,16 +74,9 @@ const UserProfile = () => {
         console.log(err);
       });
     console.log(userState.Business);
-
-    // FIX BUSINESS ACCOUNT BTN
-    // if (userState.Buisness === undefined){
-    //   setFormState({ ...formState, businessBtn: "" })
-
-    // } else {
-    //   setFormState({ ...formState, businessBtn: "hide" })
-    // }
   }, []);
 
+  // Save Button
   const handleSaveBtn = () => {
     let settings = {
       img: userState.profileImg,
@@ -120,20 +123,21 @@ const UserProfile = () => {
     setFormState({ ...formState, show: "show" });
   };
 
-  // Writing New Data into database
+  // Submit Button / Writing New Data into database
   const handleBusinessButton = () => {
     API.createBusiness({
       name: userState.businessName,
+      slogan: userState.businessSlogan,
       bio: userState.busiessBio,
       img:
         userState.businessImage ||
         "https://upload.wikimedia.org/wikipedia/commons/5/50/Unisphere_Flushing_Meadows_Queens.jpg",
       buisness_type: userState.selectValue,
       fee: userState.businessFee,
-      location: userState.busiessLocation,
+      location: userState.businessLocation,
     })
       .then((data) => {
-        setFormState({ ...formState, show: "show" });
+        setFormState({ ...formState, show: "show", businessBtn: "hide" });
         console.log(data);
       })
       .catch((error) => console.log(error));
@@ -146,7 +150,9 @@ const UserProfile = () => {
         <div className="changing-basic-info-area">
           <img
             className="profile-image"
-            src={ProfileImage}
+            src={
+              userState.profileImg !== "" ? userState.profileImg : ProfileImage
+            }
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
@@ -156,6 +162,25 @@ const UserProfile = () => {
             assumenda vitae tempore doloremque quos ducimus neque quas commodi
             officiis et?
           </p>
+
+          <div className="profile-icons-list">
+            <a
+              href="https://www.google.com/"
+              className="profile-icons"
+              aria-label="Facebook"
+              data-balloon-pos="left"
+            >
+              <i class="fab fa-facebook-square"></i>
+            </a>
+            <a
+              href="https://www.google.com/"
+              className="profile-icons"
+              aria-label="Instagram"
+              data-balloon-pos="right"
+            >
+              <i class="fab fa-instagram-square"></i>
+            </a>
+          </div>
 
           <button
             className={`edit-profile-btn ${showInput.show}`}
@@ -226,7 +251,12 @@ const UserProfile = () => {
               <button className="profile-save-btn" onClick={handleSaveBtn}>
                 Save
               </button>
-              <button className="profile-cancel-btn">Cancel</button>
+              <button
+                className="profile-cancel-btn"
+                onClick={handleCancelButton}
+              >
+                Cancel
+              </button>
             </div>
           </ul>
         </div>
@@ -256,7 +286,15 @@ const UserProfile = () => {
                 />
               </label>
               <label>
-                *Business Bio:
+                Business Slogan:
+                <input
+                  type="text"
+                  name="businessSlogan"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+              <label>
+                Business Bio:
                 <input
                   type="text"
                   name="businessBio"
@@ -277,6 +315,7 @@ const UserProfile = () => {
                   name="selectValue"
                   onChange={userState.handleInputChange}
                 >
+                  <option>Pick One</option>
                   <option value="Food">Food</option>
                   <option value="Music">Music</option>
                   <option value="Rentals">Rentals</option>

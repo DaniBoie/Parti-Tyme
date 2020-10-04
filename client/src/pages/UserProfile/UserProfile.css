@@ -21,11 +21,12 @@
   margin: 0.5rem 0;
   color: rgb(99, 96, 96);
   font-size: 20px;
+  text-align: center;
 }
 
 .profile-image {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   border: 3px solid #0984e3;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -34,8 +35,17 @@
   -o-border-radius: 50%;
 }
 
-.edit-profile-btn,
-.update-account-btn {
+.profile-icons {
+  color: #333;
+  font-size: 36px;
+  padding: 0 .5rem;
+}
+
+.profile-icons:hover {
+  color: #636e72;
+}
+
+.edit-profile-btn, .update-account-btn {
   display: inline-block;
   width: 100%;
   padding: 10px;
@@ -52,8 +62,7 @@
   -o-border-radius: 20px;
 }
 
-.edit-profile-btn:hover,
-.update-account-btn:hover {
+.edit-profile-btn:hover, .update-account-btn:hover {
   background: #b2bec3;
   border: 2px solid #636e72;
 }
@@ -176,7 +185,12 @@
   padding: 0.5rem;
 }
 
+.upp-update-account-btn.hide {
+  display: none;
+}
+
 /* Registration Form */
+
 .up-overlay-form {
   position: fixed;
   z-index: 2;
@@ -225,12 +239,11 @@
   color: #fff;
   font-size: 50px;
   text-align: center;
-  margin: 2rem;
+  margin: 1rem;
   text-decoration: underline;
 }
 
-.update-account-form label,
-.update-account-form input {
+.update-account-form label, .update-account-form input {
   font-weight: 400;
 }
 
@@ -241,8 +254,7 @@
   text-align: right;
 }
 
-.update-account-form input,
-.update-account-form select {
+.update-account-form input, .update-account-form select {
   font-size: 18px;
   margin: 0 1rem;
   padding: 0.2rem;
@@ -351,4 +363,5 @@
   -o-transition: 1s;
   transition-delay: 0.75s;
 }
+
 /* End Registration Form */

@@ -71,12 +71,29 @@ const BuisnessView = () => {
     });
   };
 
+  // Search Button
+  function handleSearchButton() {
+    console.log("Function For Search Button");
+  }
+
   return (
     <>
       <Nav name="Home Page" />
       <div className="business-view-page">
         {/* Left Column / Filter Column  */}
         <div className="filter-column">
+          {/* Search Bar */}
+          <div className="bvp-search-bar">
+            <input
+              className="bvp-search-text"
+              type="text"
+              name="searchText"
+              placeholder="Type To Seach..."
+            />
+            <button className="bvp-search-button" onClick={handleSearchButton}>
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
           {/* Dropdown category */}
           <div className="bvp-dropdown-categories-list-item">
             <form>
