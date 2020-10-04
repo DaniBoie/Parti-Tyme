@@ -231,6 +231,16 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
+              <input
+                className={`${inputState.show}`}
+                type="text"
+                name="slogan"
+                defaultValue={businessState.business.slogan}
+                disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
+              />
+            </label>
+            <label>
               Location:
               <input
                 className={`${inputState.show}`}
@@ -248,17 +258,6 @@ const BuisnessProfile = () => {
                 type="text"
                 name="fee"
                 defaultValue={businessState.business.fee}
-                disabled={inputState.disabled}
-                onChange={businessState.handleInputChange}
-              />
-            </label>
-            <label>
-              Slogan:{" "}
-              <input
-                className={`${inputState.show}`}
-                type="text"
-                name="slogan"
-                defaultValue="Free Delivery with in 3 miles"
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
               />

@@ -3,32 +3,32 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 // Importing Styling Elements
-import "./nav.css";
+import "./Nav.css";
 
 // Importing Logo Image
 import Balloon from "../assets/images/balloon.png";
 
 const Nav = (props) => {
   // In Process function, for the purpose of making responsive website
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  // const handleResizeWidth = () => {
-  //   setWindowWidth(window.innerWidth);
-  // };
+  const handleResizeWidth = () => {
+    setWindowWidth(window.innerWidth);
+  };
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResizeWidth);
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("resize", handleResizeWidth);
+  }, []);
 
-  // const [windowheight, setWindowHeight] = useState(window.innerHeight);
+  const [windowheight, setWindowHeight] = useState(window.innerHeight);
 
-  // const handleResizeHeight = () => {
-  //   setWindowHeight(window.innerHeight);
-  // };
+  const handleResizeHeight = () => {
+    setWindowHeight(window.innerHeight);
+  };
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResizeHeight);
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("resize", handleResizeHeight);
+  }, []);
   // End Process Function
 
   // Function for dropdown menu
@@ -92,8 +92,8 @@ const Nav = (props) => {
         {/* <Link to="/">
             <img src={Logo1} alt="Logo" />
           </Link> */}
-        {/* <div>window width: {windowWidth}</div>
-        <div>window height: {windowheight}</div> */}
+        <div>window width: {windowWidth}</div>
+        <div>window height: {windowheight}</div>
       </div>
 
       {/* Middle Column / Search Bar */}
