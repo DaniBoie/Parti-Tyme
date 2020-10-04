@@ -10,7 +10,7 @@ const BuisnessCard = (props) => {
   function handleContactButton() {
     localStorage.setItem("pickBusiness", `${props.business._id}`);
   }
-
+  console.log(props.business);
   return (
     <div className="business-card">
       {/* Left Column / Image + Rating Star */}
@@ -21,7 +21,7 @@ const BuisnessCard = (props) => {
 
         {/* <StarRating /> */}
         <StarRatings
-          rating={3}
+          rating={4}
           starRatedColor="#fff200"
           // changeRating={this.changeRating}
           numberOfStars={5}

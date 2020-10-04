@@ -73,7 +73,7 @@ const UserProfile = () => {
         window.location = "/businessview";
         console.log(err);
       });
-      console.log(userState.Business)
+    console.log(userState.Business);
   }, []);
 
   // Save Button
@@ -129,9 +129,7 @@ const UserProfile = () => {
       name: userState.businessName,
       slogan: userState.businessSlogan,
       bio: userState.busiessBio,
-      img:
-        userState.businessImage ||
-        "https://upload.wikimedia.org/wikipedia/commons/5/50/Unisphere_Flushing_Meadows_Queens.jpg",
+      img: userState.businessImage,
       buisness_type: userState.selectValue,
       fee: userState.businessFee,
       location: userState.businessLocation,
@@ -162,7 +160,6 @@ const UserProfile = () => {
             assumenda vitae tempore doloremque quos ducimus neque quas commodi
             officiis et?
           </p>
-
           <div className="profile-icons-list">
             <a
               href="https://www.google.com/"
@@ -315,7 +312,6 @@ const UserProfile = () => {
                   name="selectValue"
                   onChange={userState.handleInputChange}
                 >
-
                   <option>Pick One</option>
                   <option value="Food">Food</option>
                   <option value="Music">Music</option>

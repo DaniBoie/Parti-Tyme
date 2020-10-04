@@ -44,7 +44,7 @@ const BuisnessProfile = () => {
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
-    location:"",
+    location: "",
     slogan: "",
     img: "",
     instagram: "",
@@ -58,7 +58,7 @@ const BuisnessProfile = () => {
     rating: 0,
     reviews: [],
     username: "",
-    favorite: ""
+    favorite: "",
   });
 
   businessState.changeRating = (newRating, rating) => {
@@ -80,8 +80,6 @@ const BuisnessProfile = () => {
   };
 
   let businessId;
-  let userId;
-
   useEffect(() => {
     // let dataComeback;
 
@@ -89,7 +87,6 @@ const BuisnessProfile = () => {
 
     API.getUser()
       .then(({ data }) => {
-
         let userBusinessId = data[0].Buisness._id || "";
         console.log(userBusinessId);
 
@@ -116,8 +113,11 @@ const BuisnessProfile = () => {
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {
         // console.log(data);
-        setBusinessState({ ...businessState, business: data,
-        reviews: data.reviews });
+        setBusinessState({
+          ...businessState,
+          business: data,
+          reviews: data.reviews,
+        });
       })
       .catch((error) => console.log(error));
   }, []);
@@ -153,22 +153,26 @@ const BuisnessProfile = () => {
   };
 
   // Handle Send Button
-  const reviewSendButton = event => {
-    event.preventDefault()
+  const reviewSendButton = (event) => {
+    event.preventDefault();
     // console.log(businessState.topic);
 
     // businessId = localStorage.getItem("user")
-    axios.post('/api/review', {
-      topic: businessState.topic,
-      text: businessState.text,
-      rating: businessState.rating,
-      buisness: localStorage.getItem('pickBusiness'),
-    }, 
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
+    axios
+      .post(
+        "/api/review",
+        {
+          topic: businessState.topic,
+          text: businessState.text,
+          rating: businessState.rating,
+          buisness: localStorage.getItem("pickBusiness"),
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("user")}`,
+          },
+        }
+      )
       .then((data) => {
         console.log(data);
       })
@@ -183,12 +187,12 @@ const BuisnessProfile = () => {
   // };
 
   const btn = () => {
-    console.log(businessState.business)
-    businessId = localStorage.getItem("user")
+    console.log(businessState.business);
+    businessId = localStorage.getItem("user");
     API.favaBusiness({
-      favorite: businessId
-    })
-  }
+      favorite: businessId,
+    });
+  };
 
   return (
     <>
@@ -287,9 +291,8 @@ const BuisnessProfile = () => {
 
         <div className="bpp-business-review">
           <div className="bpp-business-review-left">
-
             {businessState.reviews.length > 0
-              ? businessState.reviews.map((review) =>  (
+              ? businessState.reviews.map((review) => (
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
@@ -336,11 +339,13 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
-      <button 
+      <button
         name="favorite"
-       onClick={btn}
+        onClick={btn}
         onChange={businessState.handleInputChange}
-      >submit</button>
+      >
+        submit
+      </button>
     </>
   );
 };

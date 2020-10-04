@@ -26,6 +26,6 @@ const Review = new Schema(
   { timestamps: true }
 );
 
-Review.plugin(require("passport-local-mongoose"));
+// Review.plugin(require("passport-local-mongoose"));
 
 module.exports = model("Review", Review);
