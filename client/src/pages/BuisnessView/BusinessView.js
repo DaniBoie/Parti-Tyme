@@ -13,6 +13,7 @@ const BuisnessView = () => {
     selectValue: "All",
     maxPrice: false,
     distance: false,
+    priceSearch: 1000
   });
 
   businessState.handleInputChange = (event) => {
@@ -53,7 +54,7 @@ const BuisnessView = () => {
 
     if (businessState.maxPrice) {
       console.log("Max Price Ticked");
-      filteredArray = API.filterPrice(99, filteredArray);
+      filteredArray = API.filterPrice(businessState.priceSearch || 1000000, filteredArray);
     }
 
     if (businessState.distance) {
@@ -75,7 +76,7 @@ const BuisnessView = () => {
 
   // Search Button
   function handleSearchBar() {
-    console.log("Function For Search Button");
+    console.log("Function For Search Button", businessState.priceSearch);
   }
 
   // Function to show and hide price number
@@ -151,7 +152,7 @@ const BuisnessView = () => {
                 name="priceSearch"
                 min="10"
                 max="9999"
-                onChange={businessState.handleCheckboxChange}
+                onChange={businessState.handleInputChange}
               />
             </div>
 
