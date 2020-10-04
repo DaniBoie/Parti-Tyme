@@ -21,7 +21,7 @@ const BuisnessProfile = () => {
     disabled: true,
     show: "",
     hideButton: "hide",
-    hideEdit: '',
+    hideEdit: "hide-edit",
   });
 
   inputState.handleEditButton = () => {
@@ -45,7 +45,7 @@ const BuisnessProfile = () => {
   const [businessState, setBusinessState] = useState({
     name: "",
     bio: "",
-    location:"",
+    location: "",
     slogan: "",
     img: "",
     instagram: "",
@@ -59,7 +59,7 @@ const BuisnessProfile = () => {
     rating: 0,
     reviews: [],
     username: "",
-    favorite: ""
+    favorite: "",
   });
 
   businessState.changeRating = (newRating, rating) => {
@@ -90,20 +90,18 @@ const BuisnessProfile = () => {
 
     API.getUser()
       .then(({ data }) => {
-
         let userBusinessId = data[0].Buisness._id || "";
         console.log(userBusinessId);
 
         if (userBusinessId === businessId) {
           setInputState({
             ...inputState,
-            disabled: false,
+            hideEdit: "",
           });
         } else {
           setInputState({
             ...inputState,
-            disabled: true,
-            hideEdit: 'hideEdit'
+            hideEdit: "hide-edit",
           });
         }
       })
@@ -118,8 +116,11 @@ const BuisnessProfile = () => {
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {
         // console.log(data);
-        setBusinessState({ ...businessState, business: data,
-        reviews: data.reviews });
+        setBusinessState({
+          ...businessState,
+          business: data,
+          reviews: data.reviews,
+        });
       })
       .catch((error) => console.log(error));
   }, []);
@@ -136,6 +137,8 @@ const BuisnessProfile = () => {
       website: businessState.facebook,
       business_type: businessState.business_type,
       fee: businessState.fee,
+      slogan: businessState.slogan,
+      location: businessState.location,
     })
       .then(({ data }) => {
         console.log(data);
@@ -155,22 +158,26 @@ const BuisnessProfile = () => {
   };
 
   // Handle Send Button
-  const reviewSendButton = event => {
-    event.preventDefault()
+  const reviewSendButton = (event) => {
+    event.preventDefault();
     // console.log(businessState.topic);
 
     // businessId = localStorage.getItem("user")
-    axios.post('/api/review', {
-      topic: businessState.topic,
-      text: businessState.text,
-      rating: businessState.rating,
-      buisness: localStorage.getItem('pickBusiness'),
-    }, 
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
+    axios
+      .post(
+        "/api/review",
+        {
+          topic: businessState.topic,
+          text: businessState.text,
+          rating: businessState.rating,
+          buisness: localStorage.getItem("pickBusiness"),
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("user")}`,
+          },
+        }
+      )
       .then((data) => {
         console.log(data);
       })
@@ -185,12 +192,12 @@ const BuisnessProfile = () => {
   // };
 
   const btn = () => {
-    console.log(businessState.business)
-    businessId = localStorage.getItem("user")
+    console.log(businessState.business);
+    businessId = localStorage.getItem("user");
     API.favaBusiness({
-      favorite: businessId
-    })
-  }
+      favorite: businessId,
+    });
+  };
 
   return (
     <>
@@ -198,21 +205,47 @@ const BuisnessProfile = () => {
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
-          <img src={Example1} alt="Business Picture" />
-          <img src={Example2} alt="Business Picture" />
-          <img src={Example3} alt="Business Picture" />
-          <img src={Example4} alt="Business Picture" />
+          <img src={Example1} alt="Business 1" />
+          <img src={Example2} alt="Business 2" />
+          <img src={Example3} alt="Business 3" />
+          <img src={Example4} alt="Business 4" />
         </Carousel>
 
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
             <img src={Logo} alt="Logo" />
+
+            <div className="bpp-business-info-icons">
+              <a
+                href="https://www.google.com/"
+                aria-label="Facebook"
+                data-balloon-pos="left"
+              >
+                <i class="fab fa-facebook-square bpp-icons-facebook"></i>
+              </a>
+              <a
+                href="https://www.google.com/"
+                aria-label="Instagram"
+                data-balloon-pos="right"
+              >
+                <i class="fab fa-instagram-square bpp-icons-instagram"></i>
+              </a>
+            </div>
+            <StarRatings
+              rating={4}
+              numberOfStars={5}
+              starRatedColor="#fff200"
+              starDimension="40px"
+              starSpacing="5px"
+            />
           </div>
 
           <div className="bpp-business-info-area">
             <button
               className={`bpp-edit-button ${inputState.hideEdit}`}
-              disabled={inputState.disabled}
+
+              // disabled={inputState.disabled}
+
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
@@ -224,6 +257,16 @@ const BuisnessProfile = () => {
                 type="text"
                 name="name"
                 defaultValue={businessState.business.name}
+                disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
+              />
+            </label>
+            <label>
+              <input
+                className={`${inputState.show}`}
+                type="text"
+                name="slogan"
+                defaultValue={businessState.business.slogan}
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
               />
@@ -251,25 +294,16 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Slogan:{" "}
-              <input
-                className={`${inputState.show}`}
-                type="text"
-                name="slogan"
-                defaultValue="Free Delivery with in 3 miles"
-                disabled={inputState.disabled}
-                onChange={businessState.handleInputChange}
-              />
-            </label>
-            <label>
               <textarea
                 className={`${inputState.show}`}
                 name="bio"
                 rows="7"
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
-                value={businessState.business.bio}
-              ></textarea>
+                // value={businessState.business.bio}
+              >
+                {`${businessState.business.bio} a`}
+              </textarea>
             </label>
 
             <button
@@ -289,9 +323,8 @@ const BuisnessProfile = () => {
 
         <div className="bpp-business-review">
           <div className="bpp-business-review-left">
-
             {businessState.reviews.length > 0
-              ? businessState.reviews.map((review) =>  (
+              ? businessState.reviews.map((review) => (
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
@@ -307,17 +340,18 @@ const BuisnessProfile = () => {
               <img src={ExampleImage2} alt="profile picture" />
               <p>User Name</p>
             </div> */}
-            <StarRatings
-              className="bpp-StarRatings"
-              starHoverColor="yellow"
-              starRatedColor="red"
-              rating={businessState.rating}
-              changeRating={businessState.changeRating}
-              starDimension="20px"
-              starSpacing="5px"
-              name="rating"
-              onChange={businessState.handleInputChange}
-            />
+            <div className="bpp-StarRatings">
+              <StarRatings
+                starHoverColor="yellow"
+                starRatedColor="red"
+                rating={businessState.rating}
+                changeRating={businessState.changeRating}
+                starDimension="30px"
+                starSpacing="5px"
+                name="rating"
+                onChange={businessState.handleInputChange}
+              />
+            </div>
             <div className="bpp-business-review-right-topic">
               <form>
                 <input
@@ -338,11 +372,13 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
-      <button 
+      <button
         name="favorite"
-       onClick={btn}
+        onClick={btn}
         onChange={businessState.handleInputChange}
-      >submit</button>
+      >
+        submit
+      </button>
     </>
   );
 };

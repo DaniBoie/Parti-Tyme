@@ -69,17 +69,19 @@
 
 .bc-right-column h1 {
   color: var(--primary-color);
-  font-size: 30px;
+  font-size: 28px;
   margin: 0.3rem 0;
 }
 
-.bc-right-column h2,
-.bc-right-column h3 {
+.bc-right-column h2 {
+  font-size: 22px;
   font-weight: 500;
 }
 
 .bc-right-column h3 {
   margin-bottom: 1rem;
+  font-size: 18px;
+  font-weight: 500;
 }
 .bc-right-column h3::before {
   content: "";
@@ -117,7 +119,7 @@
 }
 
 /* Media Queries */
-@media only screen and (min-width: 1150px) and (max-width: 1250px) {
+@media only screen and (min-width: 1150px) and (max-width: 1455px) {
   .bc-right-column h1 {
     font-size: 25px;
   }
@@ -126,9 +128,22 @@
   }
 }
 
-@media only screen and (max-width: 855px) {
+@media only screen and (min-width: 851px) and (max-width: 900px) {
+  .bc-right-column h1 {
+    margin: 0;
+  }
+  /* .bc-right-column h2 {
+    font-size: 20px;
+  } */
+  .bc-right-column h3 {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 850px) {
   .business-card {
     grid-template-columns: 1fr;
+    align-items: start;
   }
   .bc-left-column {
     margin: 0;
@@ -143,6 +158,23 @@
   }
   .bc-right-column h1 {
     margin: 0;
+  }
+  .bc-right-column a {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .bc-right-column h1 {
+    font-size: 25px;
+    margin: 0;
+    padding: 0;
+  }
+  .bc-right-column h2 {
+    font-size: 24px;
+  }
+  .bc-right-column h3 {
+    font-size: 16px;
   }
   .bc-right-column a {
     font-size: 20px;

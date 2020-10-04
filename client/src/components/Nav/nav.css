@@ -109,7 +109,8 @@
   display: none;
 }
 
-.nav-login-logout-btn span:nth-child(1), .nav-login-logout-btn-icon span:nth-child(1) {
+.nav-login-logout-btn span:nth-child(1),
+.nav-login-logout-btn-icon span:nth-child(1) {
   position: absolute;
   top: 0;
   left: 0;
@@ -137,7 +138,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(2), .nav-login-logout-btn-icon span:nth-child(2) {
+.nav-login-logout-btn span:nth-child(2),
+.nav-login-logout-btn-icon span:nth-child(2) {
   position: absolute;
   top: 0;
   right: 0;
@@ -166,7 +168,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(3), .nav-login-logout-btn-icon span:nth-child(3) {
+.nav-login-logout-btn span:nth-child(3),
+.nav-login-logout-btn-icon span:nth-child(3) {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -194,7 +197,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(4), .nav-login-logout-btn-icon span:nth-child(4) {
+.nav-login-logout-btn span:nth-child(4),
+.nav-login-logout-btn-icon span:nth-child(4) {
   position: absolute;
   top: 0;
   left: 0;
@@ -444,7 +448,8 @@
   display: none;
 }
 
-.nav-login-logout-btn span:nth-child(1), .nav-login-logout-btn-icon span:nth-child(1) {
+.nav-login-logout-btn span:nth-child(1),
+.nav-login-logout-btn-icon span:nth-child(1) {
   position: absolute;
   top: 0;
   left: 0;
@@ -472,7 +477,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(2), .nav-login-logout-btn-icon span:nth-child(2) {
+.nav-login-logout-btn span:nth-child(2),
+.nav-login-logout-btn-icon span:nth-child(2) {
   position: absolute;
   top: 0;
   right: 0;
@@ -501,7 +507,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(3), .nav-login-logout-btn-icon span:nth-child(3) {
+.nav-login-logout-btn span:nth-child(3),
+.nav-login-logout-btn-icon span:nth-child(3) {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -529,7 +536,8 @@
   }
 }
 
-.nav-login-logout-btn span:nth-child(4), .nav-login-logout-btn-icon span:nth-child(4) {
+.nav-login-logout-btn span:nth-child(4),
+.nav-login-logout-btn-icon span:nth-child(4) {
   position: absolute;
   top: 0;
   left: 0;
@@ -567,13 +575,11 @@
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 0.3rem 0.5rem;
-  font-size: 30px;
-  transform: translateX(4rem);
+  /* transform: translateX(4rem);
   -webkit-transform: translateX(4rem);
   -moz-transform: translateX(4rem);
   -ms-transform: translateX(4rem);
-  -o-transform: translateX(4rem);
+  -o-transform: translateX(4rem); */
 }
 
 .nav-dropdown-menu {
