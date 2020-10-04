@@ -28,6 +28,7 @@
   display: flex;
   justify-content: center;
 }
+
 /* Middle Row / Business Information */
 
 .bpp-business-information {
@@ -41,13 +42,40 @@
 /* Middle Row Left Column / Logo */
 
 .bpp-business-info-logo {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
+  text-align: center;
 }
 
 .bpp-business-info-logo img {
   width: 100%;
+}
+
+.bpp-business-info-icons {
+  margin-bottom: 1rem;
+}
+
+.bpp-business-info-icons a {
+  text-decoration: none;
+  font-size: 40px;
+  padding: 1rem 0.5rem;
+}
+
+.bpp-icons-facebook {
+  color: #0084ff;
+}
+
+.bpp-icons-facebook:hover {
+  color: #005cb3;
+}
+
+.bpp-icons-instagram {
+  color: #c13584;
+}
+
+.bpp-icons-instagram:hover {
+  color: #a92771;
 }
 
 /* Middle Row Right Column / Business Information */
@@ -85,7 +113,7 @@
 .bpp-business-info-area input {
   padding: 0.5rem;
   margin: 0.5rem 0;
-  width: 40%;
+  width: 80%;
   font-size: large;
   border: none;
   background: none;
@@ -144,6 +172,7 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
+
 .bpp-save-button.hide,
 .bpp-cancel-button.hide {
   display: none;
@@ -175,7 +204,7 @@
 .bpp-business-review {
   grid-area: review;
   border: 1px solid #333;
-  min-height: 50vh;
+
   margin-bottom: 1rem;
   background: var(--pink-bg);
   display: grid;
@@ -184,29 +213,47 @@
 
 .bpp-business-review-left {
   background: #dfe6e9;
+  min-height: 50vh;
+  max-height: 90vh;
+  overflow: auto;
 }
 
+/* Bottom Row / Right Column */
 .bpp-business-review-right {
   background: #b2bec3;
+  text-align: center;
 }
 
-/* -------------------- */
-.bpp-business-review-right-image img {
-  display: inline-block;
-  width: 150px;
-  height: 150px;
+.bpp-StarRatings {
+  margin: 1rem 0;
 }
 
-.bpp-business-review-right-image p {
-  display: inline-block;
-}
-
-.bpp-business-review-right-topic form input {
-  display: block;
-  width: 80%;
-}
-
+.bpp-business-review-right-topic form input,
 .bpp-business-review-right-topic form textarea {
-  display: block;
   width: 80%;
+  margin: 0.5rem auto;
+  padding: 0.2rem 0.5rem;
+  font-size: 18px;
+}
+
+.bpp-business-review-right button {
+  width: 80%;
+  margin: 0.5rem 0;
+  padding: 0.5rem 0;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.bpp-business-review-right button:hover {
+  filter: brightness(0.9);
+  -webkit-filter: brightness(0.9);
+}
+
+.bpp-edit-button.hide-edit {
+  display: none;
 }

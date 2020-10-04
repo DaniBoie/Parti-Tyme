@@ -21,6 +21,7 @@ const BuisnessProfile = () => {
     disabled: true,
     show: "",
     hideButton: "hide",
+    hideEdit: "hide-edit",
   });
 
   inputState.handleEditButton = () => {
@@ -80,6 +81,8 @@ const BuisnessProfile = () => {
   };
 
   let businessId;
+  let userId;
+
   useEffect(() => {
     // let dataComeback;
 
@@ -93,12 +96,12 @@ const BuisnessProfile = () => {
         if (userBusinessId === businessId) {
           setInputState({
             ...inputState,
-            disabled: false,
+            hideEdit: "",
           });
         } else {
           setInputState({
             ...inputState,
-            disabled: true,
+            hideEdit: "hide-edit",
           });
         }
       })
@@ -134,6 +137,8 @@ const BuisnessProfile = () => {
       website: businessState.facebook,
       business_type: businessState.business_type,
       fee: businessState.fee,
+      slogan: businessState.slogan,
+      location: businessState.location,
     })
       .then(({ data }) => {
         console.log(data);
@@ -200,21 +205,45 @@ const BuisnessProfile = () => {
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
-          <img src={Example1} alt="Business Picture" />
-          <img src={Example2} alt="Business Picture" />
-          <img src={Example3} alt="Business Picture" />
-          <img src={Example4} alt="Business Picture" />
+          <img src={Example1} alt="Business 1" />
+          <img src={Example2} alt="Business 2" />
+          <img src={Example3} alt="Business 3" />
+          <img src={Example4} alt="Business 4" />
         </Carousel>
 
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
             <img src={Logo} alt="Logo" />
+
+            <div className="bpp-business-info-icons">
+              <a
+                href="https://www.google.com/"
+                aria-label="Facebook"
+                data-balloon-pos="left"
+              >
+                <i class="fab fa-facebook-square bpp-icons-facebook"></i>
+              </a>
+              <a
+                href="https://www.google.com/"
+                aria-label="Instagram"
+                data-balloon-pos="right"
+              >
+                <i class="fab fa-instagram-square bpp-icons-instagram"></i>
+              </a>
+            </div>
+            <StarRatings
+              rating={4}
+              numberOfStars={5}
+              starRatedColor="#fff200"
+              starDimension="40px"
+              starSpacing="5px"
+            />
           </div>
 
           <div className="bpp-business-info-area">
             <button
-              className="bpp-edit-button"
-              disabled={inputState.disabled}
+              className={`bpp-edit-button ${inputState.hideEdit}`}
+              // disabled={inputState.disabled}
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
@@ -269,8 +298,10 @@ const BuisnessProfile = () => {
                 rows="7"
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
-                value={businessState.business.bio}
-              ></textarea>
+                // value={businessState.business.bio}
+              >
+                {`${businessState.business.bio} a`}
+              </textarea>
             </label>
 
             <button
@@ -307,17 +338,18 @@ const BuisnessProfile = () => {
               <img src={ExampleImage2} alt="profile picture" />
               <p>User Name</p>
             </div> */}
-            <StarRatings
-              className="bpp-StarRatings"
-              starHoverColor="yellow"
-              starRatedColor="red"
-              rating={businessState.rating}
-              changeRating={businessState.changeRating}
-              starDimension="20px"
-              starSpacing="5px"
-              name="rating"
-              onChange={businessState.handleInputChange}
-            />
+            <div className="bpp-StarRatings">
+              <StarRatings
+                starHoverColor="yellow"
+                starRatedColor="red"
+                rating={businessState.rating}
+                changeRating={businessState.changeRating}
+                starDimension="30px"
+                starSpacing="5px"
+                name="rating"
+                onChange={businessState.handleInputChange}
+              />
+            </div>
             <div className="bpp-business-review-right-topic">
               <form>
                 <input
