@@ -438,7 +438,7 @@
   position: absolute;
   transform: translate(-50%, -50%);
   color: #0a418f;
-  font-size: 28px;
+  font-size: 25px;
   padding: 0.2rem 0.7rem;
   overflow: hidden;
   -webkit-transform: translate(-50%, -50%);
@@ -672,6 +672,26 @@
 /* 600 and Lower */
 
 @media only screen and (max-width: 600px) {
+  .nav-bar {
+    grid-template-areas: "title icons";
+    grid-template-columns: 3fr 1fr;
+  }
+  .nav-logo {
+    display: none;
+  }
+  .nav-middle-column {
+    grid-area: title;
+  }
+  .nav-middle-column a {
+    font-size: 30px;
+  }
+  .nav-middle-column img {
+    width: 25px;
+    height: 25px;
+  }
+  .nav-account {
+    grid-area: icons;
+  }
   .nav-login-logout-btn {
     display: none;
   }

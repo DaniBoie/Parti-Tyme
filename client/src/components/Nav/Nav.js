@@ -9,28 +9,6 @@ import "./Nav.css";
 import Balloon from "../assets/images/balloon.png";
 
 const Nav = (props) => {
-  // In Process function, for the purpose of making responsive website
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleResizeWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResizeWidth);
-  }, []);
-
-  const [windowheight, setWindowHeight] = useState(window.innerHeight);
-
-  const handleResizeHeight = () => {
-    setWindowHeight(window.innerHeight);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResizeHeight);
-  }, []);
-  // End Process Function
-
   // Function for dropdown menu
   const [dropdownState, setDropdownState] = useState({
     show: "",
@@ -92,8 +70,6 @@ const Nav = (props) => {
         {/* <Link to="/">
             <img src={Logo1} alt="Logo" />
           </Link> */}
-        <div>window width: {windowWidth}</div>
-        <div>window height: {windowheight}</div>
       </div>
 
       {/* Middle Column / Search Bar */}

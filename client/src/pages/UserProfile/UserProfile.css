@@ -3,7 +3,8 @@
   padding: 2rem 1rem 1rem 1rem;
   display: grid;
   grid-template-columns: 3fr 7fr;
-  grid-column-gap: 1rem;
+  /* grid-column-gap: 1rem; */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Left Column  */
@@ -38,14 +39,15 @@
 .profile-icons {
   color: #333;
   font-size: 36px;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 
 .profile-icons:hover {
   color: #636e72;
 }
 
-.edit-profile-btn, .update-account-btn {
+.edit-profile-btn,
+.update-account-btn {
   display: inline-block;
   width: 100%;
   padding: 10px;
@@ -62,7 +64,8 @@
   -o-border-radius: 20px;
 }
 
-.edit-profile-btn:hover, .update-account-btn:hover {
+.edit-profile-btn:hover,
+.update-account-btn:hover {
   background: #b2bec3;
   border: 2px solid #636e72;
 }
@@ -170,12 +173,7 @@
   visibility: visible;
 }
 
-/* Right Column */
-
-.changing-account-type-area {
-  position: relative;
-}
-
+/* Registration Form */
 .upp-update-account-btn {
   position: absolute;
   z-index: 1;
@@ -188,8 +186,6 @@
 .upp-update-account-btn.hide {
   display: none;
 }
-
-/* Registration Form */
 
 .up-overlay-form {
   position: fixed;
@@ -243,7 +239,8 @@
   text-decoration: underline;
 }
 
-.update-account-form label, .update-account-form input {
+.update-account-form label,
+.update-account-form input {
   font-weight: 400;
 }
 
@@ -254,7 +251,8 @@
   text-align: right;
 }
 
-.update-account-form input, .update-account-form select {
+.update-account-form input,
+.update-account-form select {
   font-size: 18px;
   margin: 0 1rem;
   padding: 0.2rem;
@@ -365,3 +363,25 @@
 }
 
 /* End Registration Form */
+
+/* Right Column */
+
+.changing-account-type-area {
+}
+
+.up-right-col-main {
+  display: grid;
+  grid-template-areas: "review" "history";
+  grid-template-rows: 40vh;
+}
+
+.up-review-row {
+  grid-area: review;
+  overflow: auto;
+}
+.up-reviewed-business-row {
+  grid-area: history;
+  max-height: 80vh;
+  border-top: 1px solid #dfe6e9;
+  overflow: auto;
+}
