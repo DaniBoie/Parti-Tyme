@@ -21,7 +21,7 @@ const BuisnessCard = (props) => {
 
         {/* <StarRating /> */}
         <StarRatings
-          rating={4}
+          rating={props.business.rating}
           starRatedColor="#fff200"
           // changeRating={this.changeRating}
           numberOfStars={5}

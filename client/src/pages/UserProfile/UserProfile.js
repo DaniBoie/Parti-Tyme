@@ -3,6 +3,7 @@ import "./UserProfile.css";
 import ProfileImage from "../../components/assets/images/no-profile-picture.jpg";
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
+import BusinessCard from "../../components/BuisnessCard"
 
 const UserProfile = () => {
   // Function to show / hide input area when click on "Edit Profile" Button
@@ -27,6 +28,7 @@ const UserProfile = () => {
     Buisness: "",
     Settings: {},
     user: [],
+    favorite: [],
     profileImg: "",
     bioChange: "",
     location: "",
@@ -61,6 +63,7 @@ const UserProfile = () => {
           Reviews: dataComeback.Reviews || [],
           Buisness: dataComeback.Buisness,
           Settings: dataComeback.Settings || {},
+          favorite: dataComeback.favorite,
         });
 
         // Checking if the user has a business, if yes, hide the update account button
@@ -355,17 +358,16 @@ const UserProfile = () => {
             <h1>Welcome back {userState.username}</h1>
             <h3>{userState.email}</h3>
             <div>
-              <h3>Reviews</h3>
-              {
-                // userState.Reviews.length > 0 ? (
-                //   userState.Reviews.map(review => (
-                //     <div key={review._id}>
-                //       <h4>{review.buisness.name}</h4>
-                //       <p>{review.rating}</p>
-                //       <p>{review.rating}</p>
-                //     </div>
-                //   ))) : null
-              }
+              <h3>Favorites</h3>
+                {
+                  userState.favorite.length > 0 ? 
+                    userState.favorite.map((business) => (
+                      <BusinessCard
+                        key={business._id}
+                        business={business}
+                      />
+                    )) : null
+                }
             </div>
           </div>
         </div>
