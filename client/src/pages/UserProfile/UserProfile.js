@@ -236,6 +236,7 @@ const UserProfile = () => {
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
+          <h2>{userState.email}</h2>
           <p>
             {userState.userCity}
           </p>
