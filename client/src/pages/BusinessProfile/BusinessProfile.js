@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import BuisnessCard from '../../components/BuisnessCard'
-import ReviewCard from '../../components/ReviewCard/ReviewCard'
+// import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import API from '../../utils/API'
 
 // Importing image
@@ -72,7 +72,7 @@ const BuisnessProfile = () => {
 
   return (
     <>
-    <ReviewCard />
+    {/* <ReviewCard /> */}
       <h1>Welcome to {businessState.name}</h1>
       <BuisnessCard 
         business={businessState.business}    

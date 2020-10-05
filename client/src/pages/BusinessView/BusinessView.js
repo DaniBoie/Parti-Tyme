@@ -97,7 +97,7 @@ const BuisnessView = () => {
                 <option value="All">Categories</option>
 
                 <option value="Food">Food</option>
-                <option value="Music">Music</option>
+              
                 <option value="Rentals">Rentals</option>
                 <option value="Entertainment">Entertainment</option>
               </select>
