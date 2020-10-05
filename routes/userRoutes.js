@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, BuisnessData } = require("../models");
+const { User, BuisnessData, Review } = require("../models");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
@@ -34,7 +34,13 @@ router.get("/users/me", passport.authenticate("jwt"), (req, res) => {
   User.find(req.user._id)
     .populate("Buisness")
     .populate("Settings")
-    .populate("Reviews")
+    .populate({
+      path:"Reviews",
+      populate: {
+        path:"buisness",
+        model: "BuisnessData"
+      }
+    })
     .populate("reviews")
     .populate("favorite")
     .then((userData) => {

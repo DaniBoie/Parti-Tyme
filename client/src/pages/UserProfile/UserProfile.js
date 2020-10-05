@@ -5,6 +5,8 @@ import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
 import BusinessCard from "../../components/BuisnessCard"
 import axios from "axios";
+import ReviewCard from "../../components/ReviewCard"
+import Logo from "../../components/assets/images/logos.png"
 
 const UserProfile = () => {
   // Function to show / hide input area when click on "Edit Profile" Button
@@ -52,7 +54,11 @@ const UserProfile = () => {
   // Getting User Data
   useEffect(() => {
     let dataComeback = "";
-    API.getUser()
+    axios.get("/api/users/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
       .then(({ data }) => {
         dataComeback = data[0];
         setUserState({
@@ -104,7 +110,11 @@ const UserProfile = () => {
 
     let userSettings;
 
-    API.getUser()
+    axios.get("/api/users/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
       .then(({ data }) => {
         let dataComeback = data[0];
 
@@ -383,7 +393,7 @@ const UserProfile = () => {
             <div className="up-right-col-main">
               <div className="up-review-row">
                 <h2>Reviews</h2>
-                {userState.Reviews.length > 0
+                {/* {userState.Reviews.length > 0
                   ? userState.Reviews.map((review) => (
                       <div key={review._id}>
                         <h4>{review.buisness.name}</h4>
@@ -393,10 +403,31 @@ const UserProfile = () => {
                         <p>{review.buisness}</p>
                       </div>
                     ))
-                  : null}
+                  : null} */}
+                  {
+                    userState.Reviews.length > 0
+                    ? userState.Reviews.map((review) => (
+                      <ReviewCard
+                        key={review.buisness._id}
+                        review={review}
+                        image={Logo}                        
+                        username={review.buisness.name}
+                      />
+                    ))
+                    :null
+                  }
               </div>
               <div className="up-reviewed-business-row">
-                <h2>History</h2>
+                <h2>Favorites</h2>
+                {                  
+                    userState.favorite.length > 0 ?
+                      userState.favorite.map((business) => (
+                        <BusinessCard
+                          key={business._id}
+                          business={business}
+                        />
+                      )) : null                  
+                }
               </div>
             </div>
 
