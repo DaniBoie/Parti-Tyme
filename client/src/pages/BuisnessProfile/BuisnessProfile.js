@@ -132,8 +132,8 @@ const BuisnessProfile = () => {
           business: data,
           reviews: data.reviews,
           averageRating: data.rating,
-          carouselImg: data.img
-
+          carouselImg: data.img,
+          logo: data.logo
         });
       })
       .catch((error) => console.log(error));
@@ -338,7 +338,7 @@ const BuisnessProfile = () => {
             >
               <i class="fas fa-heart"></i>
             </button>
-            <img src={Logo} alt="Logo" />
+            <img src={businessState.logo || Logo} alt="Logo" />
 
             <div className="bpp-business-info-icons">
               <a
@@ -458,7 +458,7 @@ const BuisnessProfile = () => {
                 <ReviewCard
                   key={businessState.business._id}
                   review={review}
-                  image={'review.user.Settings.img'}
+                  image={review.user.Settings.img}
                   business={businessState.business}
                   username={review.user.username}
                 />
@@ -469,7 +469,7 @@ const BuisnessProfile = () => {
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
-                    image={"review.user.Settings.img"}
+                    image={review.user.Settings.img}
                     business={businessState.business}
                     username={review.user.username}
                   />

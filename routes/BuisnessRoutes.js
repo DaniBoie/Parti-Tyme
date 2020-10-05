@@ -84,6 +84,8 @@ router.post("/buisness", passport.authenticate("jwt"), (req, res) => {
     rating: 0,
     location: req.body.location,
     slogan: req.body.slogan,
+    img: req.body.img,
+    logo: req.body.logo, 
     user: req.user._id,
   })
     .then((data) => {

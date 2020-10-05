@@ -14,9 +14,11 @@ const UserProfile = () => {
     show: "",
   });
   function editProfileBtn() {
-    if (showInput.show === "")
-      setShowInput({ ...showInput, show: "profile-input-show" });
-    else setShowInput({ ...showInput, show: "" });
+    if (showInput.show === ""){
+        setShowInput({ ...showInput, show: "profile-input-show" 
+      });} else {
+      setShowInput({ ...showInput, show: "" });
+    }
   }
   function handleCancelButton() {
     setShowInput({ ...showInput, show: "" });
@@ -32,9 +34,12 @@ const UserProfile = () => {
     Settings: {},
     user: [],
     favorite: [],
-    profileImg: "",
+    profileImg: "https://www.msahq.org/wp-content/uploads/2016/12/default-avatar.png",
+    profileImgChange: '',
+    userBio: "",
+    userCity: "",
     bioChange: "",
-    location: "",
+    cityChange: "",
     instaChange: "",
     facebookChange: "",
     selectValue: "",
@@ -74,6 +79,14 @@ const UserProfile = () => {
           favorite: dataComeback.favorite,
         });
 
+        if (dataComeback.Settings){
+          setUserState({...userState,
+          profileImg: dataComeback.Settings.img,
+          userCity: dataComeback.Settings.location,
+          userBio: dataComeback.Settings.bio,
+          })
+        } 
+
         // Checking if the user has a business, if yes, hide the update account button
         if (dataComeback.Buisness) {
           setFormState({ ...formState, businessBtn: "hide" });
@@ -94,14 +107,14 @@ const UserProfile = () => {
   const handleSaveBtn = () => {
     let settings = {};
 
-    if (userState.profileImg.length > 0) {
-      settings.img = userState.profileImg;
+    if (userState.profileImgChange.length > 0) {
+      settings.img = userState.profileImgChange;
     }
     if (userState.bioChange.length > 0) {
       settings.bio = userState.bioChange;
     }
-    if (userState.location.length > 0) {
-      settings.location = userState.location;
+    if (userState.cityChange.length > 0) {
+      settings.location = userState.cityChange;
     }
     if (userState.instaChange.length > 0) {
       settings.instagram = userState.instaChange;
@@ -120,15 +133,39 @@ const UserProfile = () => {
       })
       .then(({ data }) => {
         let dataComeback = data[0];
+        let newImg
+        let newCity
+        let newBio
 
-        setUserState({
+        if (userState.profileImgChange.length > 0) {
+         newImg = userState.profileImgChange
+        } else{
+         newImg = userState.profileImg
+        }
+
+        if (userState.cityChange.length > 0) {
+          newCity = userState.cityChange
+        } else {
+          newCity = userState.userCity
+        }
+
+        if (userState.bioChange.length > 0) {
+          newBio = userState.bioChange
+        } else {
+          newBio = userState.userBio
+        }
+        
+          setUserState({
           ...userState,
           Settings: dataComeback.Settings,
           location: " ",
           bioChange: " ",
           instaChange: " ",
           facebookChange: " ",
-          profileImg: " ",
+          profileImg: newImg,
+          userCity: newCity,
+          userBio: newBio,
+          profileImgChange: " ",
         });
         console.log("API SETTINGS ON SAVE BTN", dataComeback);
         userSettings = dataComeback.Settings;
@@ -147,6 +184,8 @@ const UserProfile = () => {
             })
             .catch((err) => console.log(err));
         }
+
+        
       })
       .catch((err) => console.log(err));
   };
@@ -192,22 +231,16 @@ const UserProfile = () => {
           <img
             className="profile-image"
             src={
-              userState.profileImg !== ""
-                ? userState.profileImg
-                : userState.Settings.img
+              userState.profileImg
             }
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
           <p>
-            {userState.location !== ""
-              ? userState.location
-              : userState.Settings.location}
+            {userState.userCity}
           </p>
           <p>
-            {userState.bioChange !== ""
-              ? userState.bioChange
-              : userState.Settings.bio}
+            {userState.userBio}
           </p>
           <div className="profile-icons-list">
             <a
@@ -241,7 +274,7 @@ const UserProfile = () => {
                 <i class="fas fa-city"></i>
                 <input
                   type="text"
-                  name="location"
+                  name="cityChange"
                   placeholder="Change Your City ..."
                   onChange={userState.handleInputChange}
                 />
@@ -286,7 +319,7 @@ const UserProfile = () => {
                 <i class="fas fa-camera"></i>
                 <input
                   type="text"
-                  name="profileImg"
+                  name="profileImgChange"
                   placeholder="Avatar url"
                   onChange={userState.handleInputChange}
                 />
