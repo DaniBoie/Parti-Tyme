@@ -26,7 +26,7 @@ const UserProfile = () => {
     email: "",
     account_type: "",
     Reviews: [],
-    Buisness: "",
+    Buisness: {},
     Settings: {},
     user: [],
     favorite: [],
@@ -40,6 +40,7 @@ const UserProfile = () => {
     businessSlogan: "",
     businessBio: "",
     businessImage: "",
+    businessLogo: "",
     businessFee: 0,
     businessLocation: "",
   });
@@ -83,13 +84,24 @@ const UserProfile = () => {
 
   // Save Button
   const handleSaveBtn = () => {
-    let settings = {
-      img: userState.profileImg,
-      bio: userState.bioChange,
-      location: userState.location,
-      instagram: userState.instaChange,
-      facebook: userState.facebookChange,
-    };
+    let settings = {};
+
+    if (userState.profileImg.length > 0) {
+      settings.img = userState.profileImg
+    }
+    if (userState.bioChange.length > 0) {
+      settings.bio = userState.bioChange
+    }
+    if (userState.location.length > 0) {
+      settings.location = userState.location
+    }
+    if (userState.instaChange.length > 0) {
+      settings.instagram = userState.instaChange
+    }
+    if (userState.facebookChange.length > 0) {
+      settings.facebook = userState.facebookChange
+    }
+
     let userSettings;
 
     API.getUser()
@@ -136,6 +148,7 @@ const UserProfile = () => {
       slogan: userState.businessSlogan,
       bio: userState.busiessBio,
       img: userState.businessImage,
+      logo: userState.businessLogo,
       buisness_type: userState.selectValue,
       fee: userState.businessFee,
       location: userState.businessLocation,
@@ -146,6 +159,8 @@ const UserProfile = () => {
       })
       .catch((error) => console.log(error));
   };
+
+
   return (
     <>
       <Nav name="User Profile" />
@@ -160,9 +175,9 @@ const UserProfile = () => {
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
-          <p>{userState.location}</p>
+          <p>{userState.Settings.location}</p>
           <p>
-            Bio: {userState.bio}
+            Bio: {userState.Settings.bio}
           </p>
           <div className="profile-icons-list">
             <a
@@ -307,6 +322,14 @@ const UserProfile = () => {
                 <input
                   type="text"
                   name="businessImage"
+                  onChange={userState.handleInputChange}
+                />
+              </label>
+              <label>
+                Business Logo:
+                <input
+                  type="text"
+                  name="businessLogo"
                   onChange={userState.handleInputChange}
                 />
               </label>

@@ -10,7 +10,7 @@ const ReviewCard = (props) => {
       <div className="profile-sidebar">
         <img
           className="profile-image"
-          src={props.review.img}
+          src={props.review.user.Settings.img}
           alt="profile pic"
         />
         <div className="name">

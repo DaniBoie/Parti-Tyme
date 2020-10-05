@@ -48,6 +48,7 @@ const BuisnessProfile = () => {
     location: "",
     slogan: "",
     img: "",
+    logo: "",
     instagram: "",
     website: "",
     facebook: "",
@@ -117,6 +118,7 @@ const BuisnessProfile = () => {
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {
         console.log(data);
+
         setBusinessState({
           ...businessState,
           business: data,
@@ -133,13 +135,25 @@ const BuisnessProfile = () => {
     console.log(businessState.business);
     // let id = businessState.business._id
 
-    API.updateBusiness({
-      name: businessState.name,
-      bio: businessState.bio,
-      fee: businessState.fee,
-      slogan: businessState.slogan,
-      location: businessState.location,
-    })
+    let updateObject = {};
+
+    if (businessState.name.length > 0) {
+      updateObject.name = businessState.name;
+    }
+    if (businessState.slogan.length > 0) {
+      updateObject.slogan = businessState.slogan;
+    }
+    if (businessState.location.length > 0) {
+      updateObject.location = businessState.location;
+    }
+    if (businessState.fee.length > 0) {
+      updateObject.fee = businessState.fee;
+    }
+    if (businessState.bio.length > 0) {
+      updateObject.bio = businessState.bio;
+    }
+
+    API.updateBusiness(updateObject)
       .then(({ data }) => {
         console.log(data);
       })
@@ -253,6 +267,21 @@ const BuisnessProfile = () => {
       .catch((err) => console.log(err))
   }
 
+  // const addImg = () => {
+  //   businessId = localStorage.getItem("pickBusiness")
+  //   axios.put(`/buisness/image/${businessId}`, 
+  //   {
+  //     img: businessState.img
+  //   },   
+  //   {
+  //     headers: {
+  //       Authorization: `Bearer ${localStorage.getItem("user")}`,
+  //     },
+  //   })
+  //     .then((data) => console.log(data))
+  //     .catch((err) => console.log(err))
+  // }
+
 
   return (
     <>
@@ -260,7 +289,7 @@ const BuisnessProfile = () => {
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
-          <img src={Example1} alt="Business 1" />
+          <img src={Example2} alt="Business 1" />
           <img src={Example2} alt="Business 2" />
           <img src={Example3} alt="Business 3" />
           <img src={Example4} alt="Business 4" />
@@ -268,7 +297,7 @@ const BuisnessProfile = () => {
 
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
-            <img src={Logo} alt="Logo" />
+            <img src={businessState.business.logo} alt="Logo" />
 
             <div className="bpp-business-info-icons">
               <a
@@ -317,6 +346,7 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
+              Slogan:
               <input
                 className={`${inputState.show}`}
                 type="text"
@@ -348,6 +378,16 @@ const BuisnessProfile = () => {
                 onChange={businessState.handleInputChange}
               />
             </label>
+            {/* <label>
+              Add Images URL:
+              <input
+                className={`${inputState.show}`}
+                type="text"
+                name="img"
+                disabled={inputState.disabled}
+                onChange={businessState.handleInputChange}
+              />
+            </label> */}
             <label>
               <textarea
                 className={`${inputState.show}`}
@@ -355,9 +395,8 @@ const BuisnessProfile = () => {
                 rows="7"
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
-                // value={businessState.business.bio}
+                defaultValue={businessState.business.bio}
               >
-                {`${businessState.business.bio} a`}
               </textarea>
             </label>
 
@@ -424,6 +463,7 @@ const BuisnessProfile = () => {
         </div>
       </div>
       <button onClick={btn}>click</button>
+      {/* <button onClick={addImg}>submit</button> */}
     </>
   );
 };
