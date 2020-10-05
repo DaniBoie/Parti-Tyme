@@ -10,6 +10,9 @@ const BuisnessData = new Schema(
     bio: {
       type: String,
     },
+    logo: {
+      type: String,
+    },
     slogan: {
       type: String,
     },
