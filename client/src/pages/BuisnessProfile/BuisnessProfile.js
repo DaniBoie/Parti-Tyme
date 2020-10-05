@@ -57,6 +57,7 @@ const BuisnessProfile = () => {
     topic: "",
     text: "",
     rating: 0,
+    averageRating: 0,
     reviews: [],
     username: "",
   });
@@ -107,14 +108,17 @@ const BuisnessProfile = () => {
     axios
       .get(`/api/buisness/${businessId}`)
       .then(({ data }) => {
-        // console.log(data);
+        console.log(data);
         setBusinessState({
           ...businessState,
           business: data,
           reviews: data.reviews,
+          averageRating: data.rating
         });
       })
       .catch((error) => console.log(error));
+
+
   }, []);
 
   businessState.updateBusiness = () => {
@@ -158,9 +162,7 @@ const BuisnessProfile = () => {
   // Handle Send Button
   const reviewSendButton = (event) => {
     event.preventDefault();
-    // console.log(businessState.topic);
 
-    // businessId = localStorage.getItem("user")
     axios
       .post(
         "/api/review",
@@ -176,11 +178,82 @@ const BuisnessProfile = () => {
           },
         }
       )
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        console.log('added');
       })
       .catch((err) => console.log(err));
+
+    businessId = localStorage.getItem("pickBusiness")
+
+
+    let result
+
+    axios.get(`/api/review/buisness/${businessId}`)
+      .then(({data}) => {
+        console.log(data)
+
+        let sum = 0
+        data.forEach(review => {
+            sum = sum + review.rating
+        });
+
+        result = sum / data.length
+
+        setBusinessState({
+          ...businessState,
+          averageRating: result
+        })
+        
+        axios.put(`/api/buisness/${businessId}`, 
+          {
+            rating: result
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("user")}`,
+            }
+          })
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err))
+        console.log(result)
+      })
+      .catch((err) => console.log(err))
+
   };
+
+  const btn = () => {
+    businessId = localStorage.getItem("pickBusiness")
+
+    axios.get(`/api/users/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
+      })
+      .then(({data}) => {
+        userId = data[0]._id 
+        console.log(userId)       
+
+        const favId = data[0].favorite.every((id) => {
+          return id !== businessId
+        })
+
+        if (favId) {
+          axios.put(`/api/buisness/users/${userId}`, {
+            favorite: businessId
+          },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("user")}`,
+              }
+            }        
+          )
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err))
+          }
+      })
+      .catch((err) => console.log(err))
+  }
 
   return (
     <>
@@ -215,7 +288,7 @@ const BuisnessProfile = () => {
               </a>
             </div>
             <StarRatings
-              rating={4}
+              rating={businessState.averageRating}
               numberOfStars={5}
               starRatedColor="#fff200"
               starDimension="40px"
@@ -316,10 +389,6 @@ const BuisnessProfile = () => {
           </div>
 
           <div className="bpp-business-review-right">
-            {/* <div className="bpp-business-review-right-image">
-              <img src={ExampleImage2} alt="profile picture" />
-              <p>User Name</p>
-            </div> */}
             <div className="bpp-StarRatings">
               <StarRatings
                 starHoverColor="yellow"

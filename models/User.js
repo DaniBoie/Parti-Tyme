@@ -35,11 +35,10 @@ const User = new Schema(
       ref: "BuisnessData",
     },
     favorite: [{
-    type: String,
-  }],
-  },
-
-  
+    type: Schema.Types.ObjectId,
+      ref: "BuisnessData"
+    }],
+  },  
 
   { timestamps: true }
 );
