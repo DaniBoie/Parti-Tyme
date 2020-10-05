@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./BusinessCard.css";
 // import StarRating from "../StarRating/StarRating.js";
 import StarRatings from "react-star-ratings";
+import Logo from "../../components/assets/images/logos.png";
 
 import ExampleImage from "../../components/assets/images/business-2.jpg";
 // import API from "../../utils/API";
@@ -13,12 +14,20 @@ const BuisnessCard = (props) => {
     localStorage.setItem("pickBusiness", `${props.business._id}`);
   }
 
+  let img
+
+  if (props.business.logo){
+    img = props.business.logo
+  } else {
+    img = Logo
+  }
+
   return (
     <div className="business-card">
       {/* Left Column / Image + Rating Star */}
       <div className="bc-left-column">
         <div className="bc-business-image">
-          <img src={ExampleImage} alt="Business Profile" />
+          <img src={img} alt="Business Profile" />
         </div>
 
         {/* <StarRating /> */}

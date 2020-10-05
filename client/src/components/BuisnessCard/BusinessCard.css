@@ -1,7 +1,6 @@
 .business-card {
   --primary-color: #e66767;
-  --background-color: #324150;
-
+  --background-color: radial-gradient(circle, #324150, #1E6381);
   width: 100%;
   background: var(--background-color);
   color: white;
@@ -13,6 +12,7 @@
 }
 
 /* Left Column */
+
 .bc-left-column {
   display: flex;
   flex-direction: column;
@@ -63,6 +63,7 @@
 }
 
 /* Right Column */
+
 .bc-right-column {
   text-align: center;
 }
@@ -83,6 +84,7 @@
   font-size: 18px;
   font-weight: 500;
 }
+
 .bc-right-column h3::before {
   content: "";
   display: block;
@@ -119,6 +121,7 @@
 }
 
 /* Media Queries */
+
 @media only screen and (min-width: 1150px) and (max-width: 1455px) {
   .bc-right-column h1 {
     font-size: 25px;

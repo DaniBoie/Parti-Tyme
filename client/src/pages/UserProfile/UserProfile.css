@@ -3,13 +3,13 @@
   padding: 2rem 1rem 1rem 1rem;
   display: grid;
   grid-template-columns: 3fr 7fr;
-  /* grid-column-gap: 1rem; */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Left Column  */
 
 .changing-basic-info-area {
+  background: var(--yellow-bg);
   border-right-width: 80%;
   border-right: 1px solid #dfe6e9;
   display: flex;
@@ -176,13 +176,19 @@
 }
 
 /* Registration Form */
+
 .upp-update-account-btn {
   position: absolute;
   z-index: 1;
-  /* top: 1rem; */
+  cursor: pointer;
   right: 2rem;
   font-size: 18px;
   padding: 0.5rem;
+  background: linear-gradient(to bottom, #FFFFFF, #9AF8DD);
+}
+
+.upp-update-account-btn:hover {
+  background: linear-gradient(to botto, #9AF8DD, #FFFFFF);
 }
 
 .upp-update-account-btn.hide {
@@ -241,8 +247,7 @@
   text-decoration: underline;
 }
 
-.update-account-form label,
-.update-account-form input {
+.update-account-form label, .update-account-form input {
   font-weight: 400;
 }
 
@@ -253,8 +258,7 @@
   text-align: right;
 }
 
-.update-account-form input,
-.update-account-form select {
+.update-account-form input, .update-account-form select {
   font-size: 18px;
   margin: 0 1rem;
   padding: 0.2rem;
@@ -371,13 +375,15 @@
 .up-right-col-main {
   display: grid;
   grid-template-areas: "review" "history";
-  grid-template-rows: 40vh;
+  grid-template-rows: 50vh 50vh;
+  background: var(--blue-bg);
 }
 
 .up-review-row {
   grid-area: review;
   overflow: auto;
 }
+
 .up-reviewed-business-row {
   grid-area: history;
   max-height: 80vh;
