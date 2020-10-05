@@ -7,10 +7,11 @@ const ReviewCard = (props) => {
   console.log(props);
   return (
     <div className="Review-Card">
-      <div className="profile-sidebar">
+      <div className=".rc-profile-left">
         <img
           className="profile-image"
-          src={props.review.user.Settings.img}
+          // src={props.review.user.Settings.img}
+          src={ExamplePic1}
           alt="profile pic"
         />
         <div className="name">

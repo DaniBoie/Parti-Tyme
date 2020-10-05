@@ -115,12 +115,10 @@ const BuisnessProfile = () => {
           ...businessState,
           business: data,
           reviews: data.reviews,
-          averageRating: data.rating
+          averageRating: data.rating,
         });
       })
       .catch((error) => console.log(error));
-
-
   }, []);
 
   businessState.updateBusiness = () => {
@@ -199,88 +197,93 @@ const BuisnessProfile = () => {
         }
       )
       .then(() => {
-        console.log('added');
+        console.log("added");
       })
       .catch((err) => console.log(err));
 
-    let businessId = localStorage.getItem("pickBusiness")
+    let businessId = localStorage.getItem("pickBusiness");
 
+    let result;
 
-    let result
+    axios
+      .get(`/api/review/buisness/${businessId}`)
+      .then(({ data }) => {
+        console.log(data);
 
-    axios.get(`/api/review/buisness/${businessId}`)
-      .then(({data}) => {
-        console.log(data)
-
-        let sum = 0
-        data.forEach(review => {
-            sum = sum + review.rating
+        let sum = 0;
+        data.forEach((review) => {
+          sum = sum + review.rating;
         });
 
-        result = sum / data.length
+        result = sum / data.length;
 
         setBusinessState({
           ...businessState,
-          averageRating: result
-        })
-        
-        axios.put(`/api/buisness/${businessId}`, 
-          {
-            rating: result
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("user")}`,
-            }
-          })
-          .then((data) => console.log(data))
-          .catch((err) => console.log(err))
-        console.log(result)
-      })
-      .catch((err) => console.log(err))
+          averageRating: result,
+        });
 
+        axios
+          .put(
+            `/api/buisness/${businessId}`,
+            {
+              rating: result,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("user")}`,
+              },
+            }
+          )
+          .then((data) => console.log(data))
+          .catch((err) => console.log(err));
+        console.log(result);
+      })
+      .catch((err) => console.log(err));
   };
 
   const btn = () => {
-    let businessId = localStorage.getItem("pickBusiness")
+    let businessId = localStorage.getItem("pickBusiness");
 
-    axios.get(`/api/users/me`,
-      {
+    axios
+      .get(`/api/users/me`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("user")}`,
         },
       })
-      .then(({data}) => {
-        let userId = data[0]._id 
-        console.log(userId)       
+      .then(({ data }) => {
+        let userId = data[0]._id;
+        console.log(userId);
 
         const favId = data[0].favorite.every((id) => {
-          return id !== businessId
-        })
+          return id !== businessId;
+        });
 
         if (favId) {
-          axios.put(`/api/buisness/users/${userId}`, {
-            favorite: businessId
-          },
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("user")}`,
+          axios
+            .put(
+              `/api/buisness/users/${userId}`,
+              {
+                favorite: businessId,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("user")}`,
+                },
               }
-            }        
-          )
+            )
             .then((data) => console.log(data))
-            .catch((err) => console.log(err))
-          }
+            .catch((err) => console.log(err));
+        }
       })
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   // const addImg = () => {
   //   businessId = localStorage.getItem("pickBusiness")
-  //   axios.put(`/buisness/image/${businessId}`, 
+  //   axios.put(`/buisness/image/${businessId}`,
   //   {
   //     img: businessState.img
-  //   },   
+  //   },
   //   {
   //     headers: {
   //       Authorization: `Bearer ${localStorage.getItem("user")}`,
@@ -329,6 +332,14 @@ const BuisnessProfile = () => {
               starDimension="40px"
               starSpacing="5px"
             />
+
+            <div className="bpp-heart-icons"></div>
+            <button className={`bpp-favorite-button`} onClick={btn}>
+              <i class="far fa-heart"></i>
+            </button>
+            {/* <button className={`bpp-favorite-button-liked`}>
+              <i class="fas fa-heart"></i>
+            </button> */}
           </div>
 
           <div className="bpp-business-info-area">
@@ -402,9 +413,7 @@ const BuisnessProfile = () => {
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
                 defaultValue={businessState.business.bio}
-              >
-              </textarea>
-
+              ></textarea>
             </label>
 
             <button
@@ -469,7 +478,6 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
-      <button onClick={btn}>Click Me Plz</button>
     </>
   );
 };
