@@ -9,28 +9,6 @@ import "./nav.css";
 import Balloon from "../assets/images/balloon.png";
 
 const Nav = (props) => {
-  // In Process function, for the purpose of making responsive website
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  const handleResizeWidth = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResizeWidth);
-  }, []);
-
-  const [windowheight, setWindowHeight] = useState(window.innerHeight);
-
-  const handleResizeHeight = () => {
-    setWindowHeight(window.innerHeight);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResizeHeight);
-  }, []);
-  // End Process Function
-
   // Function for dropdown menu
   const [dropdownState, setDropdownState] = useState({
     show: "",
@@ -45,10 +23,6 @@ const Nav = (props) => {
   const [userState, setUserState] = useState({
     user: "",
   });
-
-  const handleBusinessButton = () => {
-    console.log(userState.user)
-  }
 
   dropdownState.handleHamburgerButton = () => {
     if (dropdownState.show === "") {
@@ -66,7 +40,6 @@ const Nav = (props) => {
     });
     window.location = "/businessview";
   }
-
 
   useEffect(() => {
     if (window.location.pathname === "/login") {
@@ -90,9 +63,7 @@ const Nav = (props) => {
           });
         }
 
-        setUserState({ ...userState, user: data[0].Buisness._id})
-        
-        
+        setUserState({ ...userState, user: data[0].Buisness._id });
       })
       .catch((err) => {
         console.log(err);
@@ -106,8 +77,6 @@ const Nav = (props) => {
         {/* <Link to="/">
             <img src={Logo1} alt="Logo" />
           </Link> */}
-        <div>window width: {windowWidth}</div>
-        <div>window height: {windowheight}</div>
       </div>
 
       {/* Middle Column / Search Bar */}
@@ -154,7 +123,9 @@ const Nav = (props) => {
         <div className={`nav-dropdown-menu ${dropdownState.show}`}>
           <Link
             to="/businessprofile"
-            onClick={() => {localStorage.setItem("pickBusiness", userState.user);}}
+            onClick={() => {
+              localStorage.setItem("pickBusiness", userState.user);
+            }}
             className={`nav-dropdown-items ${businessStatus.hideBusinessProfile}`}
           >
             Business Profile
@@ -170,7 +141,4 @@ const Nav = (props) => {
     </nav>
   );
 };
-
-// </nav>
-
 export default Nav;

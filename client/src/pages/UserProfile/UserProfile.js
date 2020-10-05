@@ -48,13 +48,12 @@ const UserProfile = () => {
     setUserState({ ...userState, [event.target.name]: event.target.value });
   };
 
+  // Getting User Data
   useEffect(() => {
     let dataComeback = "";
     API.getUser()
       .then(({ data }) => {
         dataComeback = data[0];
-        console.log(dataComeback);
-
         setUserState({
           ...userState,
           realname: dataComeback.realname,
@@ -78,9 +77,10 @@ const UserProfile = () => {
         window.location = "/businessview";
         console.log(err);
       });
-    
   }, []);
 
+  // console.log(businessState.allBusiness);
+  // console.log(userState.Reviews);
   // Save Button
   const handleSaveBtn = () => {
     let settings = {
@@ -146,6 +146,7 @@ const UserProfile = () => {
       })
       .catch((error) => console.log(error));
   };
+
   return (
     <>
       <Nav name="User Profile" />
@@ -160,9 +161,11 @@ const UserProfile = () => {
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
-          <p>{userState.location}</p>
+          <p>{userState.email}</p>
+          <p>City Of The User</p>
           <p>
-            Bio: {userState.bio}
+            Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
+            assumenda vitae tempore doloremque quos ducimus
           </p>
           <div className="profile-icons-list">
             <a
@@ -339,7 +342,6 @@ const UserProfile = () => {
                   onChange={userState.handleInputChange}
                 />
               </label>
-              {/* <button className="business-form-button" onClick={handleBusinessButton}>Submit</button> */}
               <a
                 href="#"
                 className="business-form-button"
@@ -355,21 +357,31 @@ const UserProfile = () => {
             </form>
           </div>
 
+          {/* Right Column */}
           <div className="changing-account-type-area">
-            <h1>Welcome back {userState.username}</h1>
-            <h3>{userState.email}</h3>
-            <div>
-              <h3>Favorites</h3>
-                {
-                  userState.favorite.length > 0 ? 
-                    userState.favorite.map((business) => (
-                      <BusinessCard
-                        key={business._id}
-                        business={business}
-                      />
-                    )) : null
-                }
+            <h1>Welcome back {userState.realname}</h1>
+
+            <div className="up-right-col-main">
+              <div className="up-review-row">
+                <h2>Reviews</h2>
+                {userState.Reviews.length > 0
+                  ? userState.Reviews.map((review) => (
+                      <div key={review._id}>
+                        <h4>{review.buisness.name}</h4>
+                        <p>{review.rating}</p>
+                        <p>{review.topic}</p>
+                        <p>{review.text}</p>
+                        <p>{review.buisness}</p>
+                      </div>
+                    ))
+                  : null}
+              </div>
+              <div className="up-reviewed-business-row">
+                <h2>History</h2>
+              </div>
             </div>
+
+            <div></div>
           </div>
         </div>
       </div>

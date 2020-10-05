@@ -37,6 +37,7 @@
 .bvp-search-button {
   position: absolute;
   display: inline-block;
+  outline: none;
   width: 30px;
   height: 30px;
   border: none;
@@ -187,21 +188,25 @@
     display: grid;
     grid-template-columns: 1fr;
   }
+  .filter-items {
+    font-size: 20px;
+  }
 }
 
 @media only screen and (max-width: 850px) {
   .bvp-business-column {
     grid-auto-rows: 350px;
   }
-}
 
-@media only screen and (max-width: 800px) {
   .filter-column {
     border: 1px solid #333;
     border-top: none;
+    margin: 0;
   }
   .business-view-page {
     grid-template-columns: 1fr;
+    grid-template-rows: 350px;
+    margin: 0;
   }
   .bvp-dropdown-categories-list-item {
     text-align: center;
@@ -245,6 +250,10 @@
 }
 
 @media only screen and (max-width: 610px) {
+  .filter-column {
+    border: 1px solid #333;
+    border-top: none;
+  }
   .filter-list {
     display: grid;
     grid-template-columns: 1fr 1fr;
