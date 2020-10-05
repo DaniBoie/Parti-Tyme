@@ -40,6 +40,9 @@ const BuisnessData = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    rating: {
+      type: Number
+    },
     reviews: [
       {
         type: Schema.Types.ObjectId,

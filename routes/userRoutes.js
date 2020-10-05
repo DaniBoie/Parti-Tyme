@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../models");
+const { User, BuisnessData } = require("../models");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
@@ -36,6 +36,7 @@ router.get("/users/me", passport.authenticate("jwt"), (req, res) => {
     .populate("Settings")
     .populate("Reviews")
     .populate("reviews")
+    .populate("favorite")
     .then((userData) => {
       // console.log(userData)
       // console.log(req)
@@ -50,5 +51,7 @@ router.put("/users", passport.authenticate("jwt"), (req, res) => {
     .then(() => res.sendStatus(200))
     .catch((err) => console.log(err));
 });
+
+
 
 module.exports = router;

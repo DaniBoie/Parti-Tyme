@@ -72,6 +72,7 @@ router.post("/buisness", passport.authenticate("jwt"), (req, res) => {
     facebook: req.body.facebook,
     buisness_type: req.body.buisness_type,
     fee: req.body.fee,
+    rating: 0,
     location: req.body.location,
     slogan: req.body.slogan,
     user: req.user._id,
@@ -97,5 +98,21 @@ router.delete("/buisness", passport.authenticate("jwt"), (req, res) => {
     .then(() => res.sendStatus(200))
     .catch((err) => console.log(err));
 });
+
+router.put("/buisness/:id", passport.authenticate("jwt"), (req, res) => {
+  BuisnessData.findByIdAndUpdate(req.params.id, req.body)
+    .then((data) => res.json(data))
+    .catch((err) => console.log(err));
+});
+
+
+//add favorite to users
+router.put("/buisness/users/:id", passport.authenticate("jwt"), (req, res) => {
+  console.log(req.body)
+  User.findByIdAndUpdate(req.params.id, { $push: { favorite: req.body.favorite } })
+    .then((data) => res.json(data))
+    .catch((err) => console.log(err));
+});
+
 
 module.exports = router;

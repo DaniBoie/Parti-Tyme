@@ -3,6 +3,8 @@ import "./UserProfile.css";
 import ProfileImage from "../../components/assets/images/no-profile-picture.jpg";
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
+import BusinessCard from "../../components/BuisnessCard"
+import axios from "axios";
 
 const UserProfile = () => {
   // Function to show / hide input area when click on "Edit Profile" Button
@@ -27,8 +29,10 @@ const UserProfile = () => {
     Buisness: "",
     Settings: {},
     user: [],
+    favorite: [],
     profileImg: "",
     bioChange: "",
+    location: "",
     instaChange: "",
     facebookChange: "",
     selectValue: "",
@@ -49,7 +53,7 @@ const UserProfile = () => {
     API.getUser()
       .then(({ data }) => {
         dataComeback = data[0];
-        console.log(dataComeback.Buisness);
+        console.log(dataComeback);
 
         setUserState({
           ...userState,
@@ -60,6 +64,7 @@ const UserProfile = () => {
           Reviews: dataComeback.Reviews || [],
           Buisness: dataComeback.Buisness,
           Settings: dataComeback.Settings || {},
+          favorite: dataComeback.favorite,
         });
 
         // Checking if the user has a business, if yes, hide the update account button
@@ -73,7 +78,7 @@ const UserProfile = () => {
         window.location = "/businessview";
         console.log(err);
       });
-    console.log(userState.Business);
+    
   }, []);
 
   // Save Button
@@ -81,6 +86,7 @@ const UserProfile = () => {
     let settings = {
       img: userState.profileImg,
       bio: userState.bioChange,
+      location: userState.location,
       instagram: userState.instaChange,
       facebook: userState.facebookChange,
     };
@@ -149,16 +155,14 @@ const UserProfile = () => {
           <img
             className="profile-image"
             src={
-              userState.profileImg !== "" ? userState.profileImg : ProfileImage
+              userState.Settings.img !== "" ? (userState.Settings.img) : (ProfileImage)
             }
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
-          <p>City Of The User</p>
+          <p>{userState.location}</p>
           <p>
-            Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-            assumenda vitae tempore doloremque quos ducimus neque quas commodi
-            officiis et?
+            Bio: {userState.bio}
           </p>
           <div className="profile-icons-list">
             <a
@@ -192,7 +196,7 @@ const UserProfile = () => {
                 <i class="fas fa-city"></i>
                 <input
                   type="text"
-                  name="cityChange"
+                  name="location"
                   placeholder="Change Your City ..."
                   onChange={userState.handleInputChange}
                 />
@@ -236,9 +240,9 @@ const UserProfile = () => {
               <label>
                 <i class="fas fa-camera"></i>
                 <input
-                  type="submit"
+                  type="text"
                   name="profileImg"
-                  value="Change Profile Picture"
+                  placeholder="Avatar url"
                   onChange={userState.handleInputChange}
                 />
               </label>
@@ -355,17 +359,16 @@ const UserProfile = () => {
             <h1>Welcome back {userState.username}</h1>
             <h3>{userState.email}</h3>
             <div>
-              <h3>Reviews</h3>
-              {
-                // userState.Reviews.length > 0 ? (
-                //   userState.Reviews.map(review => (
-                //     <div key={review._id}>
-                //       <h4>{review.buisness.name}</h4>
-                //       <p>{review.rating}</p>
-                //       <p>{review.rating}</p>
-                //     </div>
-                //   ))) : null
-              }
+              <h3>Favorites</h3>
+                {
+                  userState.favorite.length > 0 ? 
+                    userState.favorite.map((business) => (
+                      <BusinessCard
+                        key={business._id}
+                        business={business}
+                      />
+                    )) : null
+                }
             </div>
           </div>
         </div>
