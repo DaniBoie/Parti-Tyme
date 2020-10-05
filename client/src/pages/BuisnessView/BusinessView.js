@@ -171,28 +171,28 @@ const BuisnessView = () => {
                 type="checkbox"
                 onChange={businessState.handleCheckboxChange}
               />
-              <label>Something</label>
+              <label>Lowest Price</label>
             </div>
             <div className="filter-items">
               <input
                 type="checkbox"
                 onChange={businessState.handleCheckboxChange}
               />
-              <label>Something</label>
+              <label>Highest Rating</label>
             </div>
             <div className="filter-items">
               <input
                 type="checkbox"
                 onChange={businessState.handleCheckboxChange}
               />
-              <label>Something</label>
+              <label>Lowest Rated</label>
             </div>
             <div className="filter-items">
               <input
                 type="checkbox"
                 onChange={businessState.handleCheckboxChange}
               />
-              <label>Something</label>
+              <label>Most Viewed</label>
             </div>
           </div>
 
