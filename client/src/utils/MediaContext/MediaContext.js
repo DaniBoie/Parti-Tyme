@@ -1,4 +1,4 @@
-import {createContext} from 'react'
+import { createContext } from 'react'
 import axios from 'axios'
 
 const MediaContext = createContext({

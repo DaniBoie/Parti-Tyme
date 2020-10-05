@@ -1,7 +1,7 @@
 {
   "name": "mern-template",
   "version": "1.0.0",
-  "description": "",
+  "description": "## Bao was here",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -36,5 +36,13 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DaniBoie/project3-endgame.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DaniBoie/project3-endgame/issues"
+  },
+  "homepage": "https://github.com/DaniBoie/project3-endgame#readme"
 }
