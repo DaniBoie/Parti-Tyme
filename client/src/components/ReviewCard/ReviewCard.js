@@ -7,18 +7,12 @@ const ReviewCard = (props) => {
   console.log(props);
   return (
     <div className="Review-Card">
-      <div className="profile-sidebar">
-        <img
-          className="profile-image"
-          src={props.review.user.Settings.img}
-          alt="profile pic"
-        />
-        <div className="name">
-          <h3>{props.username}</h3>
+      <div className="rc-profile-left">
+        <div className="rc-profile-image">
+          <img src={props.image} alt="profile pic" />
         </div>
-        <h1>User Name</h1>
+        <h1>{props.username}</h1>
       </div>
-
       <div className="rc-profile-right">
         <StarRatings
           rating={props.review.rating}
@@ -36,3 +30,34 @@ const ReviewCard = (props) => {
 };
 
 export default ReviewCard;
+
+
+
+// return (
+//   <div className="Review-Card">
+//     <div className="profile-sidebar">
+//       <img
+//         className="profile-image"
+//         src={props.image}
+//         alt="profile pic"
+//       />
+//       <div className="name">
+//         <h3>{props.username}</h3>
+//       </div>
+//       {/* <h1>User Name</h1> */}
+//     </div>
+
+//     <div className="rc-profile-right">
+//       <StarRatings
+//         rating={props.review.rating}
+//         starRatedColor="yellow"
+//         starDimension="30px"
+//         starSpacing="10px"
+//       />
+//       <div className="rc-topic-text">
+//         <h1>{props.review.topic}</h1>
+//         <h2>{props.review.text}</h2>
+//       </div>
+//     </div>
+//   </div>
+// );

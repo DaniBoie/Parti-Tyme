@@ -82,7 +82,11 @@ const BuisnessProfile = () => {
   useEffect(() => {
     let businessId = localStorage.getItem("pickBusiness");
 
-    API.getUser()
+    axios.get("/api/users/me", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
       .then(({ data }) => {
         let userBusinessId = data[0].Buisness._id || "";
         console.log(userBusinessId);
@@ -125,25 +129,8 @@ const BuisnessProfile = () => {
 
   businessState.updateBusiness = () => {
     console.log(businessState.business);
-    // let id = businessState.business._id
+
     let updateObject = {};
-    if (businessState.name.length > 0) {
-      updateObject.name = businessState.name;
-    }
-    if (businessState.slogan.length > 0) {
-      updateObject.slogan = businessState.slogan;
-    }
-    if (businessState.location.length > 0) {
-      updateObject.location = businessState.location;
-    }
-    if (businessState.fee.length > 0) {
-      updateObject.fee = businessState.fee;
-    }
-    if (businessState.bio.length > 0) {
-      updateObject.bio = businessState.bio;
-    }
-
-    updateObject = {};
 
     if (businessState.name.length > 0) {
       updateObject.name = businessState.name;
@@ -161,7 +148,11 @@ const BuisnessProfile = () => {
       updateObject.bio = businessState.bio;
     }
 
-    API.updateBusiness(updateObject)
+    axios.put("/api/buisness", updateObject, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    })
       .then(({ data }) => {
         console.log(data);
       })
@@ -251,11 +242,10 @@ const BuisnessProfile = () => {
         },
       })
       .then(({data}) => {
-        let userId = data[0]._id 
-        console.log(userId)       
+        let userId = data[0]._id       
 
-        const favId = data[0].favorite.every((id) => {
-          return id !== businessId
+        let favId = data[0].favorite.every((id) => {
+          return id._id !== businessId
         })
 
         if (favId) {
@@ -296,7 +286,7 @@ const BuisnessProfile = () => {
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
-          <img src={Example2} alt="Business 1" />
+          <img src={Example1} alt="Business 1" />
           <img src={Example2} alt="Business 2" />
           <img src={Example3} alt="Business 3" />
           <img src={Example4} alt="Business 4" />
@@ -304,7 +294,7 @@ const BuisnessProfile = () => {
 
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
-            <img src={businessState.business.logo} alt="Logo" />
+            <img src={Logo} alt="Logo" />
 
             <div className="bpp-business-info-icons">
               <a
@@ -429,8 +419,9 @@ const BuisnessProfile = () => {
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
+                    image={review.user.Settings.img}
                     business={businessState.business}
-                    username={businessState.business.username}
+                    username={review.user.username}
                   />
                 ))
               : null}
