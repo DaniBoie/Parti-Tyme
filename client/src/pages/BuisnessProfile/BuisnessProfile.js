@@ -143,7 +143,7 @@ const BuisnessProfile = () => {
       updateObject.bio = businessState.bio;
     }
 
-    let updateObject = {};
+    updateObject = {};
 
     if (businessState.name.length > 0) {
       updateObject.name = businessState.name;
@@ -469,6 +469,7 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
+      <button onClick={btn}>Click Me Plz</button>
     </>
   );
 };
