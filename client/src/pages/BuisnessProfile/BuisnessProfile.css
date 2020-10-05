@@ -2,7 +2,7 @@
   min-height: 90vh;
   margin: 0 5rem;
   display: grid;
-  grid-template-areas: "carousel" "information" "review";
+  grid-template-areas: "carousel" "button" "information" "review";
   grid-template-columns: 1fr;
 }
 
@@ -10,8 +10,6 @@
 
 .bpp-business-carousel {
   grid-area: carousel;
-  /* overflow: auto; */
-  /* height: 70vh; */
 }
 
 .bpp-business-carousel img {
@@ -27,6 +25,42 @@
 .carousel .thumbs {
   display: flex;
   justify-content: center;
+}
+
+/* Second Row / The button */
+
+.bpp-carousel-button {
+  grid-area: button;
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+}
+
+.bpp-carousel-button button {
+  background: linear-gradient(to right, #FFFFFF, #74B9FF);
+  outline: none;
+  border: 1px solid #74B9FF;
+  padding: .3rem 0;
+  margin: .2rem 0;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid #0984e3;
+}
+
+.bpp-carousel-button button:hover {
+  background: linear-gradient(to right, #74B9FF, #FFFFFF)
+}
+
+.bpp-carousel-button input[type="text"] {
+  margin: 0.2rem 0.1rem;
+  background: linear-gradient(to right, #FFFFFF, #F6E6B3);
+  border: #fdcb6e 1px solid;
+  font-size: 16px;
+  padding: 0 5px;
+  outline: none;
+}
+
+.bpp-carousel-button input[type="text"]:focus {
+  background: linear-gradient(to right, #F6E6B3, #FFFFFF);
 }
 
 /* Middle Row / Business Information */
@@ -170,8 +204,7 @@
   resize: none;
 }
 
-.bpp-business-info-area input.show,
-.bpp-business-info-area textarea.show {
+.bpp-business-info-area input.show, .bpp-business-info-area textarea.show {
   border: 1px solid #000;
   background: #eaf5eb;
 }
@@ -180,8 +213,7 @@
   padding: 0.5rem;
 }
 
-.bpp-save-button,
-.bpp-cancel-button {
+.bpp-save-button, .bpp-cancel-button {
   margin: 1rem;
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
@@ -196,8 +228,7 @@
   -o-border-radius: 10px;
 }
 
-.bpp-save-button.hide,
-.bpp-cancel-button.hide {
+.bpp-save-button.hide, .bpp-cancel-button.hide {
   display: none;
 }
 
@@ -227,7 +258,6 @@
 .bpp-business-review {
   grid-area: review;
   border: 1px solid #333;
-
   margin-bottom: 1rem;
   background: var(--pink-bg);
   display: grid;
@@ -235,24 +265,25 @@
 }
 
 .bpp-business-review-left {
-  background: #dfe6e9;
+  background: var(--blue-bg);
   min-height: 50vh;
   max-height: 90vh;
   overflow: auto;
 }
 
 /* Bottom Row / Right Column */
+
 .bpp-business-review-right {
-  background: #b2bec3;
+  background: var(--yellow-bg);
   text-align: center;
+  border-left: 1px solid #333;
 }
 
 .bpp-StarRatings {
   margin: 1rem 0;
 }
 
-.bpp-business-review-right-topic form input,
-.bpp-business-review-right-topic form textarea {
+.bpp-business-review-right-topic form input, .bpp-business-review-right-topic form textarea {
   width: 80%;
   margin: 0.5rem auto;
   padding: 0.2rem 0.5rem;

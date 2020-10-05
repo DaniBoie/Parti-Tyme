@@ -63,7 +63,7 @@ const BuisnessProfile = () => {
     reviews: [],
     username: "",
     carouselImg: "",
-    changeImg: '',
+    changeImg: "",
     createdReviews: [],
   });
 
@@ -76,9 +76,11 @@ const BuisnessProfile = () => {
 
   const clearReview = () => {
     setBusinessState({
-      ...businessState, topic: '', text: ''
-    })
-  }
+      ...businessState,
+      topic: "",
+      text: "",
+    });
+  };
   // HANDLING the inputs on the page.
 
   businessState.handleInputChange = (event) => {
@@ -132,8 +134,7 @@ const BuisnessProfile = () => {
           business: data,
           reviews: data.reviews,
           averageRating: data.rating,
-          carouselImg: data.img
-
+          carouselImg: data.img,
         });
       })
       .catch((error) => console.log(error));
@@ -202,31 +203,28 @@ const BuisnessProfile = () => {
           },
         }
       )
-      .then(({data}) => {
-        setBusinessState({...businessState, 
-            topic: "",
-            text: "",
-            rating: 0
-        })
-        console.log('added', data);
-        let newArray = businessState.createdReviews
-        newArray.push(data)
-        setBusinessState({...businessState, createdReviews: newArray})
-        clearReview()
+      .then(({ data }) => {
+        setBusinessState({ ...businessState, topic: "", text: "", rating: 0 });
+        console.log("added", data);
+        let newArray = businessState.createdReviews;
+        newArray.push(data);
+        setBusinessState({ ...businessState, createdReviews: newArray });
+        clearReview();
       })
       .catch((err) => console.log(err));
 
     let businessId = localStorage.getItem("pickBusiness");
 
     let result;
-    axios.get(`/api/review/buisness/${businessId}`)
-      .then(({data}) => {
-        console.log(data)
-          let denominator
+    axios
+      .get(`/api/review/buisness/${businessId}`)
+      .then(({ data }) => {
+        console.log(data);
+        let denominator;
         if (data.length === 0) {
-          denominator = 1
+          denominator = 1;
         } else {
-          denominator = data.length
+          denominator = data.length;
         }
 
         let sum = 0;
@@ -234,8 +232,7 @@ const BuisnessProfile = () => {
           sum = sum + review.rating;
         });
 
-        result = sum / denominator
-
+        result = sum / denominator;
 
         setBusinessState({
           ...businessState,
@@ -300,23 +297,29 @@ const BuisnessProfile = () => {
   };
 
   const carouselBtn = () => {
-    if (businessState.changeImg.length > 0)
-    {
-      axios.put(`api/buisness`,{
-      img: businessState.changeImg
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("user")}`,
-      },
-    })
-      .then((data) => {
-        setBusinessState({ ...businessState, carouselImg: businessState.changeImg})
-      })
-      .catch((err) => console.log(err))
+    if (businessState.changeImg.length > 0) {
+      axios
+        .put(
+          `api/buisness`,
+          {
+            img: businessState.changeImg,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("user")}`,
+            },
+          }
+        )
+        .then((data) => {
+          setBusinessState({
+            ...businessState,
+            carouselImg: businessState.changeImg,
+          });
+        })
+        .catch((err) => console.log(err));
     }
-    console.log(businessState.carouselImg)
-  }
+    console.log(businessState.carouselImg);
+  };
 
   return (
     <>
@@ -326,10 +329,19 @@ const BuisnessProfile = () => {
         <Carousel className="bpp-business-carousel">
           <img src={businessState.carouselImg} alt="Business 1" />
         </Carousel>
-      
+
+        <div className="bpp-carousel-button">
+          <button onClick={carouselBtn}>
+            <i class="far fa-images"></i> Change Business Image
+          </button>
+          <input
+            type="text"
+            name="changeImg"
+            placeholder="Input Image URL here..."
+            onChange={businessState.handleInputChange}
+          />
+        </div>
         <div className="bpp-business-information">
-          <button onClick={carouselBtn}>changeimage</button>
-          <input type="text" name="changeImg" onChange={businessState.handleInputChange} />
           <div className="bpp-business-info-logo">
             <button
               className={`bpp-favorite-button ${inputState.blurHeart}`}
@@ -455,14 +467,14 @@ const BuisnessProfile = () => {
           <div className="bpp-business-review-left">
             {businessState.createdReviews.length > 0
               ? businessState.createdReviews.map((review) => (
-                <ReviewCard
-                  key={businessState.business._id}
-                  review={review}
-                  image={'review.user.Settings.img'}
-                  business={businessState.business}
-                  username={review.user.username}
-                />
-              ))
+                  <ReviewCard
+                    key={businessState.business._id}
+                    review={review}
+                    image={"review.user.Settings.img"}
+                    business={businessState.business}
+                    username={review.user.username}
+                  />
+                ))
               : null}
             {businessState.reviews.length > 0
               ? businessState.reviews.map((review) => (
