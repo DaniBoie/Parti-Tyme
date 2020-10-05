@@ -9,12 +9,12 @@ router.get("/buisness/:id", (req, res) => {
     .populate({
       path: "reviews",
       populate: {
-        path:"user",
+        path: "user",
         populate: {
           path: "Settings",
-          model: "ProfileSettings"
-        }
-      }
+          model: "ProfileSettings",
+        },
+      },
     })
     .then((data) => res.send(data))
     .catch((err) => console.log(err));
@@ -114,21 +114,23 @@ router.put("/buisness/:id", passport.authenticate("jwt"), (req, res) => {
     .catch((err) => console.log(err));
 });
 
-
 //add favorite to users
 router.put("/buisness/users/:id", passport.authenticate("jwt"), (req, res) => {
-  console.log(req.body)
-  User.findByIdAndUpdate(req.params.id, { $push: { favorite: req.body.favorite } })
+  console.log(req.body);
+  User.findByIdAndUpdate(req.params.id, {
+    $push: { favorite: req.body.favorite },
+  })
     .then((data) => res.json(data))
     .catch((err) => console.log(err));
 });
 
 router.put("/buisness/image/:id", passport.authenticate("jwt"), (req, res) => {
-  console.log(req.body)
-  BuisnessData.findByIdAndUpdate(req.params.id, { $push: {img: req.body.img} })
+  console.log(req.body);
+  BuisnessData.findByIdAndUpdate(req.params.id, {
+    $push: { img: req.body.img },
+  })
     .then((data) => res.json(data))
     .catch((err) => console.log(err));
 });
-
 
 module.exports = router;

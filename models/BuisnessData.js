@@ -44,7 +44,7 @@ const BuisnessData = new Schema(
       ref: "User",
     },
     rating: {
-      type: Number
+      type: Number,
     },
     reviews: [
       {
