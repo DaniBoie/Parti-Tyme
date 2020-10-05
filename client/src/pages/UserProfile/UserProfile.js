@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css";
 import ProfileImage from "../../components/assets/images/no-profile-picture.jpg";
-import API from "../../utils/API/API";
+import API from "../../utils/API";
 import Nav from "../../components/Nav";
 import BusinessCard from "../../components/BuisnessCard"
 import axios from "axios";
