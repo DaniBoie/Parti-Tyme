@@ -325,12 +325,8 @@ const BuisnessProfile = () => {
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
           <img src={businessState.carouselImg} alt="Business 1" />
-          <img src={Example2} alt="Business 2" />
-          <img src={Example3} alt="Business 3" />
-          <img src={Example4} alt="Business 4" /> */}
         </Carousel>
       
-
         <div className="bpp-business-information">
           <button onClick={carouselBtn}>changeimage</button>
           <input type="text" name="changeImg" onChange={businessState.handleInputChange} />

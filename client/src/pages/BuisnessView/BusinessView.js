@@ -146,14 +146,7 @@ const BuisnessView = () => {
           <h2>Filters</h2>
 
           <div className="filter-list">
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                name="distance"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Distance</label>
-            </div>
+            
 
             <div className="filter-items">
               <input
@@ -173,34 +166,13 @@ const BuisnessView = () => {
                 onChange={businessState.handleInputChange}
               />
             </div>
-
             <div className="filter-items">
               <input
                 type="checkbox"
+                name="distance"
                 onChange={businessState.handleCheckboxChange}
               />
-              <label>Something</label>
-            </div>
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Something</label>
-            </div>
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Something</label>
-            </div>
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Something</label>
+              <label>(Coming Soon!)</label>
             </div>
           </div>
 
