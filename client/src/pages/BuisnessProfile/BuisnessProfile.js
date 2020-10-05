@@ -183,7 +183,7 @@ const BuisnessProfile = () => {
       })
       .catch((err) => console.log(err));
 
-    businessId = localStorage.getItem("pickBusiness")
+    let businessId = localStorage.getItem("pickBusiness")
 
 
     let result
@@ -222,7 +222,7 @@ const BuisnessProfile = () => {
   };
 
   const btn = () => {
-    businessId = localStorage.getItem("pickBusiness")
+    let businessId = localStorage.getItem("pickBusiness")
 
     axios.get(`/api/users/me`,
       {
@@ -231,7 +231,7 @@ const BuisnessProfile = () => {
         },
       })
       .then(({data}) => {
-        userId = data[0]._id 
+        let userId = data[0]._id 
         console.log(userId)       
 
         const favId = data[0].favorite.every((id) => {
