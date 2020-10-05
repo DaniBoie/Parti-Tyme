@@ -207,13 +207,19 @@ const BuisnessProfile = () => {
     axios.get(`/api/review/buisness/${businessId}`)
       .then(({data}) => {
         console.log(data)
+          let denominator
+        if (data.length === 0) {
+          denominator = 1
+        } else {
+          denominator = data.length
+        }
 
         let sum = 0
         data.forEach(review => {
             sum = sum + review.rating
         });
 
-        result = sum / data.length
+        result = sum / denominator
 
         setBusinessState({
           ...businessState,
@@ -424,7 +430,7 @@ const BuisnessProfile = () => {
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
-                  image={review.user.Settings.img}
+                    image={review.user.Settings.img}
                     business={businessState.business}
                     username={review.user.username}
                   />
