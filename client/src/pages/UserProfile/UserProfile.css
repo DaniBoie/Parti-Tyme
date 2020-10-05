@@ -368,9 +368,6 @@
 
 /* Right Column */
 
-.changing-account-type-area {
-}
-
 .up-right-col-main {
   display: grid;
   grid-template-areas: "review" "history";

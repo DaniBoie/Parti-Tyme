@@ -3,10 +3,10 @@ import "./UserProfile.css";
 import ProfileImage from "../../components/assets/images/no-profile-picture.jpg";
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
-import BusinessCard from "../../components/BuisnessCard"
+import BusinessCard from "../../components/BuisnessCard";
 import axios from "axios";
-import ReviewCard from "../../components/ReviewCard"
-import Logo from "../../components/assets/images/logos.png"
+import ReviewCard from "../../components/ReviewCard";
+import Logo from "../../components/assets/images/logos.png";
 
 const UserProfile = () => {
   // Function to show / hide input area when click on "Edit Profile" Button
@@ -54,11 +54,12 @@ const UserProfile = () => {
   // Getting User Data
   useEffect(() => {
     let dataComeback = "";
-    axios.get("/api/users/me", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("user")}`,
-      },
-    })
+    axios
+      .get("/api/users/me", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
+      })
       .then(({ data }) => {
         dataComeback = data[0];
         setUserState({
@@ -88,44 +89,56 @@ const UserProfile = () => {
 
   // console.log(businessState.allBusiness);
   // console.log(userState.Reviews);
+
   // Save Button
   const handleSaveBtn = () => {
     let settings = {};
 
     if (userState.profileImg.length > 0) {
-      settings.img = userState.profileImg
+      settings.img = userState.profileImg;
     }
     if (userState.bioChange.length > 0) {
-      settings.bio = userState.bioChange
+      settings.bio = userState.bioChange;
     }
     if (userState.location.length > 0) {
-      settings.location = userState.location
+      settings.location = userState.location;
     }
     if (userState.instaChange.length > 0) {
-      settings.instagram = userState.instaChange
+      settings.instagram = userState.instaChange;
     }
     if (userState.facebookChange.length > 0) {
-      settings.facebook = userState.facebookChange
+      settings.facebook = userState.facebookChange;
     }
 
     let userSettings;
 
-    axios.get("/api/users/me", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("user")}`,
-      },
-    })
+    axios
+      .get("/api/users/me", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
+      })
       .then(({ data }) => {
         let dataComeback = data[0];
 
-        setUserState({ ...userState, Settings: dataComeback.Settings });
+        setUserState({
+          ...userState,
+          Settings: dataComeback.Settings,
+          location: " ",
+          bioChange: " ",
+          instaChange: " ",
+          facebookChange: " ",
+          profileImg: " ",
+        });
         console.log("API SETTINGS ON SAVE BTN", dataComeback);
         userSettings = dataComeback.Settings;
 
         console.log("Inputted Settings ", userSettings);
         if (userSettings !== undefined) {
           API.updateSettings(settings)
-            .then((data) => console.log("UPDATED SETTINGS", data))
+            .then((data) => {
+              console.log("UPDATED SETTINGS", data);
+            })
             .catch((err) => console.log(err));
         } else {
           API.createSettings(settings)
@@ -179,18 +192,26 @@ const UserProfile = () => {
           <img
             className="profile-image"
             src={
-              userState.Settings.img !== "" ? (userState.Settings.img) : (ProfileImage)
+              userState.profileImg !== ""
+                ? userState.profileImg
+                : userState.Settings.img
             }
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
-          <p>{userState.Settings.location}</p>
           <p>
-            Bio: {userState.Settings.bio}
+            {userState.location !== ""
+              ? userState.location
+              : userState.Settings.location}
+          </p>
+          <p>
+            {userState.bioChange !== ""
+              ? userState.bioChange
+              : userState.Settings.bio}
           </p>
           <div className="profile-icons-list">
             <a
-              href="https://www.google.com/"
+              href={userState.facebookChange}
               className="profile-icons"
               aria-label="Facebook"
               data-balloon-pos="left"
@@ -198,7 +219,7 @@ const UserProfile = () => {
               <i class="fab fa-facebook-square"></i>
             </a>
             <a
-              href="https://www.google.com/"
+              href={userState.instaChange}
               className="profile-icons"
               aria-label="Instagram"
               data-balloon-pos="right"
@@ -393,41 +414,24 @@ const UserProfile = () => {
             <div className="up-right-col-main">
               <div className="up-review-row">
                 <h2>Reviews</h2>
-                {/* {userState.Reviews.length > 0
+                {userState.Reviews.length > 0
                   ? userState.Reviews.map((review) => (
-                      <div key={review._id}>
-                        <h4>{review.buisness.name}</h4>
-                        <p>{review.rating}</p>
-                        <p>{review.topic}</p>
-                        <p>{review.text}</p>
-                        <p>{review.buisness}</p>
-                      </div>
-                    ))
-                  : null} */}
-                  {
-                    userState.Reviews.length > 0
-                    ? userState.Reviews.map((review) => (
                       <ReviewCard
                         key={review.buisness._id}
                         review={review}
-                        image={Logo}                        
+                        image={Logo}
                         username={review.buisness.name}
                       />
                     ))
-                    :null
-                  }
+                  : null}
               </div>
               <div className="up-reviewed-business-row">
                 <h2>Favorites</h2>
-                {                  
-                    userState.favorite.length > 0 ?
-                      userState.favorite.map((business) => (
-                        <BusinessCard
-                          key={business._id}
-                          business={business}
-                        />
-                      )) : null                  
-                }
+                {userState.favorite.length > 0
+                  ? userState.favorite.map((business) => (
+                      <BusinessCard key={business._id} business={business} />
+                    ))
+                  : null}
               </div>
             </div>
 

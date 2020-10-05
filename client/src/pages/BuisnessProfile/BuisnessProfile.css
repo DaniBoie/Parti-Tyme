@@ -1,5 +1,5 @@
 .business-profile-page {
-  height: 90vh;
+  min-height: 90vh;
   margin: 0 5rem;
   display: grid;
   grid-template-areas: "carousel" "information" "review";
@@ -42,10 +42,28 @@
 /* Middle Row Left Column / Logo */
 
 .bpp-business-info-logo {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   text-align: center;
+  position: relative;
+}
+
+.bpp-favorite-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  color: #d63031;
+  font-size: 24px;
+}
+
+.bpp-favorite-button:hover {
+  color: #ff7675;
+}
+
+.bpp-favorite-button.blur {
+  color: #b2bec3;
 }
 
 .bpp-business-info-logo img {
@@ -78,44 +96,6 @@
   color: #a92771;
 }
 
-.bpp-heart-icons {
-  position: relative;
-  margin-top: 1rem;
-}
-.bpp-favorite-button,
-.bpp-favorite-button-liked {
-  position: absolute;
-  border: none;
-  outline: none;
-  background: none;
-  cursor: pointer;
-  margin: 0.5rem auto;
-  color: red;
-  font-size: 30px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
-  transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-}
-.bpp-favorite-button-liked {
-  display: none;
-}
-
-.bpp-favorite-button:visited {
-  display: none;
-}
-.bpp-favorite-button:visited + .bpp-favorite-button-liked {
-  display: inline-block;
-}
-/* .bpp-favorite-button-liked {
-  display: none;
-} */
 /* Middle Row Right Column / Business Information */
 
 .bpp-business-info-area {

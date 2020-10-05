@@ -22,6 +22,8 @@ const BuisnessProfile = () => {
     show: "",
     hideButton: "hide",
     hideEdit: "hide-edit",
+    disabledIfOwner: false,
+    blurHeart: "",
   });
 
   inputState.handleEditButton = () => {
@@ -96,6 +98,8 @@ const BuisnessProfile = () => {
           setInputState({
             ...inputState,
             hideEdit: "",
+            disabledIfOwner: true,
+            blurHeart: "blur",
           });
         } else {
           setInputState({
@@ -190,6 +194,7 @@ const BuisnessProfile = () => {
         }
       )
       .then(() => {
+        setBusinessState({ ...businessState, topic: "", text: "", rating: 0 });
         console.log("added");
       })
       .catch((err) => console.log(err));
@@ -202,13 +207,19 @@ const BuisnessProfile = () => {
       .get(`/api/review/buisness/${businessId}`)
       .then(({ data }) => {
         console.log(data);
+        let denominator;
+        if (data.length === 0) {
+          denominator = 1;
+        } else {
+          denominator = data.length;
+        }
 
         let sum = 0;
         data.forEach((review) => {
           sum = sum + review.rating;
         });
 
-        result = sum / data.length;
+        result = sum / denominator;
 
         setBusinessState({
           ...businessState,
@@ -268,22 +279,8 @@ const BuisnessProfile = () => {
         }
       })
       .catch((err) => console.log(err));
+    alert("Added To Favorite List!");
   };
-
-  // const addImg = () => {
-  //   businessId = localStorage.getItem("pickBusiness")
-  //   axios.put(`/buisness/image/${businessId}`,
-  //   {
-  //     img: businessState.img
-  //   },
-  //   {
-  //     headers: {
-  //       Authorization: `Bearer ${localStorage.getItem("user")}`,
-  //     },
-  //   })
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.log(err))
-  // }
 
   return (
     <>
@@ -292,13 +289,20 @@ const BuisnessProfile = () => {
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">
           <img src={Example1} alt="Business 1" />
-          <img src={Example2} alt="Business 2" />
+          {/* <img src={Example2} alt="Business 2" />
           <img src={Example3} alt="Business 3" />
-          <img src={Example4} alt="Business 4" />
+          <img src={Example4} alt="Business 4" /> */}
         </Carousel>
 
         <div className="bpp-business-information">
           <div className="bpp-business-info-logo">
+            <button
+              className={`bpp-favorite-button ${inputState.blurHeart}`}
+              onClick={btn}
+              disabled={inputState.disabledIfOwner}
+            >
+              <i class="fas fa-heart"></i>
+            </button>
             <img src={Logo} alt="Logo" />
 
             <div className="bpp-business-info-icons">
@@ -324,21 +328,11 @@ const BuisnessProfile = () => {
               starDimension="40px"
               starSpacing="5px"
             />
-
-            <div className="bpp-heart-icons"></div>
-            <button className={`bpp-favorite-button`} onClick={btn}>
-              <i class="far fa-heart"></i>
-            </button>
-            {/* <button className={`bpp-favorite-button-liked`}>
-              <i class="fas fa-heart"></i>
-            </button> */}
           </div>
 
           <div className="bpp-business-info-area">
             <button
               className={`bpp-edit-button ${inputState.hideEdit}`}
-              // disabled={inputState.disabled}
-
               onClick={inputState.handleEditButton}
             >
               <i class="fas fa-edit"></i>
@@ -355,7 +349,6 @@ const BuisnessProfile = () => {
               />
             </label>
             <label>
-              Slogan:
               <input
                 className={`${inputState.show}`}
                 type="text"
@@ -457,17 +450,24 @@ const BuisnessProfile = () => {
                   type="text"
                   name="topic"
                   placeholder="Topic..."
+                  disabled={inputState.disabledIfOwner}
                   onChange={businessState.handleInputChange}
                 />
                 <textarea
                   rows="4"
                   name="text"
-                  placeholder="Write Your Comment Here..."
+                  placeholder="Write A Comment..."
+                  disabled={inputState.disabledIfOwner}
                   onChange={businessState.handleInputChange}
                 ></textarea>
               </form>
             </div>
-            <button onClick={reviewSendButton}>Send</button>
+            <button
+              onClick={reviewSendButton}
+              disabled={inputState.disabledIfOwner}
+            >
+              Send
+            </button>
           </div>
         </div>
       </div>

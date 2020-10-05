@@ -28,5 +28,4 @@ router.put("/settings", passport.authenticate("jwt"), (req, res) => {
     .catch((err) => console.log(err));
 });
 
-
 module.exports = router;
