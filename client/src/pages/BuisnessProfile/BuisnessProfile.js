@@ -182,13 +182,6 @@ const BuisnessProfile = () => {
       .catch((err) => console.log(err));
   };
 
-  // var business = {
-  //   img:
-  //     "https://www.visitnewportbeach.com/wp-content/uploads/2018/04/MastrosOceanClub-3-06-700x400.jpg",
-  //   name: "Mastros",
-  //   descprition: "kkkk idkkdkdkd",
-  // };
-
   return (
     <>
       <Nav />
@@ -233,7 +226,6 @@ const BuisnessProfile = () => {
           <div className="bpp-business-info-area">
             <button
               className={`bpp-edit-button ${inputState.hideEdit}`}
-
               // disabled={inputState.disabled}
 
               onClick={inputState.handleEditButton}

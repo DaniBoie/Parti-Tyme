@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 
 // Importing Styling Elements
-import "./Nav.css";
+import "./nav.css";
 
 // Importing Logo Image
 import Balloon from "../assets/images/balloon.png";
@@ -24,10 +24,6 @@ const Nav = (props) => {
     user: "",
   });
 
-  const handleBusinessButton = () => {
-    console.log(userState.user)
-  }
-
   dropdownState.handleHamburgerButton = () => {
     if (dropdownState.show === "") {
       setDropdownState({ ...dropdownState, show: "show" });
@@ -44,7 +40,6 @@ const Nav = (props) => {
     });
     window.location = "/businessview";
   }
-
 
   useEffect(() => {
     if (window.location.pathname === "/login") {
@@ -68,9 +63,7 @@ const Nav = (props) => {
           });
         }
 
-        setUserState({ ...userState, user: data[0].Buisness._id})
-        
-        
+        setUserState({ ...userState, user: data[0].Buisness._id });
       })
       .catch((err) => {
         console.log(err);
@@ -130,7 +123,9 @@ const Nav = (props) => {
         <div className={`nav-dropdown-menu ${dropdownState.show}`}>
           <Link
             to="/businessprofile"
-            onClick={() => {localStorage.setItem("pickBusiness", userState.user);}}
+            onClick={() => {
+              localStorage.setItem("pickBusiness", userState.user);
+            }}
             className={`nav-dropdown-items ${businessStatus.hideBusinessProfile}`}
           >
             Business Profile
@@ -146,7 +141,4 @@ const Nav = (props) => {
     </nav>
   );
 };
-
-// </nav>
-
 export default Nav;
