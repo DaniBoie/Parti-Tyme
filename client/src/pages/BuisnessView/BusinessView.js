@@ -14,7 +14,7 @@ const BuisnessView = () => {
     maxPrice: false,
     distance: false,
     priceSearch: 1000,
-    searchText: ""
+    searchText: "",
   });
 
   businessState.handleInputChange = (event) => {
@@ -47,16 +47,18 @@ const BuisnessView = () => {
   // Search Button
   const handleSearch = () => {
     // console.log(businessState.selectValue)
-  
+
     let filteredArray = API.filterCategory(
       businessState.selectValue,
       businessState.businesses
-      );
-    
+    );
 
     if (businessState.maxPrice) {
       console.log("Max Price Ticked");
-      filteredArray = API.filterPrice(businessState.priceSearch || 1000000, filteredArray);
+      filteredArray = API.filterPrice(
+        businessState.priceSearch || 1000000,
+        filteredArray
+      );
     }
 
     if (businessState.distance) {
@@ -80,13 +82,15 @@ const BuisnessView = () => {
   function handleSearchBar() {
     API.searchBusinessName(businessState.searchText)
       .then(({ data }) => {
-        if (data.length > 0){
-        setBusinessState({...businessState, businessRender: data})
+        if (data.length > 0) {
+          setBusinessState({ ...businessState, businessRender: data });
         } else {
-        alert('No Matches Found')
+          alert("No Matches Found");
         }
       })
-      .catch((err) => { console.log(err) })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   // Function to show and hide price number
@@ -114,7 +118,11 @@ const BuisnessView = () => {
               placeholder="Type To Seach..."
               onChange={businessState.handleInputChange}
             />
-            <button className="bvp-search-button" value="name" onClick={handleSearchBar}>
+            <button
+              className="bvp-search-button"
+              value="name"
+              onClick={handleSearchBar}
+            >
               <i class="fas fa-search"></i>
             </button>
           </div>
@@ -138,14 +146,7 @@ const BuisnessView = () => {
           <h2>Filters</h2>
 
           <div className="filter-list">
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                name="distance"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Distance</label>
-            </div>
+            
 
             <div className="filter-items">
               <input
@@ -165,34 +166,13 @@ const BuisnessView = () => {
                 onChange={businessState.handleInputChange}
               />
             </div>
-
             <div className="filter-items">
               <input
                 type="checkbox"
+                name="distance"
                 onChange={businessState.handleCheckboxChange}
               />
-              <label>Something</label>
-            </div>
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Something</label>
-            </div>
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Something</label>
-            </div>
-            <div className="filter-items">
-              <input
-                type="checkbox"
-                onChange={businessState.handleCheckboxChange}
-              />
-              <label>Something</label>
+              <label>(Coming Soon!)</label>
             </div>
           </div>
 

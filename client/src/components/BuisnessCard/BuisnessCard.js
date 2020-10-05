@@ -18,7 +18,7 @@ const BuisnessCard = (props) => {
       {/* Left Column / Image + Rating Star */}
       <div className="bc-left-column">
         <div className="bc-business-image">
-          <img src={ExampleImage} alt="Business Profile Picture" />
+          <img src={ExampleImage} alt="Business Profile" />
         </div>
 
         {/* <StarRating /> */}
@@ -41,7 +41,7 @@ const BuisnessCard = (props) => {
         <h3>{props.business.slogan}</h3>
 
         <Link to="/businessprofile" onClick={handleContactButton}>
-          More Detail...
+          More Details...
         </Link>
       </div>
     </div>

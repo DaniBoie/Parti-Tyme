@@ -1,5 +1,5 @@
 .business-profile-page {
-  height: 90vh;
+  min-height: 90vh;
   margin: 0 5rem;
   display: grid;
   grid-template-areas: "carousel" "information" "review";
@@ -42,10 +42,28 @@
 /* Middle Row Left Column / Logo */
 
 .bpp-business-info-logo {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   text-align: center;
+  position: relative;
+}
+
+.bpp-favorite-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  color: #d63031;
+  font-size: 24px;
+}
+
+.bpp-favorite-button:hover {
+  color: #ff7675;
+}
+
+.bpp-favorite-button.blur {
+  color: #b2bec3;
 }
 
 .bpp-business-info-logo img {
