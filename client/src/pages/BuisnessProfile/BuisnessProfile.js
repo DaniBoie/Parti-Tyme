@@ -190,6 +190,11 @@ const BuisnessProfile = () => {
         }
       )
       .then(() => {
+        setBusinessState({...businessState, 
+            topic: "",
+            text: "",
+            rating: 0
+        })
         console.log('added');
       })
       .catch((err) => console.log(err));
@@ -419,7 +424,7 @@ const BuisnessProfile = () => {
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
-                    image={review.user.Settings.img}
+                  image={review.user.Settings.img}
                     business={businessState.business}
                     username={review.user.username}
                   />

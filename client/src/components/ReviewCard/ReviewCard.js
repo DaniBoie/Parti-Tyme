@@ -4,7 +4,7 @@ import "./ReviewCard.css";
 import StarRatings from "react-star-ratings";
 import ExamplePic1 from "../assets/images/business-1.jpg";
 const ReviewCard = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <div className="Review-Card">
       <div className="rc-profile-left">
