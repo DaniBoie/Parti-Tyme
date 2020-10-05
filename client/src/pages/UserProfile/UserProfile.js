@@ -179,14 +179,20 @@ const UserProfile = () => {
           <img
             className="profile-image"
             src={
-              userState.Settings.img !== "" ? (userState.Settings.img) : (ProfileImage)
+              userState.profileImg !== "" ? (userState.profileImg) : (userState.Settings.img)
             }
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
-          <p>{userState.Settings.location}</p>
           <p>
-            Bio: {userState.Settings.bio}
+          {
+            userState.location !== "" ? (userState.location) : (userState.Settings.location)
+          }
+          </p>
+          <p>
+            Bio:           {
+              userState.bioChange !== "" ? (userState.bioChange) : (userState.Settings.bio)
+            }
           </p>
           <div className="profile-icons-list">
             <a
@@ -393,17 +399,6 @@ const UserProfile = () => {
             <div className="up-right-col-main">
               <div className="up-review-row">
                 <h2>Reviews</h2>
-                {/* {userState.Reviews.length > 0
-                  ? userState.Reviews.map((review) => (
-                      <div key={review._id}>
-                        <h4>{review.buisness.name}</h4>
-                        <p>{review.rating}</p>
-                        <p>{review.topic}</p>
-                        <p>{review.text}</p>
-                        <p>{review.buisness}</p>
-                      </div>
-                    ))
-                  : null} */}
                   {
                     userState.Reviews.length > 0
                     ? userState.Reviews.map((review) => (
