@@ -5,12 +5,14 @@ import "./BusinessCard.css";
 import StarRatings from "react-star-ratings";
 
 import ExampleImage from "../../components/assets/images/business-2.jpg";
+// import API from "../../utils/API";
+// import axios from "axios";
 
 const BuisnessCard = (props) => {
   function handleContactButton() {
     localStorage.setItem("pickBusiness", `${props.business._id}`);
   }
-  console.log(props.business);
+
   return (
     <div className="business-card">
       {/* Left Column / Image + Rating Star */}

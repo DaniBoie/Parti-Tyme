@@ -61,7 +61,6 @@ const BuisnessProfile = () => {
     averageRating: 0,
     reviews: [],
     username: "",
-    favorite: "",
   });
 
   businessState.changeRating = (newRating, rating) => {
@@ -78,17 +77,10 @@ const BuisnessProfile = () => {
       ...businessState,
       [event.target.name]: event.target.value,
     });
-    // console.log(businessState.rating)
-    // console.log(businessState.topic);
   };
 
-  let businessId;
-  let userId;
-
   useEffect(() => {
-    // let dataComeback;
-
-    businessId = localStorage.getItem("pickBusiness");
+    let businessId = localStorage.getItem("pickBusiness");
 
     API.getUser()
       .then(({ data }) => {
@@ -134,6 +126,22 @@ const BuisnessProfile = () => {
   businessState.updateBusiness = () => {
     console.log(businessState.business);
     // let id = businessState.business._id
+    let updateObject = {};
+    if (businessState.name.length > 0) {
+      updateObject.name = businessState.name;
+    }
+    if (businessState.slogan.length > 0) {
+      updateObject.slogan = businessState.slogan;
+    }
+    if (businessState.location.length > 0) {
+      updateObject.location = businessState.location;
+    }
+    if (businessState.fee.length > 0) {
+      updateObject.fee = businessState.fee;
+    }
+    if (businessState.bio.length > 0) {
+      updateObject.bio = businessState.bio;
+    }
 
     let updateObject = {};
 
@@ -282,7 +290,6 @@ const BuisnessProfile = () => {
   //     .catch((err) => console.log(err))
   // }
 
-
   return (
     <>
       <Nav />
@@ -327,7 +334,6 @@ const BuisnessProfile = () => {
           <div className="bpp-business-info-area">
             <button
               className={`bpp-edit-button ${inputState.hideEdit}`}
-
               // disabled={inputState.disabled}
 
               onClick={inputState.handleEditButton}
@@ -392,12 +398,13 @@ const BuisnessProfile = () => {
               <textarea
                 className={`${inputState.show}`}
                 name="bio"
-                rows="7"
+                rows="5"
                 disabled={inputState.disabled}
                 onChange={businessState.handleInputChange}
                 defaultValue={businessState.business.bio}
               >
               </textarea>
+
             </label>
 
             <button
@@ -462,8 +469,6 @@ const BuisnessProfile = () => {
           </div>
         </div>
       </div>
-      <button onClick={btn}>click</button>
-      {/* <button onClick={addImg}>submit</button> */}
     </>
   );
 };

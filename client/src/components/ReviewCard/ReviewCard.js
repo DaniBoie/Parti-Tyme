@@ -1,10 +1,10 @@
 import React from "react";
 import "./ReviewCard.css";
-// import Logos from '../assets/images/logos.png'
-// import StarRating from '../StarRating/StarRating'
-import StarRatings from "react-star-ratings";
 
+import StarRatings from "react-star-ratings";
+import ExamplePic1 from "../assets/images/business-1.jpg";
 const ReviewCard = (props) => {
+  console.log(props);
   return (
     <div className="Review-Card">
       <div className="profile-sidebar">
@@ -16,23 +16,20 @@ const ReviewCard = (props) => {
         <div className="name">
           <h3>{props.username}</h3>
         </div>
-
-
+        <h1>User Name</h1>
       </div>
 
-      <div className="profile-main">
-        <div className="stars">
-          <StarRatings
-            rating= {props.review.rating}
-            starRatedColor="yellow"
-            starDimension="40px"
-            starSpacing="15px"
-          />
+      <div className="rc-profile-right">
+        <StarRatings
+          rating={props.review.rating}
+          starRatedColor="yellow"
+          starDimension="30px"
+          starSpacing="10px"
+        />
+        <div className="rc-topic-text">
+          <h1>{props.review.topic}</h1>
+          <h2>{props.review.text}</h2>
         </div>
-        <div className='content'>
-          {props.review.topic}
-        </div>
-        <div className="content">{props.review.text}</div>
       </div>
     </div>
   );
