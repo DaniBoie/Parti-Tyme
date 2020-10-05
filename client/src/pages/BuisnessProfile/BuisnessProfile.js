@@ -471,7 +471,7 @@ const BuisnessProfile = () => {
                     review={review}
                     image={"review.user.Settings.img"}
                     business={businessState.business}
-                    username={review.user.username}
+                    username={"review.user.username"}
                   />
                 ))
               : null}

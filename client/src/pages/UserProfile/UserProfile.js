@@ -70,8 +70,8 @@ const UserProfile = () => {
           account_type: dataComeback.account_type,
           Reviews: dataComeback.Reviews || [],
           Buisness: dataComeback.Buisness,
-          Settings: dataComeback.Settings || {},
-          favorite: dataComeback.favorite,
+          Settings: dataComeback.Settings,
+          favorite: dataComeback.favorite || [],
         });
 
         // Checking if the user has a business, if yes, hide the update account button
@@ -434,8 +434,6 @@ const UserProfile = () => {
                   : null}
               </div>
             </div>
-
-            <div></div>
           </div>
         </div>
       </div>
