@@ -7,9 +7,14 @@ const ReviewCard = (props) => {
   console.log(props);
   return (
     <div className="Review-Card">
-      <div className="rc-profile-left">
-        <div className="rc-profile-image">
-          <img src={ExamplePic1} alt="profile pic" />
+      <div className="profile-sidebar">
+        <img
+          className="profile-image"
+          src={props.review.user.Settings.img}
+          alt="profile pic"
+        />
+        <div className="name">
+          <h3>{props.username}</h3>
         </div>
         <h1>User Name</h1>
       </div>

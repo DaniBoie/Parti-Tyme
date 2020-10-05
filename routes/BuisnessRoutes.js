@@ -6,7 +6,16 @@ const passport = require("passport");
 router.get("/buisness/:id", (req, res) => {
   // res.send(req.params.id);
   BuisnessData.findById(req.params.id)
-    .populate("reviews")
+    .populate({
+      path: "reviews",
+      populate: {
+        path:"user",
+        populate: {
+          path: "Settings",
+          model: "ProfileSettings"
+        }
+      }
+    })
     .then((data) => res.send(data))
     .catch((err) => console.log(err));
 });
@@ -110,6 +119,13 @@ router.put("/buisness/:id", passport.authenticate("jwt"), (req, res) => {
 router.put("/buisness/users/:id", passport.authenticate("jwt"), (req, res) => {
   console.log(req.body)
   User.findByIdAndUpdate(req.params.id, { $push: { favorite: req.body.favorite } })
+    .then((data) => res.json(data))
+    .catch((err) => console.log(err));
+});
+
+router.put("/buisness/image/:id", passport.authenticate("jwt"), (req, res) => {
+  console.log(req.body)
+  BuisnessData.findByIdAndUpdate(req.params.id, { $push: {img: req.body.img} })
     .then((data) => res.json(data))
     .catch((err) => console.log(err));
 });
