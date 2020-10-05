@@ -4,6 +4,7 @@ import ProfileImage from "../../components/assets/images/no-profile-picture.jpg"
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
 import BusinessCard from "../../components/BuisnessCard"
+import axios from "axios";
 
 const UserProfile = () => {
   // Function to show / hide input area when click on "Edit Profile" Button
@@ -77,7 +78,7 @@ const UserProfile = () => {
         window.location = "/businessview";
         console.log(err);
       });
-    console.log(userState.Business);
+    
   }, []);
 
   // Save Button
@@ -154,7 +155,7 @@ const UserProfile = () => {
           <img
             className="profile-image"
             src={
-              userState.profileImg !== "" ? userState.profileImg : ProfileImage
+              userState.Settings.img !== "" ? (userState.Settings.img) : (ProfileImage)
             }
             alt="Profile Image"
           />
@@ -239,9 +240,9 @@ const UserProfile = () => {
               <label>
                 <i class="fas fa-camera"></i>
                 <input
-                  type="submit"
+                  type="text"
                   name="profileImg"
-                  value="Change Profile Picture"
+                  placeholder="Avatar url"
                   onChange={userState.handleInputChange}
                 />
               </label>
