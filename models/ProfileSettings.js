@@ -25,6 +25,6 @@ const ProfileSettings = new Schema(
   { timestamps: true }
 );
 
-ProfileSettings.plugin(require("passport-local-mongoose"));
+// ProfileSettings.plugin(require("passport-local-mongoose"));
 
 module.exports = model("ProfileSettings", ProfileSettings);
