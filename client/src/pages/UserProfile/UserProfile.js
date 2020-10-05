@@ -25,7 +25,7 @@ const UserProfile = () => {
   }
 
   const [userState, setUserState] = useState({
-    realname: "",
+    usersName: "",
     username: "",
     email: "",
     account_type: "",
@@ -67,9 +67,11 @@ const UserProfile = () => {
       })
       .then(({ data }) => {
         dataComeback = data[0];
+        let usersname = dataComeback.realname
+        console.log(usersname)
         setUserState({
           ...userState,
-          realname: dataComeback.realname,
+          usersName: usersname,
           username: dataComeback.username,
           email: dataComeback.email,
           account_type: dataComeback.account_type,
@@ -87,6 +89,7 @@ const UserProfile = () => {
           })
         } 
 
+        // 
         // Checking if the user has a business, if yes, hide the update account button
         if (dataComeback.Buisness) {
           setFormState({ ...formState, businessBtn: "hide" });
@@ -124,6 +127,7 @@ const UserProfile = () => {
     }
 
     let userSettings;
+    console.log(userState.Reviews)
 
     axios
       .get("/api/users/me", {
@@ -236,7 +240,6 @@ const UserProfile = () => {
             alt="Profile Image"
           />
           <h1>{userState.realname}</h1>
-          <h2>{userState.email}</h2>
           <p>
             {userState.userCity}
           </p>
