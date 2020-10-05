@@ -135,6 +135,7 @@ const BuisnessProfile = () => {
           reviews: data.reviews,
           averageRating: data.rating,
           carouselImg: data.img,
+          logo: data.logo
         });
       })
       .catch((error) => console.log(error));
@@ -350,7 +351,7 @@ const BuisnessProfile = () => {
             >
               <i class="fas fa-heart"></i>
             </button>
-            <img src={Logo} alt="Logo" />
+            <img src={businessState.logo || Logo} alt="Logo" />
 
             <div className="bpp-business-info-icons">
               <a
@@ -467,21 +468,21 @@ const BuisnessProfile = () => {
           <div className="bpp-business-review-left">
             {businessState.createdReviews.length > 0
               ? businessState.createdReviews.map((review) => (
-                  <ReviewCard
-                    key={businessState.business._id}
-                    review={review}
-                    image={"review.user.Settings.img"}
-                    business={businessState.business}
-                    username={review.user.username}
-                  />
-                ))
+                <ReviewCard
+                  key={businessState.business._id}
+                  review={review}
+                  image={review.user.Settings.img}
+                  business={businessState.business}
+                  username={review.user.username}
+                />
+              ))
               : null}
             {businessState.reviews.length > 0
               ? businessState.reviews.map((review) => (
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
-                    image={"review.user.Settings.img"}
+                    image={review.user.Settings.img}
                     business={businessState.business}
                     username={review.user.username}
                   />
