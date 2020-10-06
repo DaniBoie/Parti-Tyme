@@ -477,7 +477,8 @@ const BuisnessProfile = () => {
                 />
               ))
               : null}
-            {businessState.reviews.length > 0
+            {businessState.reviews.length > 0 
+              && businessState.review[0].user
               ? businessState.reviews.map((review) => (
                   <ReviewCard
                     key={businessState.business._id}
