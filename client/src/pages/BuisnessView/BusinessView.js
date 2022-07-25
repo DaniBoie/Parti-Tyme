@@ -105,7 +105,7 @@ const BuisnessView = () => {
   }
   return (
     <>
-      <Nav name="Home Page" />
+      {/* <Nav name="Home Page" /> */}
       <div className="business-view-page">
         {/* Left Column / Filter Column  */}
         <div className="filter-column">
@@ -186,7 +186,7 @@ const BuisnessView = () => {
         <div className="bvp-business-column">
           {businessState.businessRender.length > 0
             ? businessState.businessRender.map((business) => (
-                <BusinessCard business={business} />
+                <BusinessCard business={business} key={business._id}/>
               ))
             : null}
         </div>

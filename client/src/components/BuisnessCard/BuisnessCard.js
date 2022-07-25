@@ -5,7 +5,7 @@ import "./BusinessCard.css";
 import StarRatings from "react-star-ratings";
 import Logo from "../../components/assets/images/logos.png";
 
-import ExampleImage from "../../components/assets/images/business-2.jpg";
+// import ExampleImage from "../../components/assets/images/business-2.jpg";
 // import API from "../../utils/API";
 // import axios from "axios";
 

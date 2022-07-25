@@ -111,7 +111,7 @@ function Login() {
               placeholder="Password"
               onChange={accountState.handleInputChange}
             />
-            <a href="#">Forgot Password?</a>
+            <a href="/businessview">Forgot Password?</a>
 
             <input
               type="submit"

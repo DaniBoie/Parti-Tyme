@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./UserProfile.css";
-import ProfileImage from "../../components/assets/images/no-profile-picture.jpg";
+// import ProfileImage from "../../components/assets/images/no-profile-picture.jpg";
 import API from "../../utils/API/API";
 import Nav from "../../components/Nav";
 import BusinessCard from "../../components/BuisnessCard";
@@ -101,7 +101,7 @@ const UserProfile = () => {
         window.location = "/businessview";
         console.log(err);
       });
-  }, []);
+  });
 
   // console.log(businessState.allBusiness);
   // console.log(userState.Reviews);
@@ -237,7 +237,7 @@ const UserProfile = () => {
             src={
               userState.profileImg
             }
-            alt="Profile Image"
+            alt="Profile"
           />
           <h1>{userState.realname}</h1>
           <p>
@@ -430,7 +430,7 @@ const UserProfile = () => {
                 />
               </label>
               <a
-                href="#"
+                href="/userprofile"
                 className="business-form-button"
                 onClick={handleBusinessButton}
               >

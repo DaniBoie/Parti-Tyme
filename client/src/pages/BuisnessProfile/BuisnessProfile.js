@@ -5,11 +5,11 @@ import ReviewCard from "../../components/ReviewCard/ReviewCard";
 import { Carousel } from "react-responsive-carousel";
 import Nav from "../../components/Nav";
 // Importing image
-import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
-import Example1 from "../../components/assets/images/business-1.jpg";
-import Example2 from "../../components/assets/images/business-2.jpg";
-import Example3 from "../../components/assets/images/business-3.jpg";
-import Example4 from "../../components/assets/images/business-4.jpg";
+// import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
+// import Example1 from "../../components/assets/images/business-1.jpg";
+// import Example2 from "../../components/assets/images/business-2.jpg";
+// import Example3 from "../../components/assets/images/business-3.jpg";
+// import Example4 from "../../components/assets/images/business-4.jpg";
 import Logo from "../../components/assets/images/logos.png";
 // Importing styling element
 import "./BuisnessProfile.css";
@@ -134,12 +134,12 @@ const BuisnessProfile = () => {
           business: data,
           reviews: data.reviews,
           averageRating: data.rating,
-          carouselImg: data.img,
+          carouselImg: data.img || '',
           logo: data.logo
         });
       })
       .catch((error) => console.log(error));
-  }, []);
+  });
 
   businessState.updateBusiness = () => {
     console.log(businessState.business);
@@ -297,34 +297,34 @@ const BuisnessProfile = () => {
     alert("Added To Favorite List!");
   };
 
-  const carouselBtn = () => {
-    if (businessState.changeImg.length > 0) {
-      axios
-        .put(
-          `api/buisness`,
-          {
-            img: businessState.changeImg,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("user")}`,
-            },
-          }
-        )
-        .then((data) => {
-          setBusinessState({
-            ...businessState,
-            carouselImg: businessState.changeImg,
-          });
-        })
-        .catch((err) => console.log(err));
-    }
-    console.log(businessState.carouselImg);
-  };
+  // const carouselBtn = () => {
+  //   if (businessState.changeImg.length > 0) {
+  //     axios
+  //       .put(
+  //         `api/buisness`,
+  //         {
+  //           img: businessState.changeImg,
+  //         },
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${localStorage.getItem("user")}`,
+  //           },
+  //         }
+  //       )
+  //       .then((data) => {
+  //         setBusinessState({
+  //           ...businessState,
+  //           carouselImg: businessState.changeImg,
+  //         });
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }
+  //   console.log(businessState.carouselImg);
+  // };
 
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">

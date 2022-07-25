@@ -58,6 +58,14 @@ router.put("/users", passport.authenticate("jwt"), (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.get("/test", (req, res) => {
+  res.sendStatus(200);
+})
 
+router.get("/allUsers", (req, res) => {
+  User.find({})
+    .then((data) => res.send(data))
+    .catch((err) => console.log(err));
+});
 
 module.exports = router;
