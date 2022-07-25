@@ -139,7 +139,7 @@ const BuisnessProfile = () => {
         });
       })
       .catch((error) => console.log(error));
-  });
+  }, []);
 
   businessState.updateBusiness = () => {
     console.log(businessState.business);
@@ -324,7 +324,7 @@ const BuisnessProfile = () => {
 
   return (
     <>
-      {/* <Nav /> */}
+      <Nav />
 
       <div className="business-profile-page">
         <Carousel className="bpp-business-carousel">

@@ -105,7 +105,7 @@ const BuisnessView = () => {
   }
   return (
     <>
-      {/* <Nav name="Home Page" /> */}
+      <Nav name="Home Page" />
       <div className="business-view-page">
         {/* Left Column / Filter Column  */}
         <div className="filter-column">

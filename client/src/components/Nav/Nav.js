@@ -68,7 +68,7 @@ const Nav = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [dropdownState, userState]);
+  }, []);
 
   return (
     <nav className="nav-bar">
