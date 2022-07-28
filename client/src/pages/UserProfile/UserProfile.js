@@ -13,6 +13,7 @@ const UserProfile = () => {
   const [showInput, setShowInput] = useState({
     show: "",
   });
+
   function editProfileBtn() {
     if (showInput.show === ""){
         setShowInput({ ...showInput, show: "profile-input-show" 
@@ -25,16 +26,16 @@ const UserProfile = () => {
   }
 
   const [userState, setUserState] = useState({
-    usersName: "",
-    username: "",
-    email: "",
-    account_type: "",
+    govName: "_",
+    // username: "",
+    // email: "",
+    // account_type: "",
     Reviews: [],
     Buisness: {},
     Settings: {},
-    user: [],
+    // user: [],
     favorite: [],
-    profileImg: "https://www.msahq.org/wp-content/uploads/2016/12/default-avatar.png",
+    profileImg: "",
     profileImgChange: '',
     userBio: "",
     userCity: "",
@@ -58,7 +59,7 @@ const UserProfile = () => {
 
   // Getting User Data
   useEffect(() => {
-    let dataComeback = "";
+    // let dataComeback = "";
     axios
       .get("/api/users/me", {
         headers: {
@@ -66,45 +67,33 @@ const UserProfile = () => {
         },
       })
       .then(({ data }) => {
-        dataComeback = data[0];
-        let usersname = dataComeback.realname
-        console.log(usersname)
+        let dataComeback = data[0];
+        // let usersname = dataComeback.realname
+        console.log(dataComeback)
         setUserState({
           ...userState,
-          usersName: usersname,
-          username: dataComeback.username,
-          email: dataComeback.email,
-          account_type: dataComeback.account_type,
           Reviews: dataComeback.Reviews || [],
-          Buisness: dataComeback.Buisness,
+          Buisness: dataComeback.Buisness._id,
           Settings: dataComeback.Settings || {},
           favorite: dataComeback.favorite,
+          govName: dataComeback.realname,
+          profileImg: dataComeback.Settings.img || "https://www.msahq.org/wp-content/uploads/2016/12/default-avatar.png",
+          userCity: dataComeback.Settings.location || "",
+          userBio: dataComeback.Settings.bio || ""
         });
 
-        if (dataComeback.Settings){
-          setUserState({...userState,
-          profileImg: dataComeback.Settings.img,
-          userCity: dataComeback.Settings.location,
-          userBio: dataComeback.Settings.bio,
-          })
-        } 
-
-        // 
         // Checking if the user has a business, if yes, hide the update account button
         if (dataComeback.Buisness) {
           setFormState({ ...formState, businessBtn: "hide" });
         }
 
-        console.log("API DATA ON STARTUP", dataComeback);
+        console.log("API DATA ON STARTUP", userState);
       })
       .catch((err) => {
         window.location = "/businessview";
         console.log(err);
       });
-  });
-
-  // console.log(businessState.allBusiness);
-  // console.log(userState.Reviews);
+  }, []);
 
   // Save Button
   const handleSaveBtn = () => {
@@ -239,7 +228,7 @@ const UserProfile = () => {
             }
             alt="Profile"
           />
-          <h1>{userState.realname}</h1>
+          <h1>{userState.govName}</h1>
           <p>
             {userState.userCity}
           </p>
@@ -446,30 +435,31 @@ const UserProfile = () => {
 
           {/* Right Column */}
           <div className="changing-account-type-area">
-            <h1>Welcome back {userState.realname}</h1>
+            <h1>Welcome back {userState.govName}</h1>
 
             <div className="up-right-col-main">
+              <div className="up-reviewed-business-row">
+                <h2>Saved Businesses:</h2>
+                {userState.favorite.length > 0
+                  ? userState.favorite.map((business) => (
+                    <BusinessCard key={business._id} business={business} />
+                  ))
+                  : null}
+              </div>
               <div className="up-review-row">
-                <h2>Reviews</h2>
+                <h2>Reviews Written:</h2>
                 {userState.Reviews.length > 0
                   ? userState.Reviews.map((review) => (
                       <ReviewCard
                         key={review.buisness._id}
                         review={review}
-                        image={Logo}
+                        image={review.buisness.img ||Logo}
                         username={review.buisness.name}
                       />
                     ))
                   : null}
               </div>
-              <div className="up-reviewed-business-row">
-                <h2>Favorites</h2>
-                {userState.favorite.length > 0
-                  ? userState.favorite.map((business) => (
-                      <BusinessCard key={business._id} business={business} />
-                    ))
-                  : null}
-              </div>
+
             </div>
 
             <div></div>

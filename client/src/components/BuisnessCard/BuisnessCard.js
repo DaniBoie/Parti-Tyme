@@ -8,7 +8,7 @@ import Logo from "../../components/assets/images/logos.png";
 // import ExampleImage from "../../components/assets/images/business-2.jpg";
 // import API from "../../utils/API";
 // import axios from "axios";
-
+// AVAILABLE TODAY FILTER / FUNCTIONALITY
 const BuisnessCard = (props) => {
   function handleContactButton() {
     localStorage.setItem("pickBusiness", `${props.business._id}`);
@@ -33,7 +33,8 @@ const BuisnessCard = (props) => {
         {/* <StarRating /> */}
         <StarRatings
           rating={props.business.rating}
-          starRatedColor="#fff200"
+          starRatedColor="#ffa534"
+          starEmptyColor="#636e72"
           // changeRating={this.changeRating}
           numberOfStars={5}
           name="rating"
@@ -50,7 +51,7 @@ const BuisnessCard = (props) => {
         <h3>{props.business.slogan}</h3>
 
         <Link to="/businessprofile" onClick={handleContactButton}>
-          More Details...
+          View Business
         </Link>
       </div>
     </div>

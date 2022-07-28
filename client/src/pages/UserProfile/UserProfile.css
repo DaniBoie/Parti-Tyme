@@ -16,6 +16,7 @@
   align-items: center;
   flex-direction: column;
   padding: 0rem 1rem;
+  text-align: center;
 }
 
 .changing-basic-info-area p {
@@ -73,7 +74,7 @@
   margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  align-self: flex-start;
+  /* align-self: flex-start; */
   list-style: none;
   color: rgb(99, 96, 96);
   font-size: 20px;
@@ -379,14 +380,15 @@
   background: var(--blue-bg);
 }
 
+/* change here MAX HEIGHT if fav/review rows looks off when adding alot of things. */
 .up-review-row {
-  grid-area: review;
+  grid-area: history;
   overflow: auto;
+  border-top: 1px solid #dfe6e9;
 }
 
 .up-reviewed-business-row {
-  grid-area: history;
+  grid-area: review;
   max-height: 80vh;
-  border-top: 1px solid #dfe6e9;
   overflow: auto;
 }

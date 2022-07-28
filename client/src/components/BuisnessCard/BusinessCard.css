@@ -1,9 +1,11 @@
 .business-card {
-  --primary-color: #e66767;
-  --background-color: radial-gradient(circle, #324150, #1E6381);
+  --primary-color: #2083D5;
+  /* #0087F5; */
+  --background-color: #FDF6EC;
+  /* --background-color: radial-gradient(circle, #324150, #1E6381); */
   width: 100%;
   background: var(--background-color);
-  color: white;
+  color: #0b2e4b;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   padding: 0.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -23,17 +25,13 @@
 
 .bc-business-image {
   display: inline-block;
-  padding: 8px;
+  padding: 5px;
   background: linear-gradient(130deg, #74b9ff, var(--primary-color));
   margin: auto;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  -webkit-border-radius: 20%;
   background-size: 200% 200%;
   animation: animated-gradient 2s linear infinite;
-  -webkit-animation: animated-gradient 2s linear infinite;
+  /* -webkit-animation: animated-gradient 2s linear infinite; */
 }
 
 @keyframes animated-gradient {
@@ -55,17 +53,18 @@
   display: block;
   width: 140px;
   height: 140px;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  -webkit-border-radius: 20%;
+  /* border-radius: 50%; */
+  /* -moz-border-radius: 50%; */
+  /* -ms-border-radius: 50%; */
+  /* -o-border-radius: 50%; */
 }
 
 /* Right Column */
 
 .bc-right-column {
   text-align: center;
+  padding: ;
 }
 
 .bc-right-column h1 {
