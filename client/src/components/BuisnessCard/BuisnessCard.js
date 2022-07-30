@@ -12,6 +12,7 @@ import Logo from "../../components/assets/images/logos.png";
 const BuisnessCard = (props) => {
   function handleContactButton() {
     localStorage.setItem("pickBusiness", `${props.business._id}`);
+    window.location = '/businessprofile';
   }
 
   let img
@@ -31,28 +32,30 @@ const BuisnessCard = (props) => {
         </div>
 
         {/* <StarRating /> */}
-        <StarRatings
-          rating={props.business.rating}
-          starRatedColor="#ffa534"
-          starEmptyColor="#636e72"
-          // changeRating={this.changeRating}
-          numberOfStars={5}
-          name="rating"
-          starDimension="25px"
-          starSpacing="3px"
-        />
+          <StarRatings
+            rating={props.business.rating}
+            starRatedColor="#ffa534"
+            starEmptyColor="#636e72"
+            // changeRating={this.changeRating}
+            numberOfStars={5}
+            name="rating"
+            starDimension="25px"
+            starSpacing="3px"
+            className="blockClass"
+            // ignoreInlineStyles="true"
+          />  
       </div>
 
       {/* Right Column / Business Basic Info */}
-      <div className="bc-right-column">
+      <div className="bc-right-column" onClick={handleContactButton}>
         <h1>{props.business.name}</h1>
         <h2>{props.business.location}</h2>
         <h2>${props.business.fee}/hr</h2>
         <h3>{props.business.slogan}</h3>
 
-        <Link to="/businessprofile" onClick={handleContactButton}>
+        {/* <Link to="/businessprofile" onClick={handleContactButton}>
           View Business
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
