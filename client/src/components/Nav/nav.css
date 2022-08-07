@@ -360,6 +360,6 @@
     display: none;
   }
   .nav-login-logout-btn-icon {
-    display: inline-block;
+    display: none;
   }
 }

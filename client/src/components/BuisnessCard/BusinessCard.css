@@ -25,15 +25,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* padding: 3%; */
-  margin-left: 5%;
 }
 
 .bc-business-image {
-  display: inline-block;
+  display: block;
   padding: 5px;
   background: linear-gradient(130deg, #f2f873, var(--primary-color));
-  margin-bottom: 20%;
+  margin-bottom: 7%;
   -webkit-border-radius: 20%;
   background-size: 200% 200%;
   animation: animated-gradient 4s linear infinite;
@@ -41,8 +39,8 @@
   /* -webkit-animation: animated-gradient 2s linear infinite; */
 }
 
-.star-ratings {
-min-width: 0;
+.star-grad {
+display: block;
 }
 
 .bc-business-image img {
@@ -76,8 +74,8 @@ min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
-  margin-left: 10%;
+  align-items: left;
+  padding-left: 2%;
 }
 
 .bc-right-column h1 {
@@ -133,28 +131,29 @@ min-width: 0;
 
 /* Media Queries */
 
-@media only screen and (min-width: 1150px) and (max-width: 1455px) {
+/* @media only screen and (min-width: 1150px) and (max-width: 1455px) {
   .bc-right-column h1 {
     font-size: 25px;
   }
   .bc-right-column a {
     font-size: 20px;
   }
-}
-
-/* @media only screen and (min-width: 851px) and (max-width: 900px) {
-  .bc-right-column h1 {
-    margin: 0;
-  }
-  .bc-right-column h2 {
-    font-size: 20px;
-  }
-  .bc-right-column h3 {
-    font-size: 18px;
-  }
 } */
 
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 700px) {
+  .business-card {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .bc-right-column {
+    align-items: center;
+  }
+  .bc-business-image {
+    margin-bottom: 3%;
+  }
+}
+
+/* @media only screen and (max-width: 952px) {
   .business-card {
     grid-template-columns: 1fr;
     align-items: start;
@@ -168,8 +167,8 @@ min-width: 0;
     margin-bottom: 3%;
   }
   .bc-business-image img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
   }
   .bc-right-column h1 {
     margin: 0;
@@ -177,7 +176,7 @@ min-width: 0;
   .bc-right-column a {
     font-size: 20px;
   }
-}
+} */
 
 /* @media only screen and (max-width: 600px) {
   .bc-right-column h1 {

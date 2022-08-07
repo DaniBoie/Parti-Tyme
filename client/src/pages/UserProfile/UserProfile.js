@@ -73,7 +73,7 @@ const UserProfile = () => {
         setUserState({
           ...userState,
           Reviews: dataComeback.Reviews || [],
-          Buisness: dataComeback.Buisness._id,
+          Buisness: dataComeback.Buisness,
           Settings: dataComeback.Settings || {},
           favorite: dataComeback.favorite,
           govName: dataComeback.realname,
@@ -81,6 +81,7 @@ const UserProfile = () => {
           userCity: dataComeback.Settings.location || "",
           userBio: dataComeback.Settings.bio || ""
         });
+        // HAVE PROFILE IMAGE ON USER THEMSELVES
 
         // Checking if the user has a business, if yes, hide the update account button
         if (dataComeback.Buisness) {
@@ -90,7 +91,7 @@ const UserProfile = () => {
         console.log("API DATA ON STARTUP", userState);
       })
       .catch((err) => {
-        window.location = "/businessview";
+        // window.location = "/businessview";
         console.log(err);
       });
   }, []);
@@ -453,7 +454,7 @@ const UserProfile = () => {
                       <ReviewCard
                         key={review.buisness._id}
                         review={review}
-                        image={review.buisness.img ||Logo}
+                        image={review.buisness.logo ||Logo}
                         username={review.buisness.name}
                       />
                     ))

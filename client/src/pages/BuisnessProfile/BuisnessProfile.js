@@ -185,79 +185,86 @@ const BuisnessProfile = () => {
     handleSaveButton();
   };
 
+  const updateRating = (buis) => {
+    axios
+      .get(`/api/review/buisness/${buis}`)
+      .then(({ data }) => {
+        console.log('ALL REVIEWS AFTER ADDING NEW ONE')
+        console.log(data);
+        let result;
+
+        if (data.length > 0) {
+          let sum = 0;
+          let denominator = data.length;
+
+          console.log(denominator)
+
+          data.forEach((review) => {
+            sum += review.rating;
+          });
+
+          result = sum / denominator;
+
+          console.log('RESULT => ', result)
+
+          setBusinessState({
+            ...businessState,
+            averageRating: result,
+          });
+
+
+          axios
+            .put(
+              `/api/buisness/${buis}`,
+              {
+                rating: result,
+              },
+              {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("user")}`,
+                },
+              }
+            )
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err));
+        }
+      })
+      .catch((err) => console.log(err));
+  }
   // Handle Send Button
   const reviewSendButton = (event) => {
     event.preventDefault();
-
+    
+    let currentBusiness = localStorage.getItem("pickBusiness");
+    
     axios
-      .post(
-        "/api/review",
+      .post("/api/review",
         {
           topic: businessState.topic,
           text: businessState.text,
           rating: businessState.rating,
-          buisness: localStorage.getItem("pickBusiness"),
+          buisness: currentBusiness,
         },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("user")}`,
           },
-        }
-      )
-      .then(({ data }) => {
-        setBusinessState({ ...businessState, topic: "", text: "", rating: 0 });
-        console.log("added", data);
-        let newArray = businessState.createdReviews;
-        newArray.push(data);
-        setBusinessState({ ...businessState, createdReviews: newArray });
-        clearReview();
-      })
-      .catch((err) => console.log(err));
+        })
+        .then(({ data }) => {
+          // setBusinessState({ ...businessState, topic: "", text: "", rating: 0 });
+          console.log("added", data);
+          let newArray = businessState.createdReviews;
+          newArray.push(data);
+          setBusinessState({ ...businessState, createdReviews: newArray });
 
-    let businessId = localStorage.getItem("pickBusiness");
+          // AFTER ADDING REVIEW THIS UPDATES RATING VALUE IN BUSINESS'S DB ENTRY
+          updateRating(currentBusiness);
 
-    let result;
-    axios
-      .get(`/api/review/buisness/${businessId}`)
-      .then(({ data }) => {
-        console.log(data);
-        let denominator;
-        if (data.length === 0) {
-          denominator = 1;
-        } else {
-          denominator = data.length;
-        }
-
-        let sum = 0;
-        data.forEach((review) => {
-          sum = sum + review.rating;
-        });
-
-        result = sum / denominator;
-
-        setBusinessState({
-          ...businessState,
-          averageRating: result,
-        });
-
-        axios
-          .put(
-            `/api/buisness/${businessId}`,
-            {
-              rating: result,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("user")}`,
-              },
-            }
-          )
-          .then((data) => console.log(data))
-          .catch((err) => console.log(err));
-        console.log(result);
-      })
-      .catch((err) => console.log(err));
+        })
+        .catch((err) => console.log(err));
   };
+
+
 
   const btn = () => {
     let businessId = localStorage.getItem("pickBusiness");
@@ -489,7 +496,7 @@ const BuisnessProfile = () => {
                 ))
               : null}
           </div>
-
+{/* to fix business profile not finding user image move image into user profile not SETTINGS */}
           <div className="bpp-business-review-right">
             <div className="bpp-StarRatings">
               <StarRatings

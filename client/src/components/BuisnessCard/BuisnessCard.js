@@ -23,8 +23,14 @@ const BuisnessCard = (props) => {
     img = Logo
   }
 
+  // var totalStars = 0;
+  // for (var i = 0; i < props.business.reviews.length; i++) {
+  //   totalStars += props.business.reviews[i].rating;
+  // }
+  // var avgStars = totalStars / props.business.reviews.length;
+
   return (
-    <div className="business-card">
+    <div className="business-card" onClick={handleContactButton}>
       {/* Left Column / Image + Rating Star */}
       <div className="bc-left-column">
         <div className="bc-business-image">
@@ -36,7 +42,7 @@ const BuisnessCard = (props) => {
             rating={props.business.rating}
             starRatedColor="#ffa534"
             starEmptyColor="#636e72"
-            // changeRating={this.changeRating}
+            // changeRating={}
             numberOfStars={5}
             name="rating"
             starDimension="25px"
@@ -47,7 +53,7 @@ const BuisnessCard = (props) => {
       </div>
 
       {/* Right Column / Business Basic Info */}
-      <div className="bc-right-column" onClick={handleContactButton}>
+      <div className="bc-right-column" >
         <h1>{props.business.name}</h1>
         <h2>{props.business.location}</h2>
         <h2>${props.business.fee}/hr</h2>

@@ -9,6 +9,14 @@
 
 /* Search Bar */
 
+.hideFilters {
+  visibility: collapse;
+}
+
+.showFilters {
+  visibility: visible;
+}
+
 .bvp-search-bar {
   margin-top: 1rem;
 }
@@ -183,7 +191,7 @@
 
 /* Media Queries */
 
-@media only screen and (max-width: 1170px) {
+@media only screen and (max-width: 1355px) {
   .bvp-business-column {
     display: grid;
     grid-template-columns: 1fr;
@@ -193,14 +201,14 @@
   }
 }
 
-@media only screen and (max-width: 850px) {
-  .bvp-business-column {
+@media only screen and (max-width: 990px) {
+  /* .bvp-business-column {
     grid-auto-rows: 350px;
-  }
+  } */
   .filter-column {
     border: 1px solid #333;
     border-top: none;
-    margin: 0;
+    margin: 0px;
   }
   .business-view-page {
     grid-template-columns: 1fr;

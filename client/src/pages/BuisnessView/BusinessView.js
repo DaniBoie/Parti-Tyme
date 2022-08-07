@@ -103,12 +103,22 @@ const BuisnessView = () => {
       setShowPrice({ ...showPrice, price: "hide-price-search" });
     }
   }
+
+  let scrollFunctionality = (event) => {
+    event.preventDefault()
+    if (event.target.scrollTop > 50) {
+      document.getElementById("filter-search").classList.add('hideFilters');
+    } else {
+      document.getElementById("filter-search").classList.replace('hideFilters', 'showFilters')
+    }
+  }
+
   return (
     <>
       <Nav name="Home Page" />
       <div className="business-view-page">
         {/* Left Column / Filter Column  */}
-        <div className="filter-column">
+        <div className="filter-column showFilters" id="filter-search">
           {/* Search Bar */}
           <div className="bvp-search-bar">
             <input
@@ -183,7 +193,7 @@ const BuisnessView = () => {
         </div>
 
         {/* Right Column / Business Column  */}
-        <div className="bvp-business-column">
+        <div className="bvp-business-column" onScroll={scrollFunctionality}>
           {businessState.businessRender.length > 0
             ? businessState.businessRender.map((business) => (
                 <BusinessCard business={business} key={business._id}/>
