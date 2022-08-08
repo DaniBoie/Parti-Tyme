@@ -334,9 +334,11 @@ const BuisnessProfile = () => {
       <Nav />
 
       <div className="business-profile-page">
-        <Carousel className="bpp-business-carousel">
-          <img src={businessState.carouselImg} alt="Business 1" />
-        </Carousel>
+        {/* <Carousel className="bpp-business-carousel"> */}
+        <div id="businessImg">
+          <img src={businessState.carouselImg} alt="Business 1"/>
+        </div>
+        {/* </Carousel> */}
 
         {/* <div className="bpp-carousel-button">
           <button onClick={carouselBtn}>
@@ -478,7 +480,7 @@ const BuisnessProfile = () => {
                 <ReviewCard
                   key={businessState.business._id}
                   review={review}
-                  image={"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEX///8AAABgYGBpaWmtra2hoaH7+/vMzMzm5uY6OjrFxcXS0tJMTEzt7e3q6uri4uIQEBBYWFjz8/O9vb1TU1MaGhp7e3u3t7eUlJSNjY2np6fc3NyGhoYzMzM/Pz+bm5tycnImJiYoKCg1NTUVFRWIiIifPXEAAAAE6ElEQVR4nO2b61bqMBBGHS7ljshVRBQU3/8VjyK5NPna9ChJXKxv/7M1WbNpkkmGcndHCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQsgP2Mpz7hDiMl/JKHcMcVnIS5E7hri05DV3CHGZiNznjiEur9LKHUJkVrLIHUJcRnKc544hLgdZ5w4hLoXcejLsyEvuECIzlqfcIWB2ozO/70fkj64zLTlTuRkpFIF+tigZ7l7GZ6a/DPJXtL8Nq1aJzuV2KJkXexn6V9eXxt3fx/lzlOEMj7GmhkMR/+L8eGk8zrkhb9crNDVsy6N/caEay+4Kkf4UbYinYkPD6Uz6/tWW7jvnwdgYSg/cbmj4JEv/Yt90vco4TC3D48S/3cywGEvHv/pqukbLUCosQ3nwbzcz3MGFam913b5WvP+PbQhWi2aGH3LwL47sniXfMC0Z+lmxkWFxQul0XeoZjOJElA29nVcjQ1iBKsodD64a9f/gGLpLYiNDWIHqlDvOV8JxDN2p2MRwIigZvtR3nA7X0FnXmxh20SJ87/Z7vHLgjfEMV6WDQBNDWIHaqnYD/NGlwzMsP5AGhiNZgWR4vLTrdFUPhytH3hRtuJ6hGdPAcI0qUEPVbjrVgyPTCVkbdsxJwBpPYUNcgVKb7r215GxixB9GG3atFG02qGHDzZeFS18NiO3XQoSGfzosw0J/2qZqFjaEFagn1WxkHzHypETL0Frht+p20BBXoMaXVsevvc5S9ZHnmynb8HPEuVMxaPgIK1Cq1XkN0g80z7eLJUMzFU+XrBgyLN5RnnsufVBmmGYpipcN797Vn+Pv2yHDnsz8i/M31ep7yXpQf2YpZjiG5vP+noohw7aZsoah00h3MssxTB1Dqz62KAWHDadwgTQ5Vv+X3WdiXEMzh2ZfB4aAIaxAGSFlr4tuOYoZnmGhVvrzVKw3xBWort3BGbNGZ9i5eYZWVnwOGe5kBupzugKlN7hTvefN8P2Ub2h94ouAYaACZSrdepiCHV5sgKGZijKvNSxOqIqsc+rbff/CVCf9DDs3ZHinT63jWsOhDMDyL7WA5BIZaDjRAencjQxbqPiykVrABiEy0NDkbA0wnMMxN/aalklezMCGn2tI2PAVnfj6bkOX5CmxwrBwHwUwfEOn9seQIcovUakwNKf0SsMR3GbuXSOP1MWMKkNrg1phCCtQvaAg2udFpdLQmYqeYTFDxz1TnHzqlNiYL4QTp8Rqw/Kq6BluUBV7cqp8Umark7i+X2M4qTWEFSjzdYx/TtKpNXExo8awlBVdQ1yB0kUnsAiZVTZtMaPO0J6KruEjSmy6AoU2Z+bMkvYtzVpDayo6hsUAbU62+t/RCzT6Aaet79cbmoOdY9hDL5AUeqrBjGAOGEmLGfWGXlFJcZCPmn/G39qb6kbSN94Dhnp9KAc1h+NQ93XCOzOTElPu3Nb7wZm3qpcllsiwg8ahyS4VS4l5xn/qlyfT1sMny3Ixd4nG4WTYu1DxiAp1v/fn3wi/T39CSMxWDrlDiMwMvsd4Qwzl/eZ/hZft9Z804ArULdFNfkxPzT7XeyOpGOV8HTYJsAJ1S9z+T9I3ssodQmQ+Hm58nSGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYQQQggh1+UfFKcouk0afC0AAAAASUVORK5CYII="}
+                  image={"https://www.msahq.org/wp-content/uploads/2016/12/default-avatar.png"}
                   business={businessState.business}
                   username={review.user.username}
                 />
@@ -489,7 +491,7 @@ const BuisnessProfile = () => {
                   <ReviewCard
                     key={businessState.business._id}
                     review={review}
-                    image={review.user.Settings.img}
+                    image={review.user.img}
                     business={businessState.business}
                     username={review.user.username}
                   />

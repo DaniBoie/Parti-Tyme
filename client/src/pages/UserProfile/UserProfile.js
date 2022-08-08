@@ -26,17 +26,29 @@ const UserProfile = () => {
   }
 
   const [userState, setUserState] = useState({
-    govName: "_",
+    govName: "",
     // username: "",
     // email: "",
     // account_type: "",
+    img: "",
     Reviews: [],
     Buisness: {},
     Settings: {},
     // user: [],
     favorite: [],
-    profileImg: "",
-    profileImgChange: '',
+    // profileImg: "",
+    profileImgChange: '', bio: {
+      type: String,
+    },
+    location: {
+      type: String,
+    },
+    instagram: {
+      type: String,
+    },
+    facebook: {
+      type: String,
+    },
     userBio: "",
     userCity: "",
     bioChange: "",
@@ -68,18 +80,17 @@ const UserProfile = () => {
       })
       .then(({ data }) => {
         let dataComeback = data[0];
-        // let usersname = dataComeback.realname
         console.log(dataComeback)
         setUserState({
           ...userState,
           Reviews: dataComeback.Reviews || [],
           Buisness: dataComeback.Buisness,
-          Settings: dataComeback.Settings || {},
           favorite: dataComeback.favorite,
           govName: dataComeback.realname,
-          profileImg: dataComeback.Settings.img || "https://www.msahq.org/wp-content/uploads/2016/12/default-avatar.png",
-          userCity: dataComeback.Settings.location || "",
-          userBio: dataComeback.Settings.bio || ""
+          img: dataComeback.img || Logo,
+          // profileImg: dataComeback.img || "https://www.msahq.org/wp-content/uploads/2016/12/default-avatar.png",
+          userCity: dataComeback.location || "",
+          userBio: dataComeback.bio || ""
         });
         // HAVE PROFILE IMAGE ON USER THEMSELVES
 
@@ -88,7 +99,6 @@ const UserProfile = () => {
           setFormState({ ...formState, businessBtn: "hide" });
         }
 
-        console.log("API DATA ON STARTUP", userState);
       })
       .catch((err) => {
         // window.location = "/businessview";
@@ -116,72 +126,35 @@ const UserProfile = () => {
       settings.facebook = userState.facebookChange;
     }
 
-    let userSettings;
-    console.log(userState.Reviews)
-
-    axios
-      .get("/api/users/me", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
-        },
-      })
-      .then(({ data }) => {
-        let dataComeback = data[0];
-        let newImg
-        let newCity
-        let newBio
-
-        if (userState.profileImgChange.length > 0) {
-         newImg = userState.profileImgChange
-        } else{
-         newImg = userState.profileImg
-        }
-
-        if (userState.cityChange.length > 0) {
-          newCity = userState.cityChange
-        } else {
-          newCity = userState.userCity
-        }
-
-        if (userState.bioChange.length > 0) {
-          newBio = userState.bioChange
-        } else {
-          newBio = userState.userBio
-        }
-        
-          setUserState({
-          ...userState,
-          Settings: dataComeback.Settings,
-          location: " ",
-          bioChange: " ",
-          instaChange: " ",
-          facebookChange: " ",
-          profileImg: newImg,
-          userCity: newCity,
-          userBio: newBio,
-          profileImgChange: " ",
-        });
-        console.log("API SETTINGS ON SAVE BTN", dataComeback);
-        userSettings = dataComeback.Settings;
-
-        console.log("Inputted Settings ", userSettings);
-        if (userSettings !== undefined) {
           API.updateSettings(settings)
             .then((data) => {
               console.log("UPDATED SETTINGS", data);
+              axios
+                .get("/api/users/me", {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("user")}`,
+                  },
+                })
+                .then(({ data }) => {
+                  let dataComeback = data[0];
+                  // console.log(dataComeback)
+                  setUserState({
+                    ...userState,
+                    img: dataComeback.img || Logo,
+                    userCity: dataComeback.location || "",
+                    userBio: dataComeback.bio || "",
+                    cityChange: "",
+                    bioChange: "",
+                    instaChange: "",
+                    facebookChange: "",
+                    profileImgChange: "",
+                  });
             })
             .catch((err) => console.log(err));
-        } else {
-          API.createSettings(settings)
-            .then((data) => {
-              console.log("Created Settings", data);
-            })
-            .catch((err) => console.log(err));
-        }
 
         
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
   };
 
   // Function to Hide and Show Business Form
@@ -225,7 +198,7 @@ const UserProfile = () => {
           <img
             className="profile-image"
             src={
-              userState.profileImg
+              userState.img
             }
             alt="Profile"
           />

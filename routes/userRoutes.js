@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 
 // ROUTE to register a new user
 router.post("/users/register", (req, res) => {
-  const { realname, email, username, password, account_type } = req.body;
+  const { realname, email, username, password, img, bio, location, instagram, facebook } = req.body;
   User.register(
-    new User({ realname, email, username, account_type }),
+    new User({ realname, email, username, img }),
     password,
     (err) => {
       if (err) {

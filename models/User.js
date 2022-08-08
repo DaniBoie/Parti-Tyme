@@ -15,10 +15,30 @@ const User = new Schema(
       unique: true,
       required: true,
     },
-    account_type: {
-      type: Number,
-      required: true,
+    img: {
+      type: String,
+      required: false
     },
+    bio: {
+      type: String,
+      required: false
+    },
+    location: {
+      type: String,
+      required: false
+    },
+    instagram: {
+      type: String,
+      required: false
+    },
+    facebook: {
+      type: String,
+      required: false
+    },
+    // account_type: {
+    //   type: Number,
+    //   required: true,
+    // },
     Reviews: [
       {
         type: Schema.Types.ObjectId,
@@ -26,10 +46,10 @@ const User = new Schema(
       },
     ],
     // Items is an array that refrences the item objects as children.
-    Settings: {
-      type: Schema.Types.ObjectId,
-      ref: "ProfileSettings",
-    },
+    // Settings: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "ProfileSettings",
+    // },
     Buisness: {
       type: Schema.Types.ObjectId,
       ref: "BuisnessData",

@@ -8,6 +8,16 @@
 
 /* First Row / Business Carousel */
 
+#businessImg {
+  display: flex;
+  justify-content: center;
+}
+
+#businessImg img {
+  width: 35%;
+  margin: 1% 1% 1% 1%;
+}
+
 .bpp-business-carousel {
   grid-area: carousel;
 }

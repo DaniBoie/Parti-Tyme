@@ -27,7 +27,7 @@ const API = {
       },
     }),
   updateSettings: (data) =>
-    axios.put("/api/settings", data, {
+    axios.put("/api/users", data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("user")}`,
       },
