@@ -75,7 +75,7 @@
 }
 
 .bvp-search-button:hover {
-  background: #dfe6e9;
+  background: #2083D5;
   color: #0f1923;
   border: 1px solid #0f1923;
 }
@@ -108,14 +108,23 @@
 .filter-column h2 {
   text-align: center;
   margin: 1rem 0;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   font-size: 34px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 0.5rem 0;
-  text-decoration: underline;
+  margin-top: 3rem;
+  /* padding: 0.5rem 0; */
+  /* text-decoration: underline; */
+}
+
+.filter-column p {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding-top: 0.5rem;
 }
 
 .filter-list {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
 }
@@ -150,16 +159,23 @@
   display: none;
 }
 
+.filter-column-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
 .filter-column-buttons button {
-  width: 80px;
+  width: 30%;
+  min-width: 85px;
   padding: 0.5rem 1rem;
   font-size: 16px;
-  font-family: sans-serif;
+  font-family: Geneva, Verdana, sans-serif;
   margin: 0.2rem;
-  background: var(--button-color);
+  background: #2083D5;
   color: #fff;
   font-weight: 500;
-  border: 1px solid #333;
+  border: 1px solid #000;
   cursor: pointer;
   transition: all 0.5s ease-out;
   -webkit-transition: all 0.5s ease-out;
@@ -169,9 +185,13 @@
 }
 
 .filter-column-buttons button:hover {
-  background: #0f1923;
-  border: 1px solid var(--button-color);
+  background: #15558a;
 }
+
+
+
+
+
 
 /* Right Column / Business Column  */
 
@@ -226,6 +246,7 @@
     font-size: 28px;
   }
   .filter-list {
+    text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }

@@ -14,7 +14,12 @@ const BuisnessView = () => {
     maxPrice: false,
     distance: false,
     priceSearch: 1000,
-    searchText: "",
+    searchText: ""
+  });
+
+  const [searchState, setSearchState] = useState({
+    searchTerm: "All Categories",
+    termShown: false
   });
 
   businessState.handleInputChange = (event) => {
@@ -25,6 +30,7 @@ const BuisnessView = () => {
   };
 
   businessState.handleCheckboxChange = (event) => {
+    console.log(event.target.name)
     setBusinessState({
       ...businessState,
       [event.target.name]: event.target.checked,
@@ -46,10 +52,10 @@ const BuisnessView = () => {
 
   // Search Button
   const handleSearch = () => {
-    // console.log(businessState.selectValue)
+    let filterCategory = businessState.selectValue
 
     let filteredArray = API.filterCategory(
-      businessState.selectValue,
+      filterCategory,
       businessState.businesses
     );
 
@@ -67,6 +73,11 @@ const BuisnessView = () => {
 
     setBusinessState({ ...businessState, businessRender: filteredArray });
 
+    if (filterCategory === 'All') {
+      filterCategory = 'All Categories'
+    }
+    setSearchState({ ...searchState, searchTerm: filterCategory})
+
     console.log(filteredArray);
   };
 
@@ -74,16 +85,27 @@ const BuisnessView = () => {
   const handleFilterClear = () => {
     setBusinessState({
       ...businessState,
-      businessRender: businessState.businesses,
+      businessRender: businessState.businesses
     });
+
+    document.getElementById("maxCheck").checked = false;
+    document.getElementById("distanceCheck").checked = false;
+
+    document.getElementById("dropdown").selectedIndex = 0;
+
+    setSearchState({ ...searchState, searchTerm: "All Categories" });
+
+    setShowPrice({ ...showPrice, price: "hide-price-search" });
   };
 
   // Search Button
   function handleSearchBar() {
-    API.searchBusinessName(businessState.searchText)
+    let text = businessState.searchText
+    API.searchBusinessName(text)
       .then(({ data }) => {
         if (data.length > 0) {
-          setBusinessState({ ...businessState, businessRender: data });
+          setBusinessState({ ...businessState, businessRender: data});
+          setSearchState({...searchState, searchTerm: text})
         } else {
           alert("No Matches Found");
         }
@@ -125,7 +147,7 @@ const BuisnessView = () => {
               className="bvp-search-text"
               type="text"
               name="searchText"
-              placeholder="Type To Seach..."
+              placeholder="Search by Name..."
               onChange={businessState.handleInputChange}
             />
             <button
@@ -136,14 +158,19 @@ const BuisnessView = () => {
               <i class="fas fa-search"></i>
             </button>
           </div>
+
+          <p>Search results for "{searchState.searchTerm}"</p>
+
+          <h2>FILTERS:</h2>
           {/* Dropdown category */}
           <div className="bvp-dropdown-categories-list-item">
             <form>
               <select
+                id="dropdown"
                 name="selectValue"
                 onChange={businessState.handleInputChange}
               >
-                <option value="All">Categories</option>
+                <option value="All">All Categories</option>
 
                 <option value="Food">Food</option>
                 <option value="Music">Music</option>
@@ -153,8 +180,7 @@ const BuisnessView = () => {
             </form>
           </div>
 
-          <h2>Filters</h2>
-
+          
           <div className="filter-list">
             
 
@@ -164,6 +190,7 @@ const BuisnessView = () => {
                 type="checkbox"
                 name="maxPrice"
                 onChange={businessState.handleCheckboxChange}
+                id="maxCheck"
               />
 
               <label>Max Price</label>
@@ -181,6 +208,7 @@ const BuisnessView = () => {
                 type="checkbox"
                 name="distance"
                 onChange={businessState.handleCheckboxChange}
+                id="distanceCheck"
               />
               <label>(Coming Soon!)</label>
             </div>
@@ -191,7 +219,7 @@ const BuisnessView = () => {
             <button onClick={handleFilterClear}>Clear</button>
           </div>
         </div>
-
+        
         {/* Right Column / Business Column  */}
         <div className="bvp-business-column" onScroll={scrollFunctionality}>
           {businessState.businessRender.length > 0
