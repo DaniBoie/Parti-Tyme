@@ -168,13 +168,13 @@
 
 /* Hide ul */
 
-.hide {
+/* .hide {
   visibility: hidden;
 }
 
 .hide.profile-input-show {
   visibility: visible;
-}
+} */
 
 /* Registration Form */
 
@@ -374,10 +374,16 @@
 /* Right Column */
 
 .up-right-col-main {
-  display: grid;
-  grid-template-areas: "review" "history";
-  grid-template-rows: 50vh 50vh;
+  display: flex;
+  flex-direction: column;
+  /* grid-template-areas: "review" "history"; */
+  /* grid-template-rows: 50vh 50vh; */
   background: var(--blue-bg);
+}
+
+.h2s {
+ margin-top: 1rem;
+ margin-bottom: 1rem;
 }
 
 /* change here MAX HEIGHT if fav/review rows looks off when adding alot of things. */
@@ -392,3 +398,33 @@
   max-height: 80vh;
   overflow: auto;
 }
+
+
+@media only screen and (max-width: 850px) {
+  .business-card {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+} 
+
+@media only screen and (max-width: 650px) { 
+  .user-profile-page {
+    grid-template-columns: 1fr;
+  }
+    .business-card {
+    grid-template-columns: 1fr 3fr;
+    align-items: start;
+  }
+
+  .changing-account-type-area {
+  margin-top: 1rem;
+}
+}
+
+@media only screen and (max-width: 500px) {
+  .business-card {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+} 

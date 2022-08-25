@@ -9,105 +9,37 @@ import ReviewCard from "../../components/ReviewCard";
 import Logo from "../../components/assets/images/logos.png";
 
 const UserProfile = () => {
-  // Function to show / hide input area when click on "Edit Profile" Button
-  const [showInput, setShowInput] = useState({
-    show: "",
-  });
-
-  function editProfileBtn() {
-    if (showInput.show === ""){
-        setShowInput({ ...showInput, show: "profile-input-show" 
-      });} else {
-      setShowInput({ ...showInput, show: "" });
-    }
-  }
-  function handleCancelButton() {
-    setShowInput({ ...showInput, show: "" });
-  }
 
   const [userState, setUserState] = useState({
     govName: "",
-    // username: "",
-    // email: "",
-    // account_type: "",
     img: "",
     Reviews: [],
     Buisness: {},
-    Settings: {},
-    // user: [],
     favorite: [],
-    // profileImg: "",
-    profileImgChange: '', bio: {
-      type: String,
-    },
-    location: {
-      type: String,
-    },
-    instagram: {
-      type: String,
-    },
-    facebook: {
-      type: String,
-    },
+    profileImgChange: '', 
     userBio: "",
     userCity: "",
     bioChange: "",
     cityChange: "",
     instaChange: "",
     facebookChange: "",
-    selectValue: "",
-    businessName: "",
-    businessSlogan: "",
-    businessBio: "",
-    businessImage: "",
-    businessLogo: "",
-    businessFee: 0,
-    businessLocation: "",
   });
 
   userState.handleInputChange = (event) => {
     setUserState({ ...userState, [event.target.name]: event.target.value });
   };
 
-  // Getting User Data
-  useEffect(() => {
-    // let dataComeback = "";
-    axios
-      .get("/api/users/me", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("user")}`,
-        },
-      })
-      .then(({ data }) => {
-        let dataComeback = data[0];
-        console.log(dataComeback)
-        setUserState({
-          ...userState,
-          Reviews: dataComeback.Reviews || [],
-          Buisness: dataComeback.Buisness,
-          favorite: dataComeback.favorite,
-          govName: dataComeback.realname,
-          img: dataComeback.img || Logo,
-          // profileImg: dataComeback.img || "https://www.msahq.org/wp-content/uploads/2016/12/default-avatar.png",
-          userCity: dataComeback.location || "",
-          userBio: dataComeback.bio || ""
-        });
-        // HAVE PROFILE IMAGE ON USER THEMSELVES
+  userState.handleProfileBtn = () => {
+    let accBtn = document.getElementById("updateAccUl")
 
-        // Checking if the user has a business, if yes, hide the update account button
-        if (dataComeback.Buisness) {
-          setFormState({ ...formState, businessBtn: "hide" });
-        }
+    if (accBtn.style.display === "none") {
+      accBtn.style.display = "flex";
+    } else {
+      accBtn.style.display = "none";
+    }
+  }
 
-      })
-      .catch((err) => {
-        // window.location = "/businessview";
-        console.log(err);
-      });
-  }, []);
-
-  // Save Button
-  const handleSaveBtn = () => {
+  userState.handleSaveBtn = () => {
     let settings = {};
 
     if (userState.profileImgChange.length > 0) {
@@ -126,52 +58,52 @@ const UserProfile = () => {
       settings.facebook = userState.facebookChange;
     }
 
-          API.updateSettings(settings)
-            .then((data) => {
-              console.log("UPDATED SETTINGS", data);
-              axios
-                .get("/api/users/me", {
-                  headers: {
-                    Authorization: `Bearer ${localStorage.getItem("user")}`,
-                  },
-                })
-                .then(({ data }) => {
-                  let dataComeback = data[0];
-                  // console.log(dataComeback)
-                  setUserState({
-                    ...userState,
-                    img: dataComeback.img || Logo,
-                    userCity: dataComeback.location || "",
-                    userBio: dataComeback.bio || "",
-                    cityChange: "",
-                    bioChange: "",
-                    instaChange: "",
-                    facebookChange: "",
-                    profileImgChange: "",
-                  });
-            })
-            .catch((err) => console.log(err));
+    API.updateSettings(settings)
+      .then((data) => {
+        console.log("UPDATED SETTINGS", data);
+        axios
+          .get("/api/users/me", {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("user")}`,
+            },
+          })
+          .then(({ data }) => {
+            let dataComeback = data[0];
 
-        
+            setUserState({
+              ...userState,
+              img: dataComeback.img || Logo,
+              userCity: dataComeback.location || "",
+              userBio: dataComeback.bio || "",
+              cityChange: "",
+              bioChange: "",
+              instaChange: "",
+              facebookChange: "",
+              profileImgChange: "",
+            });
+          })
+          .catch((err) => console.log(err));
+
       })
-      // .catch((err) => console.log(err));
   };
 
-  // Function to Hide and Show Business Form
-  const [formState, setFormState] = useState({ show: "show", businessBtn: "" });
+  
+  const [businessState, setBusinessState] = useState ({
+    businessName: "",
+    businessSlogan: "",
+    businessBio: "",
+    businessImage: "",
+    businessLogo: "",
+    businessFee: 0,
+    businessLocation: "",
+  })
 
-  // Update Account Button, to make the form appear
-  const handleUpdateAccountButton = () => {
-    setFormState({ ...formState, show: "" });
-  };
-
-  // X Button, to make the form disappear
-  const handleXbutton = () => {
-    setFormState({ ...formState, show: "show" });
+  businessState.handleInputChange = (event) => {
+    setBusinessState({ ...businessState, [event.target.name]: event.target.value });
   };
 
   // Submit Button / Writing New Data into database
-  const handleBusinessButton = () => {
+  businessState.handleBusinessButton = () => {
     API.createBusiness({
       name: userState.businessName,
       slogan: userState.businessSlogan,
@@ -188,6 +120,56 @@ const UserProfile = () => {
       })
       .catch((error) => console.log(error));
   };
+
+
+  // Function to Hide and Show Business Form
+  const [formState, setFormState] = useState({ show: "show", businessBtn: "" })
+
+  // Update Account Button, to make the form appear
+  formState.handleUpdateAccountButton = () => {
+    setFormState({ ...formState, show: "" });
+  };
+
+  // X Button, to make the form disappear
+  formState.handleXbutton = () => {
+    setFormState({ ...formState, show: "show" });
+  };
+
+  // ON PAGE LOAD, GET USER DATA AND POPULATE PAGE:
+  useEffect(() => {
+
+    axios
+      .get("/api/users/me", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
+      })
+      .then(({ data }) => {
+        let dataComeback = data[0];
+        console.log(dataComeback)
+        setUserState({
+          ...userState,
+          Reviews: dataComeback.Reviews || [],
+          Buisness: dataComeback.Buisness,
+          favorite: dataComeback.favorite,
+          govName: dataComeback.realname,
+          img: dataComeback.img || Logo,
+          userCity: dataComeback.location || "",
+          userBio: dataComeback.bio || ""
+        });
+
+        // Checking if the user has a business, if yes, hide the update account button
+        if (dataComeback.Buisness) {
+          setFormState({ ...formState, businessBtn: "hide" });
+        }
+
+      })
+      .catch((err) => {
+        window.location = "/businessview";
+        console.log(err);
+      });
+  }, []);
+
 
   return (
     <>
@@ -229,13 +211,13 @@ const UserProfile = () => {
           </div>
 
           <button
-            className={`edit-profile-btn ${showInput.show}`}
-            onClick={editProfileBtn}
+            className={`edit-profile-btn`}
+            onClick={userState.handleProfileBtn}
           >
             Edit Profile
           </button>
-
-          <ul className={`hide ${showInput.show}`}>
+          {/* className={`hide ${showInput.show}` */}
+          <ul id="updateAccUl" style={{ display: 'none'}}>
             <li>
               <label>
                 <i class="fas fa-city"></i>
@@ -294,12 +276,12 @@ const UserProfile = () => {
             </li>
 
             <div className="profile-save-cancel-btn">
-              <button className="profile-save-btn" onClick={handleSaveBtn}>
+              <button className="profile-save-btn" onClick={userState.handleSaveBtn}>
                 Save
               </button>
               <button
                 className="profile-cancel-btn"
-                onClick={handleCancelButton}
+                onClick={userState.handleProfileBtn}
               >
                 Cancel
               </button>
@@ -312,13 +294,13 @@ const UserProfile = () => {
           {/* Update Account Button */}
           <button
             className={`upp-update-account-btn ${formState.businessBtn}`}
-            onClick={handleUpdateAccountButton}
+            onClick={userState.handleUpdateAccountButton}
           >
             Update Your Account <i class="fas fa-angle-double-up"></i>
           </button>
 
           <div className={`up-overlay-form ${formState.show}`}>
-            <button className="up-x-button" onClick={handleXbutton}>
+            <button className="up-x-button" onClick={formState.handleXbutton}>
               <i class="fas fa-times"></i>
             </button>
             <h1>Business Registration Form </h1>
@@ -395,7 +377,7 @@ const UserProfile = () => {
               <a
                 href="/userprofile"
                 className="business-form-button"
-                onClick={handleBusinessButton}
+                onClick={businessState.handleBusinessButton}
               >
                 {" "}
                 <span></span>
@@ -413,7 +395,7 @@ const UserProfile = () => {
 
             <div className="up-right-col-main">
               <div className="up-reviewed-business-row">
-                <h2>Saved Businesses:</h2>
+                <h2 className="h2s">Saved Businesses:</h2>
                 {userState.favorite.length > 0
                   ? userState.favorite.map((business) => (
                     <BusinessCard key={business._id} business={business} />
@@ -421,7 +403,7 @@ const UserProfile = () => {
                   : null}
               </div>
               <div className="up-review-row">
-                <h2>Reviews Written:</h2>
+                <h2 className="h2s">Reviews Written:</h2>
                 {userState.Reviews.length > 0
                   ? userState.Reviews.map((review) => (
                       <ReviewCard
