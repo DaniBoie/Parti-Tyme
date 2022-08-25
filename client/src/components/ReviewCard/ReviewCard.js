@@ -14,16 +14,20 @@ const ReviewCard = (props) => {
         <h1>{props.username}</h1>
       </div>
       <div className="rc-profile-right">
-        <StarRatings
-          rating={props.review.rating}
-          starRatedColor="yellow"
-          starDimension="30px"
-          starSpacing="10px"
-        />
         <div className="rc-topic-text">
           <h1>{props.review.topic}</h1>
           <h2>{props.review.text}</h2>
         </div>
+        <StarRatings
+          rating={props.review.rating}
+          starRatedColor="#ffa534"
+          starEmptyColor="#636e72"
+          numberOfStars={5}
+          name="rating"
+          starDimension="25px"
+          starSpacing="3px"
+          className="blockClass"
+        />
       </div>
     </div>
   );

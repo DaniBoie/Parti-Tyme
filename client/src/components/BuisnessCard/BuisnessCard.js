@@ -37,8 +37,6 @@ const BuisnessCard = (props) => {
         <div className="bc-business-image">
           <img src={img} alt="Business Profile" />
         </div>
-
-        {/* <StarRating /> */}
           <StarRatings
             rating={props.business.rating}
             starRatedColor="#ffa534"
@@ -49,19 +47,7 @@ const BuisnessCard = (props) => {
             starSpacing="3px"
             className="blockClass"
           />  
-        {/* <Ratings
-          rating={props.business.rating}
-          widgetRatedColors="#ffa534"
-          widgetEmptyColors="#636e72"
-          widgetDimensions="23px"
-          widgetSpacings="3px"
-        >
-        <Ratings.Widget />
-        <Ratings.Widget />
-        <Ratings.Widget />
-        <Ratings.Widget />
-        <Ratings.Widget />
-        </Ratings> */}
+
       </div>
 
       {/* Right Column / Business Basic Info */}
