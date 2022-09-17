@@ -147,7 +147,7 @@ const BuisnessView = () => {
               className="bvp-search-text"
               type="text"
               name="searchText"
-              placeholder="Search by Name..."
+              placeholder="search by name..."
               onChange={businessState.handleInputChange}
             />
             <button
@@ -159,9 +159,9 @@ const BuisnessView = () => {
             </button>
           </div>
 
-          <p>Search results for "{searchState.searchTerm}"</p>
+          <p>search results for "{searchState.searchTerm}"</p>
 
-          <h2>FILTERS:</h2>
+          <h2>filters:</h2>
           {/* Dropdown category */}
           <div className="bvp-dropdown-categories-list-item">
             <form>
@@ -193,7 +193,7 @@ const BuisnessView = () => {
                 id="maxCheck"
               />
 
-              <label>Max Price</label>
+              <label>max price</label>
               <input
                 className={`search-price ${showPrice.price}`}
                 type="number"
@@ -210,13 +210,13 @@ const BuisnessView = () => {
                 onChange={businessState.handleCheckboxChange}
                 id="distanceCheck"
               />
-              <label>(Coming Soon!)</label>
+              <label>coming soon!</label>
             </div>
           </div>
 
           <div className="filter-column-buttons">
-            <button onClick={handleSearch}>Search</button>
-            <button onClick={handleFilterClear}>Clear</button>
+            <button onClick={handleSearch}>search</button>
+            <button onClick={handleFilterClear}>clear</button>
           </div>
         </div>
         

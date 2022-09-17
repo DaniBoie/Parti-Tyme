@@ -6,11 +6,6 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.business-card {
-  border: 1px solid black;
-  box-shadow: 3px 5px;
-}
-
 /* Left Column  */
 
 .changing-basic-info-area {
@@ -406,10 +401,10 @@
 
 
 @media only screen and (max-width: 850px) {
-  .business-card {
+  /* .business-card {
     grid-template-columns: 1fr;
     align-items: start;
-  }
+  } */
 } 
 
 @media only screen and (max-width: 650px) { 

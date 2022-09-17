@@ -15,6 +15,7 @@ const BuisnessData = new Schema(
     },
     slogan: {
       type: String,
+      maxLength: 90
     },
     img: {
       type: String,

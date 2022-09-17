@@ -7,19 +7,37 @@
   background: var(--background-color);
   color: #0b2e4b;
   /* box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.3); */
-  border: 1px solid black;
-  box-shadow: 3px 5px;
+  box-shadow:
+  0.7px 0.7px 2.2px rgba(0, 0, 0, 0.02),
+  1.7px 1.7px 5.3px rgba(0, 0, 0, 0.028),
+  3.1px 3.1px 10px rgba(0, 0, 0, 0.035),
+  5.6px 5.6px 17.9px rgba(0, 0, 0, 0.042),
+  10.4px 10.4px 33.4px rgba(0, 0, 0, 0.05),
+  25px 25px 80px rgba(0, 0, 0, 0.07);
+border-radius: 20px;
+  /* border: 1px solid black; */
+  /* box-shadow: 3px 5px; */
   padding: 0.75rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   display: grid;
   grid-template-columns: 1fr 3fr;
-  min-height: 270px;
+  min-height: 225px;
   height: fit-content;
+  transition: box-shadow .25s;
+  margin: 0rem 0rem .5rem 0rem;
 }
 
 
 .business-card:hover {
   background: #b4cbde;
+box-shadow:
+  1.1px 1.1px 2.2px rgba(0, 0, 0, 0.039),
+  2.7px 2.7px 5.3px rgba(0, 0, 0, 0.057),
+  5px 5px 10px rgba(0, 0, 0, 0.07),
+  8.9px 8.9px 17.9px rgba(0, 0, 0, 0.083),
+  16.7px 16.7px 33.4px rgba(0, 0, 0, 0.101),
+  40px 40px 80px rgba(0, 0, 0, 0.14)
+;
   cursor: pointer;
 }
 /* Left Column */
