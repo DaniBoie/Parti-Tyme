@@ -12,6 +12,8 @@ const ReviewCard = (props) => {
           <img src={props.image} alt="profile pic" />
         </div>
         <h1>{props.username}</h1>
+        
+
       </div>
       <div className="rc-profile-right">
         <div className="rc-topic-text">
@@ -26,8 +28,9 @@ const ReviewCard = (props) => {
           name="rating"
           starDimension="25px"
           starSpacing="3px"
-          className="blockClass"
+          className="stars"
         />
+        <p>Review Date: {props.review.createdAt.slice(0, 10)}</p>
       </div>
     </div>
   );

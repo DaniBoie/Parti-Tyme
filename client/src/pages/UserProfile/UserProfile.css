@@ -1,5 +1,5 @@
 .user-profile-page {
-  height: 90vh;
+  /* height: 90vh; */
   padding: 2rem 1rem 1rem 1rem;
   display: grid;
   grid-template-columns: 3fr 7fr;
@@ -9,12 +9,12 @@
 /* Left Column  */
 
 .changing-basic-info-area {
-  background: var(--yellow-bg);
-  border-right-width: 80%;
-  border-right: 1px solid #dfe6e9;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  /* background: var(--yellow-bg); */
+  /* border-right-width: 80%; */
+  /* border-right: 1px solid #dfe6e9; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* flex-direction: column; */
   padding: 0rem 1rem;
   text-align: center;
 }
@@ -159,6 +159,59 @@
   border: 1px solid #636e72;
 }
 
+
+
+
+
+
+
+
+
+/* Right Column */
+
+.up-right-col-main {
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.h2s {
+ margin-top: 1rem;
+ margin-bottom: 1rem;
+}
+
+.up-reviewed-business-row {
+  display: grid;
+  row-gap: .5rem;
+  max-height: 80vh;
+  padding: 1rem;
+}
+
+
+.up-review-row {
+  display: grid;
+  row-gap: .5rem;
+  padding: 1rem;
+}
+
+
+@media only screen and (max-width: 700px) { 
+  .user-profile-page {
+    grid-template-columns: 1fr;
+  }
+  .changing-account-type-area {
+  margin-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .business-card {
+    grid-template-columns: 1fr;
+  }
+  .Review-Card {
+    grid-template-columns: 1fr;
+  }
+} 
+
 /* Clicking Edit Profile Button */
 
 .edit-profile-btn.profile-input-show {
@@ -175,6 +228,16 @@
 .hide.profile-input-show {
   visibility: visible;
 } */
+
+
+
+
+
+
+
+
+
+
 
 /* Registration Form */
 
@@ -370,65 +433,3 @@
 }
 
 /* End Registration Form */
-
-/* Right Column */
-
-.up-right-col-main {
-  display: flex;
-  flex-direction: column;
-  /* grid-template-areas: "review" "history"; */
-  /* grid-template-rows: 50vh 50vh; */
-  background: var(--blue-bg);
-}
-
-.h2s {
- margin-top: 1rem;
- margin-bottom: 1rem;
-}
-
-/* change here MAX HEIGHT if fav/review rows looks off when adding alot of things. */
-.up-review-row {
-  grid-area: history;
-  overflow: auto;
-  border-top: 1px solid #dfe6e9;
-}
-
-.up-reviewed-business-row {
-  grid-area: review;
-  max-height: 80vh;
-  overflow: auto;
-}
-
-
-@media only screen and (max-width: 850px) {
-  /* .business-card {
-    grid-template-columns: 1fr;
-    align-items: start;
-  } */
-} 
-
-@media only screen and (max-width: 650px) { 
-  .user-profile-page {
-    grid-template-columns: 1fr;
-  }
-    .business-card {
-    grid-template-columns: 1fr 3fr;
-    align-items: start;
-  }
-
-  .changing-account-type-area {
-  margin-top: 1rem;
-}
-}
-
-@media only screen and (max-width: 500px) {
-  .business-card {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-
-  .Review-Card {
-    grid-template-columns: 1fr;
-  }
-
-} 
